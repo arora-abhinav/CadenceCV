@@ -48,7 +48,7 @@ def extract_keypoints(video_dir):
         right_knee_cords.append(right_knee)
         left_shoulder_coords.append(left_shoulder)
         right_shoulder_coords.append(right_shoulder)
-
+    
         i += 1
         frames.append(i)
 
