@@ -71,5 +71,7 @@ def extract_keypoints(video_dir):
     "right_knee": right_knee_cords,
     "right_shoulder": right_shoulder_coords,
     "left_shoulder": left_shoulder_coords,
-    "Duration": duration
+    "Duration": duration,
+    "Source": source,
+    "Frame Count": int(frame_count)
     }
