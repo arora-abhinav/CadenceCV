@@ -4,3 +4,8 @@ Videos/
 ./CLAUDE.md
 .claude/
 ./Scripts/yolo26x-pose.pt
+*.pt
+.DS_Store
+**/.DS_Store
+__pycache__/
+*.pyc
