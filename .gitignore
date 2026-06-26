@@ -3,3 +3,4 @@
 Videos/
 ./CLAUDE.md
 .claude/
+./Scripts/yolo26x-pose.pt
