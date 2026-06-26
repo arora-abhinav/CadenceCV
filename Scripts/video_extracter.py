@@ -11,9 +11,9 @@ def extract_keypoints(video_dir):
     duration = frame_count / fps
     cap.release()
 
-    model = YOLO("yolo26n-pose.pt")  # load a pretrained model (recommended for training)
+    model = YOLO("yolo26x-pose.pt")  # load a pretrained model (recommended for training)
     #stream=True now allows us to process the video frame by frame
-    source = model(source=video_dir, show=False, conf=0.3, stream=True)
+    source = model.predict(source=video_dir, show=False, conf=0.3, stream=True, imgsz = 1280)
     #Result for each frame
     right_ankle_coords = []
     left_ankle_coords = []
