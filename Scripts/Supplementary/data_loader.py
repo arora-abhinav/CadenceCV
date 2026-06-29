@@ -14,5 +14,5 @@ df = pd.DataFrame(data)
 testing_video_strings = set(["Video9", "instavid_13", "instavid_15", "Video3"])
 training_video_strings = [frame["video"] for frame in data if frame["video"] not in testing_video_strings]
 
-testing_df = df.loc[df["video"].isin(testing_video_strings)]
-training_df = df.loc[df["video"].isin(training_video_strings)]
+testing_df = df.loc[df["video"].isin(testing_video_strings)].reset_index()
+training_df = df.loc[df["video"].isin(training_video_strings)].reset_index()
