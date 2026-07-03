@@ -2,6 +2,7 @@
 from ultralytics import YOLO
 import cv2
 import numpy as np
+import yolo_model_loader
 
 def extract_keypoints(video_dir):
     #Obtaining metadata for the video to calculate duration
@@ -11,9 +12,8 @@ def extract_keypoints(video_dir):
     duration = frame_count / fps
     cap.release()
 
-    model = YOLO("yolo26x-pose.pt")  # load a pretrained model (recommended for training)
-    #stream=True now allows us to process the video frame by frame
-    source = model.predict(source=video_dir, show=False, conf=0.3, stream=True, imgsz = 1280)
+    model = yolo_model_loader.load_model("yolo26x-pose.pt")
+    source = yolo_model_loader.load_source(video_dir, False, 0.3, True, 1280, model)
     #Result for each frame
     right_ankle_coords = []
     left_ankle_coords = []
