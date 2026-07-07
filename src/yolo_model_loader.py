@@ -1,9 +1,9 @@
 #Reusable script to load and use the Yolo26x pose estimation model
 from ultralytics import YOLO
 
-def load_source(source_dir, show: bool, conf: float, stream: bool, imgsz:int, model):
+def load_source(source_dir, model, show: bool = False, conf: float = 0.3, stream: bool = True, imgsz:int = 640):
     #stream=True now allows us to process the video frame by frame
-    source = model.predict(source=source_dir, show=False, conf=0.3, stream=True, imgsz = 1280)
+    source = model.predict(source=source_dir, show=show, conf=conf, stream=stream, imgsz = imgsz)
 
     return source
 

@@ -12,7 +12,7 @@ def extract_keypoints(video_dir):
     duration = frame_count / fps
     cap.release()
 
-    model = yolo_model_loader.load_model("/Users/abhinavarora/Desktop/CadenceCV/models/21_keypoints.pt")
+    model = yolo_model_loader.load_model("/Users/abhinavarora/Desktop/CadenceCV/models/yolo26x-pose.pt")
     source = yolo_model_loader.load_source(video_dir, False, 0.3, True, 1280, model)
     #Result for each frame
     right_ankle_coords = []
