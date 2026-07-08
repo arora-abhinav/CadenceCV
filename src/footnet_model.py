@@ -10,6 +10,7 @@ import numpy as np
 import json
 import pandas as pd
 import torch
+import pickle
 
 def configure_data(strike_df, frame_by_frame_path, fit_scaler=True, scaler_means=None, scaler_stds=None):
     """
@@ -170,6 +171,10 @@ test_features, test_labels, test_masks, _, _ = configure_data(
     scaler_means=means, scaler_stds=stds
 )
 
+with open("/Users/abhinavarora/Desktop/CadenceCV/models/scaler_means_and_dev.pkl", "wb") as file:
+    pickle.dump({"Means": means, "Stds": stds}, file)
+
+
 
 class CustomDataLoader(Dataset):
     def __init__(self, features, labels, masks):
@@ -289,4 +294,5 @@ all_true = torch.cat(all_true).numpy()
 from sklearn.metrics import classification_report
 print(classification_report(all_true, all_preds, target_names=["non-contact", "contact"]))
 
-torch.save(model.state_dict(), "/Users/abhinavarora/Desktop/CadenceCV/models/footnet_lstm_best.pth")
+print(all_preds)
+print(all_true)
