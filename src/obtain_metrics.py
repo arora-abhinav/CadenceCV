@@ -107,14 +107,14 @@ def compute_all_metrics(video_dir: str):
 #that were obtained via strikefoot data and then resampled to a size of 40 frames per gait cycle. Since that cannot happen anymore
 #A sliding window of size 2 is being used. A window of size 40 with a step size of 2 across the frames and forms a usable input for
 #for the LSTM.  
-def configure_data(frame_by_frame_dict: dict, scaler_means, scaler_stds):
+def configure_data(frame_by_frame_data: list[dict], scaler_means, scaler_stds):
     lstm_metrics = ["ankle_x_vel", "tibial_angle", "shin_velocity", "ankle_y_vel"]
     resampling_num = 40
     stride = 2
 
     # Build video_metric_df from the dict directly
     video_metric_df = pd.concat(
-        [pd.DataFrame(frame_by_frame_dict[key]) for key in frame_by_frame_dict], axis=0
+        [pd.DataFrame(single_frame) for single_frame in frame_by_frame_data], axis=0
     ).dropna(axis=0, how='any').reset_index(drop=True)
 
     video_metric_df.loc[video_metric_df["side"] == "left", "side"] = "L"

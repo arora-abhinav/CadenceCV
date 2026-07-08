@@ -175,16 +175,21 @@ with open("/Users/abhinavarora/Desktop/CadenceCV/models/scaler_means_and_dev.pkl
     pickle.dump({"Means": means, "Stds": stds}, file)
 
 
-
+#labels are required to be None since at time of inference, we have no labels obviously. But labels are still
+#required for training the model and for testing it as below to check for accuracy
 class CustomDataLoader(Dataset):
-    def __init__(self, features, labels, masks):
+    def __init__(self, features, masks, labels = None):
         super(CustomDataLoader, self).__init__()
         #Loading the data from the tensor
         self.features:torch.Tensor = features
-        self.labels:torch.Tensor = labels
+        if labels != None:
+            self.labels:torch.Tensor = labels
         self.masks:torch.Tensor = masks
     def __getitem__(self, index):
-        return self.features[index].float(), self.labels[index].float(), self.masks[index].bool()
+        if labels != None:
+            return self.features[index].float(), self.labels[index].float(), self.masks[index].bool()
+        else:
+            return self.features[index].float(), self.masks[index].bool()
 
     def __len__(self):
         return self.features.shape[0]
