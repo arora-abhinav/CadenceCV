@@ -40,36 +40,49 @@ with torch.no_grad():
         predictions = (torch.sigmoid(logits) > 0.35).long()
         all_predictions.append(predictions)
 
-#Sliding window majority vote — each frame collects predictions from every window that covered it
+#Sliding window majority vote where each frame collects predictions from every window that covered it
+#The predictions given by the LSTM are batched, meaning that each batch is of shape (32, 40) and not 
+#(32, 40, 1) due to output.squeeze done in footnet_model. This corresponds to 32 chunks of size 40 predictions (The resampling num)
+#So, each batch must be iterated over where 32 chunks of size 40 are obtained.
+#Instead of iterating over contiguous chunks, chunks in continguous batches are instead iterated over
 frame_to_pred_dict = {}
 for (i, batch_preds) in enumerate(all_predictions):
-    #batch i covers windows [i*batch_size, i*batch_size + batch_size)
+    #The first 40 frame window always will start at i * batch_size and the last 40 frame window will
+    #be found at (i + 1) * batch_size - 1
     window_start = i * batch_size
-    #Last batch may be smaller than batch_size
+    #Last batch may not have 32 chunks
     batch_size_actual = batch_preds.shape[0]
 
+    #Now this is iterating over the actual 40-sized framed windows
     for j in range(batch_size_actual):
         window_idx = window_start + j
         #Apply mask to get only real (non-padded) frames and predictions for this window
         window_mask = all_masks[window_idx]
+        #applying the specific mask to a specific window in this current batch
         window_frames = all_frames[window_idx][window_mask]
         window_preds = batch_preds[j][window_mask]
 
+        #Finally constructing the frame_to_pred_dict : {frame: predictions over each window}
         for (ind, frame) in enumerate(window_frames):
             frame_int = int(frame.item())
             if frame_int not in frame_to_pred_dict:
                 frame_to_pred_dict[frame_int] = []
             frame_to_pred_dict[frame_int].append(window_preds[ind].item())
 
+#Taking a majiority vote via mode
 for frame in frame_to_pred_dict:
     frame_to_pred_dict[frame] = stats.mode(frame_to_pred_dict[frame], keepdims=True).mode[0]
 
+print(frame_to_pred_dict)
+
+#Detecting where strikefoot is actually happening 
 strikefoot_frames = []
-current_frame = None
-for f in frame_to_pred_dict:
-    if f != current_frame and frame_to_pred_dict[f] == 1:
+prev_pred = 0
+for f in sorted(frame_to_pred_dict.keys()):
+    curr_pred = frame_to_pred_dict[f]
+    if curr_pred == 1 and prev_pred == 0:
         strikefoot_frames.append(f)
-    current_frame = f
+    prev_pred = curr_pred
 
 cap = cv2.VideoCapture(video_dir)
 for f in strikefoot_frames:
