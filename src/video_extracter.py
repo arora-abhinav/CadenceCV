@@ -13,7 +13,7 @@ def extract_keypoints(video_dir):
     cap.release()
 
     model = yolo_model_loader.load_model("/Users/abhinavarora/Desktop/CadenceCV/models/yolo26x-pose.pt")
-    source = yolo_model_loader.load_source(video_dir, False, 0.3, True, 1280, model)
+    source = yolo_model_loader.load_source(video_dir, model, False, 0.3, True, 1280)
     #Result for each frame
     right_ankle_coords = []
     left_ankle_coords = []
@@ -23,10 +23,6 @@ def extract_keypoints(video_dir):
     right_knee_cords = []
     left_shoulder_coords = []
     right_shoulder_coords = []
-    left_heel_coords = []
-    right_heel_coords = []
-    left_toe_coords = []
-    right_toe_coords = []
     frames = []
     #Frame index
     i = 0
@@ -42,10 +38,6 @@ def extract_keypoints(video_dir):
         right_hip = kpts[12]
         left_knee = kpts[13]
         right_knee = kpts[14]
-        left_toe = kpts[17]
-        right_toe = kpts[18]
-        left_heel = kpts[19]
-        right_heel = kpts[20]
         right_shoulder = kpts[6]
         left_shoulder = kpts[5]
         right_ankle_coords.append(right_ankle)
@@ -56,10 +48,6 @@ def extract_keypoints(video_dir):
         right_knee_cords.append(right_knee)
         left_shoulder_coords.append(left_shoulder)
         right_shoulder_coords.append(right_shoulder)
-        left_heel_coords.append(left_heel)
-        right_heel_coords.append(right_heel)
-        right_toe_coords.append(right_toe)
-        left_toe_coords.append(left_toe)
     
         i += 1
         frames.append(i)
@@ -73,11 +61,6 @@ def extract_keypoints(video_dir):
     right_knee_cords = np.array(right_knee_cords)
     right_shoulder_coords = np.array(right_shoulder_coords)
     left_shoulder_coords = np.array(left_shoulder_coords)
-    right_heel_coords = np.array(right_heel_coords)
-    left_heel_coords = np.array(left_heel_coords)
-    left_toe_coords = np.array(left_toe_coords)
-    right_toe_coords = np.array(right_toe_coords)
-
     return {
     "right_ankle": right_ankle_coords,
     "left_ankle": left_ankle_coords,
@@ -87,10 +70,6 @@ def extract_keypoints(video_dir):
     "right_knee": right_knee_cords,
     "right_shoulder": right_shoulder_coords,
     "left_shoulder": left_shoulder_coords,
-    "left_heel": left_heel_coords,
-    "right_heel": right_heel_coords,
-    "left_toe": left_toe_coords,
-    "right_toe": right_toe_coords,
     "Duration": duration,
     "Source": source,
     "Frame Count": int(frame_count)

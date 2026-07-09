@@ -113,9 +113,7 @@ def configure_data(frame_by_frame_data: list[dict], scaler_means, scaler_stds):
     stride = 2
 
     # Build video_metric_df from the dict directly
-    video_metric_df = pd.concat(
-        [pd.DataFrame(single_frame) for single_frame in frame_by_frame_data], axis=0
-    ).dropna(axis=0, how='any').reset_index(drop=True)
+    video_metric_df = pd.DataFrame(frame_by_frame_data).dropna(axis=0, how='any').reset_index(drop=True)
 
     video_metric_df.loc[video_metric_df["side"] == "left", "side"] = "L"
     video_metric_df.loc[video_metric_df["side"] == "right", "side"] = "R"
@@ -150,7 +148,7 @@ def configure_data(frame_by_frame_data: list[dict], scaler_means, scaler_stds):
             mask_array = [True] * resampling_num
             #This array corresponds to each chunk's frames. Will be later used for a sliding window 
             #majiority vote
-            chunk_frames = deque([i for i in range(start, end + 1)])
+            chunk_frames = deque([i for i in range(start, start + chunk_len)])
 
             if chunk_len < resampling_num:
                 pad_amount = resampling_num - chunk_len

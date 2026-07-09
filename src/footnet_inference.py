@@ -3,15 +3,17 @@ import torch
 from obtain_metrics import configure_data, compute_all_metrics
 import pickle
 from torch.utils.data import DataLoader
+from scipy import stats
+import cv2
 
 #Loading the model:
 model = LSTM_custom(input_size=4, hidden_size=32, num_layers=1, num_classes=1)
 model.load_state_dict(torch.load("/Users/abhinavarora/Desktop/CadenceCV/models/footnet_lstm_best.pth", weights_only=True))
 model.eval()
 
-video_dir = ''
+video_dir = '/Users/abhinavarora/Desktop/CadenceCV/Videos/Video17.mp4'
 #Computing metrics from the video:
-frame_by_frame_data = compute_all_metrics('')
+frame_by_frame_data = compute_all_metrics(video_dir)
 #Loading mean and std from pickle file
 
 with open("/Users/abhinavarora/Desktop/CadenceCV/models/scaler_means_and_dev.pkl", "rb") as file:
@@ -24,19 +26,56 @@ stds = data["Stds"]
 all_features, all_masks, all_frames = configure_data(frame_by_frame_data, means, stds)
 dataset = CustomDataLoader(all_features, all_masks)
 
-#Running data through torch's actual data loader:
-video_data = DataLoader(dataset, batch_size=32, shuffle=True)
+batch_size = 32
+#shuffle=False so batch i always maps to windows [i*batch_size, (i+1)*batch_size)
+video_data = DataLoader(dataset, batch_size=batch_size, shuffle=False)
 
-#Now running the inference loop.
-
+#Inference loop — storing unmasked predictions (shape: batch_size x 40) so the
+#vote loop can index per-window using i * batch_size
 all_predictions = []
 with torch.no_grad():
     for (ind, data) in enumerate(video_data):
-        #Compute the forward pass:
         features, masks = data
         logits = model(features)
         predictions = (torch.sigmoid(logits) > 0.35).long()
-
-        #Only using the predictions where the mask is true:
-        predictions = predictions[masks]
         all_predictions.append(predictions)
+
+#Sliding window majority vote — each frame collects predictions from every window that covered it
+frame_to_pred_dict = {}
+for (i, batch_preds) in enumerate(all_predictions):
+    #batch i covers windows [i*batch_size, i*batch_size + batch_size)
+    window_start = i * batch_size
+    #Last batch may be smaller than batch_size
+    batch_size_actual = batch_preds.shape[0]
+
+    for j in range(batch_size_actual):
+        window_idx = window_start + j
+        #Apply mask to get only real (non-padded) frames and predictions for this window
+        window_mask = all_masks[window_idx]
+        window_frames = all_frames[window_idx][window_mask]
+        window_preds = batch_preds[j][window_mask]
+
+        for (ind, frame) in enumerate(window_frames):
+            frame_int = int(frame.item())
+            if frame_int not in frame_to_pred_dict:
+                frame_to_pred_dict[frame_int] = []
+            frame_to_pred_dict[frame_int].append(window_preds[ind].item())
+
+for frame in frame_to_pred_dict:
+    frame_to_pred_dict[frame] = stats.mode(frame_to_pred_dict[frame], keepdims=True).mode[0]
+
+strikefoot_frames = []
+current_frame = None
+for f in frame_to_pred_dict:
+    if f != current_frame and frame_to_pred_dict[f] == 1:
+        strikefoot_frames.append(f)
+    current_frame = f
+
+cap = cv2.VideoCapture(video_dir)
+for f in strikefoot_frames:
+    cap.set(cv2.CAP_PROP_POS_FRAMES, int(f))
+    ret, img = cap.read()
+    cv2.imshow("Strikefoot frame", img)
+    cv2.waitKey(0)
+
+cv2.destroyAllWindows()

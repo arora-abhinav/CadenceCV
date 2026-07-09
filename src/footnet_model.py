@@ -182,11 +182,10 @@ class CustomDataLoader(Dataset):
         super(CustomDataLoader, self).__init__()
         #Loading the data from the tensor
         self.features:torch.Tensor = features
-        if labels != None:
-            self.labels:torch.Tensor = labels
+        self.labels:torch.Tensor = labels
         self.masks:torch.Tensor = masks
     def __getitem__(self, index):
-        if labels != None:
+        if self.labels != None:
             return self.features[index].float(), self.labels[index].float(), self.masks[index].bool()
         else:
             return self.features[index].float(), self.masks[index].bool()
@@ -286,6 +285,7 @@ all_true = []
 
 with torch.no_grad():
     for features, labels, masks in test_data_loader:
+        #Computing the foward pass
         logits = model(features)
         preds = (torch.sigmoid(logits) > 0.35).long()
 
