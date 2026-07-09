@@ -1,9 +1,9 @@
-import sys
-sys.path.append("/Users/abhinavarora/Desktop/CadenceCV/src")
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 from torch import nn
 from torch.utils.data import Dataset, DataLoader
 import torch
-from data_loader import training_df, testing_df
+from training.data_loader import training_df, testing_df
 from scipy.stats import zscore
 from collections import deque
 import numpy as np
@@ -162,16 +162,16 @@ def configure_data(strike_df, frame_by_frame_path, fit_scaler=True, scaler_means
 
 # Training
 train_features, train_labels, train_masks, means, stds = configure_data(
-    training_df, "/Users/abhinavarora/Desktop/CadenceCV/data/frame_by_frame_data.json", fit_scaler=True
+    training_df, "/Users/abhinavarora/Desktop/CadenceCV/ml/data/frame_by_frame_data.json", fit_scaler=True
 )
 
 # Test — pass back the training stats
 test_features, test_labels, test_masks, _, _ = configure_data(
-    testing_df, "/Users/abhinavarora/Desktop/CadenceCV/data/frame_by_frame_data.json", fit_scaler=False,
+    testing_df, "/Users/abhinavarora/Desktop/CadenceCV/ml/data/frame_by_frame_data.json", fit_scaler=False,
     scaler_means=means, scaler_stds=stds
 )
 
-with open("/Users/abhinavarora/Desktop/CadenceCV/models/scaler_means_and_dev.pkl", "wb") as file:
+with open("/Users/abhinavarora/Desktop/CadenceCV/ml/weights/scaler_means_and_dev.pkl", "wb") as file:
     pickle.dump({"Means": means, "Stds": stds}, file)
 
 

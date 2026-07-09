@@ -1,6 +1,8 @@
-from footnet_model import CustomDataLoader, LSTM_custom
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+from models.footnet_model import CustomDataLoader, LSTM_custom
 import torch
-from obtain_metrics import configure_data, compute_all_metrics
+from utils.obtain_metrics import configure_data, compute_all_metrics
 import pickle
 from torch.utils.data import DataLoader
 from scipy import stats
@@ -8,7 +10,7 @@ import cv2
 
 #Loading the model:
 model = LSTM_custom(input_size=4, hidden_size=32, num_layers=1, num_classes=1)
-model.load_state_dict(torch.load("/Users/abhinavarora/Desktop/CadenceCV/models/footnet_lstm_best.pth", weights_only=True))
+model.load_state_dict(torch.load("/Users/abhinavarora/Desktop/CadenceCV/ml/weights/footnet_lstm_best.pth", weights_only=True))
 model.eval()
 
 video_dir = '/Users/abhinavarora/Desktop/CadenceCV/Videos/Video17.mp4'
@@ -16,7 +18,7 @@ video_dir = '/Users/abhinavarora/Desktop/CadenceCV/Videos/Video17.mp4'
 frame_by_frame_data = compute_all_metrics(video_dir)
 #Loading mean and std from pickle file
 
-with open("/Users/abhinavarora/Desktop/CadenceCV/models/scaler_means_and_dev.pkl", "rb") as file:
+with open("/Users/abhinavarora/Desktop/CadenceCV/ml/weights/scaler_means_and_dev.pkl", "rb") as file:
     data = pickle.load(file)
 
 means = data["Means"]

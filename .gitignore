@@ -3,9 +3,10 @@
 Videos/
 ./CLAUDE.md
 .claude/
-./models/yolo26x-pose.pt
+ml/weights/
 *.pt
 .DS_Store
 **/.DS_Store
 __pycache__/
 *.pyc
+improvements.md

@@ -1,5 +1,7 @@
 import numpy as np
-from video_extracter import extract_keypoints
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+from utils.video_extracter import extract_keypoints
 import torch
 import pandas as pd 
 from collections import deque
