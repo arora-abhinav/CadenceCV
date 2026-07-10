@@ -5,6 +5,7 @@ from utils.video_extracter import extract_keypoints
 import torch
 import pandas as pd 
 from collections import deque
+import cv2
 
 def compute_all_metrics(video_dir: str):
     coords = extract_keypoints(video_dir)
@@ -18,6 +19,8 @@ def compute_all_metrics(video_dir: str):
     left_shoulder_arr = coords['left_shoulder']
     right_shoulder_arr = coords['right_shoulder']
     n_detected = len(left_ankle_arr)
+    frame_count = coords["Frame Count"]
+    duration = coords["Duration"]
 
     # Ankle velocities
     left_ankle_x_vel = np.gradient(left_ankle_arr[:, 0])
@@ -103,7 +106,7 @@ def compute_all_metrics(video_dir: str):
                 'side': side,
             })
 
-    return results
+    return results, frame_count, duration, right_hip_arr, left_hip_arr
 
 #Mimics some functionality of the combined_labeller's configure_data. But, that script's data relied on distinguished gait cycles
 #that were obtained via strikefoot data and then resampled to a size of 40 frames per gait cycle. Since that cannot happen anymore
@@ -112,7 +115,7 @@ def compute_all_metrics(video_dir: str):
 def configure_data(frame_by_frame_data: list[dict], scaler_means, scaler_stds):
     lstm_metrics = ["ankle_x_vel", "tibial_angle", "shin_velocity", "ankle_y_vel"]
     resampling_num = 40
-    stride = 2
+    stride = 5
 
     # Build video_metric_df from the dict directly
     video_metric_df = pd.DataFrame(frame_by_frame_data).dropna(axis=0, how='any').reset_index(drop=True)
