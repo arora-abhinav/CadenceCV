@@ -2,22 +2,25 @@ import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 from models.footnet_model import CustomDataLoader, LSTM_custom
 import torch
-from utils.obtain_metrics import configure_data, compute_all_metrics
+# configure_data only. compute_all_metrics (YOLO) is never called from here.
+# YOLO runs once in main.py, its output is passed in as frame_by_frame_data.
+from utils.obtain_metrics import configure_data
 import pickle
 from torch.utils.data import DataLoader
 from scipy import stats
 import cv2
 
-def obtain_strikefoot_frames(video_dir):
+
+def run_inference(frame_by_frame_data):
     #Loading the model:
     model = LSTM_custom(input_size=4, hidden_size=32, num_layers=1, num_classes=1)
     model.load_state_dict(torch.load("/Users/abhinavarora/Desktop/CadenceCV/ml/weights/footnet_lstm_best.pth", weights_only=True))
     model.eval()
 
-    #Computing metrics from the video:
-    frame_by_frame_data, frame_count, duration, right_hip_arr, left_hip_arr = compute_all_metrics(video_dir)
-    #Loading mean and std from pickle file
+    # frame_by_frame_data is already computed upstream (YOLO has already run in main.py).
+    # Accepting it as a parameter means YOLO is never re-triggered by importing this file.
 
+    #Loading mean and std from pickle file
     with open("/Users/abhinavarora/Desktop/CadenceCV/ml/weights/scaler_means_and_dev.pkl", "rb") as file:
         data = pickle.load(file)
 
@@ -43,7 +46,7 @@ def obtain_strikefoot_frames(video_dir):
             all_predictions.append(predictions)
 
     #Sliding window majority vote where each frame collects predictions from every window that covered it
-    #The predictions given by the LSTM are batched, meaning that each batch is of shape (32, 40) and not 
+    #The predictions given by the LSTM are batched, meaning that each batch is of shape (32, 40) and not
     #(32, 40, 1) due to output.squeeze done in footnet_model. This corresponds to 32 chunks of size 40 predictions (The resampling num)
     #So, each batch must be iterated over where 32 chunks of size 40 are obtained.
     #Instead of iterating over contiguous chunks, chunks in continguous batches are instead iterated over
@@ -77,7 +80,7 @@ def obtain_strikefoot_frames(video_dir):
 
     print(frame_to_pred_dict)
 
-    #Detecting where strikefoot is actually happening 
+    #Detecting where strikefoot is actually happening
     strikefoot_frames = []
     prev_pred = 0
     for f in sorted(frame_to_pred_dict.keys()):
@@ -86,7 +89,8 @@ def obtain_strikefoot_frames(video_dir):
             strikefoot_frames.append(f)
         prev_pred = curr_pred
 
-    return strikefoot_frames, frame_to_pred_dict, duration, right_hip_arr, left_hip_arr, frame_count
+    return strikefoot_frames, frame_to_pred_dict
+
 
 def visualise_strike_foot_frames(video_dir, strikefoot_frames):
     cap = cv2.VideoCapture(video_dir)
@@ -97,3 +101,15 @@ def visualise_strike_foot_frames(video_dir, strikefoot_frames):
         cv2.waitKey(0)
 
     cv2.destroyAllWindows()
+
+
+if __name__ == "__main__":
+    # Standalone test: loads cached YOLO output produced by main.py and runs LSTM inference.
+    # To regenerate the cache (or run on a new video), run main.py first.
+    cache_path = "/Users/abhinavarora/Desktop/CadenceCV/ml/data/keypoints_cache.pkl"
+    with open(cache_path, "rb") as f:
+        cache = pickle.load(f)
+    frame_by_frame_data = cache["frame_by_frame_data"]
+
+    strikefoot_frames, frame_to_pred_dict = run_inference(frame_by_frame_data)
+    print(f"Strikefoot frames: {strikefoot_frames}")
