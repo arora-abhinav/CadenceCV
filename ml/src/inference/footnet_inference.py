@@ -15,7 +15,7 @@ def obtain_strikefoot_frames(video_dir):
     model.eval()
 
     #Computing metrics from the video:
-    frame_by_frame_data, frame_count, duration = compute_all_metrics(video_dir)
+    frame_by_frame_data, frame_count, duration, right_hip_arr, left_hip_arr = compute_all_metrics(video_dir)
     #Loading mean and std from pickle file
 
     with open("/Users/abhinavarora/Desktop/CadenceCV/ml/weights/scaler_means_and_dev.pkl", "rb") as file:
@@ -86,7 +86,7 @@ def obtain_strikefoot_frames(video_dir):
             strikefoot_frames.append(f)
         prev_pred = curr_pred
 
-    return strikefoot_frames, frame_to_pred_dict, duration
+    return strikefoot_frames, frame_to_pred_dict, duration, right_hip_arr, left_hip_arr, frame_count
 
 def visualise_strike_foot_frames(video_dir, strikefoot_frames):
     cap = cv2.VideoCapture(video_dir)

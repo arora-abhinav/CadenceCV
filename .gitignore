@@ -10,3 +10,4 @@ ml/weights/
 __pycache__/
 *.pyc
 improvements.md
+docs/context.md
