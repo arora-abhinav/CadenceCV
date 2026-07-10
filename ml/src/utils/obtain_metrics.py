@@ -106,7 +106,7 @@ def compute_all_metrics(video_dir: str):
                 'side': side,
             })
 
-    return results, frame_count, duration, right_hip_arr, left_hip_arr
+    return results, frame_count, duration, right_hip_arr, left_hip_arr, right_ankle_arr, left_ankle_arr, right_knee_arr, left_knee_arr
 
 #Mimics some functionality of the combined_labeller's configure_data. But, that script's data relied on distinguished gait cycles
 #that were obtained via strikefoot data and then resampled to a size of 40 frames per gait cycle. Since that cannot happen anymore

@@ -17,7 +17,7 @@ if __name__ == "__main__":
     # This means changes to run_inference or downstream metrics only cost LSTM time, not YOLO time.
     if not os.path.exists(cache_path):
         print("No cache found — running YOLO inference (this may take a minute)...")
-        frame_by_frame_data, frame_count, duration, right_hip_arr, left_hip_arr = compute_all_metrics(video_dir)
+        frame_by_frame_data, frame_count, duration, right_hip_arr, left_hip_arr, right_ankle_arr, left_ankle_arr, right_knee_arr, left_knee_arr = compute_all_metrics(video_dir)
         with open(cache_path, "wb") as f:
             pickle.dump({
                 "frame_by_frame_data": frame_by_frame_data,
@@ -25,6 +25,10 @@ if __name__ == "__main__":
                 "duration": duration,
                 "right_hip_arr": right_hip_arr,
                 "left_hip_arr": left_hip_arr,
+                "right_ankle_arr": right_ankle_arr,
+                "left_ankle_arr": left_ankle_arr,
+                "right_knee_arr": right_knee_arr,
+                "left_knee_arr": left_knee_arr,
             }, f)
     else:
         # Loading from cache
@@ -35,6 +39,10 @@ if __name__ == "__main__":
         duration = cache["duration"]
         right_hip_arr = cache["right_hip_arr"]
         left_hip_arr = cache["left_hip_arr"]
+        right_ankle_arr = cache["right_ankle_arr"]
+        left_ankle_arr = cache["left_ankle_arr"]
+        right_knee_arr = cache["right_knee_arr"]
+        left_knee_arr = cache["left_knee_arr"]
 
     # Step 2: Run FootNet LSTM inference on the pre-computed per-frame metrics.
     # YOLO does NOT run inside run_inference — it only consumes frame_by_frame_data.
