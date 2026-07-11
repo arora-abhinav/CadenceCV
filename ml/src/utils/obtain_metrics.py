@@ -22,20 +22,22 @@ def compute_all_metrics(video_dir: str):
     frame_count = coords["Frame Count"]
     duration = coords["Duration"]
 
-    # Ankle velocities
+    # These are two of the four FootNet input features.
     left_ankle_x_vel = np.gradient(left_ankle_arr[:, 0])
     left_ankle_y_vel = np.gradient(left_ankle_arr[:, 1])
     right_ankle_x_vel = np.gradient(right_ankle_arr[:, 0])
     right_ankle_y_vel = np.gradient(right_ankle_arr[:, 1])
 
-    # Shin vectors (ankle -> knee) and their x-velocity
+    # Shin vector: knee to ankle vector (shin bone)
+    # This swing velocity is the third FootNet input feature.
     left_shin_vec = left_knee_arr  - left_ankle_arr
     right_shin_vec = right_knee_arr - right_ankle_arr
     left_shin_velocity = np.gradient(left_shin_vec[:, 0])
     right_shin_velocity = np.gradient(right_shin_vec[:, 0])
 
     def _tibial(shin_vec_arr):
-        return np.pi / 2 - np.arctan2(shin_vec_arr[:, 1], shin_vec_arr[:, 0])
+        sin_val = shin_vec_arr[:,0]/np.linalg.norm(shin_vec_arr, axis=1)
+        return np.arcsin(sin_val)
 
     left_tibial_angle = _tibial(left_shin_vec)
     right_tibial_angle = _tibial(right_shin_vec)
@@ -72,20 +74,45 @@ def compute_all_metrics(video_dir: str):
             hip_arr = d['hip_arr']
             shldr_arr = d['shldr_arr']
 
+            # Knee flexion: v1 points from the knee toward the hip (along the thigh),
+            # v2 points from the knee toward the ankle (along the shin). The difference
+            # of their arctan2 angles gives the signed angle at the knee joint between
+            # the two segments. % 360 maps it to [0, 360). A fully extended leg reads
+            # ~180°; a bent knee reads less. At initial contact, overstriding produces
+            # a stiffer, more extended knee (closer to 180°) because the leg is acting
+            # as a rigid strut rather than a spring.
             v1 = hip_arr[frame] - knee_arr[frame]
             v2 = ankle_arr[frame] - knee_arr[frame]
             knee_flexion = float(
                 np.rad2deg(np.arctan2(v2[1], v2[0]) - np.arctan2(v1[1], v1[0])) % 360
             )
 
+            # Ankle-hip horizontal offset: the absolute pixel distance between the ankle
+            # and the hip along the x-axis. The hip is used as a COM proxy (greater
+            # trochanter approximation). At initial contact this is the primary overstriding
+            # metric from the literature — how far ahead of the COM the foot is landing.
             offset = float(np.abs(ankle_arr[frame, 0] - hip_arr[frame, 0]))
 
+            # Trunk angle: tv is a vector pointing from the hip up toward the shoulder
+            # along the torso. The same π/2 - arctan2 trick as _tibial re-references
+            # the vector's angle from horizontal to vertical, giving forward trunk lean
+            # in degrees. 0° = upright; positive = leaning forward. Forward lean affects
+            # cadence, overstriding tendency, and running economy.
             tv = shldr_arr[frame] - hip_arr[frame]
             trunk_angle = float(np.rad2deg(np.pi / 2 - np.arctan2(tv[1], tv[0])))
 
+            # Pre-strike ankle y-velocity: the vertical ankle speed 2 frames before
+            # the current frame. Looking back 2 frames captures the descent phase just
+            # before potential ground contact. In pixel coords positive = moving downward.
+            # Heel strikers have a larger downward velocity here; forefoot strikers less.
             pre2 = max(0, frame - 2)
             ankle_vel_pre = float(d['ay_vel'][pre2])
 
+            # Ankle approach angle: the direction of ankle travel over the 3 frames
+            # immediately before this one, computed as arctan2 of the displacement vector.
+            # Distinguishes a steep downward approach (heel strike, foot dropping from
+            # above) from a more horizontal/rearward approach (forefoot, foot sweeping
+            # back before contact). Clamped to frame 0 at the start of the video.
             p1 = max(0, frame - 1)
             p3 = max(0, frame - 3)
             dx = float(ankle_arr[p1, 0] - ankle_arr[p3, 0])
