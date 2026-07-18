@@ -26,13 +26,11 @@ def extract_keypoints(video_dir):
     left_shoulder_coords = []
     right_shoulder_coords = []
     frames = []
-    #keeps a track of which frames are actually detected
-    n_detected = set()
     
+    i = 0
     for (index,result) in enumerate(source):
         #Obtaining the first person's keypoints from the video
         if len(result.keypoints) == 0:
-            n_detected.add(index + 1)
             continue
         #Extracting essential keypoints based off indices according to the YOLOv8 documentation
         kpts = result.keypoints.xy[0]
@@ -53,7 +51,8 @@ def extract_keypoints(video_dir):
         left_shoulder_coords.append(left_shoulder)
         right_shoulder_coords.append(right_shoulder)
 
-        frames.append(index + 1)
+        frames.append(i)
+        i += 1
 
     frames = np.array(frames)
     right_ankle_coords = np.array(right_ankle_coords)
@@ -76,5 +75,5 @@ def extract_keypoints(video_dir):
     "Duration": duration,
     "Source": source,
     "Frame Count": int(frame_count),
-    'Frames': frames
+    'Frames': frames,
     }

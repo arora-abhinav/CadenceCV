@@ -22,30 +22,38 @@ def compute_all_metrics(video_dir: str):
     frame_count = coords["Frame Count"]
     duration = coords["Duration"]
 
-    # These are two of the four (now 5) FootNet input features.
-    left_ankle_x_vel = np.gradient(left_ankle_arr[:, 0])
+    # Runner travel direction, detected from forward trunk lean: the shoulder sits ahead of
+    # the hip in the direction of travel. The median keeps it robust on a treadmill, where net
+    # hip displacement is ~0 and a start-vs-end hip comparison would just be noise.
+    # direction = +1 means running rightward (+X), -1 means leftward (-X).
+    mean_shoulder_x = (left_shoulder_arr[:, 0] + right_shoulder_arr[:, 0]) / 2
+    mean_hip_x = (left_hip_arr[:, 0] + right_hip_arr[:, 0]) / 2
+    direction = 1 if np.median(mean_shoulder_x - mean_hip_x) > 0 else -1
+    direction_label = "right" if direction == 1 else "left"
+
+    # Horizontal signed features mirror-flip with running direction, so each is multiplied by
+    # `direction` to canonicalise every runner to rightward travel. This keeps the features
+    # identical whether the athlete runs left-to-right or right-to-left.
+    # ankle_y_vel is vertical (direction-independent) and is left uncorrected.
+    left_ankle_x_vel = direction * np.gradient(left_ankle_arr[:, 0])
     left_ankle_y_vel = np.gradient(left_ankle_arr[:, 1])
-    right_ankle_x_vel = np.gradient(right_ankle_arr[:, 0])
+    right_ankle_x_vel = direction * np.gradient(right_ankle_arr[:, 0])
     right_ankle_y_vel = np.gradient(right_ankle_arr[:, 1])
 
-    # Shin vector: knee to ankle vector (shin bone)
-    # This swing velocity is the third FootNet input feature.
+    # Shin vector: knee to ankle vector (shin bone). Its x-velocity (third FootNet feature) is
+    # horizontal, so it is canonicalised by direction too.
     left_shin_vec = left_knee_arr  - left_ankle_arr
     right_shin_vec = right_knee_arr - right_ankle_arr
-    left_shin_velocity = np.gradient(left_shin_vec[:, 0])
-    right_shin_velocity = np.gradient(right_shin_vec[:, 0])
+    left_shin_velocity = direction * np.gradient(left_shin_vec[:, 0])
+    right_shin_velocity = direction * np.gradient(right_shin_vec[:, 0])
 
+    # Tibial angle uses the direction-flipped shin x-component so the signed lean is measured
+    # relative to travel direction, not the raw image x-axis.
     def _tibial(shin_vec_arr):
-        return np.pi / 2 - np.arctan2(shin_vec_arr[:, 1], shin_vec_arr[:, 0])
+        return np.pi / 2 - np.arctan2(shin_vec_arr[:, 1], direction * shin_vec_arr[:, 0])
 
     left_tibial_angle = _tibial(left_shin_vec)
     right_tibial_angle = _tibial(right_shin_vec)
-
-    # Auto-detect runner facing direction from hip X trajectory.
-    # direction=+1 means running rightward (+X), -1 means leftward (-X).
-# Runner facing direction: +1 = rightward, -1 = leftward
-    mean_hip_x = (left_hip_arr[:, 0] + right_hip_arr[:, 0]) / 2
-    direction = 1 if mean_hip_x[-1] > mean_hip_x[0] else -1
 
     # Signed inter-ankle distance — positive when THIS foot is ahead in direction of travel
     left_ankle_x_dist  = direction * (left_ankle_arr[:, 0] - right_ankle_arr[:, 0])
@@ -147,7 +155,7 @@ def compute_all_metrics(video_dir: str):
                 'side': side,
             })
 
-    return results, frame_count, duration, right_hip_arr, left_hip_arr, right_ankle_arr, left_ankle_arr, right_knee_arr, left_knee_arr
+    return results, frame_count, duration, right_hip_arr, left_hip_arr, right_ankle_arr, left_ankle_arr, right_knee_arr, left_knee_arr, direction_label
 
 #Mimics some functionality of the combined_labeller's configure_data. But, that script's data relied on distinguished gait cycles
 #that were obtained via strikefoot data and then resampled to a size of 40 frames per gait cycle. Since that cannot happen anymore
@@ -156,7 +164,7 @@ def compute_all_metrics(video_dir: str):
 def configure_data(frame_by_frame_data: list[dict], scaler_means, scaler_stds):
     lstm_metrics = ["ankle_x_vel", "tibial_angle", "shin_velocity", "ankle_y_vel", "ankle_dist"]
     resampling_num = 40
-    stride = 5
+    stride = 2
 
     # Build video_metric_df from the dict directly
     video_metric_df = pd.DataFrame(frame_by_frame_data).dropna(axis=0, how='any').reset_index(drop=True)
@@ -173,12 +181,18 @@ def configure_data(frame_by_frame_data: list[dict], scaler_means, scaler_stds):
     all_features = []
     all_masks = []
     all_frames = []
+    #Records which leg each window belongs to, aligned 1:1 with all_features/all_masks/all_frames.
+    #Without this, left and right windows share the same frame keys downstream and get merged.
+    all_sides = []
 
     for side in ["L", "R"]:
-        #Defining a subset based on leg and sorted frames
-        subset = video_metric_df[
+        #Defining a subset based on leg and sorted frames. Keep the real frame column around
+        #so windows carry actual video frame numbers, not subset-relative 0..n indices.
+        side_df = video_metric_df[
             video_metric_df["side"] == side
-        ].sort_values("frame")[lstm_metrics].reset_index(drop=True)
+        ].sort_values("frame").reset_index(drop=True)
+        subset = side_df[lstm_metrics]
+        frame_numbers = side_df["frame"].tolist()
 
         n_frames = len(subset)
         #This means there are no more frames to zero pad for this leg
@@ -192,9 +206,9 @@ def configure_data(frame_by_frame_data: list[dict], scaler_means, scaler_stds):
             chunk = subset.iloc[start:end]
             chunk_len = len(chunk)
             mask_array = [True] * resampling_num
-            #This array corresponds to each chunk's frames. Will be later used for a sliding window 
+            #This array carries the chunk's REAL frame numbers. Will be later used for a sliding window
             #majiority vote
-            chunk_frames = deque([i for i in range(start, start + chunk_len)])
+            chunk_frames = deque(frame_numbers[start:start + chunk_len])
 
             if chunk_len < resampling_num:
                 pad_amount = resampling_num - chunk_len
@@ -216,7 +230,8 @@ def configure_data(frame_by_frame_data: list[dict], scaler_means, scaler_stds):
 
             all_features.append(chunk.to_numpy())
             all_masks.append(mask_array)
-            all_frames.append(chunk_frames)
+            all_frames.append(list(chunk_frames))
+            all_sides.append(side)
             #Going over the next 40 frames, skipping 2 beginning frames.
             start += stride
 
@@ -224,4 +239,4 @@ def configure_data(frame_by_frame_data: list[dict], scaler_means, scaler_stds):
     all_masks = torch.from_numpy(np.array(all_masks))
     all_frames = torch.tensor(all_frames)
 
-    return all_features, all_masks, all_frames
+    return all_features, all_masks, all_frames, all_sides

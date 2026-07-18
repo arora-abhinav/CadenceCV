@@ -28,7 +28,7 @@ def run_inference(frame_by_frame_data):
     stds = data["Stds"]
 
     #Running data through the CustomDataLoader
-    all_features, all_masks, all_frames = configure_data(frame_by_frame_data, means, stds)
+    all_features, all_masks, all_frames, all_sides = configure_data(frame_by_frame_data, means, stds)
     dataset = CustomDataLoader(all_features, all_masks)
 
     batch_size = 32
@@ -50,6 +50,8 @@ def run_inference(frame_by_frame_data):
     #(32, 40, 1) due to output.squeeze done in footnet_model. This corresponds to 32 chunks of size 40 predictions (The resampling num)
     #So, each batch must be iterated over where 32 chunks of size 40 are obtained.
     #Instead of iterating over contiguous chunks, chunks in continguous batches are instead iterated over
+    #Keyed by (side, frame) so a left-foot window and a right-foot window that happen to share
+    #the same frame number never dump their predictions into the same vote bucket.
     frame_to_pred_dict = {}
     for (i, batch_preds) in enumerate(all_predictions):
         #The first 40 frame window always will start at i * batch_size and the last 40 frame window will
@@ -61,43 +63,50 @@ def run_inference(frame_by_frame_data):
         #Now this is iterating over the actual 40-sized framed windows
         for j in range(batch_size_actual):
             window_idx = window_start + j
+            side = all_sides[window_idx]
             #Apply mask to get only real (non-padded) frames and predictions for this window
             window_mask = all_masks[window_idx]
             #applying the specific mask to a specific window in this current batch
             window_frames = all_frames[window_idx][window_mask]
             window_preds = batch_preds[j][window_mask]
 
-            #Finally constructing the frame_to_pred_dict : {frame: predictions over each window}
+            #Finally constructing the frame_to_pred_dict : {(side, frame): predictions over each window}
             for (ind, frame) in enumerate(window_frames):
-                frame_int = int(frame.item())
-                if frame_int not in frame_to_pred_dict:
-                    frame_to_pred_dict[frame_int] = []
-                frame_to_pred_dict[frame_int].append(window_preds[ind].item())
+                key = (side, int(frame.item()))
+                if key not in frame_to_pred_dict:
+                    frame_to_pred_dict[key] = []
+                frame_to_pred_dict[key].append(window_preds[ind].item())
 
     #Taking a majiority vote via mode
-    for frame in frame_to_pred_dict:
-        frame_to_pred_dict[frame] = stats.mode(frame_to_pred_dict[frame], keepdims=True).mode[0]
+    for key in frame_to_pred_dict:
+        frame_to_pred_dict[key] = stats.mode(frame_to_pred_dict[key], keepdims=True).mode[0]
 
     print(frame_to_pred_dict)
 
-    #Detecting where strikefoot is actually happening
+    #Detecting where strikefoot is actually happening: rising edge (0 -> 1) per leg, iterating
+    #each leg's frames in sorted order so the previous-prediction state never leaks across legs.
     strikefoot_frames = []
-    prev_pred = 0
-    for f in sorted(frame_to_pred_dict.keys()):
-        curr_pred = frame_to_pred_dict[f]
-        if curr_pred == 1 and prev_pred == 0:
-            strikefoot_frames.append(f)
-        prev_pred = curr_pred
+    for side in ["L", "R"]:
+        prev_pred = 0
+        side_frames = sorted(f for (s, f) in frame_to_pred_dict if s == side)
+        for f in side_frames:
+            curr_pred = frame_to_pred_dict[(side, f)]
+            if curr_pred == 1 and prev_pred == 0:
+                strikefoot_frames.append((side, f))
+            prev_pred = curr_pred
 
+    #Sorted by frame so downstream metrics see strikes in chronological order across both legs.
+    strikefoot_frames.sort(key=lambda sf: sf[1])
     return strikefoot_frames, frame_to_pred_dict
 
 
 def visualise_strike_foot_frames(video_dir, strikefoot_frames):
     cap = cv2.VideoCapture(video_dir)
-    for f in strikefoot_frames:
+    #strikefoot_frames entries are (side, frame) tuples now
+    for side, f in strikefoot_frames:
         cap.set(cv2.CAP_PROP_POS_FRAMES, int(f))
         ret, img = cap.read()
-        cv2.imshow("Strikefoot frame", img)
+        cv2.imshow(f"Strikefoot frame ({side})", img)
         cv2.waitKey(0)
 
     cv2.destroyAllWindows()

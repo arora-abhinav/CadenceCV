@@ -3,7 +3,6 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 from torch import nn
 from torch.utils.data import Dataset, DataLoader
 import torch
-from training.data_loader import training_df, testing_df, testing_video_strings
 from scipy.stats import zscore
 from collections import deque
 import numpy as np
@@ -11,37 +10,6 @@ import json
 import pandas as pd
 import torch
 import pickle
-
-#This is for adding a 5th feature: ankle dist. The ankle dist feature is essentially testing to 
-with open("/Users/abhinavarora/Desktop/CadenceCV/ml/data/frame_by_frame_data.json") as file:
-    data = json.load(file)
-
-#Will combine the ankle dist_df with the strikefoot data since it is a new feature
-ankle_dist_df = pd.DataFrame(data)[["ankle_dist", "frame", "side", "video"]]
-
-#Keeping a copy to edit the testing df
-ankle_dist_df_test = ankle_dist_df.copy()
-
-#Only keeping the entries where the d-frames match
-ankle_dist_df = ankle_dist_df[ankle_dist_df["frame"].isin(training_df["frame"])]
-#Required to prevent 2 frame columns from existing
-#Sorting both dfs to ensure that they're merged accordingly
-ankle_dist_df = ankle_dist_df.sort_values(["frame", "side"]).reset_index(drop=True)
-training_df = training_df.sort_values(["frame", "side"]).reset_index(drop=True)
-ankle_dist_df = ankle_dist_df["ankle_dist"]
-training_df = pd.concat([training_df, ankle_dist_df], axis=1).reset_index(drop=True)
-
-#Repeating the above process but for the testing df
-ankle_dist_df_test = ankle_dist_df_test[ankle_dist_df_test["frame"].isin(testing_df["frame"])]
-print(ankle_dist_df_test[ankle_dist_df_test["video"] == "instavid_15"].head())
-print(ankle_dist_df_test[ankle_dist_df_test["video"].isin(testing_df["video"])]["video"].unique())
-ankle_dist_df_test = ankle_dist_df_test.sort_values(["frame", "side"], axis=0).reset_index(drop=True)
-testing_df = testing_df.sort_values(["frame", "side"], axis=0).reset_index(drop=True)
-ankle_dist_df_test = ankle_dist_df_test["ankle_dist"]
-testing_df = pd.concat([testing_df, ankle_dist_df_test], axis=1).reset_index(drop=True)
-
-print(testing_df.head(40))
-print(training_df.head())
 
 
 def configure_data(strike_df, frame_by_frame_path, fit_scaler=True, scaler_means=None, scaler_stds=None):
@@ -185,21 +153,6 @@ def configure_data(strike_df, frame_by_frame_path, fit_scaler=True, scaler_means
 
     return all_features, all_labels, all_masks, scaler_means, scaler_stds
 
-# Training
-train_features, train_labels, train_masks, means, stds = configure_data(
-    training_df, "/Users/abhinavarora/Desktop/CadenceCV/ml/data/frame_by_frame_data.json", fit_scaler=True
-)
-
-# Test — pass back the training stats
-test_features, test_labels, test_masks, _, _ = configure_data(
-    testing_df, "/Users/abhinavarora/Desktop/CadenceCV/ml/data/frame_by_frame_data.json", fit_scaler=False,
-    scaler_means=means, scaler_stds=stds
-)
-
-print(test_features)
-with open("/Users/abhinavarora/Desktop/CadenceCV/ml/weights/scaler_means_and_dev.pkl", "wb") as file:
-    pickle.dump({"Means": means, "Stds": stds}, file)
-
 
 #labels are required to be None since at time of inference, we have no labels obviously. But labels are still
 #required for training the model and for testing it as below to check for accuracy
@@ -219,17 +172,9 @@ class CustomDataLoader(Dataset):
     def __len__(self):
         return self.features.shape[0]
 
-dataset = CustomDataLoader(train_features, train_labels, train_masks)
-test_dataset = CustomDataLoader(test_features, test_labels, test_masks)
 
-print(len(test_dataset))
-
-#batch_side loads in 4 batches at a time, shuffle allows to randomly shuffle the batches
-train_data_loader = DataLoader(dataset=dataset, batch_size=32, shuffle=True)
-test_data_loader = DataLoader(dataset=test_dataset, batch_size=32, shuffle=False)
-
-#Finally constructing the LSTM to detect strikefoot 
-#Input would be a tensor with shape: 
+#Finally constructing the LSTM to detect strikefoot
+#Input would be a tensor with shape:
 #(batch size (an X number of gait cycles will be fed at a time), A sequence length (the no. of hidden states), Input size = number of features there exist)
 #Hidden size is the length of each hidden state vector
 
@@ -251,83 +196,144 @@ class LSTM_custom(nn.Module):
     def forward(self, x):
         #Hidden state and cell state (initial values are managed by default)
         out, _ = self.lstm(x)
-        #Applying a linear transformation 
+        #Applying a linear transformation
         #Out shape: (batch_size, sequence_length, hidden_size)
         output = self.fc(out)
         #output shape: (batch_size, 40, num_classes)
         return output.squeeze(-1)
-    
 
-model = LSTM_custom(input_size=5, hidden_size=32, num_layers=1, num_classes=1)
 
-# Hyperparameters
-num_epochs = 100
-learning_rate = 1e-3
+#Training only runs when this file is executed directly (python footnet_model.py).
+#Importing it (e.g. from footnet_inference) pulls in the classes/configure_data above WITHOUT
+#retraining or overwriting the saved weights.
+if __name__ == "__main__":
+    from training.data_loader import training_df, testing_df, testing_video_strings
+    from sklearn.metrics import classification_report
 
-# Class imbalance: compute pos_weight from training data
-num_negative = (train_labels[train_masks] == 0).sum().float()
-num_positive = (train_labels[train_masks] == 1).sum().float()
-#For balancing out classes 
-pos_weight = torch.tensor([num_negative / num_positive])
+    #This is for adding a 5th feature: ankle dist. The ankle dist feature is essentially testing to
+    with open("/Users/abhinavarora/Desktop/CadenceCV/ml/data/frame_by_frame_data.json") as file:
+        data = json.load(file)
 
-#Binary cross entropy loss. For softmax regression.
-criterion = nn.BCEWithLogitsLoss(reduction='none', pos_weight=pos_weight)
-#Adam_optimizer
-optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+    #Will combine the ankle dist_df with the strikefoot data since it is a new feature
+    ankle_dist_df = pd.DataFrame(data)[["ankle_dist", "frame", "side", "video"]]
 
-print(f"Num negative: {num_negative}")
-print(f"Num positive: {num_positive}")
-print(f"pos_weight: {pos_weight}")
+    #Keeping a copy to edit the testing df
+    ankle_dist_df_test = ankle_dist_df.copy()
 
-for epoch in range(num_epochs):
-    #Puts the model in training mode. Essential for applying dropout or batch normalisation. They are different during training and testing
-    model.train()
-    #Resetting loss after each epoch to see if it decreases
-    total_loss = 0
+    #Only keeping the entries where the d-frames match
+    ankle_dist_df = ankle_dist_df[ankle_dist_df["frame"].isin(training_df["frame"])]
+    #Required to prevent 2 frame columns from existing
+    #Sorting both dfs to ensure that they're merged accordingly
+    ankle_dist_df = ankle_dist_df.sort_values(["frame", "side"]).reset_index(drop=True)
+    training_df = training_df.sort_values(["frame", "side"]).reset_index(drop=True)
+    ankle_dist_df = ankle_dist_df["ankle_dist"]
+    training_df = pd.concat([training_df, ankle_dist_df], axis=1).reset_index(drop=True)
 
-    for features, labels, masks in train_data_loader:
-        #Clears gradients from the previous input batch
-        optimizer.zero_grad()
-        
-        #Cloning the labels so the -1s can be zeroed out
-        safe_labels = labels.clone()
-        safe_labels[~masks] = 0
+    #Repeating the above process but for the testing df
+    ankle_dist_df_test = ankle_dist_df_test[ankle_dist_df_test["frame"].isin(testing_df["frame"])]
+    print(ankle_dist_df_test[ankle_dist_df_test["video"] == "instavid_15"].head())
+    print(ankle_dist_df_test[ankle_dist_df_test["video"].isin(testing_df["video"])]["video"].unique())
+    ankle_dist_df_test = ankle_dist_df_test.sort_values(["frame", "side"], axis=0).reset_index(drop=True)
+    testing_df = testing_df.sort_values(["frame", "side"], axis=0).reset_index(drop=True)
+    ankle_dist_df_test = ankle_dist_df_test["ankle_dist"]
+    testing_df = pd.concat([testing_df, ankle_dist_df_test], axis=1).reset_index(drop=True)
 
-        #Inputting the features into the LSTM model -> this is the forward pass
-        logits = model(features)
-        #Calculating the loss
-        loss = criterion(logits, safe_labels.float())
-        #Calculating loss only over the mas
-        loss = (loss * masks.float()).sum() / masks.sum()
+    print(testing_df.head(40))
+    print(training_df.head())
 
-        #Backprop function
-        loss.backward()
-        #Updateing the weihts
-        optimizer.step()
-        #Summing up the loss over the batches
-        total_loss += loss.item()
+    # Training
+    train_features, train_labels, train_masks, means, stds = configure_data(
+        training_df, "/Users/abhinavarora/Desktop/CadenceCV/ml/data/frame_by_frame_data.json", fit_scaler=True
+    )
 
-model.eval()
-all_preds = []
-all_true = []
+    # Test — pass back the training stats
+    test_features, test_labels, test_masks, _, _ = configure_data(
+        testing_df, "/Users/abhinavarora/Desktop/CadenceCV/ml/data/frame_by_frame_data.json", fit_scaler=False,
+        scaler_means=means, scaler_stds=stds
+    )
 
-with torch.no_grad():
-    for features, labels, masks in test_data_loader:
-        #Computing the foward pass
-        logits = model(features)
-        preds = (torch.sigmoid(logits) > 0.35).long()
+    print(test_features)
+    with open("/Users/abhinavarora/Desktop/CadenceCV/ml/weights/scaler_means_and_dev.pkl", "wb") as file:
+        pickle.dump({"Means": means, "Stds": stds}, file)
 
-        # Only evaluate on real frames, not padding
-        all_preds.append(preds[masks])
-        all_true.append(labels[masks])
+    dataset = CustomDataLoader(train_features, train_labels, train_masks)
+    test_dataset = CustomDataLoader(test_features, test_labels, test_masks)
 
-all_preds = torch.cat(all_preds).numpy()
-all_true = torch.cat(all_true).numpy()
+    print(len(test_dataset))
 
-torch.save(model.state_dict(), "/Users/abhinavarora/Desktop/CadenceCV/ml/weights.footnet_lstm_best.pth")
+    #batch_side loads in 4 batches at a time, shuffle allows to randomly shuffle the batches
+    train_data_loader = DataLoader(dataset=dataset, batch_size=32, shuffle=True)
+    test_data_loader = DataLoader(dataset=test_dataset, batch_size=32, shuffle=False)
 
-from sklearn.metrics import classification_report
-print(classification_report(all_true, all_preds, target_names=["non-contact", "contact"]))
+    model = LSTM_custom(input_size=5, hidden_size=32, num_layers=1, num_classes=1)
 
-print(all_preds)
-print(all_true)
+    # Hyperparameters
+    num_epochs = 100
+    learning_rate = 1e-3
+
+    # Class imbalance: compute pos_weight from training data
+    num_negative = (train_labels[train_masks] == 0).sum().float()
+    num_positive = (train_labels[train_masks] == 1).sum().float()
+    #For balancing out classes
+    pos_weight = torch.tensor([num_negative / num_positive])
+
+    #Binary cross entropy loss. For softmax regression.
+    criterion = nn.BCEWithLogitsLoss(reduction='none', pos_weight=pos_weight)
+    #Adam_optimizer
+    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+
+    print(f"Num negative: {num_negative}")
+    print(f"Num positive: {num_positive}")
+    print(f"pos_weight: {pos_weight}")
+
+    for epoch in range(num_epochs):
+        #Puts the model in training mode. Essential for applying dropout or batch normalisation. They are different during training and testing
+        model.train()
+        #Resetting loss after each epoch to see if it decreases
+        total_loss = 0
+
+        for features, labels, masks in train_data_loader:
+            #Clears gradients from the previous input batch
+            optimizer.zero_grad()
+
+            #Cloning the labels so the -1s can be zeroed out
+            safe_labels = labels.clone()
+            safe_labels[~masks] = 0
+
+            #Inputting the features into the LSTM model -> this is the forward pass
+            logits = model(features)
+            #Calculating the loss
+            loss = criterion(logits, safe_labels.float())
+            #Calculating loss only over the mas
+            loss = (loss * masks.float()).sum() / masks.sum()
+
+            #Backprop function
+            loss.backward()
+            #Updateing the weihts
+            optimizer.step()
+            #Summing up the loss over the batches
+            total_loss += loss.item()
+
+    model.eval()
+    all_preds = []
+    all_true = []
+
+    with torch.no_grad():
+        for features, labels, masks in test_data_loader:
+            #Computing the foward pass
+            logits = model(features)
+            preds = (torch.sigmoid(logits) > 0.35).long()
+
+            # Only evaluate on real frames, not padding
+            all_preds.append(preds[masks])
+            all_true.append(labels[masks])
+
+    all_preds = torch.cat(all_preds).numpy()
+    all_true = torch.cat(all_true).numpy()
+
+    torch.save(model.state_dict(), "/Users/abhinavarora/Desktop/CadenceCV/ml/weights/footnet_lstm_best.pth")
+
+    print(classification_report(all_true, all_preds, target_names=["non-contact", "contact"]))
+
+    print(all_preds)
+    print(all_true)
