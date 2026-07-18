@@ -2,5 +2,6 @@
     "python.analysis.extraPaths": [
         "./Scripts/Supplementary",
         "./ml/src"
-    ]
+    ],
+    "python.analysis.typeCheckingMode": "off"
 }

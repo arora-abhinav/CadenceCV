@@ -13,7 +13,7 @@ import cv2
 
 def run_inference(frame_by_frame_data):
     #Loading the model:
-    model = LSTM_custom(input_size=4, hidden_size=32, num_layers=1, num_classes=1)
+    model = LSTM_custom(input_size=5, hidden_size=32, num_layers=1, num_classes=1)
     model.load_state_dict(torch.load("/Users/abhinavarora/Desktop/CadenceCV/ml/weights/footnet_lstm_best.pth", weights_only=True))
     model.eval()
 

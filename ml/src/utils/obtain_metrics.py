@@ -36,11 +36,16 @@ def compute_all_metrics(video_dir: str):
     right_shin_velocity = np.gradient(right_shin_vec[:, 0])
 
     def _tibial(shin_vec_arr):
-        sin_val = shin_vec_arr[:,0]/np.linalg.norm(shin_vec_arr, axis=1)
-        return np.arcsin(sin_val)
+        return np.pi / 2 - np.arctan2(shin_vec_arr[:, 1], shin_vec_arr[:, 0])
 
     left_tibial_angle = _tibial(left_shin_vec)
     right_tibial_angle = _tibial(right_shin_vec)
+
+    # Auto-detect runner facing direction from hip X trajectory.
+    # direction=+1 means running rightward (+X), -1 means leftward (-X).
+    mean_hip_x = (left_hip_arr[:, 0] + right_hip_arr[:, 0]) / 2
+    direction = 1 if mean_hip_x[-1] > mean_hip_x[0] else -1
+
 
     legs = {
         'left': {

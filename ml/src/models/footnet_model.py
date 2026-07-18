@@ -195,7 +195,6 @@ class CustomDataLoader(Dataset):
 
 dataset = CustomDataLoader(train_features, train_labels, train_masks)
 test_dataset = CustomDataLoader(test_features, test_labels, test_masks)
-first_features, first_labels, first_masks = dataset[0]
 
 #batch_side loads in 4 batches at a time, shuffle allows to randomly shuffle the batches
 train_data_loader = DataLoader(dataset=dataset, batch_size=32, shuffle=True)
