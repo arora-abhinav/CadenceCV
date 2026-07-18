@@ -3,7 +3,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 from torch import nn
 from torch.utils.data import Dataset, DataLoader
 import torch
-from training.data_loader import training_df, testing_df
+from training.data_loader import training_df, testing_df, testing_video_strings
 from scipy.stats import zscore
 from collections import deque
 import numpy as np
@@ -12,18 +12,44 @@ import pandas as pd
 import torch
 import pickle
 
+#This is for adding a 5th feature: ankle dist. The ankle dist feature is essentially testing to 
+with open("/Users/abhinavarora/Desktop/CadenceCV/ml/data/frame_by_frame_data.json") as file:
+    data = json.load(file)
+
+#Will combine the ankle dist_df with the strikefoot data since it is a new feature
+ankle_dist_df = pd.DataFrame(data)[["ankle_dist", "frame", "side", "video"]]
+
+#Keeping a copy to edit the testing df
+ankle_dist_df_test = ankle_dist_df.copy()
+
+#Only keeping the entries where the d-frames match
+ankle_dist_df = ankle_dist_df[ankle_dist_df["frame"].isin(training_df["frame"])]
+#Required to prevent 2 frame columns from existing
+#Sorting both dfs to ensure that they're merged accordingly
+ankle_dist_df = ankle_dist_df.sort_values(["frame", "side"]).reset_index(drop=True)
+training_df = training_df.sort_values(["frame", "side"]).reset_index(drop=True)
+ankle_dist_df = ankle_dist_df["ankle_dist"]
+training_df = pd.concat([training_df, ankle_dist_df], axis=1).reset_index(drop=True)
+
+#Repeating the above process but for the testing df
+ankle_dist_df_test = ankle_dist_df_test[ankle_dist_df_test["frame"].isin(testing_df["frame"])]
+print(ankle_dist_df_test[ankle_dist_df_test["video"] == "instavid_15"].head())
+print(ankle_dist_df_test[ankle_dist_df_test["video"].isin(testing_df["video"])]["video"].unique())
+ankle_dist_df_test = ankle_dist_df_test.sort_values(["frame", "side"], axis=0).reset_index(drop=True)
+testing_df = testing_df.sort_values(["frame", "side"], axis=0).reset_index(drop=True)
+ankle_dist_df_test = ankle_dist_df_test["ankle_dist"]
+testing_df = pd.concat([testing_df, ankle_dist_df_test], axis=1).reset_index(drop=True)
+
+print(testing_df.head(40))
+print(training_df.head())
+
+
 def configure_data(strike_df, frame_by_frame_path, fit_scaler=True, scaler_means=None, scaler_stds=None):
-    """
-    strike_df: dataframe of labeled strikes (your training_df or test equivalent)
-    frame_by_frame_path: path to frame_by_frame_data.json
-    fit_scaler: True for training data, False for test data
-    scaler_means, scaler_stds: pass in training stats when fit_scaler=False
-    """
-    lstm_metrics = ["ankle_x_vel", "tibial_angle", "shin_velocity", "ankle_y_vel"]
+    lstm_metrics = ["ankle_x_vel", "tibial_angle", "shin_velocity", "ankle_y_vel", "ankle_dist"]
     footnet_metrics = lstm_metrics + ["u_frame", "video", "frame", "side"]
 
-    #Dropping the rows where the u_frame doesn't exist (That is the only thing that doesn't exist)
-    strike_df = strike_df.dropna(axis=0, how='any').copy()
+    #Dropping the rows where any of the footnet metrics dont exist doesn't exist (That is the only thing that doesn't exist)
+    strike_df = strike_df[footnet_metrics].dropna(axis=0, how='any').copy()
 
     #First step: Separate the strike_df by video into different dfs
     dfs_to_merge = []
@@ -39,9 +65,7 @@ def configure_data(strike_df, frame_by_frame_path, fit_scaler=True, scaler_means
     with open(frame_by_frame_path, "r") as file:
         data = json.load(file)
 
-    video_metric_df = pd.concat(
-        [pd.DataFrame(data[key]) for key in data], axis=0
-    ).dropna(axis=0, how='any').copy()
+    video_metric_df = pd.DataFrame(data).dropna(axis = 0, how="any")
 
     video_metric_df.loc[video_metric_df["side"] == "left", "side"] = "L"
     video_metric_df.loc[video_metric_df["side"] == "right", "side"] = "R"
@@ -143,7 +167,8 @@ def configure_data(strike_df, frame_by_frame_path, fit_scaler=True, scaler_means
         for i in range(pad_amount):
             #Zeros for each feature
             mask_array[i] = False
-            gait_cycle.loc[-1] = [0, 0, 0, 0]
+            #A new 5th zero for the 5th feature
+            gait_cycle.loc[-1] = [0, 0, 0, 0, 0]
             labels.appendleft(-1)
             gait_cycle.index += 1
             gait_cycle.sort_index(inplace=True)
@@ -171,6 +196,7 @@ test_features, test_labels, test_masks, _, _ = configure_data(
     scaler_means=means, scaler_stds=stds
 )
 
+print(test_features)
 with open("/Users/abhinavarora/Desktop/CadenceCV/ml/weights/scaler_means_and_dev.pkl", "wb") as file:
     pickle.dump({"Means": means, "Stds": stds}, file)
 
@@ -196,15 +222,18 @@ class CustomDataLoader(Dataset):
 dataset = CustomDataLoader(train_features, train_labels, train_masks)
 test_dataset = CustomDataLoader(test_features, test_labels, test_masks)
 
+print(len(test_dataset))
+
 #batch_side loads in 4 batches at a time, shuffle allows to randomly shuffle the batches
 train_data_loader = DataLoader(dataset=dataset, batch_size=32, shuffle=True)
-test_data_loader = DataLoader(dataset=test_dataset, batch_size=32, shuffle=True)
+test_data_loader = DataLoader(dataset=test_dataset, batch_size=32, shuffle=False)
 
 #Finally constructing the LSTM to detect strikefoot 
 #Input would be a tensor with shape: 
 #(batch size (an X number of gait cycles will be fed at a time), A sequence length (the no. of hidden states), Input size = number of features there exist)
 #Hidden size is the length of each hidden state vector
 
+#Deprecated comments: There are right now 5 features
 class LSTM_custom(nn.Module):
     def __init__(self, input_size, hidden_size, num_layers, num_classes):
         super(LSTM_custom, self).__init__()
@@ -229,7 +258,7 @@ class LSTM_custom(nn.Module):
         return output.squeeze(-1)
     
 
-model = LSTM_custom(input_size=4, hidden_size=32, num_layers=1, num_classes=1)
+model = LSTM_custom(input_size=5, hidden_size=32, num_layers=1, num_classes=1)
 
 # Hyperparameters
 num_epochs = 100
@@ -294,6 +323,8 @@ with torch.no_grad():
 
 all_preds = torch.cat(all_preds).numpy()
 all_true = torch.cat(all_true).numpy()
+
+torch.save(model.state_dict(), "/Users/abhinavarora/Desktop/CadenceCV/ml/weights.footnet_lstm_best.pth")
 
 from sklearn.metrics import classification_report
 print(classification_report(all_true, all_preds, target_names=["non-contact", "contact"]))

@@ -18,11 +18,11 @@ def compute_all_metrics(video_dir: str):
     right_knee_arr = coords['right_knee']
     left_shoulder_arr = coords['left_shoulder']
     right_shoulder_arr = coords['right_shoulder']
-    n_detected = len(left_ankle_arr)
+    frames = coords["Frames"]
     frame_count = coords["Frame Count"]
     duration = coords["Duration"]
 
-    # These are two of the four FootNet input features.
+    # These are two of the four (now 5) FootNet input features.
     left_ankle_x_vel = np.gradient(left_ankle_arr[:, 0])
     left_ankle_y_vel = np.gradient(left_ankle_arr[:, 1])
     right_ankle_x_vel = np.gradient(right_ankle_arr[:, 0])
@@ -43,8 +43,13 @@ def compute_all_metrics(video_dir: str):
 
     # Auto-detect runner facing direction from hip X trajectory.
     # direction=+1 means running rightward (+X), -1 means leftward (-X).
+# Runner facing direction: +1 = rightward, -1 = leftward
     mean_hip_x = (left_hip_arr[:, 0] + right_hip_arr[:, 0]) / 2
     direction = 1 if mean_hip_x[-1] > mean_hip_x[0] else -1
+
+    # Signed inter-ankle distance — positive when THIS foot is ahead in direction of travel
+    left_ankle_x_dist  = direction * (left_ankle_arr[:, 0] - right_ankle_arr[:, 0])
+    right_ankle_x_dist = direction * (right_ankle_arr[:, 0] - left_ankle_arr[:, 0])
 
 
     legs = {
@@ -57,6 +62,7 @@ def compute_all_metrics(video_dir: str):
             'knee_arr': left_knee_arr,
             'hip_arr': left_hip_arr,
             'shldr_arr': left_shoulder_arr,
+            'ankle_x_dist': left_ankle_x_dist
         },
         'right': {
             'ax_vel': right_ankle_x_vel,
@@ -67,17 +73,19 @@ def compute_all_metrics(video_dir: str):
             'knee_arr': right_knee_arr,
             'hip_arr': right_hip_arr,
             'shldr_arr': right_shoulder_arr,
+            'ankle_x_dist': right_ankle_x_dist
         },
     }
 
     results = []
   
     for side, d in legs.items():
-        for frame in range(n_detected):
+        for frame in frames:
             ankle_arr = d['ankle_arr']
             knee_arr = d['knee_arr']
             hip_arr = d['hip_arr']
             shldr_arr = d['shldr_arr']
+            ankle_x_dist = d["ankle_x_dist"]
 
             # Knee flexion: v1 points from the knee toward the hip (along the thigh),
             # v2 points from the knee toward the ankle (along the shin). The difference
@@ -134,6 +142,7 @@ def compute_all_metrics(video_dir: str):
                 'trunk_angle': trunk_angle,
                 'ankle_velocity_pre_strike': ankle_vel_pre,
                 'ankle_approach_angle': approach_angle,
+                'ankle_dist': float(ankle_x_dist[frame]),
                 'frame': frame,
                 'side': side,
             })
@@ -145,7 +154,7 @@ def compute_all_metrics(video_dir: str):
 #A sliding window of size 2 is being used. A window of size 40 with a step size of 2 across the frames and forms a usable input for
 #for the LSTM.  
 def configure_data(frame_by_frame_data: list[dict], scaler_means, scaler_stds):
-    lstm_metrics = ["ankle_x_vel", "tibial_angle", "shin_velocity", "ankle_y_vel"]
+    lstm_metrics = ["ankle_x_vel", "tibial_angle", "shin_velocity", "ankle_y_vel", "ankle_dist"]
     resampling_num = 40
     stride = 5
 
