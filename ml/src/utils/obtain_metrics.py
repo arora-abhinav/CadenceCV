@@ -150,7 +150,7 @@ def compute_all_metrics(video_dir: str):
                 'trunk_angle': trunk_angle,
                 'ankle_velocity_pre_strike': ankle_vel_pre,
                 'ankle_approach_angle': approach_angle,
-                'ankle_dist': float(ankle_x_dist[frame]),
+                'ankle_x_dist': float(ankle_x_dist[frame]),
                 'frame': frame,
                 'side': side,
             })
@@ -162,7 +162,7 @@ def compute_all_metrics(video_dir: str):
 #A sliding window of size 2 is being used. A window of size 40 with a step size of 2 across the frames and forms a usable input for
 #for the LSTM.  
 def configure_data(frame_by_frame_data: list[dict], scaler_means, scaler_stds):
-    lstm_metrics = ["ankle_x_vel", "tibial_angle", "shin_velocity", "ankle_y_vel", "ankle_dist"]
+    lstm_metrics = ["ankle_x_vel", "tibial_angle", "shin_velocity", "ankle_y_vel", "ankle_x_dist"]
     resampling_num = 40
     stride = 2
 

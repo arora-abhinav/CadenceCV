@@ -1,5 +1,5 @@
-./cadence_cv
-./env
+.cadence_cv/
+.env
 Videos/
 ./CLAUDE.md
 .claude/

@@ -13,7 +13,7 @@ import pickle
 
 
 def configure_data(strike_df, frame_by_frame_path, fit_scaler=True, scaler_means=None, scaler_stds=None):
-    lstm_metrics = ["ankle_x_vel", "tibial_angle", "shin_velocity", "ankle_y_vel", "ankle_dist"]
+    lstm_metrics = ["ankle_x_vel", "tibial_angle", "shin_velocity", "ankle_y_vel", "ankle_x_dist"]
     footnet_metrics = lstm_metrics + ["u_frame", "video", "frame", "side"]
 
     #Dropping the rows where any of the footnet metrics dont exist doesn't exist (That is the only thing that doesn't exist)
@@ -154,6 +154,133 @@ def configure_data(strike_df, frame_by_frame_path, fit_scaler=True, scaler_means
     return all_features, all_labels, all_masks, scaler_means, scaler_stds
 
 
+def configure_data_sliding_window(strike_df, frame_by_frame_path, fit_scaler=True, scaler_means=None, scaler_stds=None):
+    #Sliding-window version of configure_data. Instead of building one padded window per labelled
+    #gait cycle, it slides a fixed 40-frame contiguous window (stride 2) over each video/side
+    #sequence — exactly the windowing obtain_metrics.configure_data uses at inference time — so the
+    #LSTM trains on the same kind of input it sees at inference. Frames that fall outside a labelled
+    #gait cycle are masked out of the loss, but their (real) features are still fed to the LSTM as
+    #context, just as they are at inference.
+    lstm_metrics = ["ankle_x_vel", "tibial_angle", "shin_velocity", "ankle_y_vel", "ankle_x_dist"]
+    footnet_metrics = lstm_metrics + ["u_frame", "video", "frame", "side"]
+    resampling_num = 40
+    stride = 2
+
+    #Gait-cycle boundaries (u_frame / d_frame) come from the labelled strikes, same as configure_data
+    strike_df = strike_df[footnet_metrics].dropna(axis=0, how='any').copy()
+    dfs_to_merge = []
+    for v in strike_df["video"].unique():
+        df = strike_df[strike_df["video"] == v][footnet_metrics].copy()
+        df.sort_values(by=["side", "frame"], ascending=True, inplace=True)
+        dfs_to_merge.append(df)
+    footnet_training_df = pd.concat(dfs_to_merge, axis=0).reset_index(drop=True)
+
+    #Per-frame metrics for every video
+    with open(frame_by_frame_path, "r") as file:
+        data = json.load(file)
+    video_metric_df = pd.DataFrame(data).dropna(axis=0, how="any")
+    video_metric_df.loc[video_metric_df["side"] == "left", "side"] = "L"
+    video_metric_df.loc[video_metric_df["side"] == "right", "side"] = "R"
+
+    #z-score normalisation — fit on training data, reuse those stats for the test set
+    if fit_scaler:
+        scaler_means = video_metric_df[lstm_metrics].mean()
+        scaler_stds = video_metric_df[lstm_metrics].std()
+    video_metric_df[lstm_metrics] = (
+        video_metric_df[lstm_metrics] - scaler_means
+    ) / scaler_stds
+
+    #Label each frame: contact (1) from a strike's previous same-side d up to its u_frame, non-contact
+    #(0) from u_frame up to the strike's own d. Frames outside any labelled cycle stay None.
+    video_metric_df["label"] = None
+    for i, (index, row) in enumerate(footnet_training_df.iterrows()):
+        video_metric_df.loc[
+            (video_metric_df["video"] == row["video"]) &
+            (video_metric_df["frame"] >= row["u_frame"]) &
+            (video_metric_df["frame"] < row["frame"]) &
+            (video_metric_df["side"] == row["side"]),
+            "label"
+        ] = 0
+
+        same_side_prev = footnet_training_df[
+            (footnet_training_df["video"] == row["video"]) &
+            (footnet_training_df["side"] == row["side"]) &
+            (footnet_training_df["frame"] < row["frame"])
+        ]
+        if not same_side_prev.empty:
+            prev_row = same_side_prev.iloc[-1]
+            video_metric_df.loc[
+                (video_metric_df["video"] == row["video"]) &
+                (video_metric_df["frame"] >= prev_row["frame"]) &
+                (video_metric_df["frame"] < row["u_frame"]) &
+                (video_metric_df["side"] == row["side"]),
+                "label"
+            ] = 1
+
+    video_metric_df = video_metric_df.reset_index(drop=True)
+
+    all_features = []
+    all_labels = []
+    all_masks = []
+
+    #Slide a fixed 40-frame window (stride 2) over each video/side sequence in chronological order.
+    #A short final window is front-padded with zeros, matching obtain_metrics.configure_data.
+    for (video, side), group in video_metric_df.groupby(["video", "side"]):
+        group = group.sort_values("frame").reset_index(drop=True)
+        feats = group[lstm_metrics]
+        labels_col = group["label"].tolist()
+        n_frames = len(group)
+        if n_frames < 1:
+            continue
+
+        start = 0
+        while start < n_frames:
+            end = start + resampling_num
+            chunk = feats.iloc[start:end].to_numpy().astype(float)
+            chunk_labels = labels_col[start:start + len(chunk)]
+            chunk_len = len(chunk)
+
+            mask_array = [True] * resampling_num
+            pad_amount = resampling_num - chunk_len
+            if pad_amount > 0:
+                #Front-pad with zero feature rows (the first pad_amount slots are padding)
+                padding = np.zeros((pad_amount, len(lstm_metrics)))
+                window_feats = np.concatenate([padding, chunk], axis=0)
+                for i in range(pad_amount):
+                    mask_array[i] = False
+                labels_full = [None] * pad_amount + list(chunk_labels)
+            else:
+                window_feats = chunk
+                labels_full = list(chunk_labels)
+
+            #A frame contributes to the loss only if it is real (not padding) AND labelled.
+            #Unlabelled/padding frames are masked out and given a -1 sentinel label.
+            numeric_labels = []
+            for j in range(resampling_num):
+                lab = labels_full[j]
+                if lab is None:
+                    mask_array[j] = False
+                    numeric_labels.append(-1)
+                else:
+                    numeric_labels.append(int(lab))
+
+            #Skip windows with nothing to learn from (all padding / all unlabelled)
+            if not any(mask_array):
+                start += stride
+                continue
+
+            all_features.append(window_feats)
+            all_labels.append(numeric_labels)
+            all_masks.append(mask_array)
+            start += stride
+
+    all_features = torch.from_numpy(np.array(all_features)).float()
+    all_labels = torch.from_numpy(np.array(all_labels))
+    all_masks = torch.from_numpy(np.array(all_masks))
+
+    return all_features, all_labels, all_masks, scaler_means, scaler_stds
+
+
 #labels are required to be None since at time of inference, we have no labels obviously. But labels are still
 #required for training the model and for testing it as below to check for accuracy
 class CustomDataLoader(Dataset):
@@ -215,7 +342,7 @@ if __name__ == "__main__":
         data = json.load(file)
 
     #Will combine the ankle dist_df with the strikefoot data since it is a new feature
-    ankle_dist_df = pd.DataFrame(data)[["ankle_dist", "frame", "side", "video"]]
+    ankle_dist_df = pd.DataFrame(data)[["ankle_x_dist", "frame", "side", "video"]]
 
     #Keeping a copy to edit the testing df
     ankle_dist_df_test = ankle_dist_df.copy()
@@ -226,7 +353,7 @@ if __name__ == "__main__":
     #Sorting both dfs to ensure that they're merged accordingly
     ankle_dist_df = ankle_dist_df.sort_values(["frame", "side"]).reset_index(drop=True)
     training_df = training_df.sort_values(["frame", "side"]).reset_index(drop=True)
-    ankle_dist_df = ankle_dist_df["ankle_dist"]
+    ankle_dist_df = ankle_dist_df["ankle_x_dist"]
     training_df = pd.concat([training_df, ankle_dist_df], axis=1).reset_index(drop=True)
 
     #Repeating the above process but for the testing df
@@ -235,19 +362,19 @@ if __name__ == "__main__":
     print(ankle_dist_df_test[ankle_dist_df_test["video"].isin(testing_df["video"])]["video"].unique())
     ankle_dist_df_test = ankle_dist_df_test.sort_values(["frame", "side"], axis=0).reset_index(drop=True)
     testing_df = testing_df.sort_values(["frame", "side"], axis=0).reset_index(drop=True)
-    ankle_dist_df_test = ankle_dist_df_test["ankle_dist"]
+    ankle_dist_df_test = ankle_dist_df_test["ankle_x_dist"]
     testing_df = pd.concat([testing_df, ankle_dist_df_test], axis=1).reset_index(drop=True)
 
     print(testing_df.head(40))
     print(training_df.head())
 
     # Training
-    train_features, train_labels, train_masks, means, stds = configure_data(
+    train_features, train_labels, train_masks, means, stds = configure_data_sliding_window(
         training_df, "/Users/abhinavarora/Desktop/CadenceCV/ml/data/frame_by_frame_data.json", fit_scaler=True
     )
 
     # Test — pass back the training stats
-    test_features, test_labels, test_masks, _, _ = configure_data(
+    test_features, test_labels, test_masks, _, _ = configure_data_sliding_window(
         testing_df, "/Users/abhinavarora/Desktop/CadenceCV/ml/data/frame_by_frame_data.json", fit_scaler=False,
         scaler_means=means, scaler_stds=stds
     )

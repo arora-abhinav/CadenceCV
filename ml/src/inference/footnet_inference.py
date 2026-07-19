@@ -42,7 +42,7 @@ def run_inference(frame_by_frame_data):
         for (ind, data) in enumerate(video_data):
             features, masks = data
             logits = model(features)
-            predictions = (torch.sigmoid(logits) > 0.35).long()
+            predictions = (torch.sigmoid(logits) > 0.65).long()
             all_predictions.append(predictions)
 
     #Sliding window majority vote where each frame collects predictions from every window that covered it
@@ -121,4 +121,5 @@ if __name__ == "__main__":
     frame_by_frame_data = cache["frame_by_frame_data"]
 
     strikefoot_frames, frame_to_pred_dict = run_inference(frame_by_frame_data)
+    visualise_strike_foot_frames("/Users/abhinavarora/Desktop/CadenceCV/Videos/Video17.mp4", strikefoot_frames)
     print(f"Strikefoot frames: {strikefoot_frames}")
