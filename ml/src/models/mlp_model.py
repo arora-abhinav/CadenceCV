@@ -70,7 +70,8 @@ strikefoot_df = sort_by_frame_and_side(strikefoot_df)
 
 #Shuffling the nonstrikefoot df first and then keeping only 1000 examples to balance out the training data
 non_strikefoot_df = non_strikefoot_df.sample(frac=1)
-non_strikefoot_df = non_strikefoot_df.iloc[:1000]
+sampling_num = 1000
+non_strikefoot_df = non_strikefoot_df.iloc[:sampling_num]
 
 #Runners in videos are facing 2 different directions: left and right both. This means that the normalised bbox keypoint coordinates are changed
 #and therefore duplicating our data to show flipped versions of the strikefoot will help the MLP understand strikefoot regardless of what direction
@@ -157,6 +158,7 @@ class PoseMLP(nn.Module):
         return x
 
 model = PoseMLP()
+activation_function = "ReLU"
 #The weight decay > 0 adds L2 Rwgularisation
 optimizer = torch.optim.AdamW(model.parameters(), lr=1e-4, weight_decay=1e-5)
 #BCEWithLogitsLoss = sigmoid + binary cross entropy fused into one (numerically stable), so we keep
@@ -168,6 +170,8 @@ num_neg = (training_labels == 0).sum()
 pos_weight = num_neg / num_pos
 print(pos_weight)
 criterion = nn.BCEWithLogitsLoss()
+
+criterion_string = "Binary Cross Entropy"
 
 #K-fold cross validation so the macro F1 isnt just luck from one random 80/20 split. It trains k
 #separate models on different folds and averages, giving a mean +- std you can actually compare across
@@ -277,5 +281,9 @@ def experiment():
                 "Batch_size": batch_size,
                 "Model Architecture": model_architecture,
                 "Weight Decay": weight_decay,
-                "Learning Rate": lr
+                "Learning Rate": lr,
+                "Training Set": train_aug,
+                "Sampling Num": sampling_num,
+                "Activation": activation_function,
+                "Criterion": criterion_string
                 }
