@@ -307,13 +307,13 @@ class CustomDataLoader(Dataset):
 
 #Deprecated comments: There are right now 5 features
 class LSTM_custom(nn.Module):
-    def __init__(self, input_size, hidden_size, num_layers, num_classes):
+    def __init__(self, input_size, hidden_size, num_layers, num_classes, dropout=0.2):
         super(LSTM_custom, self).__init__()
         self.input_size = input_size
         self.hidden_size = hidden_size
         self.num_layers = num_layers
         self.num_classes = num_classes
-        self.lstm = nn.LSTM(input_size=self.input_size, hidden_size=self.hidden_size, num_layers=self.num_layers, batch_first=True, bidirectional=True)
+        self.lstm = nn.LSTM(input_size=self.input_size, hidden_size=self.hidden_size, num_layers=self.num_layers, batch_first=True, bidirectional=True, dropout=dropout)
         #Input will have the following shape (32, 40, 4) for 32 gait cycles, 40 timesteps, 4 input features
         #nn.Linear outputs a linear transformation with the inpout tensor as (..., hidden_size) and output tensor of (..., num_classes)
         #self.fc will be applied at the time of prediction since the output should have the final dimension as the number of classes
@@ -338,7 +338,7 @@ if __name__ == "__main__":
     from sklearn.metrics import classification_report
 
     #This is for adding a 5th feature: ankle dist. The ankle dist feature is essentially testing to
-    with open("/Users/abhinavarora/Desktop/CadenceCV/ml/data/frame_by_frame_data.json") as file:
+    with open("/Users/abhinavarora/Desktop/CadenceCV/ml/data/normalised_frame_by_frame_data.json") as file:
         data = json.load(file)
 
     #Will combine the ankle dist_df with the strikefoot data since it is a new feature
@@ -370,12 +370,12 @@ if __name__ == "__main__":
 
     # Training
     train_features, train_labels, train_masks, means, stds = configure_data_sliding_window(
-        training_df, "/Users/abhinavarora/Desktop/CadenceCV/ml/data/frame_by_frame_data.json", fit_scaler=True
+        training_df, "/Users/abhinavarora/Desktop/CadenceCV/ml/data/normalised_frame_by_frame_data.json", fit_scaler=True
     )
 
     # Test — pass back the training stats
     test_features, test_labels, test_masks, _, _ = configure_data_sliding_window(
-        testing_df, "/Users/abhinavarora/Desktop/CadenceCV/ml/data/frame_by_frame_data.json", fit_scaler=False,
+        testing_df, "/Users/abhinavarora/Desktop/CadenceCV/ml/data/normalised_frame_by_frame_data.json", fit_scaler=False,
         scaler_means=means, scaler_stds=stds
     )
 
@@ -407,7 +407,7 @@ if __name__ == "__main__":
     #Binary cross entropy loss. For softmax regression.
     criterion = nn.BCEWithLogitsLoss(reduction='none', pos_weight=pos_weight)
     #Adam_optimizer
-    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+    optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate, weight_decay=1e-5)
 
     print(f"Num negative: {num_negative}")
     print(f"Num positive: {num_positive}")

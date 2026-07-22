@@ -2,7 +2,7 @@
 import json 
 import pandas as pd
 
-json_path = "/Users/abhinavarora/Desktop/CadenceCV/ml/data/strikefoot_data.json"
+json_path = "/Users/abhinavarora/Desktop/CadenceCV/ml/data/normalised_strikefoot_data.json"
 
 with open(json_path, "r") as file:
     data = json.load(file)

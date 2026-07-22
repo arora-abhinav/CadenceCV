@@ -6,21 +6,36 @@ import torch
 import pandas as pd 
 from collections import deque
 import cv2
+import json
 
-def compute_all_metrics(video_dir: str):
-    coords = extract_keypoints(video_dir)
+def compute_all_metrics(video_dir: str = None, coords=None):
 
-    left_ankle_arr  = coords['left_ankle']
-    right_ankle_arr = coords['right_ankle']
-    left_hip_arr = coords['left_hip']
-    right_hip_arr = coords['right_hip']
-    left_knee_arr = coords['left_knee']
-    right_knee_arr = coords['right_knee']
-    left_shoulder_arr = coords['left_shoulder']
-    right_shoulder_arr = coords['right_shoulder']
-    frames = coords["Frames"]
-    frame_count = coords["Frame Count"]
-    duration = coords["Duration"]
+    if video_dir is not None:
+        coords = extract_keypoints(video_dir)
+        left_ankle_arr  = coords['left_ankle']
+        right_ankle_arr = coords['right_ankle']
+        left_hip_arr = coords['left_hip']
+        right_hip_arr = coords['right_hip']
+        left_knee_arr = coords['left_knee']
+        right_knee_arr = coords['right_knee']
+        left_shoulder_arr = coords['left_shoulder']
+        right_shoulder_arr = coords['right_shoulder']
+        frames = coords["Frames"]
+        frame_count = coords["Frame Count"]
+        duration = coords["Duration"]
+    
+    #This is to solely construct a frame_by_frame_dict using normalised keypoints
+    else:
+        left_ankle_arr  = coords["left_ankle_coords"]
+        right_ankle_arr = coords["right_ankle_coords"]
+        left_hip_arr = coords["left_hip_coords"]
+        right_hip_arr = coords["right_hip_coords"]
+        left_knee_arr = coords["left_knee_coords"]
+        right_knee_arr = coords["right_knee_coords"]
+        left_shoulder_arr = coords["left_shoulder_coords"]
+        right_shoulder_arr = coords["right_shoulder_coords"]
+        frames = coords["frames"]
+
 
     # Runner travel direction, detected from forward trunk lean: the shoulder sits ahead of
     # the hip in the direction of travel. The median keeps it robust on a treadmill, where net
@@ -155,7 +170,10 @@ def compute_all_metrics(video_dir: str):
                 'side': side,
             })
 
-    return results, frame_count, duration, right_hip_arr, left_hip_arr, right_ankle_arr, left_ankle_arr, right_knee_arr, left_knee_arr, direction_label
+    if video_dir is not None:
+        return results, frame_count, duration, right_hip_arr, left_hip_arr, right_ankle_arr, left_ankle_arr, right_knee_arr, left_knee_arr, direction_label
+    else:
+        return results
 
 #Mimics some functionality of the combined_labeller's configure_data. But, that script's data relied on distinguished gait cycles
 #that were obtained via strikefoot data and then resampled to a size of 40 frames per gait cycle. Since that cannot happen anymore
