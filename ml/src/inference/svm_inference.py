@@ -3,6 +3,7 @@ import pickle
 from sklearn.pipeline import make_pipeline, Pipeline
 import os
 from ultralytics import YOLO
+import torch
 d_frame_model_string = "d_frame_svm.pkl"
 u_frame_model_string = "u_frame_svm.pkl"
 weights_dir = "/Users/abhinavarora/Desktop/CadenceCV/ml/weights"
@@ -41,7 +42,8 @@ def obtain_normalised_keypoints(video_dir):
     
         all_kpts.append(kpts_copy)
     
-    return all_kpts
+    #Flattening to a list since thats required by the SVM
+    return torch.tensor(all_kpts).flatten(1).tolist()
 
 normalised_kpts_string = "normalised_keypoints.pkl"
 kpts_path = os.path.join(weights_dir, normalised_kpts_string)
@@ -54,4 +56,5 @@ else:
     with open(kpts_path, "rb") as file:
         kpts = pickle.load(file)
 
-predictions = u_frame_model.predict(kpts)
+u_frame_preds = u_frame_model.predict(kpts)
+d_frame_preds = d_frame_model.predict(kpts)
