@@ -3,18 +3,31 @@ import numpy as np
 import scipy.signal
 import cv2
 import torch
+import sys
+from svm_inference import d_frame_preds_legs, u_frame_preds_legs
 
 #Clauclating the average time in air per gait cycle and average time in ground contact
 #kpts is NOT normalised
-def calculate_metrics(strikefoot_frames:list, toe_off_frames:list, duration, detected_frames, cap: cv2.VideoCapture, kpts:torch.Tensor):
+def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, duration, detected_frames, cap: cv2.VideoCapture, kpts:torch.Tensor):
     flight_times = []
     gct_times = []
 
+    strikefoot_frames = strikefoot_frames_dict.keys()
+    toe_off_frames = toe_off_frames_dict.keys()
+
+    strikefoot_frames_left, strikefoot_frames_right = [(x, "D") for x in strikefoot_frames if strikefoot_frames_dict[x] == "L"], [(x, "D") for x in strikefoot_frames if strikefoot_frames_dict[x] == "R"]
+    toe_off_frames_left, toe_off_frames_right = [(x, "U") for x in toe_off_frames if strikefoot_frames_dict[x] == "L"], [(x, "U") for x in toe_off_frames if strikefoot_frames_dict[x] == "R"]
+    gait_cycle_left = toe_off_frames_left + strikefoot_frames_left
+    gait_cycle_right = toe_off_frames_right + strikefoot_frames_right
+    gait_cycle_left.sort()
+    gait_cycle_right.sort()
     right_hip_arr = []
     left_hip_arr = []
     for k in kpts.tolist():
         right_hip_arr.append(k[12])
         left_hip_arr.append(k[11])
+
+    
 
     strikefoot_frames_tagged = [(x, "D") for x in strikefoot_frames]
     toe_off_frames_tagged = [(x,"U") for x in toe_off_frames]
@@ -64,25 +77,36 @@ def calculate_metrics(strikefoot_frames:list, toe_off_frames:list, duration, det
     #Finetune these accordingly
     mean_hip_y_coords = scipy.signal.savgol_filter(mean_hip_y_coords, window_length=4, polyorder=3)
 
-    #Extracting gait cycles: Pictorial explanation in the next cell:
-    changes = np.where(np.diff(frame_preds) == -1)[0] + 1
-    #Pairs of -1 is one gait cycle
-    cycles = []
-    cycle = []
-    for i in changes:
-        cycle.append(i)
-        if len(cycle) == 2:
-            cycles.append(cycle.copy())
-            cycle = []
-    
-    oscillations = []
-    for c in cycles:
-        start = c[0]
-        end = c[1]
-        peak = max(mean_hip_y_coords[start:end])
-        trough = min(mean_hip_y_coords[start:end])
-        oscillations.append(peak - trough)
-    
-    avg_oscillation = np.mean(oscillations) if oscillations else 0
+    #Extracting gait cycles: A gait cycle is essentially (for the same leg the strikefoot -> toe off -> strikefoot) again
+    mask = ["D", "U", "D"]
+
+    def extract_cycles(gait_cycle):
+        i = 0
+        res = []
+        while i < len(gait_cycle) - 2:
+            cycle = [gait_cycle[i][1], gait_cycle[i+1][1], gait_cycle[i+2][1]]
+            if cycle == mask:
+                res.append([gait_cycle[i][0], gait_cycle[i+2][0]])
+            i += 1
+
+    extracted_left_gait_cycles = extract_cycles(gait_cycle_left)
+    extracted_right_gait_cycles = extract_cycles(gait_cycle_right)
+
+    def extract_oscillation(gait_cycle):
+        np_detected = np.array(detected_frames)
+        oscillations = []
+        for start, end in gait_cycle:
+            #Finding the exact index where the start and end frames are present in detected frames. using numpy for quicker indexing
+            start_pos = np.array(np.where(np_detected == start)).flatten().tolist()[0]
+            end_pos = np.array(np.where(np_detected == end)).flatten().tolist()[0]
+            coords = mean_hip_y_coords[start_pos: end_pos + 1]
+            peak = max(coords)
+            trough = min(coords)
+            oscillations.append(peak - trough)
+
+        return oscillations
+
+    avg_left_side_oscillation = np.mean(np.array(extract_oscillation(extracted_left_gait_cycles)))
+    avg_right_side_oscillation = np.mean(np.array(extract_oscillation(extracted_right_gait_cycles)))
     
     #Calculating stride length:
