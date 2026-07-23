@@ -143,4 +143,4 @@ cleaned_d_preds = clean_preds(d_frame_preds, d_frame_probablities.tolist(), "D")
 consecutive_preds = cleaned_u_preds + cleaned_d_preds
 consecutive_preds.sort()
 
-visualise_frames(test_video_dir, valid_frames, cleaned_d_preds)
+visualise_frames(test_video_dir, valid_frames, cleaned_u_preds)
