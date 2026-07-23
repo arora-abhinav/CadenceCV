@@ -7,6 +7,7 @@ from sklearn.metrics import f1_score, precision_recall_fscore_support, recall_sc
 import numpy as np
 from sklearn.svm import SVC
 from sklearn.preprocessing import StandardScaler
+from sklearn.calibration import CalibratedClassifierCV
 from sklearn.pipeline import make_pipeline
 
 
@@ -131,7 +132,7 @@ def experiment_svm(C=2, kernel="rbf", gamma="scale", degree=3, coef0=1):
 
         #StandardScaler because the RBF kernel is distance based, so features should be on the same scale.
         #It fits on the TRAIN fold only then transforms val, so no validation stats leak in. Fresh SVM each fold.
-        clf = make_pipeline(StandardScaler(), SVC(C=C, kernel=kernel, gamma=gamma, degree=degree, coef0=coef0))
+        clf = make_pipeline(StandardScaler(), CalibratedClassifierCV(SVC(C=C, kernel=kernel, gamma=gamma, degree=degree, coef0=coef0), ensemble=False))
         clf.fit(X_train, y_train)
         preds = clf.predict(X_val)
         true = y_val

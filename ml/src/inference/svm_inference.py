@@ -41,15 +41,16 @@ def obtain_normalised_keypoints(video_dir):
         x_diff = x2 - x1
         y_diff = y2 - y1
         kpts_copy = kpts.clone().tolist()
-        for (index, k) in enumerate(kpts):
+        #Renamed to kp_index so it doesnt clobber the outer `index` (the actual frame number)
+        for (kp_index, k) in enumerate(kpts):
             k.tolist()
             x,y = k
             x = (x - x1)/x_diff
             y = (y - y1)/y_diff
-            kpts_copy[index] = [x, y]
+            kpts_copy[kp_index] = [x, y]
     
         all_kpts.append(kpts_copy)
-        valid_frames.append(index + 1)
+        valid_frames.append(index)
         non_normalised_kpts.append(kpts.tolist())
     
     all_kpts = torch.tensor(all_kpts)
@@ -80,19 +81,66 @@ else:
 u_frame_preds = u_frame_model.predict(flattened_kpts)
 d_frame_preds = d_frame_model.predict(flattened_kpts)
 
-#This will take the valid_frames from keypoints which will be used to visualise those keypoint coordinates
-def visualise_frames(video_dir, frames, preds, kpts):
-    cap = cv2.VideoCapture(video_dir)
-    correct_preds = np.where(np.array(frames) == 1)
+u_frame_probabilities = u_frame_model.predict_proba(flattened_kpts)
+d_frame_probablities = d_frame_model.predict_proba(flattened_kpts)
 
-    for index, pred in enumerate(correct_preds):
-        cap.set(cv2.CAP_PROP_POS_FRAMES, frames[index])
+#This will take the valid_frames from keypoints which will be used to visualise those keypoint coordinates
+def visualise_frames(video_dir, frames, preds):
+    cap = cv2.VideoCapture(video_dir)
+
+    for pred in preds:
+        #pred is the position of the detected event in valid_frames, so frames[pred] is its real frame number
+        frame_number = int(frames[pred])
+        cap.set(cv2.CAP_PROP_POS_FRAMES, frame_number)
         ret, img = cap.read()
-        if ret:
-            cv2.imshow("Frame Visualiser", img)
-            cv2.waitKey(0)
+        #Skip if the frame couldnt be read (otherwise cvtColor crashes on None)
+        if not ret:
+            continue
+        #cv2 uses BGR, matplotlib expects RGB
+        cv2.imshow("Event", img)
+        cv2.waitKey(0)
 
     cap.release()
     cv2.destroyAllWindows()
 
-visualise_frames(test_video_dir, valid_frames, d_frame_preds, non_normal_kpts)
+#Some noise needs to be filtered out since back to back predictions are being made 
+# which is impossible for either u or d frames given the fact that these frames have only 1 occurence per cycle
+# Therefore, probablities will be used instead to keep the 
+#highest probability classification. The second column is the Yes Preds and the first column is the No Preds
+
+def clean_preds(preds, probabilities, tag):
+    correct_preds = np.array(np.where(np.array(preds) == 1)).flatten().tolist()
+    indices = []
+    current_block = []
+    i = 0
+    j = 0
+    #This probably could've been done using numpy np.diff and np.where and whatnot but this seemed more explicit and thus
+    #better
+    while i + j < len(correct_preds):
+        if correct_preds[i] + j == correct_preds[i + j]:
+            current_block.append(correct_preds[i + j])
+        else:
+            indices.append(current_block.copy())
+            current_block.clear()
+            i += j
+            j = 0
+            continue
+        j += 1
+
+    to_keep_indices = []
+    for group in indices:
+        grp_probs = []
+        for ind in group:
+            grp_probs.append(probabilities[ind][1])
+        i = np.array(np.where(np.array(grp_probs) == max(grp_probs))).flatten().tolist()[0]
+        to_keep_indices.append(group[i])
+
+    return to_keep_indices
+
+cleaned_u_preds = clean_preds(u_frame_preds, u_frame_probabilities.tolist(), "U")
+cleaned_d_preds = clean_preds(d_frame_preds, d_frame_probablities.tolist(), "D")
+
+consecutive_preds = cleaned_u_preds + cleaned_d_preds
+consecutive_preds.sort()
+
+visualise_frames(test_video_dir, valid_frames, cleaned_d_preds)
