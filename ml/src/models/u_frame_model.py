@@ -409,5 +409,6 @@ def experiment_svm(C=2, kernel="rbf", gamma="scale", degree=3, coef0=1):
                 "Gamma": gamma,
                 "Degree": degree,
                 "Coef0": coef0,
-                "Sampling Num": sampling_num
+                "Sampling Num": sampling_num,
+                "Trained Model": clf
                 }

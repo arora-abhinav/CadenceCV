@@ -1,8 +1,9 @@
 #File for purely logging experiment metrics and hyperparameters
 import mlflow
 import sys
-sys.path.append("/Users/abhinavarora/Desktop/CadenceCV/ml")
-from models.verifier_model import experiment_MLP, experiment_svm
+sys.path.append("/Users/abhinavarora/Desktop/CadenceCV/ml/src")
+from models.d_frame_model import experiment_MLP, experiment_svm
+import pickle
 
 #Keys: "Macro F1", "N F1", "Y F1", "Macro Recall", "N Recall", "Y Recall",
 # "Macro Precision", "N Precision", "Y Precision", "Macro Support",
@@ -25,6 +26,9 @@ def log_mlp_experiment():
         dataset = mlflow.data.from_pandas(dataset, name="Train Dataset", targets="Label")
         mlflow.set_tag("Samplig Num", "It refers to how much of the initial training set is kept (of non-contact frames) to fix class imbalance")
         # Log parameters
+
+        with open("/Users/abhinavarora/Desktop/CadenceCV/ml/weights/d_frame_svm.pkl", "wb") as file:
+            pickle.dump(results["Trained Model"], file)
         mlflow.log_param("Epochs", results["Epochs"])
         mlflow.log_param("Batch_size", results["Batch_size"])
         mlflow.log_param("Model Architecture", results["Model Architecture"])

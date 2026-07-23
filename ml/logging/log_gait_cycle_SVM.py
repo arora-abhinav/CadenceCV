@@ -1,8 +1,9 @@
 #File for purely logging experiment metrics and hyperparameters
 import mlflow
 import sys
+import pickle
 sys.path.append("/Users/abhinavarora/Desktop/CadenceCV/ml/src")
-from models.gait_cycle_classifier_SVM import experiment_gait_cycle_svm
+from archive.legacy.gait_cycle_classifier_SVM import experiment_gait_cycle_svm
 
 #Keys: "Macro F1", "N F1", "Y F1", "Macro Recall", "N Recall", "Y Recall",
 # "Macro Precision", "N Precision", "Y Precision", "Macro Support",
@@ -18,7 +19,8 @@ metric_keys = ["Macro F1", "N F1", "Y F1",
 def log_gait_cycle_svm_experiment():
     #Each experiment gets its own MLflow run via the with statement
     with mlflow.start_run(run_name="Gait Cycle SVM"):
-        results = experiment_gait_cycle_svm(kernel="rbf")
+        results = experiment_gait_cycle_svm(kernel="rbf", C=2)
+
         # Log parameters (the SVM's own hyperparameters)
         mlflow.log_param("Kernel", results["Kernel"])
         mlflow.log_param("C", results["C"])

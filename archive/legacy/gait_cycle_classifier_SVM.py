@@ -134,7 +134,10 @@ def experiment_gait_cycle_svm(C=10, kernel="rbf", gamma="scale", degree=3, coef0
         X_train, y_train = X[train_idx], y[train_idx]
         X_val, y_val = X[val_idx], y[val_idx]
 
-        #StandardScaler fit on the train fold only (RBF is distance based). Fresh SVM every fold
+        #StandardScaler fit on the train fold only (RBF is distance based). Fresh SVM every fold. #A StandardScaler essentially 
+        #applies a zscore transformation. The reason the make_pipeline is used is because it ensures that the StandardScaler is 
+        #not applied to the testing data, so that the model doesnt memorise new means and averages of the training data but instead
+        #uses only the averages and means learnt from the training data
         clf = make_pipeline(StandardScaler(), SVC(C=C, kernel=kernel, gamma=gamma, degree=degree, coef0=coef0))
         clf.fit(X_train, y_train)
         preds = clf.predict(X_val)
@@ -184,5 +187,6 @@ def experiment_gait_cycle_svm(C=10, kernel="rbf", gamma="scale", degree=3, coef0
                 "C": C,
                 "Gamma": gamma,
                 "Degree": degree,
-                "Coef0": coef0
+                "Coef0": coef0,
+                "Trained Model": clf
                 }

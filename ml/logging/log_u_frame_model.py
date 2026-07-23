@@ -3,6 +3,7 @@ import mlflow
 import sys
 sys.path.append("/Users/abhinavarora/Desktop/CadenceCV/ml/src")
 from models.u_frame_model import experiment_MLP, experiment_svm
+import pickle
 
 #Keys: "Macro F1", "N F1", "Y F1", "Macro Recall", "N Recall", "Y Recall",
 # "Macro Precision", "N Precision", "Y Precision", "Macro Support",
@@ -44,7 +45,12 @@ def log_mlp_experiment():
 def log_svm_experiment():
     #Each experiment gets its own MLflow run via the with statement
     with mlflow.start_run(run_name="U-Frame SVM"):
-        results = experiment_svm(C=2)
+        results = experiment_svm(C=10)
+        
+        #Saving the model
+        with open ('/Users/abhinavarora/Desktop/CadenceCV/ml/weights/u_frame_svm.pkl', "wb") as file:
+            pickle.dump(results["Trained Model"], file)
+
         # Log parameters (the SVM has its own hyperparameters instead of the MLP's)
         mlflow.log_param("Kernel", results["Kernel"])
         mlflow.log_param("C", results["C"])
