@@ -78,11 +78,14 @@ else:
     non_normal_kpts:torch.Tensor = results["Non-Normalised Keypoints"]
 
 
-u_frame_preds = u_frame_model.predict(flattened_kpts)
-d_frame_preds = d_frame_model.predict(flattened_kpts)
-
 u_frame_probabilities = u_frame_model.predict_proba(flattened_kpts)
 d_frame_probablities = d_frame_model.predict_proba(flattened_kpts)
+
+#The u model is under-confident about toe-offs (its positive probabilities sit lower than the d model's),
+#so the default 0.5 cutoff drops ~half the real toe-offs. Thresholding the probability at ~0.42 catches them.
+#Tune this so the toe-off count matches the strikefoot count (they pair 1:1 per leg). d is fine on the default.
+u_frame_preds = (u_frame_probabilities[:, 1] > 0.43).astype(int)
+d_frame_preds = d_frame_model.predict(flattened_kpts)
 
 #This will take the valid_frames from keypoints which will be used to visualise those keypoint coordinates
 def visualise_frames(video_dir, frames, preds):
@@ -127,6 +130,11 @@ def clean_preds(preds, probabilities, tag):
             continue
         j += 1
 
+    #The while loop exits without appending the final block, so add it here
+    #of every video gets silently dropped
+    if current_block:
+        indices.append(current_block.copy())
+
     to_keep_indices = []
     for group in indices:
         grp_probs = []
@@ -140,7 +148,48 @@ def clean_preds(preds, probabilities, tag):
 cleaned_u_preds = clean_preds(u_frame_preds, u_frame_probabilities.tolist(), "U")
 cleaned_d_preds = clean_preds(d_frame_preds, d_frame_probablities.tolist(), "D")
 
-consecutive_preds = cleaned_u_preds + cleaned_d_preds
-consecutive_preds.sort()
+#This is to obtain which leg is going through toe_off or strikefoot. 2 pieces of information are required:
+# 1) Runner's direction (facing left or right). This is determined by a vector starting from heel to the toe of any foot. 
+# If the vector has a positive direction, then the runner is facing right, else the runner is facing left
+# 2) The leg will be computed based on direction and the task. If the runner's direction is towards the right and the task is 
+# u-frame, and the x coordinate of the left ankle > right ankle, then the right leg is the toe_off leg, otherwise, the left leg is
+# Same logic applies for d-frames (provided the runner's direction is towards the right). If the direction is left, then the logic is 
+# simply flipped
+def obtain_which_leg(preds, keypoints):
 
-visualise_frames(test_video_dir, valid_frames, cleaned_u_preds)
+    pred_to_leg_dict = {}
+    direction = None
+    for p in preds:
+        pose_kpts = keypoints[p]
+        left_heel = np.array(pose_kpts[17])
+        left_toe = np.array(pose_kpts[19])
+        right_heel = np.array(pose_kpts[18])
+        right_toe = np.array(pose_kpts[20])
+        if direction is None:
+            vector = left_toe - left_heel
+            if vector.tolist()[0] > 0:
+                direction = "Right"
+            else:
+                direction = "Left"
+
+        if direction == "Right":
+            if left_heel.tolist()[0] > right_heel.tolist()[0]:
+                pred_to_leg_dict[p] = "L"
+            else:
+                pred_to_leg_dict[p] = "R"
+
+        else:
+            if left_heel.tolist()[0] < right_heel.tolist()[0]:
+                pred_to_leg_dict[p] = "L"
+            else:
+                pred_to_leg_dict[p] = "R"
+
+    return pred_to_leg_dict
+        
+kpts_reshaped = torch.tensor(flattened_kpts).reshape([253, 21, 2]).tolist()
+
+d_frame_preds_legs = obtain_which_leg(d_frame_preds, kpts_reshaped)
+u_frame_preds_legs = obtain_which_leg(u_frame_preds, kpts_reshaped)
+
+if __name__ == "__main__":
+    visualise_frames(test_video_dir, valid_frames, cleaned_d_preds)

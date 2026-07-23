@@ -1,42 +1,51 @@
 #This file will be used to write the inference metrics obtained from svm_inference.py. 
 import numpy as np
 import scipy.signal
+import cv2
+import torch
 
 #Clauclating the average time in air per gait cycle and average time in ground contact
-def calculate_metrics(frame_preds):
-    #Grouping pairs of 1s and 0s from the frame_to_pred_dict to obtain a gait cycle
-    #Must iterate in sorted frame order 
-
-    #(i+1)th - ith entry
-    diff = np.diff(frame_preds)
-    #contact:1, non-contact: 0. 
-    #So, non_contact AFTER contact = 0 - 1 = -1 (takeoff frame)
-    takeoff_frames = np.where(diff == -1)[0]
-    #So, contact AFTER non-contact = 1 - 0 = 1 (Strikefoot frame)
-    landing_frames = np.where(diff == 1)[0]
-
+#kpts is NOT normalised
+def calculate_metrics(strikefoot_frames:list, toe_off_frames:list, duration, detected_frames, cap: cv2.VideoCapture, kpts:torch.Tensor):
     flight_times = []
     gct_times = []
-    for takeoff in takeoff_frames:
+
+    right_hip_arr = []
+    left_hip_arr = []
+    for k in kpts.tolist():
+        right_hip_arr.append(k[12])
+        left_hip_arr.append(k[11])
+
+    strikefoot_frames_tagged = [(x, "D") for x in strikefoot_frames]
+    toe_off_frames_tagged = [(x,"U") for x in toe_off_frames]
+
+    total_frames = strikefoot_frames + toe_off_frames
+    total_frames.sort()
+
+    #Due to YOLO missing out on some frames, the actual frame count is required so that the ratio of 
+    #detected:actual frame count can be taken
+    actual_frame_count = cap.get(cv2.CAP_PROP_FRAME_COUNT)
+    detected_frame_count = len(detected_frames)
+    for takeoff in toe_off_frames:
         #Find the next landing after this takeoff. Finding all landings initially to check if there even is a landing 
         #after the take off frames.
-        next_landings = landing_frames[landing_frames > takeoff]
+        next_landings = strikefoot_frames[strikefoot_frames > takeoff]
         if len(next_landings) > 0:
             next_landing = next_landings[0]
             flight_times.append(next_landing - takeoff)
     
-    for landing in landing_frames:
-        next_takeoffs = takeoff_frames[takeoff_frames > landing]
+    for landing in strikefoot_frames:
+        next_takeoffs = toe_off_frames[toe_off_frames > landing]
         if len(next_takeoffs) > 0:
-            next_takeoff = next_takeoffs[0]  # was next_takeoff[0] — typo, wrong variable
+            next_takeoff = next_takeoffs[0]  
             gct_times.append(next_takeoff - landing)
 
-    #Divide by frame count to obtain metrics in seconds
-    average_flight_time = (np.mean(flight_times) if flight_times else 0) / frame_count
-    average_gct = (np.mean(gct_times) if gct_times else 0) / frame_count
+    #Divide by detected frame count to obtain metrics in seconds
+    average_flight_time = (np.mean(flight_times) if flight_times else 0) / detected_frame_count
+    average_gct = (np.mean(gct_times) if gct_times else 0) / detected_frame_count
 
     #Cadence is the steps per second
-    cadence = len(strikefoot_frames) / duration
+    cadence = len(strikefoot_frames) / duration * (detected_frame_count/int(actual_frame_count))
 
     #Vertical oscillation: 
     # 1) Calculate the hip's mean Y coordinate (mean of right and left hip Y) over all frames
