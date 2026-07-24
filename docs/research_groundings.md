@@ -117,36 +117,86 @@ cannot be compared against these thresholds. Calibration using the athlete's
 reported height and the hip-to-ankle pixel distance as a scale factor is the
 planned approach.
 
+### The Shin Test (Tibia Angle at Initial Contact)
+
+The sagittal-plane complement to the COM test. Where COM distance captures the
+*braking cost* of overstriding, the tibia (shank) angle captures the *skeletal
+stress* — whether the knee is positioned to flex and absorb impact, or is
+extended into a rigid strut. Both are read at the same frame: initial contact
+(the rising edge of the contact signal).
+
+The angle is measured between the shin segment (ankle→knee keypoints) and true
+vertical. A backward-leaning shin (knee behind the ankle) at contact means the
+leg lands extended, removing the knee's shock-absorbing flexion.
+
+**Practitioner screening bands** (heuristics — see the precision caveat below):
+
+| Backward tibia lean | Band | Mechanics |
+|---|---|---|
+| 0° to −4°, or any forward angle | Safe | Knee flexes under a slightly bent leg; muscle absorbs shock |
+| −5° to −9° | Mild | Shin leans back; shock shifts from muscle to joint |
+| ≤ −10° | Severe | Knee near-locked; leg acts as a rigid pillar |
+
+**Diagnostic matrix (COM × tibia angle).** The two tests fail independently, so
+the report logic can cross-reference them:
+
+| Profile | COM | Tibia | Interpretation | Primary risk |
+|---|---|---|---|---|
+| Optimal | 0–5 cm | 0° to −4° | Foot near pelvis, compliant knee | Lowest injury / best economy |
+| Efficient but volatile | 2–5 cm | ≤ −10° | Lands close but knee snapped straight | Localised bone stress (shin / heel) |
+| Inefficient but protected | ≥ 12 cm | 0° to −4° | Reaches out front, knee stays bent | Metabolic drain; early muscle fatigue |
+| High threat | ≥ 12 cm | ≤ −10° | Extended leg + locked knee + heel strike | Tibial stress fracture, shin splints, runner's knee |
+
+The single intervention that improves both axes at once is raising cadence 5–10%
+(Heiderscheit et al., cited below): it shortens the reach *and* rotates the shin
+toward vertical without the runner consciously changing foot placement.
+
+### Note on Threshold Precision
+
+The degree and centimetre bands above are **clinical screening heuristics** from
+physiotherapy practice — useful for flagging, but not validated categorical
+cutoffs, and the peer-reviewed evidence actively warns against treating these
+landing angles as clean bins. Stiffler-Joachim et al. (2019) show the
+foot-angle→vertical-loading-rate relationship is *nonlinear* (a cubic fit is
+significantly better than linear), with loading rate actually **lowest** at the
+angular extremes and highest in the mid-range. So a monotonic "more backward =
+worse" rule misrepresents the mechanics. StrideLens should store and report the
+**continuous** tibia angle and use these bands only as coarse screening flags.
+
 ### Works Cited
 
-Barrett, Justin, et al. "Implementation of 2D Running Gait Analysis in
+Barrett, Tiffany, et al. "Implementation of 2D Running Gait Analysis in
 Orthopedic Physical Therapy Clinics." *International Journal of Sports
-Physical Therapy*, vol. 18, no. 3, 1 June 2023, pp. 582–595,
+Physical Therapy*, vol. 18, no. 3, 1 June 2023, pp. 606–618,
 doi:10.26603/001c.74726.
 
-> Establishes the validity of 2D video analysis for sagittal plane variables
-> including tibial inclination and knee flexion at initial contact. Directly
-> supports the use of a single side-view phone camera as the measurement
-> instrument and validates that 2D keypoint-derived metrics map reliably to
-> clinical overstriding risk.
+> Implementation/feasibility study (RE-AIM framework) showing that orthopedic
+> PT clinics can adopt a 2D running gait analysis protocol in routine practice.
+> Supports the real-world clinical use of single-camera side-view 2D gait
+> analysis as a screening instrument. Note: this paper documents adoption and
+> clinician-perceived usefulness, not measurement validity against 3D — that
+> validation is the role of Martinez et al. below.
 
 ---
 
-Edwards, Brent, et al. "Effects of Stride Length and Running Speed on Tibial
-Stress Fracture Probability." *Medicine and Science in Sports and Exercise*,
-vol. 41, no. 12, Dec. 2009, pp. 2177–2184,
-doi:10.1249/MSS.0b013e3181abbeb0.
+Edwards, W. Brent, et al. "Effects of Stride Length and Running Mileage on a
+Probabilistic Stress Fracture Model." *Medicine and Science in Sports and
+Exercise*, vol. 41, no. 12, Dec. 2009, pp. 2177–2184,
+doi:10.1249/MSS.0b013e3181a984c4.
 
-> Foundational study linking extended horizontal foot-to-COM distance to steep
-> loading rate spikes and statistically elevated probability of tibial stress
-> fractures. Primary source for the severe overstride threshold (> 10 cm) and
-> the clinical framing of overstriding as a bone stress injury risk factor.
+> Probabilistic modelling study showing that a 10% reduction in stride length
+> lowers the probability of tibial stress fracture by 3–6%. Grounds the
+> mechanical link between longer stride reach (overstriding) and tibial bone
+> stress, and the clinical framing of overstriding as a stress-injury risk
+> factor. Note: the paper manipulates stride length, not foot-to-COM distance
+> directly — the two covary but are not identical, so this supports the risk
+> framing rather than a specific centimetre cutoff.
 
 ---
 
 Heiderscheit, Bryan C., et al. "Effects of Step Rate Manipulation on Joint
 Mechanics during Running." *Medicine and Science in Sports and Exercise*,
-vol. 43, no. 2, Feb. 2011, pp. 297–302,
+vol. 43, no. 2, Feb. 2011, pp. 296–302,
 doi:10.1249/MSS.0b013e3181ebedf5.
 
 > Clinical trial demonstrating that increasing cadence by 5–10% significantly
@@ -159,27 +209,55 @@ doi:10.1249/MSS.0b013e3181ebedf5.
 
 ---
 
-Napier, Christopher, et al. "Kinematic Predictors of Frontal and Sagittal
-Plane Pathomechanics in Running." *Journal of Orthopaedic & Sports Physical
-Therapy*, vol. 48, no. 8, Aug. 2018, pp. 612–621,
-doi:10.2519/jospt.2018.8004.
+Martinez, Caitlyn, et al. "Comparison of 2-D and 3-D Analysis of Running
+Kinematics and Actual Versus Predicted Running Kinetics." *International
+Journal of Sports Physical Therapy*, vol. 17, no. 4, 1 June 2022, pp. 566–573,
+doi:10.26603/001c.34432.
 
-> Proves that elevated horizontal foot-to-COM distance at initial contact is a
-> direct kinematic predictor of peak anterior-posterior braking forces and
-> overall running injury risk. Grounds the mild overstride threshold (5–10 cm)
-> in injury epidemiology and justifies flagging this range rather than treating
-> it as acceptable.
+> Validates that 2D sagittal-plane video approximates 3D running kinematics
+> (mean 2D–3D differences of only ~1–3° for shank and leg segment angles) and,
+> via regression equations, predicts 3D kinetics — vertical ground reaction
+> force (R² = 0.75) and average loading rate (R² = 0.52). Provides the
+> methodological justification for the entire single-camera approach: phone
+> sagittal keypoints are sufficient to estimate the braking/loading quantities
+> that overstriding drives.
 
 ---
 
-Wille, Corrine M., et al. "Ability of a 2D Video-Based Gait Analysis to
-Predict 3D Joint Angles and Forces during Running." *Journal of Athletic
-Training*, vol. 49, no. 5, Oct. 2014, pp. 611–617,
-doi:10.4085/1062-6050-49.3.34.
+Napier, Christopher, et al. "Kinetic Risk Factors of Running-Related Injuries
+in Female Recreational Runners." *Scandinavian Journal of Medicine & Science
+in Sports*, vol. 28, no. 10, Oct. 2018, pp. 2164–2172, doi:10.1111/sms.13228.
 
-> Validates the use of a single 2D camera to accurately approximate complex 3D
-> internal joint forces, specifically isolating the braking moments produced
-> by overstriding. Provides the methodological justification for the entire
-> 2D video analysis approach used in this pipeline — that sagittal plane
-> keypoint data from a phone camera is sufficient to detect clinically
-> meaningful overstriding.
+> Prospective study identifying peak braking (anterior-posterior) force as the
+> strongest kinetic predictor of running-related injury — runners in the
+> highest braking-force tertile were injured at roughly 5–8× the rate of the
+> lower tertiles. Since braking impulse scales with how far the foot lands
+> ahead of the COM, this grounds the overstride-distance metric in injury
+> epidemiology and justifies flagging the mild (5–10 cm) range rather than
+> treating it as acceptable.
+
+---
+
+Souza, Richard B. "An Evidence-Based Videotaped Running Biomechanics Analysis."
+*Physical Medicine and Rehabilitation Clinics of North America*, vol. 27, no. 1,
+Feb. 2016, pp. 217–236, doi:10.1016/j.pmr.2015.08.006.
+
+> Primary clinical source for the Shin Test. Establishes tibia angle at loading
+> response — alongside foot inclination angle and knee flexion at initial
+> contact — as the sagittal-plane indicator of overstriding when force plates
+> are unavailable: "an extended tibia is not ideal; a vertical or flexed tibia
+> allows the runner to dissipate impact through knee flexion," with knee flexion
+> under ~45° suggesting reduced shock absorption. Grounds the tibia-angle metric.
+
+---
+
+Stiffler-Joachim, Mikel R., et al. "Foot Angle and Loading Rate during Running
+Demonstrate a Nonlinear Relationship." *Medicine and Science in Sports and
+Exercise*, vol. 51, no. 10, Oct. 2019, pp. 2067–2072,
+doi:10.1249/MSS.0000000000002023.
+
+> The honesty check on the threshold tables. Foot inclination angle and average
+> vertical loading rate follow a cubic — not linear — relationship, with loading
+> lowest at the angular extremes, so binning these landing angles into categories
+> "may misrepresent the relationship." Grounds the decision to report the
+> continuous angle rather than treat the screening bands as hard cutoffs.

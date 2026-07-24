@@ -12,11 +12,17 @@ class unit(Enum):
     CM: 2
     MM: 3
 
+class overstride(Enum):
+    NEUTRAL:1
+    MILD:2
+    SEVERE:3
+
 #Clauclating the average time in air per gait cycle and average time in ground contact
 #kpts is NOT normalised
-def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, duration, detected_frames, cap: cv2.VideoCapture, kpts:torch.Tensor, shin_bone_measurement):
+def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, duration, detected_frames, cap: cv2.VideoCapture, kpts:torch.Tensor, shin_bone_measurement, height):
     """
-    shin_bone_measurement MUST be in meters
+    shin_bone_measurement and height MUST be in meters
+    
     """
     flight_times = []
     gct_times = []
@@ -36,6 +42,8 @@ def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, dur
     right_ankle_arr = []
     left_knee_arr = []
     right_knee_arr = []
+    left_heel_arr = []
+    right_heel_arr = []
     for k in kpts.tolist():
         left_hip_arr.append(k[11])
         right_hip_arr.append(k[12])
@@ -43,6 +51,8 @@ def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, dur
         right_knee_arr.append(k[14])
         left_ankle_arr.append(k[15])
         right_ankle_arr.append(k[16])
+        left_heel_arr.append(k[17])
+        right_heel_arr.append(k[19])
 
     strikefoot_frames_tagged = [(x, "D") for x in strikefoot_frames]
     toe_off_frames_tagged = [(x,"U") for x in toe_off_frames]
@@ -81,9 +91,12 @@ def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, dur
     # 3) Separate out the smoothed array based on each gait cycle: (continuous pairs of 0s and 1s)
     # 4) Obtain the vertical difference between each peak and trough (since pixel coordinates go downward)
 
-    # Index 1 is the Y coordinate (vertical axis in pixel space)
-    n = min(len(right_hip_arr), len(left_hip_arr))
-    mean_hip_y_coords = np.mean(np.array(left_hip_arr[:,1]).tolist() + np.array(right_hip_arr[:,1]).tolist())
+    # Index 1 is the Y coordinate (vertical axis in pixel space), Index 0 is the X coordinate
+    n = min(len(left_hip_arr), len(right_hip_arr))
+    mean_hip_x_coords, mean_hip_y_coords = [], []
+    for i in range(n):
+        mean_hip_y_coords.append(np.mean(left_hip_arr[i][1], right_hip_arr[i][1]))
+        mean_hip_x_coords.append(np.mean(left_hip_arr[i][0], right_hip_arr[i][0]))
     
     #The window length is the number of coefficients for smoothing
     #The poly order is the degree of the filtering polynomial
@@ -137,6 +150,7 @@ def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, dur
             pixel_ratio = avg_shin_bone_length/(shin_bone_measurement * 100)
 
     pixel_to_meter_ratio = extract_ratio(unit.M)
+    pixel_to_cm_ratio = extract_ratio(unit.CM)
 
     def extract_stride_length(gait_cycle, ankle_arr):
         #Extracting stride length based on gait_cycles
@@ -151,7 +165,74 @@ def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, dur
 
         return stride_lengths
 
-    avg_left_stride_length = (np.mean(np.array(extract_stride_length(extracted_left_gait_cycles, left_ankle_arr)))) * pixel_to_meter_ratio
-    avg_right_stride_length = (np.mean(np.array(extract_stride_length(extracted_right_gait_cycles, right_ankle_arr)))) * pixel_to_meter_ratio
+    avg_left_stride_length = (np.mean(np.array(extract_stride_length(extracted_left_gait_cycles, left_ankle_arr)))) * (1/pixel_to_meter_ratio)
+    avg_right_stride_length = (np.mean(np.array(extract_stride_length(extracted_right_gait_cycles, right_ankle_arr)))) * (1/pixel_to_meter_ratio)
     avg_overall_stride_length = (np.mean(avg_left_stride_length, avg_left_stride_length)) * pixel_to_meter_ratio
 
+    #Classifying overstrides: 
+    # a) Shin Test: Checking the angle between the vertical and the shin bone. (ankle to knee). If angle > 5 degrees, then the person is overstriding
+    # b) Center of Mass test: Seeing if the ankle goes beyond the Center of Mass (mean of the hip's coordinates):
+    # 1) 0 - 5 cm beyond the COM: Optimal
+    # 2) 5 - 10 cm beyond the COM: Mild Overstriding
+    # 3) 10 - 15 cm beyond the COM: Severe Overstriding
+
+    #Uses of both tests: shin test is to see injury risk, whereas COM is actually used to test force production. 
+
+    OFFSET_NEUTRAL_MAX_PX = (5 * pixel_to_meter_ratio)
+    OFFSET_MILD_MAX_PX = (5 * pixel_to_meter_ratio)
+    TIBIAL_NEUTRAL_MAX_RAD = 5 
+    TIBIAL_MILD_MAX_RAD = 10
+
+    def _classify_offset(offset_px):
+        if offset_px < OFFSET_NEUTRAL_MAX_PX:
+            return overstride.NEUTRAL
+        elif offset_px < OFFSET_MILD_MAX_PX:
+            return overstride.MILD
+        else:
+            return overstride.SEVERE
+
+    def _classify_tibial(tibial_rad):
+        # abs() because the angle can be negative depending on running direction
+        angle = abs(tibial_rad)
+        if angle < TIBIAL_NEUTRAL_MAX_RAD:
+            return overstride.NEUTRAL
+        elif angle < TIBIAL_MILD_MAX_RAD:
+            return overstride.MILD
+        else:
+            return overstride.SEVERE
+
+    def calculate_tibial(shin_vector):
+        angle = np.arctan2(shin_vector[1], shin_vector[0])
+        angle = np.rad2deg(np.pi/2 - angle)
+        return 
+
+    def overstriding_classification(strikefoot_frames, heel_x_coords, knee_arr, ankle_arr):
+        overstriding_COM_mild = []
+        overstriding_COM_severe= []
+        overstriding_shin_mild = []
+        overstriding_shin_severe = []
+        for frame in strikefoot_frames:
+            ind = np.array(np.where(np_detected == frame)).flatten().tolist()[0]
+            hip_x_c = mean_hip_x_coords[ind]
+            heel_x_c = heel_x_coords[ind]
+            COM_res = _classify_offset(np.abs(hip_x_c - heel_x_c))
+            if COM_res == overstride.MILD:
+                overstriding_COM_mild.append(frame)
+            elif COM_res == overstride.SEVERE:
+                overstriding_COM_severe.append(frame)
+            shin_vector = np.array(knee_arr[ind]) - np.array(ankle_arr[ind])
+            tibial_angle = calculate_tibial(shin_vector)
+            shin_res = _classify_tibial(shin_vector)
+            if shin_res == overstride.MILD:
+                overstriding_shin_mild.append(frame)
+            elif shin_res == overstride.SEVERE:
+                overstriding_shin_severe.append(frame)
+
+        return {"COM Mild": overstriding_COM_mild,
+                "COM Severe": overstriding_COM_severe,
+                "Shin Mild": overstriding_shin_mild,
+                "Shin Severe": overstriding_shin_severe}
+
+    left_foot_overstrides = overstriding_classification(strikefoot_frames, left_heel_arr[:,0], left_knee_arr, left_ankle_arr)
+    right_foot_overstrides = overstriding_classification(strikefoot_frames, right_heel_arr[:,0], right_knee_arr, right_ankle_arr)
+    
