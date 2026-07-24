@@ -4,11 +4,20 @@ import scipy.signal
 import cv2
 import torch
 import sys
+from enum import Enum
 from svm_inference import d_frame_preds_legs, u_frame_preds_legs
+
+class unit(Enum):
+    M: 1
+    CM: 2
+    MM: 3
 
 #Clauclating the average time in air per gait cycle and average time in ground contact
 #kpts is NOT normalised
-def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, duration, detected_frames, cap: cv2.VideoCapture, kpts:torch.Tensor):
+def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, duration, detected_frames, cap: cv2.VideoCapture, kpts:torch.Tensor, shin_bone_measurement):
+    """
+    shin_bone_measurement MUST be in meters
+    """
     flight_times = []
     gct_times = []
 
@@ -23,11 +32,17 @@ def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, dur
     gait_cycle_right.sort()
     right_hip_arr = []
     left_hip_arr = []
+    left_ankle_arr = []
+    right_ankle_arr = []
+    left_knee_arr = []
+    right_knee_arr = []
     for k in kpts.tolist():
-        right_hip_arr.append(k[12])
         left_hip_arr.append(k[11])
-
-    
+        right_hip_arr.append(k[12])
+        left_knee_arr.append(k[13])
+        right_knee_arr.append(k[14])
+        left_ankle_arr.append(k[15])
+        right_ankle_arr.append(k[16])
 
     strikefoot_frames_tagged = [(x, "D") for x in strikefoot_frames]
     toe_off_frames_tagged = [(x,"U") for x in toe_off_frames]
@@ -68,9 +83,7 @@ def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, dur
 
     # Index 1 is the Y coordinate (vertical axis in pixel space)
     n = min(len(right_hip_arr), len(left_hip_arr))
-    mean_hip_y_coords = []
-    for i in range(n):
-        mean_hip_y_coords.append(np.mean([right_hip_arr[i][1], left_hip_arr[i][1]]))
+    mean_hip_y_coords = np.mean(np.array(left_hip_arr[:,1]).tolist() + np.array(right_hip_arr[:,1]).tolist())
     
     #The window length is the number of coefficients for smoothing
     #The poly order is the degree of the filtering polynomial
@@ -91,9 +104,9 @@ def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, dur
 
     extracted_left_gait_cycles = extract_cycles(gait_cycle_left)
     extracted_right_gait_cycles = extract_cycles(gait_cycle_right)
+    np_detected = np.array(detected_frames)
 
     def extract_oscillation(gait_cycle):
-        np_detected = np.array(detected_frames)
         oscillations = []
         for start, end in gait_cycle:
             #Finding the exact index where the start and end frames are present in detected frames. using numpy for quicker indexing
@@ -108,5 +121,37 @@ def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, dur
 
     avg_left_side_oscillation = np.mean(np.array(extract_oscillation(extracted_left_gait_cycles)))
     avg_right_side_oscillation = np.mean(np.array(extract_oscillation(extracted_right_gait_cycles)))
-    
-    #Calculating stride length:
+    avg_total_oscillation = np.mean(avg_left_side_oscillation, avg_right_side_oscillation)
+
+    #Calculating stride length requires a normalisation factor (for example the measurement of the shin bone)
+    #If the video is truly sideview, then the measurement of the shin should not change at all. 
+    # However, the average length of the shin bone across all frames will be taken for best video calibration
+    def extract_ratio(measurement_unit:unit):
+        #Complicated af statement lol
+        avg_shin_bone_length = np.mean(np.sqrt(np.square((np.array(left_knee_arr[:,0]) - np.array(left_ankle_arr[:,0]))) + np.square((np.array(left_knee_arr[:,1]) - np.array(left_ankle_arr[:,1])))))
+        if measurement_unit == unit.MM:
+            pixel_ratio = avg_shin_bone_length/(shin_bone_measurement * 1000)
+        elif measurement_unit == unit.M:
+            pixel_ratio = avg_shin_bone_length/shin_bone_measurement
+        elif measurement_unit == unit.CM:
+            pixel_ratio = avg_shin_bone_length/(shin_bone_measurement * 100)
+
+    pixel_to_meter_ratio = extract_ratio(unit.M)
+
+    def extract_stride_length(gait_cycle, ankle_arr):
+        #Extracting stride length based on gait_cycles
+        stride_lengths = []
+        for start, end in gait_cycle:
+            start_pos = np.array(np.where(np_detected == start)).flatten().tolist()[0]
+            end_pos = np.array(np.where(np_detected == end)).flatten().tolist()[0]
+            ankle_cycle = ankle_arr[start_pos: end_pos + 1]
+            peak = max(ankle_cycle[:,0])
+            trough = max(ankle_cycle[:,0])
+            stride_lengths.append(peak - trough)
+
+        return stride_lengths
+
+    avg_left_stride_length = (np.mean(np.array(extract_stride_length(extracted_left_gait_cycles, left_ankle_arr)))) * pixel_to_meter_ratio
+    avg_right_stride_length = (np.mean(np.array(extract_stride_length(extracted_right_gait_cycles, right_ankle_arr)))) * pixel_to_meter_ratio
+    avg_overall_stride_length = (np.mean(avg_left_stride_length, avg_left_stride_length)) * pixel_to_meter_ratio
+
