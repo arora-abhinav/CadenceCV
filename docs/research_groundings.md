@@ -261,3 +261,165 @@ doi:10.1249/MSS.0000000000002023.
 > lowest at the angular extremes, so binning these landing angles into categories
 > "may misrepresent the relationship." Grounds the decision to report the
 > continuous angle rather than treat the screening bands as hard cutoffs.
+
+---
+
+## 3. Metric-Family Evidence Map (RAG corpus sources)
+
+Sources for the report-generation RAG, organised by the metric families in
+`inference_metrics.py`. Every entry here has been **verified** against a primary
+source (title, authors, journal, DOI/PMID, and the specific claim). Papers
+sourced but not yet verified live in the "Pending Verification" queue at the end
+and must NOT be treated as established until checked — this project has already
+shipped three fabricated citations, so nothing enters as fact on trust.
+
+Each entry carries a **Direction** tag (supports / contradicts / neutral) so the
+retriever can be forced to surface at least one *contradicting* chunk per metric
+— otherwise "high vertical oscillation" only ever retrieves papers calling it bad.
+
+### Cross-metric "spine" papers
+
+Malisoux, Laurent, et al. "Reference Values and Determinants of Spatiotemporal
+and Kinetic Variables in Recreational Runners." *Orthopaedic Journal of Sports
+Medicine*, vol. 11, no. 10, Oct. 2023, doi:10.1177/23259671231204629.
+
+> Speed- and sex-stratified reference values from 860 healthy recreational
+> runners on an instrumented treadmill: contact time, flight time, duty factor,
+> vertical oscillation, cadence, step length, loading rate, vertical stiffness,
+> peak vGRF, peak braking force. Only running **speed** correlated highly
+> (r > 0.7) with the biomechanical variables. Direction: neutral / normative.
+> *This is the reference-range source for judging whether a value is "high."*
+
+---
+
+Van Hooren, Bas, et al. "The Relationship Between Running Biomechanics and
+Running Economy: A Systematic Review and Meta-Analysis of Observational
+Studies." *Sports Medicine*, vol. 54, no. 5, May 2024, pp. 1269–1316,
+doi:10.1007/s40279-024-01997-3.
+
+> Meta-analysis across essentially every spatiotemporal/kinematic variable vs
+> running economy. Its framing is that prior findings are inconsistent and it
+> explains why. Direction: neutral — the "it depends" counterweight to any
+> single-variable "optimal form" claim.
+
+### Cadence / stride length / overstriding
+
+Anderson, Luke M., et al. "What is the Effect of Changing Running Step Rate on
+Injury, Performance and Biomechanics? A Systematic Review and Meta-analysis."
+*Sports Medicine – Open*, vol. 8, no. 112, 2022, doi:10.1186/s40798-022-00504-0.
+
+> Increasing step rate produces increases or no change in loading-rate variables
+> at ankle/knee/hip, but evidence is insufficient to conclude effects on injury
+> or performance; long-term effects largely unknown. Direction: contradicts —
+> the hedge against over-confident cadence advice.
+
+---
+
+Baker, Lauren M., et al. "Predicting Overstriding with Wearable IMUs during
+Treadmill and Overground Running." *Scientific Reports*, vol. 14, no. 6347,
+2024, doi:10.1038/s41598-024-56888-4.
+
+> Sagittal segment angles explained 95–98% of overstriding variance and 80–88%
+> of peak braking force variance. Defines overstriding as horizontal distance the
+> foot lands ahead of the body. Direction: supports the overstride-distance
+> metric. (NOTE: originally mis-cited as "Rodriguez et al." — actual first
+> author is Baker.)
+
+### Ground contact time / flight time / duty factor
+
+Lussiana, Thibault, et al. "Duty Factor Is a Viable Measure to Classify
+Spontaneous Running Forms." *Sports*, vol. 7, no. 11, 2019, p. 233,
+doi:10.3390/sports7110233.
+
+> Defines duty factor as contact time / stride time and validates it against the
+> subjective Volodalen aerial-vs-terrestrial scale (79.8% agreement). Direction:
+> supports — turns the duty-factor number into a running-form narrative.
+> (Author order to double-check: Patoz/Gindre may be lead; DOI/title confirmed.)
+
+### Foot strike angle / strike pattern
+
+Daoud, Adam I., et al. "Foot Strike and Injury Rates in Endurance Runners: A
+Retrospective Study." *Medicine and Science in Sports and Exercise*, vol. 44,
+no. 7, 2012, PMID 22217561.
+
+> Habitual rearfoot strikers had ~2× the rate of repetitive stress injuries vs
+> forefoot strikers; the study does NOT test causation. Direction: supports (with
+> a causality caveat). DOI to confirm.
+
+---
+
+Han, [first author], et al. "Influence of Manipulating Running Foot Strike Angle
+on Internal Loading of the Tibia." *Scandinavian Journal of Medicine & Science
+in Sports*, 2025, doi:10.1111/sms.70066.
+
+> In 19 habitual rearfoot strikers, an imposed forefoot strike *increased* tibial
+> peak bending moment ~15% vs habitual rearfoot; concludes transitioning
+> rearfoot→forefoot "may not be advisable" to reduce tibial load. Direction:
+> **contradicts** — without this, the system will happily tell heel strikers to
+> convert to forefoot. Critical guardrail.
+
+### Loading rate / peak vGRF (impact)
+
+Matijevich, Emily S., et al. "Ground Reaction Force Metrics Are Not Strongly
+Correlated with Tibial Bone Load When Running across Speeds and Slopes:
+Implications for Science, Sport and Wearable Tech." *PLOS ONE*, vol. 14, no. 1,
+2019, e0210000, doi:10.1371/journal.pone.0210000.
+
+> GRF metrics (impact peak, loading rate, active peak, impulse) are NOT strongly
+> correlated with tibial compression force across speeds/slopes. Direction:
+> **contradicts** — the guardrail on any "estimated peak vGRF → injury risk"
+> statement the system might make.
+
+### Symmetry (all four symmetry metrics)
+
+Malisoux, Laurent, et al. "Gait Asymmetry in Spatiotemporal and Kinetic
+Variables Does Not Increase Running-Related Injury Risk in Lower Limbs: A
+Secondary Analysis of a Randomised Trial Including 800+ Recreational Runners."
+*BMJ Open Sport & Exercise Medicine*, 2024, PMID 38196940, PMC10773390.
+
+> 836 recreational runners: gait asymmetry was NOT associated with higher injury
+> risk; greater asymmetry in flight time and peak braking force was associated
+> with *lower* risk. Direction: **contradicts** the intuitive "asymmetry is bad"
+> advice — the largest prospective evidence available, must anchor the symmetry
+> outputs. (Journal is BMJ OSEM, not BJSM as originally sourced. DOI to confirm.)
+
+### Practical notes for building the index
+
+- **Speed-conditioning is the dominant caveat.** Malisoux 2023 found running
+  speed is the main determinant of nearly every metric, so retrieval queries
+  should include the computed `running_speed` bucket and threshold-based advice
+  must be gated on it (a 0.28 s GCT is not "long" at 3:00/km pace).
+- **Force a contradicting chunk per metric.** Tag every chunk with
+  `direction ∈ {supports, contradicts, neutral}` and make the reranker pull at
+  least one contradicting chunk, or the system becomes a confirmation-bias engine.
+- **Suggested chunk metadata:** `metric_tags[]` (exact return keys),
+  `evidence_level` (RCT / prospective cohort / cross-sectional / review), `n`,
+  `population`, `speed_range`, `direction`.
+- **Licensing:** only the PMC Open Access Subset is redistributable — check each
+  PMCID via the OA web service before ingesting; a PMCID alone does not imply OA.
+  Paywalled sources: store title/DOI/abstract as pointers, do not chunk full text.
+
+### Honest coverage gaps
+
+- **Hip extension at toe-off** has no verified open-access anchor yet. Flag this
+  output as "descriptive only, no evidence linkage" until one is found.
+- **`Average Vertical Oscillation (px)`** cannot be grounded against the
+  literature (everything is reported in cm or % of step length). Report the
+  scale-invariant **vertical ratio** instead, or flag VO-px as descriptive only.
+
+### Pending Verification (sourced, NOT yet checked — do not cite as fact)
+
+Cadence/overstride: Farina & Hahn 2021 (PMC8772793); Lieberman et al. 2015 (JEB).
+GCT/DF: Joubert et al. 2020 (PMC7241633); Van Hooren & Bosch 2019 (Front Sports);
+Santos-Concejero et al. 2013 (PMC3944563); Nijs et al. 2023 (PLOS ONE).
+VO: Adams et al. 2018 (PMC6088121). Foot strike: Almeida et al. 2015 (PMID
+26304644); self-reported foot-strike accuracy (Front Sports 2024). Trunk lean:
+forward-lean economy paper (PMC11135760); AminiAghdam et al. 2022 (PMID 34537800).
+Knee: PFP current concepts (PMC7740062); PFP subgroup preprint (medRxiv).
+Spring-mass: Morin et al. 2005 (verified earlier this project); Morin et al. 2006
+(PMID 16475063); nonlinear spring-mass regression (JEB 2021); Coleman et al. 2012
+(paywalled). Loading/GRF: "Rethinking running biomechanics" review (Front Bioeng
+2024); Zadpoor & Nikooyan meta. Symmetry: Weighted USI (PMC7644861); U14
+asymmetry (PMC11125289); fatigue-symmetry papers. Methods: Stenum et al. 2021
+(PMC8099131, OpenPose errors 4.0°/5.6°/7.4°); Pipkin et al. 2016 (PMC6044590);
+Michelini et al. 2020.

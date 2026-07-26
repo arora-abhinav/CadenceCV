@@ -109,7 +109,7 @@ def visualise_frames(video_dir, frames, preds, keypoints):
             continue
 
         #keypoints[pred] = this frames 21 pixel keypoints, same index order YOLO gives them
-        pose = keypoints[pred].tolist() if hasattr(keypoints[pred], "tolist") else keypoints[pred]
+        """pose = keypoints[pred].tolist() if hasattr(keypoints[pred], "tolist") else keypoints[pred]
         for idx, (x, y) in enumerate(pose):
             x, y = int(x), int(y)
             #Every keypoint as a small green dot just for context
@@ -117,7 +117,7 @@ def visualise_frames(video_dir, frames, preds, keypoints):
             #The 4 foot ones get a bigger red dot + their name so left/right is obvious at a glance
             if idx in foot_names:
                 cv2.circle(img, (x, y), 6, (0, 0, 255), -1)
-                cv2.putText(img, foot_names[idx], (x + 8, y - 8), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
+                cv2.putText(img, foot_names[idx], (x + 8, y - 8), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)"""
 
         #cv2 uses BGR, matplotlib expects RGB
         cv2.imshow("Event", img)
@@ -175,36 +175,32 @@ print(cleaned_d_preds_indices)
 #If runner direction is right, and task is U and right_ankle_coord_x > left_ankle_coord_x, then left leg, else right leg.
 #If runner direction is left, and task is U and right_ankle_coord_x > left_ankle_coord_x, them right leg, else left leg.
 np_valid = np.array(valid_frames)
-def obtain_which_leg(cleaned_pred_indices, keypoints, task):
+def obtain_which_leg(cleaned_pred_indices, keypoints, task, runner_direction):
     pred_to_leg_dict = {}
     for p in cleaned_pred_indices:
         pose_kpts = keypoints[p]
-        left_heel = np.array(pose_kpts[19])
-        left_toe = np.array(pose_kpts[17])
-        right_heel = np.array(pose_kpts[20])
-        left_knee = np.array(pose_kpts[13])
-        left_hip = np.array(pose_kpts[11])
-        runner_direction = "right" if (left_knee[0] - left_hip[0]) > 0 else "right"
+        left_ankle = pose_kpts[15]
+        right_ankle = pose_kpts[16]
         if runner_direction == "right":
             if task == "D":
-                if right_heel[0] > left_heel[0]:
+                if right_ankle[0] > left_ankle[0]:
                     pred_to_leg_dict[p] = "R"
                 else:
                     pred_to_leg_dict[p] = "L"
             elif task == "U":
-                if right_heel[0] > left_heel[0]:
+                if right_ankle[0] > left_ankle[0]:
                     pred_to_leg_dict[p] = "L"
                 else:
                     pred_to_leg_dict[p] = "R"
 
         elif runner_direction == "left":
             if task == "D":
-                if right_heel[0] > left_heel[0]:
+                if right_ankle[0] > left_ankle[0]:
                     pred_to_leg_dict[p] = "L"
                 else:
                     pred_to_leg_dict[p] = "R"
             elif task == "U":
-                if right_heel[0] > left_heel[0]:
+                if right_ankle[0] > left_ankle[0]:
                     pred_to_leg_dict[p] = "R"
                 else:
                     pred_to_leg_dict[p] = "L"
@@ -212,8 +208,11 @@ def obtain_which_leg(cleaned_pred_indices, keypoints, task):
 
 kpts_reshaped = torch.tensor(flattened_kpts).reshape([253, 21, 2]).tolist()
 
-d_frame_preds_legs_indices = obtain_which_leg(cleaned_d_preds_indices, kpts_reshaped, "D")
-u_frame_preds_legs_indices = obtain_which_leg(cleaned_u_preds_indices, kpts_reshaped, "U")
+d_frame_preds_legs_indices = obtain_which_leg(cleaned_d_preds_indices, kpts_reshaped, "D", "right")
+u_frame_preds_legs_indices = obtain_which_leg(cleaned_u_preds_indices, kpts_reshaped, "U", "right")
+
+print(d_frame_preds_legs_indices)
+print(u_frame_preds_legs_indices)
 cap = cv2.VideoCapture(test_video_dir)
 
 if __name__ == "__main__":
