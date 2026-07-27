@@ -590,6 +590,456 @@
     "n_tokens": 146
   },
   {
+    "chunk_id": "cadence_retrain_peerj2020#000",
+    "doc_id": "cadence_retrain_peerj2020",
+    "pmcid": "PMC7450991",
+    "doi": "10.7717/peerj.9813",
+    "license": "CC BY",
+    "section": "Abstract > Background",
+    "text": "[Effects of 12-week cadence retraining on impact peak, load rates and lower extremity biomechanics in running | Abstract > Background]\nExcessive impact peak forces and vertical load rates are associated with running injuries and have been targeted in gait retraining studies. This study aimed to determine the effects of 12-week cadence retraining on impact peak, vertical load rates and lower extremity biomechanics during running.",
+    "n_tokens": 58
+  },
+  {
+    "chunk_id": "cadence_retrain_peerj2020#001",
+    "doc_id": "cadence_retrain_peerj2020",
+    "pmcid": "PMC7450991",
+    "doi": "10.7717/peerj.9813",
+    "license": "CC BY",
+    "section": "Abstract > Methods",
+    "text": "[Effects of 12-week cadence retraining on impact peak, load rates and lower extremity biomechanics in running | Abstract > Methods]\nTwenty-four healthy male recreational runners were randomised into either a 12-week cadence retraining group (n = 12), which included those who ran with a 7.5% increase in preferred cadence, or a control group (n = 12), which included those who ran without any changes in cadence. Kinematics and ground reaction forces were recorded simultaneously to quantify impact force variables and lower extremity kinematics and kinetics.",
+    "n_tokens": 86
+  },
+  {
+    "chunk_id": "cadence_retrain_peerj2020#002",
+    "doc_id": "cadence_retrain_peerj2020",
+    "pmcid": "PMC7450991",
+    "doi": "10.7717/peerj.9813",
+    "license": "CC BY",
+    "section": "Abstract > Results",
+    "text": "[Effects of 12-week cadence retraining on impact peak, load rates and lower extremity biomechanics in running | Abstract > Results]\nSignificantly decreased impact peak (1.86 ± 0.30 BW vs. 1.67 ± 0.27 BW, P = 0.003), vertical average load rates (91.59 ± 18.91 BW/s vs. 77.31 ± 15.12 BW/s, P = 0.001) and vertical instantaneous load rates (108.8 ± 24.5 BW/s vs. 92.8 ± 18.5 BW/s, P = 0.001) were observed in the cadence retraining group, while no significant differences were observed in the control group. Foot angles (18.27° ± 5.59° vs. 13.74° ± 2.82°, P = 0.003) and vertical velocities of the centre of gravity (CoG) (0.706 ± 0.115 m/s vs. 0.652 ± 0.091 m/s, P = 0.002) significantly decreased in the cadence retraining group at initial contact, but not in the control group. In addition, vertical excursions of the CoG (0.077 ± 0.01 m vs. 0.069 ± 0.008 m, P = 0.002) and peak knee flexion angles (38.6° ± 5.0° vs. 36.5° ± 5.5°, P < 0.001) significantly decreased whilst lower extremity stiffness significantly increased (34.34 ± 7.08 kN/m vs. 38.61 ± 6.51 kN/m, P = 0.048) in the cadence retraining group. However, no significant differences were observed for those variables in the control group.",
+    "n_tokens": 249
+  },
+  {
+    "chunk_id": "cadence_retrain_peerj2020#003",
+    "doc_id": "cadence_retrain_peerj2020",
+    "pmcid": "PMC7450991",
+    "doi": "10.7717/peerj.9813",
+    "license": "CC BY",
+    "section": "Abstract > Conclusion",
+    "text": "[Effects of 12-week cadence retraining on impact peak, load rates and lower extremity biomechanics in running | Abstract > Conclusion]\nTwelve-week cadence retraining significantly increased the cadence of the cadence retraining group by 5.7%. This increased cadence effectively reduced impact peak and vertical average/instantaneous load rates. Given the close relationship between impact force variables and running injuries, increasing the cadence as a retraining method may potentially reduce the risk of impact-related running injuries.",
+    "n_tokens": 70
+  },
+  {
+    "chunk_id": "cadence_retrain_peerj2020#004",
+    "doc_id": "cadence_retrain_peerj2020",
+    "pmcid": "PMC7450991",
+    "doi": "10.7717/peerj.9813",
+    "license": "CC BY",
+    "section": "Introduction",
+    "text": "[Effects of 12-week cadence retraining on impact peak, load rates and lower extremity biomechanics in running | Introduction]\nLong-distance running is a very popular form of physical activity in China and across the world (). According to the Chinese Athletics Association Marathon Annual Press Conference, 5.83 million participants ran in 1,581 marathon events (5k,10k, half and full marathon) in China in 2018 (). Similarly, 18.1 million runners registered for organised races in the US (). However, the incidence of running injuries is fairly high (). A total of 19.4–79.3% of long-distance runners experienced lower extremity injuries (). Amongst these injuries, knee injuries, such as patellofemoral pain, are the most common. Meanwhile, there is data to suggest that injuries to the lower leg have been reported to be just as common as injuries to the knee (; ).\n\nTraining history, anatomical characteristics and running biomechanics are the main risk factors influencing overuse injuries due to running (). Amongst various biomechanical factors, excessive impact peak forces and load rates are associated with injuries and have been targeted in gait retraining studies (). In a recent review, excessive accumulation of impact peak forces in knee joints was found to lead to overuse injuries (). Previous prospective studies found that injured runners had greater vertical load rates than non-injured runners (; ). Another prospective study showed that runners with patellofemoral pain exhibited lower impact loading after the pain and disability typically associated with these injuries were reduced (). Impact peak can be influenced by several factors, such as speed (), shoe/surface/slope (; ), strike pattern () and cadence/step length (). Increasing running cadence at 2.5 m/s or decreasing step length at 4.58 m/s could decrease impact peak and vertical load rates (; ), and reductions in impact peak were related to decreases in vertical velocity of the centre of gravity (CoG) (). Other lower extremity variables, such as foot angles at initial contact () and peak joint angles during the stance phase (), also showed decreases with increasing cadence. These results indicate that increasing cadence or decreasing step length has an effect on decreasing impact forces and other lower-extremity variables in running.",
+    "n_tokens": 453
+  },
+  {
+    "chunk_id": "cadence_retrain_peerj2020#005",
+    "doc_id": "cadence_retrain_peerj2020",
+    "pmcid": "PMC7450991",
+    "doi": "10.7717/peerj.9813",
+    "license": "CC BY",
+    "section": "Introduction",
+    "text": "[Effects of 12-week cadence retraining on impact peak, load rates and lower extremity biomechanics in running | Introduction]\nWith regards to cadence retraining, observed significant decreases in load rates after 6 weeks of cadence retraining with a 10% increase in cadence. However, cadence increased by only 2.4% after retraining, whilst a 10% increase in cadence was prescribed for retraining; no feedback was given as to how well the participants matched their prescribed cadence during retraining. Whether impact peak would decrease after supervised cadence retraining remains unknown. Therefore, a relatively long-term and supervised intervention is needed to evaluate the effects of cadence retaining on impact peak and load rates. Twelve weeks of gait retraining allows the initial adaptation of musculoskeletal structures to new running patterns () and may reduce injury risks of gait transition within a short period (). Increasing one’s cadence by over 10% could be metabolically costly, which indicates that considerable increases in cadence are unsustainable and may not be adopted by runners (). Mobile monitoring was used by to assess adherence to the prescribed cadence during cadence retraining with a 7.5% increase in cadence, and significant reductions in maximum and average load rates were observed after retraining. As such, we sought to determine whether a relatively small increase in cadence (7.5%) during long-term cadence retraining could significantly reduce impact peak and load rates.\n\nThe present study, therefore, aimed to quantify the effects of a 12-week cadence retraining protocol on impact peak, load rates and other lower-extremity biomechanical variables. We hypothesised that 12-week cadence retraining would result in remarkably decreased impact peak and load rates. Additionally, decreases in lower-extremity biomechanics at initial contact and during the stance phase after cadence retraining would be observed.",
+    "n_tokens": 356
+  },
+  {
+    "chunk_id": "cadence_retrain_peerj2020#006",
+    "doc_id": "cadence_retrain_peerj2020",
+    "pmcid": "PMC7450991",
+    "doi": "10.7717/peerj.9813",
+    "license": "CC BY",
+    "section": "Methods > Participants",
+    "text": "[Effects of 12-week cadence retraining on impact peak, load rates and lower extremity biomechanics in running | Methods > Participants]\nSample size estimation indicated that a minimum sample size of 26 participants was required to achieve a minimum effect size of 0.6. Considering a drop-out rate of 15–20%, 30 male recreational runners were recruited through online social media, running clubs and flyers. Participants were randomly assigned to either a cadence retraining group (CAD) or a control group (CON) on the basis of the lottery method of sampling, and 15 participants were included in each group (). When the participants first reported to the laboratory, they were required to run on a treadmill for 2 min. A high-speed camera placed next to the treadmill recorded their foot strike patterns. The participants were determined to be rearfoot strikers by checking the foot angle (i.e., the angle between the foot and ground at initial contact) of the dominant leg (the preferred kicking leg) () by reviewing the obtained videos frame by frame (). Consequently, all runners were rearfoot strikers. They ran a minimum of 15 km/week for at least 3 months prior to the study. Participants were excluded if they had any lower limb musculoskeletal injuries in the previous 6 months. No significant differences in age, height, weight and weekly mileage were observed between the two groups. This study was approved by the Institutional Review Board of the Shanghai University of Sports (No. 2017007). Informed written consent was obtained from each participant prior to their participation in this study.",
+    "n_tokens": 314
+  },
+  {
+    "chunk_id": "cadence_retrain_peerj2020#007",
+    "doc_id": "cadence_retrain_peerj2020",
+    "pmcid": "PMC7450991",
+    "doi": "10.7717/peerj.9813",
+    "license": "CC BY",
+    "section": "Methods > Instrumentation",
+    "text": "[Effects of 12-week cadence retraining on impact peak, load rates and lower extremity biomechanics in running | Methods > Instrumentation]\nA 12-camera motion capture system (100 Hz, T40; Vicon Motion Inc., Oxford, UK) was used to collect kinematic data. Ground reaction force data were captured by using two 90 cm × 60 cm × 10 cm force platforms (1,000 Hz, 9287B; Kistler Instruments AG Corp., Winterthur, Switzerland). The kinematics and ground reaction force data were simultaneously collected using the Vicon system. A Photogate system (Witty-Wireless Training Timer; Microgate Corp., Bolzano, Italy) was used to monitor over-ground running speed. Conventional running shoes (Nike Air Zoom Pegasus 34) were used by the participants during the experiments ().",
+    "n_tokens": 126
+  },
+  {
+    "chunk_id": "cadence_retrain_peerj2020#008",
+    "doc_id": "cadence_retrain_peerj2020",
+    "pmcid": "PMC7450991",
+    "doi": "10.7717/peerj.9813",
+    "license": "CC BY",
+    "section": "Methods > Experimental protocol",
+    "text": "[Effects of 12-week cadence retraining on impact peak, load rates and lower extremity biomechanics in running | Methods > Experimental protocol]\nThe participants visited the laboratory twice, at baseline and at the end of the gait retraining program. Prior to data collection, the participants were required to wear uniform clothing, including a vest, socks and shoes, and walk for 2 min and run at 3.33 m/s on a treadmill for 5 min as a warm-up. Thereafter, a total of 40 markers were placed on the participants, and static calibration was performed. The anatomical locations of the markers were the right/left ilium crest tubercle, right/left posterior superior iliac spine, right/left femur greater trochanter, right/left anterior superior iliac spine, right/left femur lateral epicondyle, right/left femur medial epicondyle, right/left fibula apex of the lateral malleolus, right/left tibia apex of the medial malleolus, right/left head of the fifth metatarsals, right/left head of the first metatarsus and right/left posterior surface of the calcaneus (). In addition, three tracking markers were placed on the thigh and shank. The participants were instructed to run over the ground across a 10 m runway () at 3.33 m/s during which kinematic and ground reaction force data were captured. The running speed was considered acceptable if the deviation was within 5%. Three successful running trials were collected for each participant.",
+    "n_tokens": 265
+  },
+  {
+    "chunk_id": "cadence_retrain_peerj2020#009",
+    "doc_id": "cadence_retrain_peerj2020",
+    "pmcid": "PMC7450991",
+    "doi": "10.7717/peerj.9813",
+    "license": "CC BY",
+    "section": "Methods > Retraining protocol",
+    "text": "[Effects of 12-week cadence retraining on impact peak, load rates and lower extremity biomechanics in running | Methods > Retraining protocol]\nAll of the participants were required to run at their preferred speeds during the cadence retraining protocol (). Running speed and cadence during training were monitored using the commercial running application CODOON© (Chengdu Ledong Information Technology Co., Ltd., Chengdu, China). Each participant received a sport belt bag in which to place their mobile phones during running, and they were instructed to place the bag above their sacrum. The participants were asked to run outdoors three times (30 min/run) at a comfortable speed to determine their preferred speed and cadence. The preferred speed and preferred cadence were the average values obtained from three outdoor trials. Participants in the CAD group were instructed to run with a 7.5% increase in cadence, whereas those in the CON group ran without any change in cadence (). Participants in the retraining group were informed about and given access to a mobile-based metronome application with tempos set to a 7.5% increase in cadence. shows the cadence retraining protocol, which lasted for 12 weeks with three sessions a week and 5–48 min each session (). Participants used their preferred running mode, namely, treadmill or over ground, to complete their retraining. The retraining protocol constituted part of the participants’ running volume so that their total weekly running volume remained unchanged. After each retraining session, participants could check their average cadence, speed and running volume on the CODOON© running application. They were also required to submit data recorded by the application to the researchers. Participants were excluded if their training protocols were interrupted more than three times or if their cadence did not achieve the targeted cadence for 3 weeks since the beginning of training. Weekly group trainings were provided three times a week in the CAD group to ensure compliance, and participants chose one of weekly group training sessions in which to participate on the basis of their schedule. During group training, the participants performed an 8 min warm-up, such as dynamic stretching, under the guidance of the researchers. Then, the participants began to run according to their retraining schedule. The participants did not receive guidance on running techniques because the weekly group training aimed to ensure compliance and the quality of retraining.",
+    "n_tokens": 486
+  },
+  {
+    "chunk_id": "cadence_retrain_peerj2020#010",
+    "doc_id": "cadence_retrain_peerj2020",
+    "pmcid": "PMC7450991",
+    "doi": "10.7717/peerj.9813",
+    "license": "CC BY",
+    "section": "Methods > Data processing",
+    "text": "[Effects of 12-week cadence retraining on impact peak, load rates and lower extremity biomechanics in running | Methods > Data processing]\nThe Visual 3D software (v5; C-Motion, Inc., Germantown, MD, USA) was used to compute the 3D kinematic and kinetic variables of the lower extremity during running. Marker trajectories were filtered with a cut-off frequency of 7 Hz via a fourth-order Butterworth low-pass filter (). A seven-segment lower extremity model was built via the Visual 3D, and CoG was estimated from this model. Impact force variables included impact peak, vertical instantaneous load rates (VILR) and vertical average load rates (VALR). In rearfoot strike runners, impact peak was defined the first peak in the ground reaction force curve (). Load rates was calculated on the basis of the method described by . In brief, a point of interest (POI) was defined as the first point above 75% of a participant’s body weight with an instantaneous load rate of less than 15 body weight/s. VALR (the average slope) and VILR (i.e., the maximum instantaneous slope) were then calculated from 20% to 80% and from 20% to 100% of the force at POI, respectively (). We also calculated lower extremity stiffness (), kleg, as shown in . Kinematic variables of the hip, knee and ankle joints included foot angle (the angle between the foot and ground) at initial contact () and peak joint extension and peak joint flexion angles during the stance. The times from initial contact to impact peak (tip), vertical velocities of the CoG at initial contact and vertical excursion of the CoG during the stance phase were also evaluated.\n\nwhere GRFi is the vertical ground reaction force at the lowest position of the CoG and Δy is the maximum vertical displacement of the CoG.",
+    "n_tokens": 364
+  },
+  {
+    "chunk_id": "cadence_retrain_peerj2020#011",
+    "doc_id": "cadence_retrain_peerj2020",
+    "pmcid": "PMC7450991",
+    "doi": "10.7717/peerj.9813",
+    "license": "CC BY",
+    "section": "Methods > Statistics",
+    "text": "[Effects of 12-week cadence retraining on impact peak, load rates and lower extremity biomechanics in running | Methods > Statistics]\nThe mean and standard deviation for each variable was calculated. Two-way repeated measure ANOVA was used to characterise the effects of training (pre- and post-training) and group (CAD and CON) on each variable. Independent sample and paired t-tests were used as post-hoc tests when a significant interaction was detected to assess potential group effects between CAD and CON and retraining effects pre- and post-training, respectively. The observed effect size (η2) was considered in the ANOVA results, and effect size (Cohen’s d) was considered in the paired and independent sample t-tests results. The 95% confidence interval (CI) of the differences in group effects was reported. The criterion α level was set to 0.05. All statistical procedures were conducted using SPSS software (Version 20; SPSS, Inc., Chicago, IL, USA).",
+    "n_tokens": 169
+  },
+  {
+    "chunk_id": "cadence_retrain_peerj2020#012",
+    "doc_id": "cadence_retrain_peerj2020",
+    "pmcid": "PMC7450991",
+    "doi": "10.7717/peerj.9813",
+    "license": "CC BY",
+    "section": "Results > Dropout rate",
+    "text": "[Effects of 12-week cadence retraining on impact peak, load rates and lower extremity biomechanics in running | Results > Dropout rate]\nThirty participants (15 in the CAD group and 15 in the CON group) completed the pre-training tests on their first visit to the laboratory (). However, in the CAD group, one participant was excluded because of insufficient training volume, and two participants withdrew for personal reasons or because their results showed more than three interruptions. In the CON group, two participants were lost to contact, and one participant withdrew for personal reasons. Overall, 24 participants, 12 in the CAD group and 12 in the CON group, completed the 12-week cadence retraining protocol and reported to the laboratory for post-training tests (). No significant difference in average running volumes was observed between the CAD and CON groups (CAD: 23.3 ± 3.3 km/week, CON: 22.9 ± 4.3 km/week).",
+    "n_tokens": 168
+  },
+  {
+    "chunk_id": "cadence_retrain_peerj2020#013",
+    "doc_id": "cadence_retrain_peerj2020",
+    "pmcid": "PMC7450991",
+    "doi": "10.7717/peerj.9813",
+    "license": "CC BY",
+    "section": "Results > Cadence and step length",
+    "text": "[Effects of 12-week cadence retraining on impact peak, load rates and lower extremity biomechanics in running | Results > Cadence and step length]\nshows a significant training × group interaction effect for cadence (P < 0.001, η2 = 0.867). Specifically, cadence significantly increased by 5.7% (161.3 ± 9.5 step/min vs. 170.5 ± 9.2 step/min) in the CAD group (P < 0.001, Cohen’s d = 3.87) but not in the CON group (164.3 ± 7.7 step/min vs. 165.5 ± 6.8 step/min, P > 0.05) after training. A significant main effect of training was observed for step length, which decreased by 4.1% (2.49 ± 0.16 m vs. 2.39 ± 0.14 m) in the CAD group after training (P = 0.011, η2 = 0.259) (). No significant difference for step length was observed in the CON group (2.54 ± 0.16 m vs. 2.51 ± 0.14 m). Step length in the CAD group was 4.9% lower (2.39 ± 0.14 m vs. 2.51 ± 0.14 m) than that in the CON group after training (P = 0.04, 95% CI [−0.245 to −0.006], Cohen’s d = 0.94).",
+    "n_tokens": 210
+  },
+  {
+    "chunk_id": "cadence_retrain_peerj2020#014",
+    "doc_id": "cadence_retrain_peerj2020",
+    "pmcid": "PMC7450991",
+    "doi": "10.7717/peerj.9813",
+    "license": "CC BY",
+    "section": "Results > Impact force variables",
+    "text": "[Effects of 12-week cadence retraining on impact peak, load rates and lower extremity biomechanics in running | Results > Impact force variables]\nshows significant training × group interaction effects for impact peak (P = 0.022, η2 = 0.217). Impact peak significantly decreased in the CAD group (P = 0.003, Cohen’s d = 1.10) but not in the CON group (P > 0.05). Meanwhile, impact peak in the CAD group was significantly lower than that in the CON group after training (P = 0.038, 95% CI [−0.443 to −0.013], Cohen’s d = 0.95). Significant main effects of training were observed for VALR and VILR. Specifically, VALR (P = 0.029, η2 = 0.198) and VILR (P = 0.025, η2 = 0.209) decreased in the CAD group after training ().",
+    "n_tokens": 140
+  },
+  {
+    "chunk_id": "cadence_retrain_peerj2020#015",
+    "doc_id": "cadence_retrain_peerj2020",
+    "pmcid": "PMC7450991",
+    "doi": "10.7717/peerj.9813",
+    "license": "CC BY",
+    "section": "Results > Kinematics and joint mechanics",
+    "text": "[Effects of 12-week cadence retraining on impact peak, load rates and lower extremity biomechanics in running | Results > Kinematics and joint mechanics]\nSignificant training × group interaction effects were observed for foot angle (P = 0.04, η2 = 0.178), vertical velocity of the CoG at initial contact (P = 0.035, η2 = 0.186) and vertical excursion of the CoG (P = 0.001, η2 = 0.409). Foot angle (P = 0.003, Cohen’s d = 1.09), vertical velocity of the CoG at initial contact (P = 0.002, Cohen’s d = 1.16) and vertical excursion of the CoG (P < 0.001, Cohen’s d = 1.83) decreased in the CAD group after training (; ). Moreover, vertical excursion of the CoG in the CAD group was significantly lower than that in the CON group after training (P = 0.025, 95% CI [−0.015 to −0.001], Cohen’s d = 1.03). Significant main effects of training were observed for peak knee flexion angle. Specifically, peak knee flexion angle (P = 0.048, η2 = 0.166) was decreased in the CAD group after training (). A significant main effect of training was observed for lower extremity stiffness, which increased in the CAD group after training (P = 0.048, η2 = 0.166) ().",
+    "n_tokens": 241
+  },
+  {
+    "chunk_id": "cadence_retrain_peerj2020#016",
+    "doc_id": "cadence_retrain_peerj2020",
+    "pmcid": "PMC7450991",
+    "doi": "10.7717/peerj.9813",
+    "license": "CC BY",
+    "section": "Discussion",
+    "text": "[Effects of 12-week cadence retraining on impact peak, load rates and lower extremity biomechanics in running | Discussion]\nThis study aimed to characterize the effects of a 12-week cadence retraining protocol on impact peak, load rates and other lower-extremity biomechanical variables. Significant reductions in impact peak and load rates were observed in the CAD group. The preferred cadence in the CAD group significantly increased after 12-week cadence retraining, consistent with the results of previous studies conducted by and . However, the average change in preferred cadence in the present study was +5.7% between pre- and post-training. By contrast, the preferred cadence changes in the studies of and were +2.4% and +7.6%, respectively, which were induced by increases of 10% and 7.5% in cadence during retraining. Compared to the study by , the cadence after training in the current study and the study by was closer to the prescribed cadence, which was likely due to the enhanced supervision in training. In addition, real-time feedback was provided in Neal et al.’s study, which may lead to the differences in cadence improvements between Neal et al.’s and present study.\n\nIn the present study, impact peak was significantly reduced by 10.2% in the CAD group after training, which was greater than the 7.6% decrease observed (pre-training vs. post-training) in the study of . Moreover, impact peak in the CAD group after training was 12% significantly lower than that in the CON group after training (CAD vs. CON). This decrease may be related to reductions in vertical velocity and vertical excursion of the CoG (). According to the impulse–momentum principle, impulse is equal to the change in the body’s momentum. During running, the momentum exchange between the ground and a portion of the body when it comes to a full stop causes an impact peak (). In the present study, the vertical velocity of the CoG at initial contact was significantly decreased in the CAD group after retraining, but no difference in tip was observed between pre- and post-training. This finding may indicate that the observed decrease in impact peak in the CAD group after retraining may be due to the decreased vertical velocity of the CoG at initial contact after retraining. The foot angle, which reflects the foot strike pattern during running, significantly decreased with increasing cadence (; ). In addition, a lower impact peak has been found in a smaller foot angle at foot contact with a rearfoot strike (). In the present study, the foot angle in the CAD group significantly decreased by 4.5° after retraining, which may partially explain the decrease in impact peak in the CAD group after retraining.",
+    "n_tokens": 561
+  },
+  {
+    "chunk_id": "cadence_retrain_peerj2020#017",
+    "doc_id": "cadence_retrain_peerj2020",
+    "pmcid": "PMC7450991",
+    "doi": "10.7717/peerj.9813",
+    "license": "CC BY",
+    "section": "Discussion",
+    "text": "[Effects of 12-week cadence retraining on impact peak, load rates and lower extremity biomechanics in running | Discussion]\nVALR and VILR in the CAD group were significantly reduced after retraining, consistent with the findings reported by and . found that the load rates was lower in forefoot strikes than that in rearfoot strikes. In the present study, decreased foot angles in the CAD group after retraining slightly altered the strike pattern, which may contribute to reductions in load rates. Injured runners were reported to have higher load rates than non-injured runners in a prospective investigation (). Therefore, the decrease in load rates after retraining indicate that cadence retraining may reduce the risk of running injuries, such as stress fractures.\n\nThe knee joint was highly sensitive to changes in cadence during the stance phase (). 5.7% (9.2 step/min) increase in cadence induced significant changes in peak knee flexion angle (; ). The increase in cadence in the CAD group decreased the peak knee flexion angle and vertical excursion of the CoG; no significant differences were observed for the hip and ankle joint angles between pre- and post-training. Additionally, lower extremity stiffness significantly increased in the CAD group after training, which may be due to the reduced vertical excursion of the CoG during the stance phase induced by the decrease in peak knee flexion angle.\n\nSome limitations of this study must be considered when interpreting the results. Firstly, all of the participants were male; whether females would show the same effects after 12-week cadence retraining remains unclear. Secondly, the running biomechanics obtained from a limited run-up (10 m) with a relatively small area (60 cm × 90 cm) for foot placement may slightly differ from that obtained during outdoor over-ground running. Moreover, long-term retention effects caused by retraining changes were not evaluated in this study. Finally, whether the training effect will maintain when individuals reach fatigue is unknown, and should be considered in future studies.",
+    "n_tokens": 406
+  },
+  {
+    "chunk_id": "cadence_retrain_peerj2020#018",
+    "doc_id": "cadence_retrain_peerj2020",
+    "pmcid": "PMC7450991",
+    "doi": "10.7717/peerj.9813",
+    "license": "CC BY",
+    "section": "Conclusion",
+    "text": "[Effects of 12-week cadence retraining on impact peak, load rates and lower extremity biomechanics in running | Conclusion]\nTwelve-week cadence retraining significantly increased runners’ cadence by 5.7%. The increased cadence effectively decreased a number of impact force variables, namely, impact peak, VALR and VILR. Given the close relationship between impact force variables and running injuries, increasing the cadence as a retraining method may reduce the risk of some impact-related injuries. A decrease in foot angle at initial contact after training may provide a mechanical explanation for the observed decrease in impact force variables. Furthermore, the vertical excursion of the CoG decreased, thereby increasing lower extremity stiffness. Hence, cadence retraining can lead to lower extremity biomechanical changes.",
+    "n_tokens": 130
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#000",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Abstract > Background",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Abstract > Background]\nRunning economy, commonly defined as the metabolic energy demand for a given submaximal running speed, is strongly associated with distance running performance. It is commonly believed among running coaches and runners that running with increased forward postural lean either from the ankle or waist improves running economy. However, recent biomechanical research suggests using a large forward postural lean during running may impair running economy due to increased demand on the leg muscles.",
+    "n_tokens": 96
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#001",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Abstract > Purpose",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Abstract > Purpose]\nThis study tests the effect of altering forward postural lean and lean strategy on running economy, kinematics, and muscle activity.",
+    "n_tokens": 26
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#002",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Abstract > Methods",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Abstract > Methods]\n16 healthy young adult runners (23±5 years, 8M/8F) ran on a motorized treadmill at 3.58m/s using three postural lean angles [upright, moderate lean (50% of maximal lean angle), and maximal lean] and two strategies (lean from ankle and lean from waist [trunk lean]). Metabolic energy consumption, leg kinematics, and muscle activation data were recorded for all trials.",
+    "n_tokens": 76
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#003",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Abstract > Results",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Abstract > Results]\nRegardless of lean strategy, running with an increased forward postural lean (up to 8±2 degrees) increased metabolic cost (worsened economy) by 8% (p < .001), increased hip flexion (p < .001), and increased gluteus maximus (p = .016) and biceps femoris (p = .02) muscle activation during the stance phase. This relation between running economy and postural lean angle was similar between the ankle and trunk lean strategies (p = .743).",
+    "n_tokens": 94
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#004",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Abstract > Conclusion",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Abstract > Conclusion]\nRunning with a large forward postural lean reduced running economy and increased reliance on less efficient extensor leg muscles. In contrast, running with a more upright or moderate forward postural lean may be more energetically optimal, and lead to improved running performance.",
+    "n_tokens": 56
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#005",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Introduction",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Introduction]\nThe popularity for running as a form of exercise, recreation and competition has grown significantly over the last quarter century []. A major concern for modern runners is how to improve performance. To improve running performance, many runners and coaches seek out ways to optimize running technique. However, modifications to running technique are not always backed by scientific evidence. A recurrent claim is that running with a forward lean can improve running performance [, ]. Understanding how physiological and biomechanical outcomes of running change as forward lean angle increases could provide valuable insight to assist coaches and runners in implementing science-based running techniques to improve running performance. Moreover, running with a forward lean can be accomplished by using different postural strategies, (e.g., leaning from the ankle or leaning from the waist), and it is unknown if different postural lean strategies can influence biomechanical and physiological outcomes. Here we will examine how running with varying degrees of forward lean angles, accomplished using different lean strategies, affects running economy, muscle activation, and kinematic outcomes.\n\nRunning economy (the rate of steady-state oxygen consumption and carbon dioxide production at specific running speeds) [] is considered a primary determinant of endurance running performance [–]. The most influential contributors to the metabolic cost of running (which directly corresponds to running economy) are the cost of generating muscle force to support body weight during stance phase [, ], horizontal propulsion [], and the cost to swing the leg [] respectively []. These major determinants of running economy can be influenced by alterations in running technique, such as forward postural lean, by changing kinematics and muscle activity [–].",
+    "n_tokens": 360
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#006",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Introduction",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Introduction]\nThe current evidence regarding the effect of forward lean on running economy and muscle activation is limited. Williams and Cavanagh [] found that the most optimal running economy was observed when runners used a mean trunk flexion angle of 5.9 degrees, as opposed to more upright postures. However, this study did not control forward lean while running, but instead examined the natural trunk lean in runners classified from good to poor economy. Furthermore, there has not been any studies that have looked at if forward lean while running influences muscle activation patterns. However, walking studies that have systematically increased flexion of the trunk, hip, and knee have shown increased extensor muscle activation resulting in greater metabolic cost of walking (worse economy) [, ]. Foster et al., [] demonstrated that walking with more flexed joints changes the ratio between the muscle moment arm to the ground reaction moment arm (known as the effective mechanical advantage [EMA]), resulting in worse EMA compared to upright walking. Using inverse dynamics, they identified this reduced EMA is what increased knee extensor muscle activation which drove the higher metabolic cost of walking in these flexed postures. Although walking is characterized differently than running, these principles of physics may be similar in both gaits.\n\nLeaning forward at the trunk while running has been shown to alter kinetics and kinematics in ways that may increase extensor muscle activation and impair optimal running economy, but results are also limited. Teng and Powers [] observed that running with a high degree of trunk flexion (~11 degrees) caused a 140% increase in positive hip work []. Similarly, Warrener et al., [] observed that greater trunk flexion while running was associated with increased hip extensor moments. This could be due to flexed joints creating greater external flexion moments that need to be counteracted by extensor muscle force (worse EMA). To produce this muscle force, increased muscle activation is required, which could lead to a higher metabolic cost of running. Together, these studies suggest that running with a flexed trunk may require increased hip extensor muscle activation that ultimately leads to decreased running economy. However, although running with an increased forward trunk lean may require increased hip extensor muscle activation, Teng and Powers [] also found that this running posture reduces knee extensor work and may reduce patellofemoral joint stress. While Warrener et al., [] found that this increased trunk flexion coincided with higher vertical ground reaction force impact transient peaks (at the moment of impact) and an elevated rate of loading (the slope of the vertical ground reaction force), they also showed knee extensor moments decreased by 22% with greater trunk flexion. Interpreting the pros and cons of running with a forward postural lean from these results are complex and limited, and these results provide sparse insight into how forward trunk lean may influence running economy and muscle activation patterns. Further highlighting the importance of comprehensively understanding how running posture influences running economy, muscle activation, and kinematics.",
+    "n_tokens": 660
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#007",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Introduction",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Introduction]\nAdditionally, while some researchers have specifically looked at running with a forward lean at the trunk (trunk flexion), there is even less research on how running with other lean strategies to achieve a forward body lean (i.e., ankle strategy) influences running biomechanics and performance. As such, the effects of running with a forward body lean on running economy, muscle activity, and kinematics are not well understood. If coaches aim to prescribe running techniques to optimize performance by improving running economy and muscle activation patterns, further research is essential to fully understand these complex relationships.\n\nThis study aimed to investigate the effect of postural lean (lean strategy and forward body lean angle) on running economy, kinematics, and muscle activation. While some prior literature may suggest that increasing forward postural lean angle may reduce running economy, the body of evidence is minimal and the mechanism for this increased cost is only speculated. Thus, based on existing but limited literature, this study tests the null hypotheses that running economy, kinematics, and muscle activation patterns would be similar across a range of forward postural lean angles (upright, moderate, and maximal forward lean) and between lean strategies (ankle versus torso lean).",
+    "n_tokens": 261
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#008",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Materials and methods > Participants",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Materials and methods > Participants]\nSixteen healthy young adult runners (23 ± 5 years, 8 women and 8 men) participated in our study. Participant recruitment took place between May 2015 and February 2016. Study participants included adults who 1) run for fitness or competition, with a 5k time ≤ 22 minutes and 2) were without any cardiovascular, neurological, or orthopedic disorders in the 6 months prior to participation. Before the experiment, all participants gave their written informed consent. No minors or other vulnerable populations participated in this study. This protocol was approved by the California State Polytechnic University, Humboldt Institutional Review Board (IRB # IRB 14–217). To estimate sample size, we performed a power analysis using metabolic data from a prior study examining the relation between metabolic cost (economy) and trunk angle []. We calculated a sample size of 13 subjects was needed to achieve a large Cohen’s d effect size of 1.047 with a power of 0.8 for detecting significant differences (alpha = 0.05). We chose a sample size of 16 to ensure we will have sufficient power for detecting differences (alpha = 0.05) across trials, conditions, and variables to provide a conservative sample if effect sizes are smaller in our study.",
+    "n_tokens": 264
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#009",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Materials and methods > Protocol",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Materials and methods > Protocol]\nEach participant completed one experimental session. Initially, participants were familiarized to treadmill running for 5 minutes at 3.58 m/s (8 mph) on a level, motorized treadmill (Trackmaster TMX425C, Full Vision Inc., Newton, KS, USA). Following treadmill familiarization, participants performed a total of five experimental running trials: upright (minimal lean), moderate postural lean from the ankle, maximal postural lean from the ankle, moderate postural lean from the torso, and maximal postural lean from the torso (; ). For each trial, participants ran for 5 minutes at the intermediate speed of 3.58 m/s (8 mph) and were given a minimum of 5 minutes rest between trials to minimize the influence of fatigue or excess post-exercise oxygen consumption (EPOC) on subsequent trials. For the ankle strategy trials, subjects were instructed to “lean forward from the ankle” and for the torso strategy trials, subjects were instructed to “lean from the hip”. To help minimize a trial order effect we used a semi-randomized counterbalanced trial order. Specifically, each participant started by running with either an upright posture or running with a maximal forward lean from the ankle. For the upright trial, participants were instructed to “run as upright as possible minimizing the lean forward”. For the maximal forward lean trials, participants were instructed to “run with as far forward of a lean as you can while leaning from the ankle”. Using kinematic data from the maximal forward lean trial, we calculated each participant’s maximal postural lean angle and then used this to identify the prescribed maximum and moderate (50% of max lean) lean angle used in the remaining trials. Following the randomly ordered upright and maximal forward lean (ankle strategy) trials, participants then ran with the prescribed moderate forward lean from the ankle (ankle strategy) using real-time video biofeedback to achieve the prescribed lean angle. Only occasionally in the first minute of a trial, research staff would need to remind the subject to “try your best to match the prescribed lean angle on the video monitor”. Participants then repeated the maximal forward lean and moderate forward lean angle trials, in random order, while being instructed to “lean from the hip and use the video feedback to match the prescribed (total) postural lean angle”.",
+    "n_tokens": 490
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#010",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Materials and methods > Protocol",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Materials and methods > Protocol]\nTo help participants maintain each prescribed forward lean angle and lean strategy, we provided real-time 2-D sagittal (side view) video feedback (60 Hz) of the participant’s running posture throughout each running trial. Specifically, on a monitor 1 meter in front of the participant, we projected the prescribed postural lean angle along with the real-time video of their postural lean. For each trial, participants aligned their body (i.e. postural lean angle) with the prescribed postural lean angle shown from a sagittal view on the video monitor.",
+    "n_tokens": 113
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#011",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Materials and methods > Data analysis > Running economy",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Materials and methods > Data analysis > Running economy]\nFor each of the five trials, running economy was quantified as metabolic power (W·kg-1) using indirect calorimetry (TrueOne 2400; Parvo Medics, Sandy, UT, USA). Average metabolic rate per kilogram body mass (W·kg-1) was calculated using the average (ml O2 min-1) and (ml CO2 min-1) for two minutes between minutes 3 and 5 when the real-time plot of indicates that metabolic steady-state had been achieved []. Additionally, we monitored the respiratory exchange ratio (RER) throughout each trial to ensure that it remained below 1.0, indicating that oxidative metabolism was the main metabolic pathway. The standing metabolic rate was subtracted from running gross metabolic rate to calculate net metabolic power (W·kg-1) for each running trial.",
+    "n_tokens": 150
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#012",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Materials and methods > Data analysis > Kinematics",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Materials and methods > Data analysis > Kinematics]\nFor all running trials, we determined stride kinematics and postural lean angle using a nine-camera digital motion capture system (Frame rate = 200 Hz; Vantage+, Vicon Inc., Centennial, CO, USA) for 20 strides during the last two minutes of each trial. A set of 39 passive reflective markers were attached to the participant’s upper and lower body in accordance with Vicon Plug-In-Gait Full-body model for motion analysis []. The marker data were low-pass filtered at 6 Hz to reduce motion artifact (fourth-order Butterworth filter) and used to calculate spatiotemporal stride kinematics (stride length, time of foot-ground contact), as well as average and peak ankle, knee, and hip motion across the stance phase, swing phase, and entire gait cycle. Marker data was also used to calculate the average postural lean angle (absolute angle between a virtual segment from the stance ankle joint to c7 marker ball relative to the vertical axis) and torso flexion angle (sacral marker to c7 marker relative to the vertical axis) across the gait cycle.",
+    "n_tokens": 224
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#013",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Materials and methods > Data analysis > Muscle activation",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Materials and methods > Data analysis > Muscle activation]\nTo determine lower limb muscle activation, we collected electromyographic (EMG) data from seven muscles of the right leg synchronously with our kinematic data, through the Vicon Motion capture system. After preparing the shaved skin with an impedance-lowering abrasive gel (NuPrep, Aurora, CO, USA), we placed differential electrodes with wireless pre-amplifiers (Trigno, Delsys Incorporated, Boston, MA, USA) over the following muscles of each participant’s right leg: gluteus maximus (GM), biceps femoris (BF), rectus femoris (RF), vastus medialis (VM), medial gastrocnemius (MG), soleus (SOL), and tibialis anterior (TA). We verified electrode positions and signal quality by visually inspecting the EMG signals, sampled at 2000 Hz, while participants contracted each muscle. We recorded and processed all EMG data for 20 strides during the last 2 minutes of each running trial and at the same time as kinematic data was collected. Prior to data analysis, EMG signals were band-pass filtered (20–450 Hz).\n\nUsing a custom Visual 3D analysis program (Germantown, MD, USA), we full wave rectified the raw EMG signals and calculated the normalized root mean square (40 ms window) EMG amplitude (EMGRMS). EMGRMS amplitude of each muscle was normalized to the peak EMGRMS amplitude during the upright running trial. We determined average EMGRMS over the stance phase, swing phase, and entire stride, as well as over each 10% increment of the stride (0 to 10%, 10 to 20%, etc. 0% indicates initial heel strike).",
+    "n_tokens": 308
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#014",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Materials and methods > Statistics",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Materials and methods > Statistics]\nTo assess statistical differences in running economy and stride kinematics due to postural lean angle (upright, moderate, and large lean angle), postural lean strategy (ankle vs. torso), and determine any interaction of lean angle and lean strategy, we used linear mixed-effects models with participants being the random effect and postural lean angle and postural lean strategy being fixed effects. When a significant main effect of lean angle was observed, we performed post-hoc t-tests, with Bonferroni correction when appropriate, to determine differences in dependent variables between the three prescribed postural lean angles. In addition, we used Pearson R correlation analysis to determine the strength of relation between maximum lean and metabolic cost. We used mixed-effects models to assess statistical differences in muscle activation. Prior to all statistical analysis, we performed paired two-tailed t-tests to compare each biomechanical and metabolic variable from minutes 2.0 to 3.0 to the respective variable from minutes 3.5 to 5.0 to ensure participants achieved a biomechanical and metabolic steady-state. For all analyses, we set the level of significance at α = 0.05 and performed statistical analyses using SPSS version 29 software (IBM Corp., Armonk, NY, USA).\n\nWe ran follow-up statistical parametric mapping (SPM) sensitivity analyses on ankle, knee, and hip angles across ensembled traces for 20 strides normalized from zero to 100 of gait cycle for each condition of each subject. For these analyses we use a two-way factorial structure of the main effect of lean angle, postural strategy, and the interaction between the two to see if SPM{F} crosses a critical threshold at any normalized time point of the gait cycle (0–100%).",
+    "n_tokens": 354
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#015",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Results > Postural lean",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Results > Postural lean]\nFor the initial maximal postural lean trial, participants were able to achieve an average maximal postural lean angle of 8.2° (range = 6.1–11.5°, SD 1.9°). Despite being asked to run with upright and near vertical posture, participants run with a modest forward postural lean of 1.7 ± 0.7° during the “upright” running trials. For the prescribed moderate postural lean trial using the ankle strategy, participants were able to maintain an average postural lean angle of 4.3 ± 0.8° and approximately 58% of the maximal lean angle. For the prescribed moderate and maximal lean condition using the torso lean strategy, participants achieved similar total postural lean angles as in the ankle lean strategy trials, F(1,61) = .24, p = .436 (); and for both lean strategies, total postural lean angle increased from the upright condition to the maximum lean angle condition, F(1,61) = 57.72, p < .001. When running using the torso strategy, participants used a 34% greater torso flexion angle as compared to running with the ankle strategy across both the moderate and maximal prescribed lean trials, F(1,61) = 33.80, p < .001, ().",
+    "n_tokens": 245
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#016",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Results > Running economy",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Results > Running economy]\nIn support of our first hypothesis, postural strategy (leaning from ankle vs. torso) had no main effect on the net metabolic cost of running across the range of postural lean conditions, F(1, 64) = 0.108, p = .743, and there was no significant interaction effect between postural lean angle and lean strategy on net metabolic cost, F(1, 64) = 1.343, p = .251.\n\nHowever, in contrast to our second hypothesis, increases in forward postural lean significantly increased net metabolic cost by 8% (worsened running economy) F(1, 64) = 11.592, p < .001 (). Contrast revealed that a moderate postural lean angle increased net metabolic cost by ~2% compared to the upright lean angle, F(1, 15) = 8.00, p = .013, and a large postural lean angle increased net metabolic cost by ~ 6% compared to the moderate lean angle, F(1,15) = 8.48, p < .001. Moreover, participants that ran with a greater maximum lean angle exhibited a significantly greater net cost; a relation best expressed using a linear model (Y = 9.17+.56X; [r = .527, p = .002])",
+    "n_tokens": 237
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#017",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Results > Running economy > Kinematics",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Results > Running economy > Kinematics]\nIn addition to changes in running economy, forward postural lean influenced stride kinematics. Peak hip flexion during the stance phase increased by 28% (~7 degrees) between the upright and large lean conditions, F(1, 64) = 23.831, p < .001 (; ). Contrast revealed that a moderate postural lean angle increased peak hip flexion angle by ~3 degrees compared to the upright lean angle, F(1, 15) = 44.77, p < .001, and a large postural lean angle increased peak hip flexion angle by ~ 4 degrees compared to the moderate lean angle, F(1, 15) = 39.94, p < .001.\n\nWhile lean strategy had no significant main effect on peak hip flexion angle, F(1, 64) = .308, p = .580, there was a significant interaction effect between postural lean angle and lean strategy on peak hip flexion angle, F(1, 64) = 8.666, p = .005. As peak hip flexion angle increased with the greater lean angle in both strategy conditions, post-hoc analysis revealed that peak hip flexion angle increased more when using the ankle lean strategy ().\n\nIn the follow-up SPM sensitivity analysis, there was a significant main effect of postural lean angle on hip angle from 0–40% and 80–100% of the gait cycle SPM{F}(2,30) = 6.242, p < .001, p = .006; respectively. While there was no effect of lean strategy on SPM hip angle results, there was a significant interaction between postural lean angle and lean strategy at 5–20% and 85–90% of the gait cycle SPM{F}(2,30) = 6.242, p = .006, p = .047, respectively.\n\nSimilar to the effect on peak hip flexion, there was a significant effect of forward postural lean on peak knee flexion angle during the stance phase of running, F(1, 64) = 13.083, p < .001 (). Although significant, peak knee flexion angle only increased by ~2 degrees across all lean angle conditions. There was no significant main effect of lean strategy on peak knee flexion angle, F(1, 64) = .072, p = .789. However, there was a significant interaction effect between postural lean angle and lean strategy on peak knee flexion angle, F(1, 64) = 12.284, p < .001. This indicates that lean angle had different effects on peak knee flexion angle depending on which lean strategy was used. Specifically, while using the ankle strategy, peak knee flexion during stance did not significantly change between upright and moderate lean angles (p = .726), but increased between the moderate to large lean angle, F(1, 15) = 4.94, p = .032. When using the torso strategy, peak knee flexion angle increased minimally between upright and moderate lean angles, F(1,15) = 10.75, p = .005, but did not change significantly between the moderate to large lean angle (p = .108). It should be noted that while statistically significant, these changes in peak knee flexion angle due to changes in lean angle were all very small (~1–2 degrees). In the follow-up SPM sensitivity analysis, there was no main effect of postural lean angle, lean strategy, or the interaction between them on knee angle across the ensembled 0–100% gait cycles.",
+    "n_tokens": 680
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#018",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Results > Running economy > Kinematics",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Results > Running economy > Kinematics]\nDespite the significant effect of postural lean angle on peak hip and knee flexion, there was no effect of postural lean angle on peak dorsiflexion during the stance phase (p>.05, ). In evaluating whole-body spatiotemporal kinematics, we observed a significant interaction effect between lean strategy and postural lean angle, F(1, 64) = 7.242, p = .009. Specifically, stride length increased modestly (~5cm) from the upright to the large postural lean angle condition when running with an ankle lean strategy (p = .029) but did not change when running with a torso lean strategy (p = .812). Moreover, there was no main effect of postural lean angle or lean strategy (ankle vs. torso) or any interaction effect of lean angle and lean strategy on running step width, ground contact time, or swing time (p>.05). In the follow-up SPM sensitivity analysis, there was no main effect of postural lean angle, lean strategy or the interaction between them on ankle angle across the ensembled 0–100% of gait cycles.",
+    "n_tokens": 220
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#019",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Results > Muscle activity",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Results > Muscle activity]\nTo determine whether leg muscle activation was influenced by postural lean angle or lean strategy, we averaged EMGRMS signals across stance and swing phases, and for every 10% of the gait cycle. While our analysis showed no significant effect of lean strategy on any muscle activation variable, it did reveal a significant main effect of postural lean angle on stance phase GM and BF muscle activation (p < .05, ). For both the ankle and torso lean strategies, stance phase GM muscle activation increased by 31% between upright and the large lean condition F(1, 42) = 17.518, p < .001 (). Specifically, within the first 20% of the gait cycle (loading response), GM activation increased by 45–50% from the upright to large postural lean angle conditions [0–10%: F(2, 54) = 20.977, p < .001; 11–20%: F(2, 50.98) = 5.972, p = .005] (). Although not statistically significant, increases in postural lean angle for both strategies (ankle and torso) tended to increase GM activation during the remainder of the stance phase.\n\nSimilar to the effect on GM muscle activation, increasing postural lean angle significantly increased stance phase BF muscle activation by 28% between upright and the large lean angle condition F(2, 56) = 5.343, p = .008 (). Post hoc analysis further revealed that the increased BF activation was primarily due to a ~50% increase in BF muscle activation during the loading response (first 20% of the gait cycle) of the stance phase [0–10%: F(2, 52.572) = 6.078, p = .004; 11–20%: F(2, 56) = 3.616, p = .033] (). In contrast to GM and BF muscle activation, we observed no significant change in stance phase RF, SOL, MG, TA, and VM muscle activation although the activity of these muscles tended to decrease (~4–14%) from the upright to large lean conditions (p>.05, ).",
+    "n_tokens": 402
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#020",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Results > Muscle activity",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Results > Muscle activity]\nFinally, there was no significant effect of postural lean angle or lean strategy on any muscle activation during the swing phase of the running gait cycle. Moreover, there was no significant interaction effect between lean angle and lean strategy on stance or swing phase muscle activation.",
+    "n_tokens": 61
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#021",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Discussion",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Discussion]\nThe purpose of this study was to evaluate the effect of forward postural lean on running economy, kinematics, and muscle activation. Contrary to our initial support of the null hypothesis, our results reveal that forward postural lean during running influences running economy, lower limb kinematics, and muscle activation patterns. Most notably, running with an increased forward postural lean worsened running economy up to 8%. Furthermore, the effect of forward lean on running economy was the same whether participants leaned from the ankle or from the torso.\n\nIn accordance with our running economy results, we observed that increased lean angle had a greater influence on peak joint flexion than lean strategy did. Specifically, when running with an increased forward lean, peak hip and knee flexion increased during stance phase by 7% and 2%; respectively. Although greater forward lean angles consistently increased peak knee and hip flexion across both lean strategies, strategy can influence the effect of lean angle on peak knee and hip joint kinematics. These results indicate that the magnitude of lean angle influences peak hip and knee flexion kinematics more than lean strategy, but when combining lean angles and strategies, kinematics can change. Prior literature suggests that increased flexion at the hip and knee during the stance phase, reduces the effective mechanical advantage at the hip and knee (increasing torque) which in turn requires increased extensor muscle force to counteract the vertical ground reaction force [–]; this may be a reason we see a decrease in running economy.\n\nAs our angular kinematic results suggest, increased forward postural lean resulting in greater hip and knee flexion, likely reduces EMA which also possibly explains why hip extensor (biceps femoris and gluteus maximus) muscle activation increased during the stance phase of running while activation of other leg muscles remained unchanged. This was particularly true during the energetically costly collision portion of the stance phase (first 5–15% of stance) []. While not assessed in our study, Biewener et al., [] observed that greater lower limb joint flexion decreases muscle EMA and increases the total active muscle volume, which contributes to a decreased running economy. A similar study to ours by Warrener et al., [], found that running with greater trunk flexion increased the vertical impact transient peak ground reaction force and rate of loading, which are in agreement with our results, indicating that decreases in leg extensor muscle EMA during the collision and loading portion of stance may contribute to a reduced running economy. Warrener et al., [] also observed hip extensor torque increased with increased lean. Hence, ours and Warrener’s results suggest that running with an increased forward lean increases hip joint torques, leading to greater hip extensor muscle activation to maintain dynamic postures and propel the body forward, which may help explain the reduced running economy. Additionally, the greater activation of gluteus maximus could reduce running economy in part because proximal lower limb muscles such as the gluteus maximus are hypothesized to generate force less efficiently than more distal muscles such as the ankle plantar flexors [–].",
+    "n_tokens": 674
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#022",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Discussion",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Discussion]\nAccording to the spring-mass model of running and cost of generating force hypothesis, running economy is related to stride length and contact time [, –]. In our study, spatio-temporal kinematics including both stride length and contact time remained the same across the magnitude of lean angles. Contrary to our results, the recent study by Warrener et al., [] saw that increased trunk flexion while running at 3.0 m/s notably decreased stride length, but increased stride frequency, and contact time. These differences in observed kinematics resulting from forward postural lean may be related to the much larger maximum forward trunk flexion angle (~ 36 degrees) used in Warrener et al.’s study. Nonetheless, it is interesting to note that even between their subjects’ preferred trunk flexion angle (9 degrees) and the moderate trunk flexion angle of 22 degrees, there was a 31% increase in the external hip moment. Such a large increase in external hip moment supports the hypothesis that running with increased forward postural lean reduces the EMA at the hip, increasing the external hip moment, and consequently increases the demand on the hip extensor muscles which may ultimately increase the metabolic cost of running.",
+    "n_tokens": 258
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#023",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Discussion > Limitations & future directions",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Discussion > Limitations & future directions]\nA limitation of our study may be the specificity of participants tested. Due to the demographics of runners tested based on fitness requirements, some participants may have already developed a stride frequency close to optimal for the speed tested (3.58 m/s). As a result, experienced runners may be less prone to kinematic variability when compared to novice runners []; however, this limitation indicates there should be a decreased learning effect while running on a treadmill at this speed, which would increase the reliability of the results. Consequently, these findings may be less generalizable to a population of novice runners. Moreover, there are multiple strategies that subjects could use to achieve a particular lean angle within either the “ankle strategy” or “torso” strategy. Future research would benefit from different subject types and different lean angle variations. Additionally, although all subjects received the same directions to “try to lean from the ankle” or “try to lean from the torso” and used the same visual feedback system, running is accomplished as a multi-segment system, with many different neuromuscular possibilities, which could hypothetically meet our criteria with different biomechanical strategies.\n\nFor future research, we suggest controlling other running kinematic variables known to influence running economy such as foot strike pattern (heel strike or mid/forefoot). In addition, to better understand the influence of forward postural lean as a determinant of running economy and performance, future studies may want to explore using a wider range of forward lean angles or investigate the interaction between lean angle and slope of the ground.\n\nRunning takes place in a variety of unsteady environments, thus our understanding of running may benefit from future studies examining the effect of lean on the kinematics, muscle activation, and metabolic cost of running across a range of incline slopes, uneven surfaces and speeds. Another interesting area of exploration would be to understand how changes in lean angle while running affect the energetics, biomechanics, and neuromuscular strategies in fatigued participants.",
+    "n_tokens": 433
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#024",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Discussion > Limitations & future directions",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Discussion > Limitations & future directions]\nLastly, future research should use inverse dynamics and modeling techniques to further explore the hypothesis that forward postural lean while running decreases leg extensor EMA, increasing extensor muscle activation and leading to a higher metabolic cost of running.",
+    "n_tokens": 50
+  },
+  {
+    "chunk_id": "forwardlean2024_economy#025",
+    "doc_id": "forwardlean2024_economy",
+    "pmcid": "PMC11135760",
+    "doi": "10.1371/journal.pone.0302249",
+    "license": "CC BY",
+    "section": "Conclusions",
+    "text": "[The effect of forward postural lean on running economy, kinematics, and muscle activation | Conclusions]\nIn summary, our results indicate that when running with a large forward postural lean, hip and knee flexion increased during stance, posterior chain muscle activation increased, while decreasing running economy. These findings suggest that running with a large forward lean may not be an effective postural strategy for running, particularly when the goal is to minimize the energetic cost over a given distance. Therefore, our results suggest that running with a more upright or moderate forward postural lean, either from the ankles or torso, may be more energetically optimal.",
+    "n_tokens": 118
+  },
+  {
     "chunk_id": "han2025_footstrike_tibia#000",
     "doc_id": "han2025_footstrike_tibia",
     "pmcid": "PMC12066927",
@@ -1718,6 +2168,366 @@
     "section": "Results > Conclusion",
     "text": "[Ground reaction force metrics are not strongly correlated with tibial bone load when running across speeds and slopes: Implications for science, sport and wearable tech | Results > Conclusion]\nMay be a stress fracture distraction.\n\nDon’t assume force on shoe\n\nTo mean tibia load too\n\nSince bone load’s mostly from muscle contraction.",
     "n_tokens": 30
+  },
+  {
+    "chunk_id": "pfp_gaitmods_frontiers2022#000",
+    "doc_id": "pfp_gaitmods_frontiers2022",
+    "pmcid": "PMC9884822",
+    "doi": "10.3389/fspor.2022.1048655",
+    "license": "CC BY",
+    "section": "Abstract",
+    "text": "[Running gait modifications can lead to immediate reductions in patellofemoral pain | Abstract]\nGait modifications are commonly advocated to decrease knee forces and pain in runners with patellofemoral pain (PFP). However, it remains unknown if clinicians can expect immediate effects on symptoms. Our objectives were (1) to compare the immediate effects of gait modifications on pain and kinetics of runners with PFP; (2) to compare kinetic changes in responders and non-responders; and (3) to compare the effects between rearfoot strikers (RFS) and non-RFS. Sixty-eight runners with PFP (42 women, 26 men) ran normally on a treadmill before testing six modifications: 1- increase step rate by 10%; 2- 180 steps per minute; 3- decrease step rate by 10%; 4- forefoot striking; 5- heel striking; 6- running softer. Overall, there were more responders (pain decreased ≥1/10 compared with normal gait) during forefoot striking and increasing step rate by 10% (both 35%). Responders showed greater reductions in peak patellofemoral joint force than non-responders during all conditions except heel striking. When compared with non-RFS, RFS reduced peak patellofemoral joint force in a significant manner (P < 0.001) during forefoot striking (partial η2 = 0.452) and running softer (partial η2 = 0.302). Increasing step rate by 10% reduced peak patellofemoral joint force in both RFS and non-RFS. Forty-two percent of symptomatic runners reported immediate reductions in pain during ≥1 modification, and 28% had reduced pain during ≥3 modifications. Gait modifications leading to decreased patellofemoral joint forces may be associated with immediate pain reductions in runners with PFP. Other mechanisms may be involved, given that some runners reported decreased symptoms regardless of kinetic changes.",
+    "n_tokens": 340
+  },
+  {
+    "chunk_id": "pfp_gaitmods_frontiers2022#001",
+    "doc_id": "pfp_gaitmods_frontiers2022",
+    "pmcid": "PMC9884822",
+    "doi": "10.3389/fspor.2022.1048655",
+    "license": "CC BY",
+    "section": "Introduction",
+    "text": "[Running gait modifications can lead to immediate reductions in patellofemoral pain | Introduction]\nOveruse injuries are frequent in runners (), and patellofemoral pain (PFP) is among the leading diagnoses (). Given that the patellofemoral joint (PFJ) is subject to high levels of compression forces during running (), clinicians often recommend gait modifications to help alleviate symptoms of injured runners (). These interventions include manipulating step rate (–) or foot strike pattern (, , ), and recommending to “run softer” (–).\n\nEvidence suggests that gait modifications effectively modulate PFJ forces in healthy runners displaying a rearfoot strike pattern (RFS) (). Increasing preferred step rate by 10% can reduce peak PFJ force by up to 14% (), while decreasing step rate tends to increase peak PFJ force (). A fixed step rate of 180 steps/min has also been recommended in the popular running literature to help reduce lower limb forces (, ), although its effect on PFJ kinetics has not been investigated. Transitioning to a forefoot strike pattern (, ) and “running softer” (, , ) have also been advocated to reduce lower limb forces (, , ), knee loading, and potentially reduce running-related injuries.\n\nUnfortunately, research remains scarce on the effects of gait modifications in non-RFS runners, who are not immune to PFP (). Given the considerable differences in kinematics and kinetics between RFS and non-RFS (), it is likely that these subgroups react differently to gait modifications. For example, non-RFS tend to land with less impact than RFS, which could make it harder for these runners to “run softer”. In contrast, increasing step rate could potentially be more useful for non-RFS, given that their habitual step rate tends to be similar to that of RFS ().",
+    "n_tokens": 364
+  },
+  {
+    "chunk_id": "pfp_gaitmods_frontiers2022#002",
+    "doc_id": "pfp_gaitmods_frontiers2022",
+    "pmcid": "PMC9884822",
+    "doi": "10.3389/fspor.2022.1048655",
+    "license": "CC BY",
+    "section": "Introduction",
+    "text": "[Running gait modifications can lead to immediate reductions in patellofemoral pain | Introduction]\nPain modulation is the ultimate objective when retraining injured runners' gait. Previous studies, however, leave clinicians in the dark regarding the immediate effects of gait modifications when first implemented. Gait retraining programs typically involve multiple appointments. For example, training rearfoot strikers with PFP to transition to forefoot striking over 8 sessions can result in significant clinical improvements (, , ). Concurrent decreases in running-related pain and peak PFJ force following gait retraining () suggests an association between both variables (). However, many other non-physical factors could be involved, such as sensory and emotional processing associated with the pain experience ().\n\nWithout information on immediate effects, and potential mechanisms of action, a gap remains in the clinical uptake of gait retraining interventions. Indeed, immediate pain reduction has been suggested as a key priority to gain patient trust () and improve patient expectations. The absence of immediate effects could perhaps discourage a subset of patients, by lack of resources (e.g. time or financial constraints) or perceived benefits of altering gait mechanics.\n\nThe objectives of this study were (1) to compare the immediate effects of running gait modifications on lower limb kinetics and pain of runners with PFP; (2) to compare kinetic changes in immediate responders and non-responders; and (3) to compare the effects of gait modifications between RFS and non-RFS. We hypothesized that increasing step rate, forefoot striking and running softer would decrease PFJ forces in RFS runners, which would be associated with immediate reductions in pain during running. In non-RFS, we hypothesized that only increased step rate would have such effects.",
+    "n_tokens": 346
+  },
+  {
+    "chunk_id": "pfp_gaitmods_frontiers2022#003",
+    "doc_id": "pfp_gaitmods_frontiers2022",
+    "pmcid": "PMC9884822",
+    "doi": "10.3389/fspor.2022.1048655",
+    "license": "CC BY",
+    "section": "Materials and methods > Population",
+    "text": "[Running gait modifications can lead to immediate reductions in patellofemoral pain | Materials and methods > Population]\nA sample of 68 runners with PFP () took part in this cross-sectional laboratory investigation, which was conducted during data collection for a randomised clinical trial (). To be included, participants had to be aged between 18 and 45 years, run ≥15 km per week, present a history of PFP (pain originating from the patellofemoral joint) for ≥3 months, be comfortable running on a treadmill and report pain ≥3/10 on a visual analog scale during most of their running trainings and during three or more activities among: stairs, squatting, kneeling and resisted knee extension. Runners were excluded if they presented a history of lower limb surgery or patellar dislocation, pain believed to originate either from meniscus () or from patellar tendon (), pain following an acute trauma, concurrent lower limb injuries or a history of neurological, inflammatory or rheumatoid disease. Runners were included regardless of foot strike pattern and footwear. Ethics approval was obtained from the Institutional Review Board (#2014-367). All participants signed a detailed consent form before entering the study.",
+    "n_tokens": 228
+  },
+  {
+    "chunk_id": "pfp_gaitmods_frontiers2022#004",
+    "doc_id": "pfp_gaitmods_frontiers2022",
+    "pmcid": "PMC9884822",
+    "doi": "10.3389/fspor.2022.1048655",
+    "license": "CC BY",
+    "section": "Materials and methods > Study design and experimental procedures",
+    "text": "[Running gait modifications can lead to immediate reductions in patellofemoral pain | Materials and methods > Study design and experimental procedures]\nFirst, data on anthropometry, socio-demographics and symptoms were collected. Participants also completed the French version of the Activities of Daily Living Scale of the Knee Outcome Survey questionnaire () and a numerical pain rating scale for typical knee pain during running (0 = no pain, 10 = worst pain imaginable). Then, they were equipped with rigid clusters of spherical retroreflective markers placed on the lateral part of the feet, shanks and thighs, and at the lumbosacral and cervicothoracic regions (). Thigh clusters were secured using Velcro straps to minimize movement artefacts induced by muscle contractions. For calibration purposes, anatomical markers were temporarily applied over the head of fifth metatarsals, anterior and posterior tips of the shoes, medial and lateral malleoli and femoral condyles, anterior superior iliac spines, iliac crests and lateral tip of the acromion.\n\nRunners walked for at least one minute to ensure proper familiarization with the instrumented treadmill (Bertec corp, Columbus, OH). When they felt comfortable, treadmill speed was increased to self-selected running speed within the range of 8 to 10 km/h (2.3–2.7 m/s), to reproduce habitual training conditions. Following a five-minute warm-up period, kinematic and ground reaction force data were collected simultaneously for three minutes (condition: Normal) using an 8-camera Vicon MX-T system with Vicon Nexus software (Vicon motion systems, CA; sampling rate of 200 Hz) and the instrumented treadmill (sampling rate of 1,000 Hz).\n\nAfter collecting data on habitual running pattern, runners were tested under six gait modifications: 1- step rate increased by 10% (SR + 10%); 2- step rate fixed at 180 steps per minute (SR180); 3- step rate decreased by 10% (SR-10%); 4- forefoot striking (FFS); 5- heel striking (HS); 6- running softer (SOFT). Half of runners followed this sequence, while the other half did it in reverse order. All runners performed all conditions; habitual RFS were asked not to exaggerate the HS condition and runners displaying a habitual non-RFS were asked not to exaggerate the FFS condition. To reproduce typical conditions from a clinical setting in which acute gait modifications are suggested to patients, participants were always provided with a minimum period of 30 seconds of habituation to each running modification before kinetic and kinematic data were collected during the ensuing minute. Data collection for each condition was initiated after visually ensuring that participants followed instructions, exhibited a regular running pattern, and reported feeling comfortable doing so. Immediately after each condition, runners verbally rated their average level of knee pain during the previous minute on a numerical pain rating scale of 0 to 10, where 0 meant “no pain” and 10 meant the “worst imaginable pain”. A wash-out period of at least one minute (return to habitual running pattern) was used between gait modifications to avoid carryover effects. Before explaining the next gait modification, an experienced physical therapist ensured that runners returned to baseline step rate, foot strike pattern and pain levels if decreased pain was reported during the previous condition. Auditory cues for step rate modifications were provided using a metronome (). Verbal feedback was provided to runners about the different gait modifications. Total running duration did not exceed 30 minutes. All runners wore their habitual running shoes during testing, which were rated using the Minimalist Index ().",
+    "n_tokens": 714
+  },
+  {
+    "chunk_id": "pfp_gaitmods_frontiers2022#005",
+    "doc_id": "pfp_gaitmods_frontiers2022",
+    "pmcid": "PMC9884822",
+    "doi": "10.3389/fspor.2022.1048655",
+    "license": "CC BY",
+    "section": "Materials and methods > Outcome measures and data analysis",
+    "text": "[Running gait modifications can lead to immediate reductions in patellofemoral pain | Materials and methods > Outcome measures and data analysis]\nAll runners (n = 68) were considered for the analysis of biomechanical outcomes. Variables of interest included peak PFJ force and average loading rate, peak Achilles tendon force, as well as the vertical ground reaction force's average loading rate during the stance phase of each condition. We included Achilles tendon force to detect if lower limb kinetics were reduced or shifted distally with gait modifications. As for symptoms, only runners reporting knee pain of at least 1/10 during the Normal condition at time of testing (n = 43) were further classified for each gait modification into responders (when pain level decreased by ≥1/10 compared with the Normal condition). Non-responders were further described as stable or reporting increased pain (≥1/10 compared with the Normal condition). Such threshold was chosen to capture mild immediate changes in knee pain, as they would be reported in clinical conditions, to reflect potential perceived benefits from injured runners.\n\nData were analyzed using custom-written MatLab programs (Mathworks Inc., MA). Marker trajectory data were processed through a sagittal, frontal, transverse cardan rotation sequence to extract lower-limb sagittal plane angles. Kinematics and ground reaction force data were filtered using zero-lag fourth-order low-pass 12 Hz and 30 Hz Butterworth filters, respectively. Initial contact and toe-off were determined using a 20 N threshold. The average of fifty symptomatic limb stance phases during each condition (collected following the habituation period) was considered for data analysis to account for possible variations in mechanics associated with unfamiliar running patterns. Then, Newton-Euler inverse dynamics equations were used to estimate the shear and compression reaction forces at the knee and ankle joints. PFJ reaction force was estimated using a previously reported algorithm () that considers knee flexion angle and net knee extension moment along with quadriceps moment arm reported by van Eijden et al. (). To calculate PFJ average loading rate, the 20% and 80% points between initial rise in force and the first force peak were identified. Differences in force values between these two points were divided by the number of time points to obtain loading rate (). Vertical ground reaction force's average loading rate was obtained using the same procedures (). Achilles tendon forces were estimated as a function of the net plantar flexion moment relative to the Achilles tendon moment arm, which was derived from the ankle flexion angle (). Classification into RFS and non-RFS subgroups was made using video-based inspection of foot strike pattern, which has been shown to be valid and reliable in runners with PFP ().",
+    "n_tokens": 554
+  },
+  {
+    "chunk_id": "pfp_gaitmods_frontiers2022#006",
+    "doc_id": "pfp_gaitmods_frontiers2022",
+    "pmcid": "PMC9884822",
+    "doi": "10.3389/fspor.2022.1048655",
+    "license": "CC BY",
+    "section": "Materials and methods > Statistical analyses",
+    "text": "[Running gait modifications can lead to immediate reductions in patellofemoral pain | Materials and methods > Statistical analyses]\nFor Objective 1, mean values for pain and kinetic variables of interest were compared across conditions (n = 7) using generalized repeated-measures ANOVAs (generalized estimating equations; distribution = normal; P-values corrected by sequential Bonferroni). For Objectives 2 and 3, kinetic changes for each condition were compared between responders and non-responders, and RFS and non-RFS, respectively, using repeated-measures ANOVAs. Effect sizes (partial η2) were calculated, and considered small when ≥0.01, moderate when ≥0.06 or large when ≥0.14 (). Statistical analyses were performed using SPSS 27.0 (SPSS Inc., IL). The level of statistical significance was set at P = 0.05, and 95% confidence intervals were reported for all variables of interest.",
+    "n_tokens": 145
+  },
+  {
+    "chunk_id": "pfp_gaitmods_frontiers2022#007",
+    "doc_id": "pfp_gaitmods_frontiers2022",
+    "pmcid": "PMC9884822",
+    "doi": "10.3389/fspor.2022.1048655",
+    "license": "CC BY",
+    "section": "Results > Immediate effects of gait modifications on pain and kinetics",
+    "text": "[Running gait modifications can lead to immediate reductions in patellofemoral pain | Results > Immediate effects of gait modifications on pain and kinetics]\nA total of 43 runners (32 RFS, 11 non-RFS) experienced pain >1/10 during the Normal condition, and 20 of them (47%) were classified as responders during at least one gait modification. The most effective interventions were FFS and SR + 10% (15 responders each), but some runners also reported decreased pain during SR-10% (7 responders) and HS (5 responders) (). Some participants were responders to three (n = 2), four (n = 5), five (n = 3) and even all six gait modifications (n = 2). Each gait modification also caused an increase in pain in a subset of runners, with proportions varying between 33% (SR + 10%, n = 14) and 72% (HS, n = 31) (). Detailed pain scores during each condition are provided in .\n\nOverall (n = 68), SR + 10% and FFS showed the greatest reduction in peak PFJ force (both −12%), followed by SOFT (-11%) (). PFJ average loading rate was significantly decreased during FFS (−32%), SOFT (−29%) and SR-10% (−10%) (). Statistically significant reductions in the average vertical loading rate of the ground reaction force were achieved only through FFS (−42%) and SOFT (−31%) (). Both FFS (+11%) and SR-10% (+4%) increased peak Achilles tendon force, while HS was the only condition causing a statistically significant decrease (−12%) ().",
+    "n_tokens": 288
+  },
+  {
+    "chunk_id": "pfp_gaitmods_frontiers2022#008",
+    "doc_id": "pfp_gaitmods_frontiers2022",
+    "pmcid": "PMC9884822",
+    "doi": "10.3389/fspor.2022.1048655",
+    "license": "CC BY",
+    "section": "Results > Differences between responders and non-responders",
+    "text": "[Running gait modifications can lead to immediate reductions in patellofemoral pain | Results > Differences between responders and non-responders]\nResponders experienced significantly greater reductions in peak PFJ force than non-responders (partial η2 = 0.064 to 0.106, moderate effect sizes) during all conditions except HS (). However, no statistically significant differences in PFJ average loading rate or in the average loading rate of the ground reaction force were found between responders and non-responders (). Responders significantly increased Achilles tendon peak force compared to non-responders only during SR + 10% (partial η2 = 0.088, moderate effect size) ().",
+    "n_tokens": 102
+  },
+  {
+    "chunk_id": "pfp_gaitmods_frontiers2022#009",
+    "doc_id": "pfp_gaitmods_frontiers2022",
+    "pmcid": "PMC9884822",
+    "doi": "10.3389/fspor.2022.1048655",
+    "license": "CC BY",
+    "section": "Results > Differences between RFS and non-RFS",
+    "text": "[Running gait modifications can lead to immediate reductions in patellofemoral pain | Results > Differences between RFS and non-RFS]\nProportions of immediate responders among RFS and non-RFS were 41% and 18% during both SR + 10% and FFS, 38% and 9% during SR180, and 31% and 9% during SOFT (). The HS condition caused immediate increases in pain in 66% of RFS and 91% of non-RFS ().\n\nChanges in PFJ kinetics were statistically different between RFS and non-RFS. Specifically, RFS experienced a greater decrease in peak PFJ force during FFS and SOFT (partial η2 = 0.302–0.452, large effects) (). Non-RFS increased peak PFJ force more than RFS during SR-10% and HS (partial η2 = 0.205–0.469, large effects). Non-RFS also had greater decreases in PFJ average loading rate during SR + 10% (partial η2 = 0.069, moderate effect) and SR180 (partial η2 = 0.044, small effect), but had an increase during HS (partial η2 = 0.102, moderate effect) ().\n\nThe average loading rate of the ground reaction decreased in RFS more so than in non-RFS during FFS (partial η2 = 0.290, large effect), SOFT (partial η2 = 0.132, moderate effect), SR180 (partial η2 = 0.117, moderate effect), and SR + 10% (partial η2 = 0.059, small effect) (). Non-RFS increased their average loading rate of the ground reaction force (partial η2 = 0.380, large effect) but decreased peak Achilles tendon force during HS more than RFS (partial η2 = 0.319, large effect). RFS experienced a significantly greater increase in peak Achilles tendon force during FFS (partial η2 = 0.360, large effect) ().",
+    "n_tokens": 322
+  },
+  {
+    "chunk_id": "pfp_gaitmods_frontiers2022#010",
+    "doc_id": "pfp_gaitmods_frontiers2022",
+    "pmcid": "PMC9884822",
+    "doi": "10.3389/fspor.2022.1048655",
+    "license": "CC BY",
+    "section": "Discussion",
+    "text": "[Running gait modifications can lead to immediate reductions in patellofemoral pain | Discussion]\nIncreasing step rate, adopting a forefoot strike pattern and running softer may cause immediate reductions in pain in some runners with PFP, especially those using an RFS pattern. Decreased peak PFJ force could explain such effects, and potentially represents a key outcome during rehabilitation. For runners using a non-RFS pattern, SR + 10% might also be an option.\n\nImmediate reductions in symptoms were reported by 75.0% (15 out of 20) of all responders during FFS and SR + 10%. Although several other studies have reported reductions in knee joint loading through gait modifications (, , , , ), the current study is the first to report concurrent immediate reductions in running-related knee pain. Switching to a FFS has been suggested as an effective treatment in runners with PFP (, ), although it is unknown whether runners in these studies experienced immediate or gradual decrease in knee pain. One of these studies found a reduction of both the peak PFJ contact force and symptoms in RFS runners (), an association that was also present in our study. According to our comparison between immediate responders and non-responders, decreasing peak PFJ force seems highly relevant to reduce pain. The fact that 72% of symptomatic runners, including 91% of non-RFS, reported increased pain during HS also supports this hypothesis, given the overall increase in peak PFJ force during that condition.\n\nIt is possible that non-responders would have reported pain improvements following multiple sessions of gait retraining. Some runners may need more practice, and more feedback to effectively change their running gait, () and potentially affect symptoms. Decreasing peak PFJ force or modulating patellofemoral contact area represent sensible clinical targets, however, caution is warranted if deciding to implement FFS. Given the increased peak Achilles tendon force during FFS (), gradual transition is needed to minimize the risks of developing an injury to the ankle plantar flexors. In contrast, increasing step rate may represent a safer gait modification, at least in the short term, given its negligible effect on peak Achilles tendon force and effectiveness in reducing peak patellofemoral joint force. Runners with PFP might benefit more from an increase in their baseline step rate (+10%) rather than aiming for a fixed value (e.g. 180 steps per minute), no matter which foot strike pattern they are using. Increasing step rate by 10% in our sample of non-RFS led to an average of 189 steps per minute, effectively reducing peak patellofemoral joint force. In contrast, 180 steps per minute corresponded to an increase of only 4.2%, and no significant change in peak patellofemoral force. However, based on the low number of immediate responders to SR + 10% in non-RFS, education and appropriate management of training loads should likely be prioritized over gait modifications in these runners ().",
+    "n_tokens": 613
+  },
+  {
+    "chunk_id": "pfp_gaitmods_frontiers2022#011",
+    "doc_id": "pfp_gaitmods_frontiers2022",
+    "pmcid": "PMC9884822",
+    "doi": "10.3389/fspor.2022.1048655",
+    "license": "CC BY",
+    "section": "Discussion",
+    "text": "[Running gait modifications can lead to immediate reductions in patellofemoral pain | Discussion]\nGait modifications may affect symptoms because of reasons unrelated to biomechanical changes. Interestingly, several of our participants reported positive effects on pain during multiple gait modifications – even those that tend to increase knee loading. This could possibly result from gait modifications acting on psychological features, an aspect of PFP that is garnering more interest (). It has been suggested that apparently similar but motivationally different movement patterns, for example related to the expectation of treatment effects, may reduce movement-related pain (). Thus, it is possible that gait modifications induce analgesic effects that are unrelated to mechanical loading (sensory), but rather to more complex (central) pain mechanisms in a subset of symptomatic runners, like those five participants who responded to five or even six different movement patterns.\n\nGiven the high number of non-responders in our cohort, factors other than a transient decrease in joint loading are likely to contribute to modulation of symptoms in runners with chronic PFP. Potential factors include sensitization secondary to long-standing pain (), which could possibly delay beneficial effects of decreased loading. Furthermore, location of symptoms (retropatellar vs. peripatellar) may correspond to different physiopathology in runners with PFP, thereby influencing pain response to retropatellar loading modulation (). On the other hand, several runners experienced increases in pain with gait modifications, despite reductions in peak PFJ force. It is possible that these participants increased the amount of muscle co-contractions around the patellofemoral joint, thereby increasing forces that were not captured by our biomechanical model. In such cases, clinicians should perhaps focus on interventions unrelated to running gait modifications, like education on training loads and exercises (). More research is needed to better identify responders to gait modifications, and to see if immediate changes in pain may predict clinical success following prolonged exposure.",
+    "n_tokens": 393
+  },
+  {
+    "chunk_id": "pfp_gaitmods_frontiers2022#012",
+    "doc_id": "pfp_gaitmods_frontiers2022",
+    "pmcid": "PMC9884822",
+    "doi": "10.3389/fspor.2022.1048655",
+    "license": "CC BY",
+    "section": "Discussion",
+    "text": "[Running gait modifications can lead to immediate reductions in patellofemoral pain | Discussion]\nThis study has limitations, which should be considered when interpreting the results. First, data were collected following a short period of adaptation to gait modifications. It remains unknown if runners would maintain the same running mechanics following prolonged periods, and if changes in symptoms would last. Still, our results show that clinicians can expect acute gait modifications to immediately affect the level of knee pain of runners with PFP, and potentially get patients to perceive their potential benefits. Running gait modifications can sometimes be used as a temporary measure to modulate load, and not always as a permanent intervention, just like reductions of training loads can provide pain relief before increasing back to baseline level when pain allows (). Second, the accumulation of different running conditions within the same session may have prevented modulations in loading from having beneficial effects on pain. However, total running duration did not exceed 30 minutes, which was easily reached by participants during their habitual training sessions. Third, the order of conditions was not randomized, but rather pre-determined because of logistical reasons related to the laboratory setup. Although not as optimal as a randomized order, we believe that reversing the order for the second half of participants helped in limiting potential biases. Fourth, we classified responders based on pain changes of at least 1/10. Despite being inferior to the meaningful pain changes in populations with chronic conditions (), our study design allowed for immediate assessment of pain with negligible recall bias. Fifth, our musculoskeletal model did not take into account muscle co-activations, and thus might have underestimated PFJ forces. Even though kinetics comparisons between conditions may have been affected, our within-subject design minimizes negative implications of using such model. Finally, the number of runners using a non-RFS pattern was relatively low. However, the proportion of runners using a non-RFS pattern is only 21% (). Therefore, our sample is representative of the running population, and our findings may help orientate future research in this sub-group of runners with PFP.",
+    "n_tokens": 444
+  },
+  {
+    "chunk_id": "pfp_gaitmods_frontiers2022#013",
+    "doc_id": "pfp_gaitmods_frontiers2022",
+    "pmcid": "PMC9884822",
+    "doi": "10.3389/fspor.2022.1048655",
+    "license": "CC BY",
+    "section": "Discussion",
+    "text": "[Running gait modifications can lead to immediate reductions in patellofemoral pain | Discussion]\nIn conclusion, results from this study suggest that gait modifications can immediately affect the level of symptoms in runners with PFP, likely because of modulations in peak PFJ force. Specifically, FFS and increasing step rate by 10% were the most effective in reducing pain and PFJ kinetics, with greater effects in runners displaying an RFS during their normal running. Instructions to run softer were also effective in RFS, but may not be as effective in non-RFS. Significant decreases in peak PFJ force were achieved when increasing step rate by 10%, running at 180 steps per minute, landing on the forefoot and landing softer in RFS, but only when increasing step rate by 10% in non-RFS. Decreases in peak PFJ force could represent a key rehabilitation target, considering the number of runners reporting decreased pain during these gait modifications. However, our results suggest that the immediate effects of gait modifications on pain may not solely be attributable to modulations of PFJ kinetics. More research is needed to investigate the effects of prolonged exposure to gait modifications in immediate responders and non-responders, and to evaluate whether clinical benefits of gait modifications could be predicted by such immediate response.",
+    "n_tokens": 261
+  },
+  {
+    "chunk_id": "pfp_gaitretrain_rct2024#000",
+    "doc_id": "pfp_gaitretrain_rct2024",
+    "pmcid": "PMC10781021",
+    "doi": "10.1371/journal.pone.0295645",
+    "license": "CC BY",
+    "section": "Abstract > Background",
+    "text": "[Effects of two gait retraining programs on pain, function, and lower limb kinematics in runners with patellofemoral pain: A randomized controlled trial | Abstract > Background]\nPatellofemoral Pain (PFP) is one of the main injuries in runners. Consistent evidence support strengthening programs to modulate symptoms, however, few studies investigated the effects of gait retraining programs.",
+    "n_tokens": 38
+  },
+  {
+    "chunk_id": "pfp_gaitretrain_rct2024#001",
+    "doc_id": "pfp_gaitretrain_rct2024",
+    "pmcid": "PMC10781021",
+    "doi": "10.1371/journal.pone.0295645",
+    "license": "CC BY",
+    "section": "Abstract > Objective",
+    "text": "[Effects of two gait retraining programs on pain, function, and lower limb kinematics in runners with patellofemoral pain: A randomized controlled trial | Abstract > Objective]\nTo investigate the effects of two different two-week partially supervised gait retraining programs on pain, function, and lower limb kinematics of runners with PFP.",
+    "n_tokens": 32
+  },
+  {
+    "chunk_id": "pfp_gaitretrain_rct2024#002",
+    "doc_id": "pfp_gaitretrain_rct2024",
+    "pmcid": "PMC10781021",
+    "doi": "10.1371/journal.pone.0295645",
+    "license": "CC BY",
+    "section": "Abstract > Methods",
+    "text": "[Effects of two gait retraining programs on pain, function, and lower limb kinematics in runners with patellofemoral pain: A randomized controlled trial | Abstract > Methods]\nRandomized controlled trial. Thirty runners were allocated to gait retraining groups focusing on impact (n = 10) or cadence (n = 10), or to a control group (n = 10). Impact group received guidance to reduce tibial acceleration by 50%, while cadence group was asked to increase cadence by 7.5–10%. The control group did not receive any intervention. Usual and running pain, knee function, and lower limb kinematics (contralateral pelvic drop, hip adduction, knee flexion, ankle dorsiflexion, tibia inclination, and foot inclination) were evaluated before (T0), immediately after the intervention (T2), and six months after the protocol (T24).",
+    "n_tokens": 130
+  },
+  {
+    "chunk_id": "pfp_gaitretrain_rct2024#003",
+    "doc_id": "pfp_gaitretrain_rct2024",
+    "pmcid": "PMC10781021",
+    "doi": "10.1371/journal.pone.0295645",
+    "license": "CC BY",
+    "section": "Abstract > Results",
+    "text": "[Effects of two gait retraining programs on pain, function, and lower limb kinematics in runners with patellofemoral pain: A randomized controlled trial | Abstract > Results]\nA significant group x time interaction was found for running pain (p = 0.010) and knee function (p = 0.019). Both programs had greater improvements in running pain compared to no intervention at T24 (Impact x Control—mean difference (MD) −3.2, 95% CI −5.1 to −1.3, p = 0.001; Cadence x Control—MD −2.9, 95% CI −4.8 to −1.0, p = 0.002). Participants of the impact group had greater improvements in knee function compared to no intervention at T2 (Impact x Control–MD 10.8, 95% CI 1.0 to 20.6, p = 0.027). No between-group differences in usual pain and lower limb kinematics were found (p>0.05).",
+    "n_tokens": 136
+  },
+  {
+    "chunk_id": "pfp_gaitretrain_rct2024#004",
+    "doc_id": "pfp_gaitretrain_rct2024",
+    "pmcid": "PMC10781021",
+    "doi": "10.1371/journal.pone.0295645",
+    "license": "CC BY",
+    "section": "Abstract > Conclusion",
+    "text": "[Effects of two gait retraining programs on pain, function, and lower limb kinematics in runners with patellofemoral pain: A randomized controlled trial | Abstract > Conclusion]\nCompared to no intervention, both programs were more effective in improving running pain six months after the protocol. The program focused on impact was more effective in improving knee function immediately after the intervention.\n\nClinical trial registry number: RBR-8yb47v",
+    "n_tokens": 52
+  },
+  {
+    "chunk_id": "pfp_gaitretrain_rct2024#005",
+    "doc_id": "pfp_gaitretrain_rct2024",
+    "pmcid": "PMC10781021",
+    "doi": "10.1371/journal.pone.0295645",
+    "license": "CC BY",
+    "section": "Introduction",
+    "text": "[Effects of two gait retraining programs on pain, function, and lower limb kinematics in runners with patellofemoral pain: A randomized controlled trial | Introduction]\nPatellofemoral pain (PFP) can be defined as pain around or behind the patella during functional activities that load the patellofemoral joint (e.g., jogging, running, squatting, hopping/jumping) []. It has a prevalence of 29% in adolescents [], 23% in the general population [], and 5.5% in runners [], being one of the main overuse injuries in this sport. In addition, the poor long-term prognosis must be highlighted, 55% of the patients experience unfavorable recovery over 3 months [], 40% over 12 months [], and 57% over 5 to 8 years [].\n\nInterventions that focus on hip and knee-targeted exercises and running biomechanics have been used to manage patients with PFP [, ]. Consistent evidence supports that exercise therapy has positive effects on usual pain, pain during activity, and functional ability in the short and long term compared to a control strategy (e.g. no intervention, placebo) []. However, only one randomized controlled trial (RCT) provided evidence about the effects of changes in running technique (gait retraining) on clinical outcomes compared with no intervention in runners with PFP []. A two-week supervised program to change the foot strike pattern from rearfoot strike to forefoot strike was applied and runners with PFP presented a reduction in usual pain immediately and one month after the protocol [].\n\nUnfortunately, the strategy used may not be suitable for all participants. Transitioning to a non-rearfoot strike was associated with reduced peak knee flexion, knee flexion excursion, peak knee extensor moment, and patellofemoral joint (PFJ) stress []; at the same time, increases in ankle excursion, plantar flexor moment, eccentric power, negative work, and axial contact force were also reported [, ]. These findings suggest that a rapid increase in absorbed ankle energy could represent a potential risk for ankle injuries, especially at the Achilles tendon []. In fact, two runners changing to a forefoot strike (25%) in a previous RCT reported ankle soreness at the one-month follow-up [].",
+    "n_tokens": 425
+  },
+  {
+    "chunk_id": "pfp_gaitretrain_rct2024#006",
+    "doc_id": "pfp_gaitretrain_rct2024",
+    "pmcid": "PMC10781021",
+    "doi": "10.1371/journal.pone.0295645",
+    "license": "CC BY",
+    "section": "Introduction",
+    "text": "[Effects of two gait retraining programs on pain, function, and lower limb kinematics in runners with patellofemoral pain: A randomized controlled trial | Introduction]\nThe use of feedback to decrease tibial acceleration [, ] and to increase cadence [–] may be safer alternatives. A two-week supervised program with feedback on tibial acceleration reduced loading rates in healthy subjects immediately after the protocol [, ] and results were maintained through one year []. Also, a 62% lower occurrence of running injury was found after a two-week supervised gait retraining program with visual feedback on average vertical loading rate []. While PFP was one of the main injuries in the control group (29%), participants that performed the gait retraining program presented mainly Achilles tendinitis (18%) and calf strain (18%) [].\n\nAbout cadence, an increase of 5–10% promoted a reduction in peak knee flexion, knee work, peak knee extensor moment, and peak PFJ stress []. Additionally, a reduction in variables of the hip (i.e., peak hip adduction and hip work) and ankle (i.e., foot strike angle, gastrocnemius peak force, and ankle work) indicate that the demand was not shifted to these joints [, ]. Gait retraining programs that increased cadence by 7.5–10% reduced pain levels post-training [–], and results were maintained six-months [] after the protocol. These findings show the potential use of these strategies that need to be tested against a control intervention in runners with PFP.\n\nDespite the gait retraining modality chosen, the format must be feasible for clinicians; the classic protocols use a faded feedback design with eight supervised sessions over two weeks with a duration of 15 to 30 minutes [, , ]. This protocol prevents dependency on external feedback and generates long-term retention [], however, it is challenging to replicate in clinical practice given the time and financial constraints for patients [].",
+    "n_tokens": 373
+  },
+  {
+    "chunk_id": "pfp_gaitretrain_rct2024#007",
+    "doc_id": "pfp_gaitretrain_rct2024",
+    "pmcid": "PMC10781021",
+    "doi": "10.1371/journal.pone.0295645",
+    "license": "CC BY",
+    "section": "Introduction",
+    "text": "[Effects of two gait retraining programs on pain, function, and lower limb kinematics in runners with patellofemoral pain: A randomized controlled trial | Introduction]\nIn order to address the lack of RCTs that tests the efficacy of gait retraining programs with better external validity, our goal was to investigate the effects of two different two-week partially supervised gait retraining programs, one focusing on impact and the other focusing on cadence, with a control intervention; on pain, function and lower limb kinematics of runners with PFP. Our hypothesis was that both partially supervised gait retraining programs would be more effective in reducing pain, improving symptoms, and modifying lower limb kinematics during running compared with the control group, and that the positive effects from these programs would persist for six months. Also, we believed that one gait retraining group would not be superior to the other.",
+    "n_tokens": 160
+  },
+  {
+    "chunk_id": "pfp_gaitretrain_rct2024#008",
+    "doc_id": "pfp_gaitretrain_rct2024",
+    "pmcid": "PMC10781021",
+    "doi": "10.1371/journal.pone.0295645",
+    "license": "CC BY",
+    "section": "Materials and methods > Trial design",
+    "text": "[Effects of two gait retraining programs on pain, function, and lower limb kinematics in runners with patellofemoral pain: A randomized controlled trial | Materials and methods > Trial design]\nThis is a randomized, single-blind, parallel group, three-arm superiority clinical trial, using a 1:1:1 allocation rate and six-month follow-up. The study was composed of three groups: a group that performed partially supervised gait retraining with a focus on impact, a group that performed partially supervised gait retraining with a focus on cadence, and a control group that did not perform any intervention. The outcomes were evaluated before (T0), immediately after (T2), and six months after the protocol (T24). Ethics approval was obtained from the Institutional Review Board of the Ceilândia Faculty, University of Brasília (Approval number: 22631019.7.0000.8093, 07/03/2020), and all subjects signed a detailed consent form before entering the study. This research was prospectively registered at the Brazilian Registry of Clinical Trials (RBR-8yb47v) and was reported in accordance with the CONSORT (Consolidated Standards Of Reporting Trials) (). The detailed protocol of this trial was published elsewhere [].",
+    "n_tokens": 196
+  },
+  {
+    "chunk_id": "pfp_gaitretrain_rct2024#009",
+    "doc_id": "pfp_gaitretrain_rct2024",
+    "pmcid": "PMC10781021",
+    "doi": "10.1371/journal.pone.0295645",
+    "license": "CC BY",
+    "section": "Materials and methods > Participants",
+    "text": "[Effects of two gait retraining programs on pain, function, and lower limb kinematics in runners with patellofemoral pain: A randomized controlled trial | Materials and methods > Participants]\nParticipants were recruited using advertisements within the running community of Goiânia, Brazil. The trial was conducted at the Instituto Trata, Goiânia, Brazil between August 2020 and July 2022. We included male and female runners, aged between 18 and 45 years, that presented pain around or behind the patella, with intensity of at least 3/10 on a visual analogue scale (VAS), during running and one task among squatting, climbing, and descending steps, kneeling and extending the knee with resistance [], and that were able to run on a treadmill at a speed of 10–12 km/hour for six minutes. To not include participants with Patellofemoral Osteoarthritis the limit of 45 years old was used. Participants were excluded if they presented other disorders in the lower limbs or history of surgery in the lower limbs in the last year. These aspects may affect running biomechanics. Also, participants were excluded if no interest to adhere to a strict running retraining protocol for 2 weeks was reported. It is important to outline a change in the eligibility criteria compared with the original protocol; non-rearfoot strike runners with a cadence greater than 170 steps/min were included to facilitate recruitment. No differences in spatiotemporal aspects exist between rearfoot and non-rearfoot strikers; however, differences in the kinematics of the lower limbs and loading rates were described []. Also, the aforementioned value was used in previous studies as cut-off points for lower cadence [].",
+    "n_tokens": 313
+  },
+  {
+    "chunk_id": "pfp_gaitretrain_rct2024#010",
+    "doc_id": "pfp_gaitretrain_rct2024",
+    "pmcid": "PMC10781021",
+    "doi": "10.1371/journal.pone.0295645",
+    "license": "CC BY",
+    "section": "Materials and methods > Randomization and allocation concealment",
+    "text": "[Effects of two gait retraining programs on pain, function, and lower limb kinematics in runners with patellofemoral pain: A randomized controlled trial | Materials and methods > Randomization and allocation concealment]\nParticipants were randomized into experimental or control groups with an allocation ratio of 1:1:1 by means of block randomization (block size of 15) performed with the aid of a sequence of numbers generated on a computer using the website www.randomizer.org. The allocation was hidden by means of opaque envelopes, sealed, and numbered consecutively. A laboratory employee who did not participate in the evaluations and interventions generated the allocation sequence, hid the allocation, and allocated participants for interventions.",
+    "n_tokens": 102
+  },
+  {
+    "chunk_id": "pfp_gaitretrain_rct2024#011",
+    "doc_id": "pfp_gaitretrain_rct2024",
+    "pmcid": "PMC10781021",
+    "doi": "10.1371/journal.pone.0295645",
+    "license": "CC BY",
+    "section": "Materials and methods > Blinding",
+    "text": "[Effects of two gait retraining programs on pain, function, and lower limb kinematics in runners with patellofemoral pain: A randomized controlled trial | Materials and methods > Blinding]\nThe researcher who collected data and performed assessments was blinded to group allocation. Due to the nature of the intervention, both the participants and the researcher responsible for the gait retraining could not be blinded; however, they were strongly warned not to reveal the allocation in subsequent evaluations and instructed to perform the retraining sessions alone. In this way, the risk of the blinded-assessor and other participants knowing what retraining is being performed was diminished.",
+    "n_tokens": 100
+  },
+  {
+    "chunk_id": "pfp_gaitretrain_rct2024#012",
+    "doc_id": "pfp_gaitretrain_rct2024",
+    "pmcid": "PMC10781021",
+    "doi": "10.1371/journal.pone.0295645",
+    "license": "CC BY",
+    "section": "Materials and methods > Interventions",
+    "text": "[Effects of two gait retraining programs on pain, function, and lower limb kinematics in runners with patellofemoral pain: A randomized controlled trial | Materials and methods > Interventions]\nBefore starting the intervention, participants ran with their regular shoes [] at a speed of 10 km/hour, in order to verify the usual values of the vertical tibial acceleration and cadence. After this assessment, it was possible to establish the threshold of the vertical tibial acceleration and cadence that were used in the programs. Both parameters were acquired with the accelerometer Tgforce (v2.0.0.10) [] taped to the anteromedial aspect of the subject’s distal tibia [].\n\nIn the experimental groups, the protocol was performed four times a week, with a gradual duration from 15 to 30 minutes, over two weeks. There were two supervised (first and fifth session) and six unsupervised sessions. In the final 4 training sessions the feedback was gradually removed.\n\nImpact group participants received visual feedback (vertical tibial acceleration captured using the accelerometer) and verbal feedback (commands given by the clinician) during the supervised sessions. A screen positioned in front of the treadmill showed a graph of real-time tibial acceleration captured by the accelerometer. On the screen, the participant saw a line representing approximately 50% of the average peak tibial acceleration obtained during the baseline assessment [, ]. Subjects were instructed to “run softer,” “make their footfalls quieter”, and to keep the acceleration peaks below the line [, , ] ().\n\nDuring the unsupervised sessions participants received audio feedback through the Tgforce. A beep was generated when the acceleration values exceeded 50% of the threshold value predetermined. Subjects were instructed to “run softer,” “make their footfalls quieter” and to run without any beeps. Cadence group participants received guidance regarding their cadence and ran with the help of a metronome with an adjusted cadence increased by 7.5 to 10% [, , ] during the supervised and unsupervised sessions. In both groups, the unsupervised sessions were performed at a location of their choice, as long as it was overground running. In both groups, participants performed the retraining sessions using a comfortable speed. In addition, participants were instructed to run with this new running-pattern during the following six months. The adverse effects were collected and addressed descriptively in the study results. Control group participants did not receive any retraining strategies or guidance until the end of the six-month follow-up period.",
+    "n_tokens": 492
+  },
+  {
+    "chunk_id": "pfp_gaitretrain_rct2024#013",
+    "doc_id": "pfp_gaitretrain_rct2024",
+    "pmcid": "PMC10781021",
+    "doi": "10.1371/journal.pone.0295645",
+    "license": "CC BY",
+    "section": "Materials and methods > Outcomes",
+    "text": "[Effects of two gait retraining programs on pain, function, and lower limb kinematics in runners with patellofemoral pain: A randomized controlled trial | Materials and methods > Outcomes]\nInitially, participants were screened to confirm eligibility. Participants’ characteristics (gender, age, body mass, height, body mass index, experience, training volume, and training frequency) were collected at baseline assessment. Primary and secondary outcomes were measured at the baseline assessment, immediately after the two-week intervention period, and six months after the protocol. The primary outcomes were usual pain and pain during running []. The secondary outcomes were knee function [], and the kinematics of the lower limbs in the frontal (contralateral pelvic drop; hip adduction) [–] and sagittal planes (knee flexion; ankle dorsiflexion; tibia inclination; foot inclination) [, ]. Vertical tibial acceleration and cadence were collected as described previously at the same follow-up time points.\n\nUsual pain and running pain were assessed using the VAS [], which consists of a numerical scale from 0 to 10 points, where 0 means no pain and 10 means the maximum pain ever experienced. Knee function was assessed using the Patellofemoral Disorders Scale (Kujala Scale) [], which contains 13 questions that assess the severity of symptoms and limitations in different activities related to PFP. It presents a score between 0 to 100 points where the lower the score the worse the function. Usual pain assessed using the VAS and knee function assessed using the Kujala scale are reliable, valid, and responsive measures recommended for clinical trials performed with patients with PFP [].\n\nLower limb kinematics were assessed using two webcams (MyoVideo 139 HD Color Webcam) sampling at 30 frames per second and two leds (LED Floodlight) []. Reflective markers were placed on the manubrium sterni and bilaterally on the anterior superior iliac spine (ASIS), greater trochanter, lateral femoral epicondyle, fibular head, and lateral malleolus []. An additional marker was placed at the fifth metatarsal. All participants were instructed to run at 10 km/hour on a motorized treadmill (Movement XL 1600). The peaks in degrees of the contralateral pelvic drop and hip adduction were evaluated at midstance [–]. The peaks in degrees of knee flexion and ankle dorsiflexion were evaluated at midstance, while tibial and foot inclination were evaluated at initial contact [, ]. The video recordings were analyzed using the software MyoResearch 3.14—MyoVideo (Noraxon U.S. A. Inc.) (). To analyze the proposed angles, seven steps were considered. A previous study showed that this was the number of steps needed to reach and maintain a stable mean [].",
+    "n_tokens": 521
+  },
+  {
+    "chunk_id": "pfp_gaitretrain_rct2024#014",
+    "doc_id": "pfp_gaitretrain_rct2024",
+    "pmcid": "PMC10781021",
+    "doi": "10.1371/journal.pone.0295645",
+    "license": "CC BY",
+    "section": "Materials and methods > Data analysis",
+    "text": "[Effects of two gait retraining programs on pain, function, and lower limb kinematics in runners with patellofemoral pain: A randomized controlled trial | Materials and methods > Data analysis]\nA priori sample size calculation was conducted using the Eta-partial square value (η2) of the group-by-time interaction for worst knee pain (η2 = 0.19) obtained in a previous study that compared the effects of three gait retraining programs on runners with patellofemoral pain []. In G*Power software [] we used repeated-measures ANOVA, within-between interaction, with the following parameters: effect size f = 0.48 (obtained using η2 = 0.19); level of significance = 0.05; power = 99%; number of groups = 3; number of measurements = 3. The G*Power software uses the effect size index (f) for this analysis. The effect size f was calculated directly using the η2 through the following formula: f = √η2/(1−η2). The total sample size obtained was 21 participants; however, to account for losses during the follow-up period, the final sample size was 30 participants.\n\nData were analyzed using SPSS (Statistical Package for Social Sciences) version 26.0. Descriptive statistics consisted in means and standard deviation for continuous variables and frequencies and percentages for categorical variables. Data normality was tested using the Shapiro-Wilk test, while sphericity was tested using Mauchly’s test. Participant’s characteristics were compared using one-way ANOVA (parametric data), Kruskal-Wallis (non-parametric data) and Fisher’s exact test (categorical variables). Between-group differences (treatment effects) and their 95% confidence intervals (CIs) were calculated using repeated-measures ANOVAs (group x time). Group (impact x cadence x control) was used as the independent factor, time (T0 x T2 x T24) as the repeated factor, and the primary and secondary outcomes as dependent variables. Sidak’s posthoc was used to make pairwise comparisons. A statistical significance level of p<0.05 was chosen. Effect sizes were determined using generalized eta-squared (η2G) for the ANOVAs. Values of η2G>0.01 were defined as small, η2G>0.06 as medium, and η2G>0.14 as large []. Hedges’s g (g) was used for the pairwise comparisons. Values of g = 0.2 were defined as small, g = 0.5 as medium, and g = 0.8 as large []. An intention-to-treat analysis was performed for all randomized participants. Missing data were replaced using multiple imputations. Subgroup analyses were not performed.",
+    "n_tokens": 458
+  },
+  {
+    "chunk_id": "pfp_gaitretrain_rct2024#015",
+    "doc_id": "pfp_gaitretrain_rct2024",
+    "pmcid": "PMC10781021",
+    "doi": "10.1371/journal.pone.0295645",
+    "license": "CC BY",
+    "section": "Results > Recruitment and baseline data",
+    "text": "[Effects of two gait retraining programs on pain, function, and lower limb kinematics in runners with patellofemoral pain: A randomized controlled trial | Results > Recruitment and baseline data]\nFrom a total of 71 runners assessed for eligibility, 30 were recruited and assigned to one of the three study groups between August 2020 and January 2022. At T2, one participant from the impact group (follow-up rate = 90%) dropped out due to a traumatic foot fracture non-related to the gait retraining program, and one participant from the cadence group (follow-up rate = 90%) dropped out due to undisclosed reasons. No biomechanical data were collected for one runner at T2 because of a lateral ankle sprain sustained during the week of the assessment. At T24, two additional participants from the impact group (follow-up rate = 70%) dropped out due to a stroke and time constraints, and two dropped out from the control group due to time constraints (follow-up rate = 80%). No biomechanical data were collected for one runner of the control group and one runner of the cadence group at T24 because of time constraints at the week of the assessment. As for adverse effects, two participants of the impact group reported minor problems; one reported calf soreness, while the other reported bilateral upper trapezius discomfort. These problems did not affect the retraining programs.\n\nThe groups presented similar distributions for gender, mean age of 30 years, and runners of the control group were heavier . Most participants had been running for more than one year, with a low volume, and a frequency of three times per week. Patients began the study with moderate levels of pain and disability, and presented similar kinematics and spatio-temporal data. No between-group differences were found across the groups for the general characteristics, pain, knee function, and running biomechanics (all p>0.05) .",
+    "n_tokens": 369
+  },
+  {
+    "chunk_id": "pfp_gaitretrain_rct2024#016",
+    "doc_id": "pfp_gaitretrain_rct2024",
+    "pmcid": "PMC10781021",
+    "doi": "10.1371/journal.pone.0295645",
+    "license": "CC BY",
+    "section": "Results > Pain and knee function",
+    "text": "[Effects of two gait retraining programs on pain, function, and lower limb kinematics in runners with patellofemoral pain: A randomized controlled trial | Results > Pain and knee function]\nA significant group x time interaction and a medium effect size were found for running pain (p = 0.010, η2G = 0.10) and knee function (p = 0.019, η2G = 0.09). Both intervention groups had greater improvements in running pain, with a large effect size, compared to the control group at T24 (Impact x Control—mean difference (MD) −3.2, 95% CI −5.1 to −1.3, p = 0.001, g = -2.34; Cadence x Control—MD −2.9, 95% CI −4.8 to −1.0, p = 0.002, g = -1.66). Patients allocated to the impact group had greater improvements in knee function, with a large effect size, compared to the control group at T2 (Impact x Control–MD 10.8, 95% CI 1.0 to 20.6, p = 0.027, g = 1.22). No significant group x time interaction and a small effect size were found for usual pain (p = 0.127, η2G = 0.05) .",
+    "n_tokens": 194
+  },
+  {
+    "chunk_id": "pfp_gaitretrain_rct2024#017",
+    "doc_id": "pfp_gaitretrain_rct2024",
+    "pmcid": "PMC10781021",
+    "doi": "10.1371/journal.pone.0295645",
+    "license": "CC BY",
+    "section": "Results > Running biomechanics",
+    "text": "[Effects of two gait retraining programs on pain, function, and lower limb kinematics in runners with patellofemoral pain: A randomized controlled trial | Results > Running biomechanics]\nA significant group x time interaction and a medium effect size were found for vertical tibial acceleration (p = 0.029, η2G = 0.06) and cadence (p = 0.004, η2G = 0.07). Both intervention groups decreased vertical tibial acceleration, with a large effect size, compared to the control group at T24 (Impact x Control—MD −1.9, 95% CI −3.3 to −0.4, p = 0.009, g = -1.28; Cadence x Control—MD −1.6, 95% CI −3.0 to −0.1, p = 0.033, g = -1.10). Both intervention groups increased cadence, with a large effect size, compared to the control group at T24 (Impact x Control—MD 10, 95% CI 1.3 to 18.5, p = 0.020, g = 2.10; Cadence x Control—MD 10.3, 95% CI 1.6 to 18.8, p = 0.016, g = 1.09). A significant group x time interaction and a medium effect size were found for ankle dorsiflexion (p = 0.001, η2G = 0.08); however, the pairwise comparison did not show a true between-group difference at T2 (Impact x Control—MD 2.7, 95% CI −1.7 to 7.1, p = 0.358, g = 0.70; Cadence x Control—MD 0.7, 95% CI −3.7 to 5.2, p = 0,960, g = 0.19). and T24 (Impact x Control—MD −2.1, 95% CI −5.5 to 1.4, p = 0,363, g = -0.72; Cadence x Control—MD −3.4, 95% CI −6.8 to 0.1, p = 0,059, g = -1.10). No significant group x time interaction and small effect sizes were found for contralateral pelvic drop (p = 0.605, η2G = 0.01), hip adduction (p = 0.379, η2G = 0.01), knee flexion at midstance (p = 0.264, η2G = 0.02), tibial inclination at initial contact (p = 0.616, η2G = 0.01), and foot inclination at initial contact (p = 0.699, η2G = 0.00) .",
+    "n_tokens": 384
+  },
+  {
+    "chunk_id": "pfp_gaitretrain_rct2024#018",
+    "doc_id": "pfp_gaitretrain_rct2024",
+    "pmcid": "PMC10781021",
+    "doi": "10.1371/journal.pone.0295645",
+    "license": "CC BY",
+    "section": "Discussion",
+    "text": "[Effects of two gait retraining programs on pain, function, and lower limb kinematics in runners with patellofemoral pain: A randomized controlled trial | Discussion]\nTo our knowledge, our study is the first that assessed the effects of a feasible program focused on tibial acceleration in runners with PFP, and one of the few RCTs that evaluated the cadence strategy. Both gait retraining programs were more effective in improving running pain six months after the protocol. The gait retraining program on impact was more effective in improving knee function immediately post-training.\n\nOur findings on pain and knee function are in accordance with previous RCTs [, ]. A combination of increased cadence and minimalist shoes promoted differences in knee function and worst pain, but not on average pain compared with a prefabricated orthoses group []. An increase in cadence with education on load management did not provide additional benefits in pain and symptoms compared with education alone []. The differences in tibial acceleration and cadence found only at week twenty-four may be associated with improvements in running pain. It is possible that simple changes from a habitually painful pattern [] were responsible for the results in knee function found in week two.\n\nNo differences in lower limb kinematics were found in the follow-up time points assessed. Our findings corroborate with a two-week program [] that did not find effects on knee flexion and hip adduction and disagree with two studies that used four [] and six weeks [] programs respectively and found moderate/large effects in knee flexion, hip adduction, and contralateral pelvic drop. It can be suggested that two-weeks of using a strategy that does not address lower limbs kinematics directly may not be sufficient to modify these variables in individuals with PFP.",
+    "n_tokens": 356
+  },
+  {
+    "chunk_id": "pfp_gaitretrain_rct2024#019",
+    "doc_id": "pfp_gaitretrain_rct2024",
+    "pmcid": "PMC10781021",
+    "doi": "10.1371/journal.pone.0295645",
+    "license": "CC BY",
+    "section": "Discussion",
+    "text": "[Effects of two gait retraining programs on pain, function, and lower limb kinematics in runners with patellofemoral pain: A randomized controlled trial | Discussion]\nScientific and clinical implications can be formulated based on the results of this study. Partially supervised programs focused on tibial acceleration or cadence are capable of reducing running pain more so than no intervention at the six-months point. Participants in a supervised protocol focusing on tibial acceleration were unable to transfer the results outside the clinic []. These results show the relevance of partially supervised protocols, which allow exposure to outdoor training during retraining. Additionally, our findings are important considering that PFP may not resolve spontaneously and has the potential to become chronic. Pain during functional activities such as running and a longer period of PFP were listed as important factors for a worse prognosis with incomplete recovery at 5 to 8 years [, ].\n\nThe reductions in running pain occurred regardless of differences in lower limb kinematics. Increasing step rate, adopting a forefoot striking and running softer produced reductions in running-related knee pain and peak PFJ force concurrently []. Therefore, differences in running pain may be attributed to reductions in PFJ forces rather than changes in kinematic behavior. Health practitioners may incorporate a decrease in tibial acceleration or an increase in cadence to assist in the management of this condition.\n\nSome limitations of the current study need to be outlined. Non-rearfoot strike runners with a cadence greater than 170 steps/min or tibial acceleration lesser than 8 g were included to promote better recruitment rates. The presence of these characteristics may have influenced the capability of the participants to reach the thresholds established. Participants without important deviations in lower limb kinematics were included. The capability of the strategies chosen to modify lower limb kinematics was limited. The recommendations for biomechanical analysis include the use of a camera with 120 fps []. We cannot rule out that our equipment may have influenced the results of the kinematic analysis. A larger sample with a better motion capture system could have provided better insights into changes in running biomechanics. Finally, running volumes were not collected over the 6-months period. Higher mileage or an abrupt increase in running volume could have influenced the primary outcomes.",
+    "n_tokens": 468
+  },
+  {
+    "chunk_id": "pfp_gaitretrain_rct2024#020",
+    "doc_id": "pfp_gaitretrain_rct2024",
+    "pmcid": "PMC10781021",
+    "doi": "10.1371/journal.pone.0295645",
+    "license": "CC BY",
+    "section": "Discussion",
+    "text": "[Effects of two gait retraining programs on pain, function, and lower limb kinematics in runners with patellofemoral pain: A randomized controlled trial | Discussion]\nFuture RCTs should investigate the effects of gait retraining programs with a better proportion of supervised and non-supervised sessions or that implement a full non-supervised in-field design in runners with PFP. The use of these programs in a multimodal approach with interventions focusing on pain education, load management, hip/knee strengthening, and psychosocial aspects would be of high relevance in order to promote better recovery rates in this population. Programs based on tibial acceleration [], cadence [], and hip adduction [] reported improvements in pain levels followed by changes in loading rates. However, gait retraining may affect symptoms because of reasons unrelated to biomechanical changes. Therefore, studies to clarify the mechanisms related to the positive effects on clinical outcomes in this population are necessary. The results obtained only reflect this current Brazilian population. The use of data from other populations are necessary for validation.",
+    "n_tokens": 190
+  },
+  {
+    "chunk_id": "pfp_gaitretrain_rct2024#021",
+    "doc_id": "pfp_gaitretrain_rct2024",
+    "pmcid": "PMC10781021",
+    "doi": "10.1371/journal.pone.0295645",
+    "license": "CC BY",
+    "section": "Conclusion",
+    "text": "[Effects of two gait retraining programs on pain, function, and lower limb kinematics in runners with patellofemoral pain: A randomized controlled trial | Conclusion]\nCompared to no intervention, two-week partially supervised gait retraining programs focusing on impact and cadence were more effective in improving running pain six months after the protocol in a sample of Brazilian runners with PFP. Additionally, the two-week partially supervised gait retraining program focused on impact was more effective in improving knee function immediately post-training. No differences in usual pain and lower limb kinematics were found in the follow-up time points assessed. As expected, one gait retraining group was not superior to the other.",
+    "n_tokens": 112
   },
   {
     "chunk_id": "rivadulla2021_footnet#000",
