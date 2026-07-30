@@ -1,25 +1,16 @@
 CREATE TABLE chunks (
-    chunk_id       TEXT PRIMARY KEY,          -- 'rivadulla2021_footnet#029'
-    doc_id         TEXT NOT NULL REFERENCES documents(doc_id) ON DELETE CASCADE,
-    chunk_index    INT  NOT NULL,             -- 29 — ordering + neighbor expansion
-
-    -- where in the document this came from
-    part           TEXT NOT NULL,             -- 'abstract'|'body'|'peer-review'|'author-response'
-                                              --   |'editor-report'|'caption'|'table'|'supplementary'
-    section_path   TEXT[],                    -- {'Materials & methods','Data collection'}
-    section_index  INT,                       -- order of section within doc
-
-    -- text: raw and embedding input kept separate
-    text           TEXT NOT NULL,             -- what goes in the prompt
-    context_prefix TEXT,                      -- '[Title | Materials & methods > Data collection]'
-    n_tokens       INT  NOT NULL,
-    embedding      VECTOR(384),               -- match your encoder: bge-small = 384
-
-    -- ingestion hygiene
-    content_hash   TEXT NOT NULL,             -- sha256(text) — dedup, change detection
-    retrievable    BOOLEAN NOT NULL DEFAULT TRUE,
-
-    UNIQUE (doc_id, chunk_index)
+    chunk_id    TEXT PRIMARY KEY,
+    -- pmcid is the FK instead of the SERIAL doc_id: the chunk json already carries pmcid, so i can insert
+    -- straight in without looking up an int id first. ON UPDATE CASCADE is necessary in case the pmcid changes
+    -- since they're somewhat inconsistent/ ON DELETE CASCADE simply ensures that if a pmcid is gone from the documents
+    -- table, so will the fields inside chunks that reference that pmcid.
+    pmcid       TEXT NOT NULL REFERENCES documents(pmcid) ON UPDATE CASCADE ON DELETE CASCADE,
+    chunk_index INT  NOT NULL,
+    part        TEXT NOT NULL,
+    section     TEXT,
+    text        TEXT NOT NULL,
+    n_tokens    INT,
+    
+    --384 is the dimension of the embedded vector by sentence transformers
+    embedding   VECTOR(384)
 );
-
-CREATE INDEX idx_chunks_doc ON chunks (doc_id);

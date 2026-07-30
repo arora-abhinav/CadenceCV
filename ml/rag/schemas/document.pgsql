@@ -1,6 +1,5 @@
 CREATE TABLE documents (
     doc_id         SERIAL PRIMARY KEY,
-
     -- identity
     doi            TEXT UNIQUE,
     pmcid          TEXT UNIQUE,
@@ -9,11 +8,9 @@ CREATE TABLE documents (
     year           SMALLINT,
     journal        TEXT,
     url            TEXT NOT NULL,
-
     -- licensing
     license           TEXT NOT NULL,               -- 'CC BY' | 'CC BY-NC-ND'
     text_surfaceable  BOOLEAN NOT NULL DEFAULT TRUE,  -- FALSE for BY-NC-ND: chunk internally, cite as pointer
-
     -- provenance printed into the generation prompt (never a WHERE clause)
     design         TEXT,     -- 'meta-analysis' | 'rct' | 'cohort' | 'cross-sectional' | 'validation'
     n_participants INT,      -- NULL for reviews
