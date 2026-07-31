@@ -15,7 +15,6 @@ else:
 
 load_dotenv(override=True)
 DATABASE_URL = os.getenv("DATABASE_URL")
-print(DATABASE_URL)
 
 engine = create_engine(DATABASE_URL, echo=True)
 
@@ -26,7 +25,7 @@ with open("/Users/abhinavarora/Desktop/CadenceCV/ml/rag/corpus_chunks.json", "r"
 with open("/Users/abhinavarora/Desktop/CadenceCV/ml/rag/documents.json", "r") as file:
     documents = json.load(file)
 
-#Papers go in FIRST. chunks.doc_id is a FK onto documents.doc_id, so the parent rows have to exist
+#Papers go in FIRST. chunks.pmcid is a FK onto documents(pmcid), so the parent rows have to exist
 #before i can hang chunks off them. Each dict here is already the full documents-table shape (from the parser).
 def insert_document_into_db(documents):
     with engine.connect() as conn:
@@ -108,6 +107,8 @@ def insert_chunks_into_db(data):
                     "embedding": embedding,
                 },
             )
-        #same deal - explicit commit or the whole batch rolls back on close
         conn.commit()
 
+#chunks.pmcid is a FK onto documents(pmcid), so the parent rows have to exist first
+insert_document_into_db(documents)
+insert_chunks_into_db(chunks)
