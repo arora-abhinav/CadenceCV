@@ -1,0 +1,46 @@
+[
+  {
+    "metric_id": "cadence",
+    "passage": "Step rate was examined in 24 recreational distance runners during overground running across a range of self-selected speeds (3.0–4.5 m·s⁻¹). Associations between step rate and vertical loading rate were investigated using a force-instrumented treadmill."
+  },
+  {
+    "metric_id": "contact_time",
+    "passage": "Ground contact time was measured in 18 novice runners during treadmill running at imposed speeds of 2.5, 3.5, and 4.5 m·s⁻¹. The relationship between contact time and tibial acceleration was examined across the imposed speed conditions."
+  },
+  {
+    "metric_id": "flight_time",
+    "passage": "Aerial time was assessed in 22 distance runners during overground running using high-speed motion capture. Associations between flight time and preferred running speed were examined in both male and female participants."
+  },
+  {
+    "metric_id": "duty_factor",
+    "passage": "The proportion of stride time spent in contact with the ground was measured in 16 recreational runners during treadmill running at self-selected pace. The relationship between duty factor and ground reaction force magnitude was investigated using force plate data."
+  },
+  {
+    "metric_id": "stride_length",
+    "passage": "Stride length was quantified in 28 novice runners during overground running at a constant speed of 3.5 m·s⁻¹ using motion capture. Associations between stride length and hip joint loading were examined in a cohort of female recreational runners."
+  },
+  {
+    "metric_id": "vertical_oscillation",
+    "passage": "Vertical center of mass displacement was measured in 20 distance runners during treadmill running at speeds ranging from 2.8 to 5.0 m·s⁻¹ using motion analysis. The relationship between vertical oscillation and injury history was examined in a prospective study of recreational runners."
+  },
+  {
+    "metric_id": "vertical_ratio",
+    "passage": "The ratio of vertical center of mass oscillation to step length was calculated in 24 recreational runners during overground running at self-selected speeds. Associations between vertical ratio and metabolic cost were examined using indirect calorimetry."
+  },
+  {
+    "metric_id": "overstride",
+    "passage": "Foot strike position relative to center of mass was analyzed in 19 distance runners during treadmill running at 3.5 m·s⁻¹ using video analysis. The relationship between foot placement anterior to body center of mass and peak braking force was examined across trained and novice runners."
+  },
+  {
+    "metric_id": "foot_strike_angle",
+    "passage": "Foot contact angle was quantified in 26 recreational runners during overground running using high-speed video and marker tracking. Associations between foot strike angle and tibial acceleration were examined in runners with and without a history of stress fracture."
+  },
+  {
+    "metric_id": "knee_flexion_contact",
+    "passage": "Sagittal plane knee flexion at initial contact was measured in 21 distance runners during treadmill running at speeds of 3.0, 3.8, and 4.5 m·s⁻¹ using three-dimensional motion capture. The relationship between knee flexion angle at contact and knee joint loading was examined using inverse dynamics."
+  },
+  {
+    "metric_id": "trunk_lean",
+    "passage": "Trunk inclination angle was quantified in 23 recreational runners during overground running using marker-based motion capture at a constant speed of 3.5 m·s⁻¹. Associations between forward trunk lean and ground reaction force magnitude were examined across male and female participants."
+  }
+]

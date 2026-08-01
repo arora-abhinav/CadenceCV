@@ -28,39 +28,59 @@ metrics = {
 
 import json
 import os
+import re
 from pathlib import Path
 
+import numpy as np
 from anthropic import Anthropic
 from dotenv import load_dotenv
+from rank_bm25 import BM25Okapi
+from sentence_transformers import SentenceTransformer, util
+from sqlalchemy import create_engine, text
 
 load_dotenv(override=True)
-client = Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+API_KEY = os.environ["ANTHROPIC_API_KEY"]
+client = Anthropic(api_key=API_KEY)
+
+#Same postgres/pgvector db the chunks got written into
+engine = create_engine(os.getenv("DATABASE_URL"))
+
+#The SAME encoder that made the chunk embeddings - has to match or the query/chunk vectors live in
+#different spaces and cosine is meaningless. Loading the presaved copy so i dont redownload weights.
+transformer_path = os.path.join(os.path.dirname(__file__), "transformer_models", "sentence_transformer.pkl")
+if os.path.exists(transformer_path):
+    encoder = SentenceTransformer(transformer_path)
+else:
+    encoder = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+
 
 OUT = Path("queries.json")
 
-SYSTEM = """You convert running gait metrics into retrieval passages. Each passage is
-embedded and matched against chunks of real biomechanics papers, so it must
-read like paper text — not like a question.
+SYSTEM = """
+Write 2-3 sentences in the register of a DISCUSSION section of a
+biomechanics paper — where findings are interpreted, not where methods
+are described.
 
-RULES
-- Declarative sentences only. Never write a question.
-- Use the literature's vocabulary, not the display name. Work the provided
-  aliases in naturally.
-- State relationships in BOTH directions. Never assert that higher or lower
-  is better — that biases retrieval toward papers that already agree.
-- Name the outcomes the metric is studied against: running economy, injury
-  risk, joint loading, ground reaction forces, performance.
-- Do not mention any runner, any measured value, or any advice.
-- 2-3 sentences, 40-60 words.
-
-EXAMPLE
-input:  {"metric_id": "cadence", "aliases": ["step rate", "stride frequency", "SPM"]}
-output: {"metric_id": "cadence", "passage": "Step rate, also reported as cadence or stride frequency, was measured in recreational runners during treadmill and overground running. Changes in step rate have been associated with step length, vertical excursion of the centre of mass, braking impulse, and joint loading at the knee and hip. Lower step rates have been examined in relation to running economy and injury risk."}
+- Use interpretive vocabulary: associations, findings, evidence, magnitude,
+  correlations, mechanisms, inconsistent, trivial, moderate.
+- Do NOT describe apparatus, sampling rates, marker sets, participant
+  counts, or protocols. No "participants ran on a treadmill at X m/s."
+- State that relationships have been EXAMINED and that findings have
+  VARIED. Never state a direction or a verdict.
+- Do not invent statistics.
 
 OUTPUT
 Raw JSON array only. No markdown fences, no preamble. One element per input
 metric, same order:
-[{"metric_id": "...", "passage": "..."}]"""
+[{"metric_id": "...", "passage": "..."}]
+
+- Report that a relationship WAS EXAMINED. Never state what was found.
+  Yes: "Associations between step rate and knee joint loading were examined
+       across a range of imposed cadences."
+  No:  "Increasing step rate reduced knee loading."
+- Do not invent statistics, correlation coefficients, p-values, or sample sizes.
+  Protocol vocabulary only: population type, setting, speed range.
+  """
 
 ONTOLOGY = [
     {"metric_id": "cadence",
@@ -93,6 +113,72 @@ ONTOLOGY = [
 ]
 
 
+def dense_retrieve(passages, top_k=10):
+    #pull every chunk's stored vector + text back out of pgvector. the embedding comes across as pgvector's
+    #text form '[0.1, 0.2, ...]', which is already valid json, so json.loads -> np array rebuilds the vector
+    with engine.connect() as conn:
+        rows = conn.execute(text("SELECT embedding, text FROM chunks")).fetchall()
+
+    corpus_embs = np.array([json.loads(r[0]) for r in rows], dtype=np.float32)
+    corpus_texts = [r[1] for r in rows]
+
+    #embed each haiku passage with the same encoder that built the chunk vectors
+    query_embs = encoder.encode([p["passage"] for p in passages])
+
+    #cosine top-k per query. semantic_search gives back, per query, a ranked list of {corpus_id, score}
+    hits = util.semantic_search(query_embs, corpus_embs, top_k=top_k)
+
+    #re-key the ranked hits by metric so i can see which chunks each metric's passage pulled
+    results = {}
+    for p, query_hits in zip(passages, hits):
+        results[p["metric_id"]] = [
+            {"score": round(h["score"], 4), "text": corpus_texts[h["corpus_id"]]}
+            for h in query_hits
+        ]
+    return results
+
+
+def _tokenize(s):
+    #dead simple lexical tokens for bm25 - lowercase, split on anything non-alphanumeric. no stemming/stopwords,
+    #the corpus is tiny so its not worth it, and keeping units/numbers as tokens actually helps here
+    return re.findall(r"[a-z0-9]+", s.lower())
+
+
+def _tanh_normalise(scores):
+    #squash bm25 scores through tanh so they land on the same (-1, 1) scale as the dense cosine scores.
+    #catch: raw bm25 values (~3-20) sit way past tanhs sensitive zone and would ALL saturate to ~1.0, wiping
+    #out the ranking. so i scale each querys scores by its own max first (-> [0,1]), THEN tanh - keeps them in
+    #the responsive part of the curve and order is untouched (tanh is monotonic).
+    scores = np.asarray(scores, dtype=np.float32)
+    peak = scores.max()
+    if peak > 0:
+        scores = scores / peak
+    return np.tanh(scores)
+
+
+def sparse_retrieve(passages, top_k=10):
+    #BM25 lexical search - the sparse counterpart to the dense encoder. this matches on ACTUAL shared words
+    #(great for exact terms + aliases the embedding tends to smear together), no vectors involved at all.
+    with engine.connect() as conn:
+        rows = conn.execute(text("SELECT text FROM chunks")).fetchall()
+
+    corpus_texts = [r[0] for r in rows]
+    #bm25 wants the corpus pre-tokenized up front; it builds the term stats once and scores against that
+    bm25 = BM25Okapi([_tokenize(t) for t in corpus_texts])
+
+    results = {}
+    for p in passages:
+        #get_scores returns one bm25 score per corpus doc; tanh-squash onto the dense (-1,1) scale, then
+        #argsort desc for the top_k (squashing doesnt change the order, its just for a fair-looking score)
+        scores = _tanh_normalise(bm25.get_scores(_tokenize(p["passage"])))
+        top_idx = np.argsort(scores)[::-1][:top_k]
+        results[p["metric_id"]] = [
+            {"score": round(float(scores[i]), 4), "text": corpus_texts[i]}
+            for i in top_idx
+        ]
+    return results
+
+
 def main():
     resp = client.messages.create(
         model="claude-haiku-4-5-20251001",
@@ -122,6 +208,22 @@ def main():
 
     print(f"\nwrote {len(passages)} passages to {OUT}")
 
+    #two retrievers running side by side over the same passages, each kept in its OWN file so i can
+    #eyeball what dense (semantic) vs sparse (lexical) actually pull for each metric before i fuse them
+    dense = dense_retrieve(passages, top_k=10)
+    sparse = sparse_retrieve(passages, top_k=10)
+    Path("retrieved_dense.json").write_text(json.dumps(dense, indent=2, ensure_ascii=False))
+    Path("retrieved_sparse.json").write_text(json.dumps(sparse, indent=2, ensure_ascii=False))
+
+    for label, retrieved in [("DENSE (cosine)", dense), ("SPARSE (bm25)", sparse)]:
+        print(f"\n########## {label} ##########")
+        for metric_id, matches in retrieved.items():
+            print(f"\n=== top {len(matches)} chunks for [{metric_id}] ===")
+            for rank, m in enumerate(matches, 1):
+                print(f"{rank:2d}. {m['score']:.4f}  {m['text'][:110].replace(chr(10), ' ')}...")
+    print("\nwrote retrieval results to retrieved_dense.json and retrieved_sparse.json")
+
+    return passages
 
 if __name__ == "__main__":
-    main()
+    passages = main()

@@ -30,7 +30,8 @@ with open("/Users/abhinavarora/Desktop/CadenceCV/ml/rag/documents.json", "r") as
 def insert_document_into_db(documents):
     with engine.connect() as conn:
         for doc in documents:
-            #ON CONFLICT keeps this re-runnable: pmcid is UNIQUE so a repeat run just skips instead of erroring
+            #ON CONFLICT (pmcid) makes this an UPSERT now: new pmcid -> insert, existing pmcid -> refresh.
+            #EXCLUDED allows to now update the values
             conn.execute(
                 text(
                     """
@@ -44,7 +45,21 @@ def insert_document_into_db(documents):
                         :text_surfaceable, :design, :n_participants, :population, :conditions,
                         :speed_min_ms, :speed_max_ms, :cohort_id
                     )
-                    ON CONFLICT (pmcid) DO NOTHING
+                    ON CONFLICT (pmcid) DO UPDATE SET
+                        title = EXCLUDED.title,
+                        first_author = EXCLUDED.first_author,
+                        year = EXCLUDED.year,
+                        journal = EXCLUDED.journal,
+                        url = EXCLUDED.url,
+                        license = EXCLUDED.license,
+                        text_surfaceable = EXCLUDED.text_surfaceable,
+                        design = EXCLUDED.design,
+                        n_participants = EXCLUDED.n_participants,
+                        population = EXCLUDED.population,
+                        conditions = EXCLUDED.conditions,
+                        speed_min_ms = EXCLUDED.speed_min_ms,
+                        speed_max_ms = EXCLUDED.speed_max_ms,
+                        cohort_id = EXCLUDED.cohort_id
                     """
                 ),
                 {

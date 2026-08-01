@@ -780,6 +780,726 @@
     "n_tokens": 130
   },
   {
+    "chunk_id": "correia2024_rri_umbrella#000",
+    "doc_id": "correia2024_rri_umbrella",
+    "pmcid": "PMC11336318",
+    "doi": "10.1016/j.jshs.2024.04.011",
+    "license": "CC BY-NC-ND",
+    "section": "Abstract > Highlights",
+    "text": "[Risk factors for running-related injuries: An umbrella systematic review | Abstract > Highlights]\n•Running/training characteristics and health and lifestyle factors, along with morphological and biomechanical aspects, show large effect sizes in increasing the risk for running-related injuries (RRIs).•The review highlights methodological issues in the design, conduction, and reporting of the included systematic reviews, indicating the need for higher quality studies.•Most primary studies and systematic reviews did not focus on specific injuries, complicating the identification of distinct risk factors associated with each injury type.•Biomechanical factors were the main focus of existing meta-analyses, but evidence remains insufficient to conclusively identify biomechanical risk factors.",
+    "n_tokens": 117
+  },
+  {
+    "chunk_id": "correia2024_rri_umbrella#001",
+    "doc_id": "correia2024_rri_umbrella",
+    "pmcid": "PMC11336318",
+    "doi": "10.1016/j.jshs.2024.04.011",
+    "license": "CC BY-NC-ND",
+    "section": "Abstract > Purpose",
+    "text": "[Risk factors for running-related injuries: An umbrella systematic review | Abstract > Purpose]\nThis umbrella systematic review (SR) of SRs and meta-analysis seeks to comprehensively synthesize existing literature to identify and consolidate the diverse range of risk factors contributing to running-related injuries (RRIs).",
+    "n_tokens": 40
+  },
+  {
+    "chunk_id": "correia2024_rri_umbrella#002",
+    "doc_id": "correia2024_rri_umbrella",
+    "pmcid": "PMC11336318",
+    "doi": "10.1016/j.jshs.2024.04.011",
+    "license": "CC BY-NC-ND",
+    "section": "Abstract > Methods",
+    "text": "[Risk factors for running-related injuries: An umbrella systematic review | Abstract > Methods]\nSystematic searches were conducted on June 28, 2023, across Web of Science, SPORTDiscus, Scopus, PubMed, and Cochrane Library. We included SRs, whether accompanied by meta-analyses or not, that focused on investigating risk factors for RRIs within observational studies. The methodological quality of the SRs was evaluated using the Assessing the Methodological Quality of Systematic Reviews II. To assess the extent of overlap across reviews, the corrected covered area metric was calculated.",
+    "n_tokens": 94
+  },
+  {
+    "chunk_id": "correia2024_rri_umbrella#003",
+    "doc_id": "correia2024_rri_umbrella",
+    "pmcid": "PMC11336318",
+    "doi": "10.1016/j.jshs.2024.04.011",
+    "license": "CC BY-NC-ND",
+    "section": "Abstract > Results",
+    "text": "[Risk factors for running-related injuries: An umbrella systematic review | Abstract > Results]\nFrom 1509 records retrieved, 13 SRs were included. The degree of overlap between SRs was low (4%), and quality varied from critically low (n = 8) to low (n = 5). Two hundred seven outcomes assessed in 148 primary studies were identified as being associated with the occurrence of RRIs. The effect sizes of the associations for which risk measures were reported (n = 131) were classified as large (n = 30, 23%), medium (n = 38, 29%), small (n = 48, 37%) or no effect (n = 15, 11%). Running/training characteristics, health and lifestyle factors, along with morphological and biomechanical aspects, exhibit large effect sizes in increasing the risk for RRIs.",
+    "n_tokens": 149
+  },
+  {
+    "chunk_id": "correia2024_rri_umbrella#004",
+    "doc_id": "correia2024_rri_umbrella",
+    "pmcid": "PMC11336318",
+    "doi": "10.1016/j.jshs.2024.04.011",
+    "license": "CC BY-NC-ND",
+    "section": "Abstract > Conclusion",
+    "text": "[Risk factors for running-related injuries: An umbrella systematic review | Abstract > Conclusion]\nDrawing from the outcomes of the low-quality SRs and associations with large effect sizes, our findings indicate that running/training characteristics and health and lifestyle factors, as well as morphological and biomechanical aspects, are all implicated in elevating the risk of RRIs, emphasizing the multifactorial basis of injury incidence in running. Given the low quality and heterogeneity of SR, individual findings warrant cautious interpretation.",
+    "n_tokens": 84
+  },
+  {
+    "chunk_id": "correia2024_rri_umbrella#005",
+    "doc_id": "correia2024_rri_umbrella",
+    "pmcid": "PMC11336318",
+    "doi": "10.1016/j.jshs.2024.04.011",
+    "license": "CC BY-NC-ND",
+    "section": "Introduction",
+    "text": "[Risk factors for running-related injuries: An umbrella systematic review | Introduction]\nRunning is one of the most popular and practiced sport activities. It is an accessible, low-cost sport with well-known health benefits that has attracted many individuals that choose running as their main sport activity., Running-related injuries (RRIs), however, are common among runners, , with an incidence rate that varies from 4.2 (recreational runners) to 33.0 (novice runners) per 1000 h of running exposure. The knee, lower leg, and foot are the most affected sites, whereas patellofemoral pain syndrome, medial tibial stress, plantar fasciitis, iliotibial band syndrome, and Achilles tendinopathy are the most frequent diagnoses., RRIs lead to excessive health costs that often include visiting a general practitioner and medical specialist, surgical treatment, physiotherapy, and medication., Time loss to recovery and absences from work, also have an important impact on the individual quality of life and productivity.\n\nRRIs are multifactorial and result from the complex interaction between individual attributes (e.g., age, gender, body mass index),,, morphological risk factors (e.g., navicular drop, Q-angle, and arch index),, , biomechanics (e.g., running kinematics and kinetics),, , and running/training features (e.g., training frequency, volume, experience),, as well as health and lifestyle factors (e.g., medical history, alcohol consumption and participation in other sports).,, These 5 domains have received great attention but despite extensive research, risk factors for RRIs remain unclear.,\n\nA comprehensive analysis integrating previously published systematic reviews (SRs) or meta-analyses is missing.,,,,, , , , In the last 3 years, 7 SRs and meta-analyses were published, including 155 observational prospective studies.,,,, , , To identify and consolidate the diverse range of risk factors contributing to RRIs, an umbrella review, and analysis of the current state of knowledge in this field is necessary. Current knowledge on this topic will support evidence-based practice and guide future studies., In this study, we aimed to examine risk factors for RRIs through an umbrella SR of SRs and meta-analysis.",
+    "n_tokens": 412
+  },
+  {
+    "chunk_id": "correia2024_rri_umbrella#006",
+    "doc_id": "correia2024_rri_umbrella",
+    "pmcid": "PMC11336318",
+    "doi": "10.1016/j.jshs.2024.04.011",
+    "license": "CC BY-NC-ND",
+    "section": "Methods",
+    "text": "[Risk factors for running-related injuries: An umbrella systematic review | Methods]\nThe Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) guidelines and recommendations for Umbrella Reviews were followed to conduct this study. The protocol of this study was registered in the International Prospective Register of Systematic Reviews (PROSPERO) (registration number CRD42021286241).",
+    "n_tokens": 54
+  },
+  {
+    "chunk_id": "correia2024_rri_umbrella#007",
+    "doc_id": "correia2024_rri_umbrella",
+    "pmcid": "PMC11336318",
+    "doi": "10.1016/j.jshs.2024.04.011",
+    "license": "CC BY-NC-ND",
+    "section": "Methods > Search strategy",
+    "text": "[Risk factors for running-related injuries: An umbrella systematic review | Methods > Search strategy]\nFive electronic bibliographic databases were searched: Web of Science, SPORTDiscus, Scopus, PubMed, and Cochrane Library. We limited searches to peer-reviewed journal articles published in English language from database inception to June 28, 2023. The search strategy used keywords related to injury, running, and reviews. Full description of search strategy used in each database is presented in .\n\nThe search strategy was implemented in the fields of title, abstract, and keywords of each database. The articles resulting from the search were inserted into Endnote (Version 21; Clarivate, Philadelphia, PA, USA), and duplicates were removed. Articles were then exported to Rayyan platform and 2 independent researchers (CKC and JMM) conducted the study selection. A third researcher (CR) resolved any discrepancies.",
+    "n_tokens": 157
+  },
+  {
+    "chunk_id": "correia2024_rri_umbrella#008",
+    "doc_id": "correia2024_rri_umbrella",
+    "pmcid": "PMC11336318",
+    "doi": "10.1016/j.jshs.2024.04.011",
+    "license": "CC BY-NC-ND",
+    "section": "Methods > Eligibility criteria",
+    "text": "[Risk factors for running-related injuries: An umbrella systematic review | Methods > Eligibility criteria]\nWe used PECOS (Population, Exposure, Comparator, Outcomes, and Study design) strategy for eligibility criteria ().",
+    "n_tokens": 20
+  },
+  {
+    "chunk_id": "correia2024_rri_umbrella#009",
+    "doc_id": "correia2024_rri_umbrella",
+    "pmcid": "PMC11336318",
+    "doi": "10.1016/j.jshs.2024.04.011",
+    "license": "CC BY-NC-ND",
+    "section": "Methods > Data extraction",
+    "text": "[Risk factors for running-related injuries: An umbrella systematic review | Methods > Data extraction]\nTwo authors (CKC and JMM) extracted data from 13 SRs. The results were similar and therefore, only 1 author (CKC) continued with data extraction. The following information was extracted from each SRs:a)Publication year;b)Geographic region: Country of first author's affiliation;c)Review type: SR or SR with a meta-analysis;d)Number of studies: Number of articles included under each review;e)Publication period: Search period;f)Search strategy: Databases searched;g)Primary study type: Prospective, retrospective, or case-control;h)Participants characteristics: Number of participants, age, gender, body mass index, running experience (novice, recreational, competitive, cross-country, short or long distance);i)Follow-up period: Duration of participants’ follow-up;j)Injury definition: Whether the review reported the definition of injury of each primary;k)Main anatomical injury site: Lower extremity, groin, knee, ankle, and/or other sites; l)Main diagnosis/injury: Patellofemoral pain syndrome, medial tibial stress syndrome, plantar fasciitis, Achilles tendinopathy, stress fracture, ankle sprain, and/or other diagnosis;m)Risk factors: Any outcome that was significantly associated (p < 0.05) with RRIs in a bivariate analysis; or that presented odds ratio (OR), relative risk (RR), or hazard ratio (HR) values greater than 1.0 in a regression analysis;n)Measures of risk: OR, RR, or HR values; and 95% confidence interval (95%CI);o)PRISMA: Whether the review followed the PRISMA statement;p)Risk of bias: Methods used to assess risk of bias and the results of this analysis;q)Level of evidence: Whether the review reported the level of evidence for each risk factor, which tool was used, and the interpretation of the result;r)Meta-analysis: Estimates, effect size, and heterogeneity (I², as %).\n\nBased on the extracted values of OR, RR, and HR, effect sizes of the measures were interpreted as follow: no effect: RR or HR < 1.21 or OR < 1.31; small effect: RR or HR: 1.22–1.85 or OR: 1.32–2.37; medium effect: RR or HR: 1.86–2.99 or OR: 2.38–4.69; large effect: RR or HR > 3.00 or OR > 4.70.",
+    "n_tokens": 394
+  },
+  {
+    "chunk_id": "correia2024_rri_umbrella#010",
+    "doc_id": "correia2024_rri_umbrella",
+    "pmcid": "PMC11336318",
+    "doi": "10.1016/j.jshs.2024.04.011",
+    "license": "CC BY-NC-ND",
+    "section": "Methods > Data extraction",
+    "text": "[Risk factors for running-related injuries: An umbrella systematic review | Methods > Data extraction]\nA narrative synthesis of the included SRs was carried out according to the domains previously established in the literature,,: (a) individual attributes, (b) running/training, (c) health and lifestyle, (d) morphological, and (e) biomechanical factors. For each domain, risk factors were identified based on the outcomes reported in the SRs.",
+    "n_tokens": 65
+  },
+  {
+    "chunk_id": "correia2024_rri_umbrella#011",
+    "doc_id": "correia2024_rri_umbrella",
+    "pmcid": "PMC11336318",
+    "doi": "10.1016/j.jshs.2024.04.011",
+    "license": "CC BY-NC-ND",
+    "section": "Methods > Overlap",
+    "text": "[Risk factors for running-related injuries: An umbrella systematic review | Methods > Overlap]\nIn umbrella reviews, overlap indicates the degree of primary studies were included in more than 1 SRs., To identify the overlap 1 author (CKC) elaborated a citation matrix, which is schematically shown in . The corrected covered area (CCA) was calculated using the following equation: where N is the total number of included publications (total number of ticked boxes in the citation matrix); r is the number of primary studies (rows); and c is the number of SRs (columns).\n\nThe CCA results were expressed in percentage (%) and interpreted as follows: 0–5 as slight/low; 6–10 as moderate; 11–15 as high; and >15 as very high overlap. A CCA of 100% means that every review included in this umbrella SR comprised the same studies. On the other hand, a CCA of 0% indicates that every review included was composed by unique studies.",
+    "n_tokens": 188
+  },
+  {
+    "chunk_id": "correia2024_rri_umbrella#012",
+    "doc_id": "correia2024_rri_umbrella",
+    "pmcid": "PMC11336318",
+    "doi": "10.1016/j.jshs.2024.04.011",
+    "license": "CC BY-NC-ND",
+    "section": "Methods > Quality assessment",
+    "text": "[Risk factors for running-related injuries: An umbrella systematic review | Methods > Quality assessment]\nThe quality assessment of the included SRs was performed using the Assessing the Methodological Quality of Systematic Reviews II (AMSTAR 2)., The checklist consists of 16 different items with 3 answering options: yes, partial yes, or no. Compared to the original checklist, the AMSTAR 2 was modified to cover studies of risk factors. The items that refer to interventions were replaced by exposures. The final rating was interpreted as follows: (a) high: no or 1 non-critical weakness; (b) moderate: more than 1 non-critical weakness; (c) low: 1 critical flaw with or without non-critical weaknesses; or (d) critically low: more than 1 critical flaw with or without non-critical weaknesses., Two researchers (CKC and JMM) performed the quality assessment independently. Discrepancies were solved by discussion and consensus or by a third researcher (CR).",
+    "n_tokens": 174
+  },
+  {
+    "chunk_id": "correia2024_rri_umbrella#013",
+    "doc_id": "correia2024_rri_umbrella",
+    "pmcid": "PMC11336318",
+    "doi": "10.1016/j.jshs.2024.04.011",
+    "license": "CC BY-NC-ND",
+    "section": "Results",
+    "text": "[Risk factors for running-related injuries: An umbrella systematic review | Results]\nThe search identified 1509 records. After removing 731 duplicates and screening titles and abstracts, 83 SRs were considered for inclusion. Of the 83 studies selected for full reading, 43 studies had discrepancies. After the authors discussed the inclusion and exclusion criteria, the conflict between the 43 studies was resolved. Finally, 13 SRs were included after full-text assessment (). The reasons for exclusions are reported in .\n\nThe first SR was published in 2007. The primary studies were mostly prospective, and the number of primary studies ranged from 1 study to 66 studies. Most SRs used Downs and Black Quality Index,, , , to assess the risk of bias. Further methodological information from each SR is presented in .\n\nParticipants’ characteristics, follow-up periods, and injury information are presented in . The number of included participants in each SR ranged from 52 participants to 16,836 participants. Seven SRs reported participant age, ranging from 18 to 50 years. Participants’ running experiences varied across categories such as novice,, , ,, recreational,,, , ,,,, competitive,, , , or experienced;, engaging in activities including cross-country,,,,, track and field, and short or long distances. The follow-up periods, as reported in 7 SRs, ranged from 1 day to 7 years. The most prevalent diagnoses included overall RRIs,,,,,, Achilles tendinopathy,, , ,,, patellofemoral pain,, , ,,, iliotibial band syndrome,,,,, and stress fractures.,,\n\nThe 13 SRs included a total of 148 different primary studies that investigated risk factors for RRIs. The degree of overlap between SRs was considered low (CCA = 0.04; 4%). Findings are grouped and presented in detail in according to the following domains: individual attributes (), running/training factors (), health and lifestyle factors (), morphological factors (), and biomechanical factors ().",
+    "n_tokens": 378
+  },
+  {
+    "chunk_id": "correia2024_rri_umbrella#014",
+    "doc_id": "correia2024_rri_umbrella",
+    "pmcid": "PMC11336318",
+    "doi": "10.1016/j.jshs.2024.04.011",
+    "license": "CC BY-NC-ND",
+    "section": "Results",
+    "text": "[Risk factors for running-related injuries: An umbrella systematic review | Results]\nThe quality appraisal of the 13 SRs is presented in . In general, the quality of the SRs was classified as being critically low (8 reviews),,,,,, , and low (5 reviews)., , ,,\n\nFifty-nine different factors across all domains were identified based on the outcomes reported in the SRs. Of these, 5 factors are from the individual attribute domain, 6 factors from the health and lifestyle domain, 17 factors from the running/training domain, 5 factors from the morphological domain and 26 factors from the biomechanical domain. These factors are listed in the first column of the respective . The effect size of each outcome was reported, being classified as large (23% of the outcomes, n = 30), medium (29%, n = 38), small (37%, n = 48), and as no effect (11%, n = 15). For the remaining 38% (n = 81) of the outcomes reported in the SR, the value of the risk measure was not reported.\n\nIn , we summarize the risk factors for RRI. In this summary, we exclude outcomes associated with a RR or HR < 1.21 or OR < 1.31 (indicative of no effect) and also findings reported from critically low-quality SRs.\n\nFour SRs performed meta-analysis.,,, Only biomechanical risk factors were investigated. During the stance phase of running, slower hip adduction velocity (mean difference = −12,8 °/s; p = 0.04), higher peak force under 2nd metatarsal (standardized mean difference = 0.65; p = 0.02), and under 3rd metatarsal (standardized mean difference = 0.60; p = 0.03); and lower time to peak force underneath the lateral heel (standardized mean difference = −0.56; p = 0.04) are shown to increase the risk for RRIs. Less knee extension strength (standardized mean difference = −0.19; p = 0.03) was also considered to increase the risk for RRIs. Regarding the level of evidence available in each SRs, the results of the meta-analyses indicated limited and conflicting evidence for all these risk factors ().",
+    "n_tokens": 430
+  },
+  {
+    "chunk_id": "correia2024_rri_umbrella#015",
+    "doc_id": "correia2024_rri_umbrella",
+    "pmcid": "PMC11336318",
+    "doi": "10.1016/j.jshs.2024.04.011",
+    "license": "CC BY-NC-ND",
+    "section": "Discussion",
+    "text": "[Risk factors for running-related injuries: An umbrella systematic review | Discussion]\nThis umbrella SR of SRs and meta-analysis synthesizes the existing literature regarding the diverse range of risk factors contributing to RRIs, providing a comprehensive overview and analysis of the current state of knowledge in this field. This is the first umbrella review to systematically summarize risk factors for RRIs. Our results highlight the significant interest of researchers in this topic and corroborate the assumption of a multivariate etiology for RRIs.\n\nOur analysis showed unsatisfactory quality for all the included SRs, ranging between critically low and low quality. This indicates the presence of methodological issues in their design, conduction and/or reporting, based on the critical domains assessed by AMSTAR 2 tool. Most SRs did not provide a list of excluded studies, failed to present a comprehensive literature search strategy, and did not provide a proper description of an explicit statement that the review methods were established prior (PROSPERO database registration and significant deviations from the protocol were stated). The registration of SRs minimizes the occurrence of duplicate reviews or reviews with similar objectives, promotes transparency, and reduces the potential risk of bias. In agreement with tool recommendations, reviews that were classified as critically low quality should not be used, and low quality SRs should be used with caution. More high-quality SRs are necessary and will strengthen the evidence about RRIs to guide training and injury prevention programs.\n\nMethodological differences between primary studies were found, which contributes to the heterogeneity of SRs and meta-analyses. This lack of consistency results in insufficient information to confirm the robustness and generalizability of the data. Several considerations should guide the design of future observational studies, including clarity in defining injuries, specifying follow-up length, describing the studied population and outcomes, and thoroughly reporting confounding factors. High-quality observational studies that address these aspects are necessary for advancing knowledge in this field.",
+    "n_tokens": 404
+  },
+  {
+    "chunk_id": "correia2024_rri_umbrella#016",
+    "doc_id": "correia2024_rri_umbrella",
+    "pmcid": "PMC11336318",
+    "doi": "10.1016/j.jshs.2024.04.011",
+    "license": "CC BY-NC-ND",
+    "section": "Discussion",
+    "text": "[Risk factors for running-related injuries: An umbrella systematic review | Discussion]\nThe heterogeneity of SRs poses a challenge for comprehending the risk factors for injuries in running. Differences in the population investigated, injury definition, length of follow-up, and sample size across studies are some of the sources of heterogeneity. Most SRs studied mixed population, such as novice, recreational, competitive, and/or cross-country runners with very little attention given to running experience separately. Some SRs focused on a specific injury, such as patellofemoral pain, iliotibial syndrome or repetitive stress injuries, but most reported on overall RRIs.,,,, Five SRs did not report the length of follow-up.,,,, Of those that report, the length of follow-up varied considerably among the SRs, ranging from 1 day to 7 years. Additionally, the definition of RRIs is different across individual studies and, consequently, in each SR. To address these issues, we suggest that future SRs should consider narrowing the scope and focusing on a single question, such as a specific injury or running experience.\n\nIt seems extremely important to have a clear definition for injury in future studies, given that different definitions can lead to different estimates of effect for injury (OR, HR, or RR, for example), and incidence estimates. Lack of clarity in the description and definition of the outcomes is also an issue. Previous injury, for example, corresponds with “an injury 12 months before a new injury” in some studies, while others assess it as the history of injury, regardless of time.\n\nRRIs seem to share common risk factors, particularly those associated with running/training characteristics and health-related lifestyle factors. These factors likely play a significant role in various types of RRIs. Conversely, biomechanical and morphological factors might be more specific to certain types of injuries, such as iliotibial band syndrome, patellofemoral pain syndrome, medial tibial stress syndrome, and Achilles tendinopathy. However, this remains speculative as, most primary studies and SRs did not address a specific injury (i.e. Achilles tendinopathy, patellofemoral pain, iliotibial band syndrome, and stress fractures). Instead, they grouped these injuries under the term “overall RRIs”, which complicates the identification of specific risk factors associated with each distinct injury.",
+    "n_tokens": 457
+  },
+  {
+    "chunk_id": "correia2024_rri_umbrella#017",
+    "doc_id": "correia2024_rri_umbrella",
+    "pmcid": "PMC11336318",
+    "doi": "10.1016/j.jshs.2024.04.011",
+    "license": "CC BY-NC-ND",
+    "section": "Discussion",
+    "text": "[Risk factors for running-related injuries: An umbrella systematic review | Discussion]\nDespite the efforts of researchers in the field, the main risk factors, or the set of risk factors for RRIs, remain unclear. The existing meta-analyses focus only on biomechanical factors. However, despite the large volume of information, the current evidence remains insufficient to conclusively identify biomechanical risk factors. Subsequent research efforts could contribute to future meta-analyses incorporating individual attributes, such as running/training patterns, health and lifestyle indicators, and morphological risk factors.\n\nThe main strength of this work is to provide an overview of the current state of research on risk factors for RRIs. The comprehensiveness of the search and the qualitative approach used to report the current evidence must be acknowledged. We found a low overlap degree among the SRs, which reveals that few SRs concluded on the same available data. To the best of our knowledge, this was the first review to analyze the magnitude of effect sizes of the outcomes. This allows the best available evidence on injury prevention and aids readers in comprehending the associations magnitude and interpretating their practical significance. Interpreting the effect size for each available risk factor can significantly contribute to improved decision-making by professionals working with runners.\n\nThe comprehensive review allows the reader to explore diverse factors associated with running injuries. Interestingly, BMI, lacked a clear association, whereas heightened stature, exhibited a positive correlation with elevated injury risks. Examining lifestyle aspects unveiled alcohol consumption, participation in other sports, and certain medical histories,, including prior injuries, as contributory factors. Within the realm of running practices, increased race participation, marathon running, and initiation into running,, demonstrated heightened injury risks. Weekly running distance,, and volume revealed medium to large associations, stressing the need for tailored exercise regimens. Biomechanical aspects, particularly focusing on hip,,, and pelvic stability, as well as specific foot patterns,,,,,, emerged as significant in injury prevention. Finally, incorporating comprehensive functional movement screening,, particularly paying attention to a drop squat and the ability to lift one leg while lying and keeping the knee straight (active straight leg raise), can potentially aid in identifying individuals at a higher risk of overall RRIs. While these findings offer valuable insights, the need for further research is evident to establish conclusive relationships and inform targeted training strategies for injury risk reduction.",
+    "n_tokens": 496
+  },
+  {
+    "chunk_id": "correia2024_rri_umbrella#018",
+    "doc_id": "correia2024_rri_umbrella",
+    "pmcid": "PMC11336318",
+    "doi": "10.1016/j.jshs.2024.04.011",
+    "license": "CC BY-NC-ND",
+    "section": "Discussion",
+    "text": "[Risk factors for running-related injuries: An umbrella systematic review | Discussion]\nOf note, the quality assessment conducted in this umbrella review revealed an unsatisfactory scenario, with 8 out of the 13 SRs characterized by critically low-quality ratings. excludes the findings from the 8 SRs with critically low quality. The supplementary materials present all the information extracted from the SRs, including that which was classified as critically low quality.\n\nSome limitations must be considered in relation to our umbrella review. Our inclusion criteria resulted in a limited number of SRs included to compose this study. However, to summarize the available evidence and reach conclusive results regarding the risk factors for RRIs, a comprehensive and consistent research approach regarding RRIs definition, outcome variables, participants, and study design was required.",
+    "n_tokens": 154
+  },
+  {
+    "chunk_id": "correia2024_rri_umbrella#019",
+    "doc_id": "correia2024_rri_umbrella",
+    "pmcid": "PMC11336318",
+    "doi": "10.1016/j.jshs.2024.04.011",
+    "license": "CC BY-NC-ND",
+    "section": "Conclusion",
+    "text": "[Risk factors for running-related injuries: An umbrella systematic review | Conclusion]\nThis umbrella SR provides a comprehensive overview about the risk factors for RRIs. Drawing from the outcomes of the low-quality SRs and associations with large effect sizes, our findings indicate that running/training characteristics and health and lifestyle factors, as well as morphological and biomechanical aspects, are all implicated in elevating the risk of RRIs, emphasizing the multifactorial basis of injury incidence in running. The results of this umbrella review should be approached cautiously in clinical practice because none of the SRs included presented a rating of moderate or high confidence in quality.",
+    "n_tokens": 122
+  },
+  {
+    "chunk_id": "davis2021_stiffness_injury#000",
+    "doc_id": "davis2021_stiffness_injury",
+    "pmcid": "PMC8155767",
+    "doi": "10.1177/23259671211011213",
+    "license": "CC BY-NC-ND",
+    "section": "Abstract > Background:",
+    "text": "[Leg Stiffness, Joint Stiffness, and Running-Related Injury: Evidence From a Prospective Cohort Study | Abstract > Background:]\nThe spring-like behavior of the leg and the joints of the lower body during running are thought to influence a wide range of physiologic and mechanical phenomena, including susceptibility to overuse injury. If leg and joint stiffness are associated with running-related injuries, altering joint or leg stiffness may be a useful avenue for injury rehabilitation and injury prevention programs.",
+    "n_tokens": 78
+  },
+  {
+    "chunk_id": "davis2021_stiffness_injury#001",
+    "doc_id": "davis2021_stiffness_injury",
+    "pmcid": "PMC8155767",
+    "doi": "10.1177/23259671211011213",
+    "license": "CC BY-NC-ND",
+    "section": "Abstract > Purpose:",
+    "text": "[Leg Stiffness, Joint Stiffness, and Running-Related Injury: Evidence From a Prospective Cohort Study | Abstract > Purpose:]\nTo test the associations between running-related injury and leg stiffness, knee stiffness, and ankle stiffness in a prospective study of recreational runners.",
+    "n_tokens": 29
+  },
+  {
+    "chunk_id": "davis2021_stiffness_injury#003",
+    "doc_id": "davis2021_stiffness_injury",
+    "pmcid": "PMC8155767",
+    "doi": "10.1177/23259671211011213",
+    "license": "CC BY-NC-ND",
+    "section": "Abstract > Methods:",
+    "text": "[Leg Stiffness, Joint Stiffness, and Running-Related Injury: Evidence From a Prospective Cohort Study | Abstract > Methods:]\nA total of 49 healthy recreational runners took part in a year-long study. Participants completed a 3-dimensional kinematic and kinetic biomechanical assessment at baseline and reported training volume and injury status in a weekly survey during the follow-up period. Relationships between stiffness and injury were assessed at the level of individual legs (n = 98) using spline terms in Cox proportional hazards models.",
+    "n_tokens": 84
+  },
+  {
+    "chunk_id": "davis2021_stiffness_injury#004",
+    "doc_id": "davis2021_stiffness_injury",
+    "pmcid": "PMC8155767",
+    "doi": "10.1177/23259671211011213",
+    "license": "CC BY-NC-ND",
+    "section": "Abstract > Results:",
+    "text": "[Leg Stiffness, Joint Stiffness, and Running-Related Injury: Evidence From a Prospective Cohort Study | Abstract > Results:]\nDuring follow-up, 23 participants (29 legs) sustained injury. The median time to injury was 27 weeks (53.27 hours of training). Relative injury rate as a function of knee stiffness displayed a weak and nonsignificant U-shaped curve (P = .187-.661); ankle and leg stiffness displayed no discernable associations with relative injury rate (leg stiffness, P = .215-.605; ankle stiffness, P = .419-.712).",
+    "n_tokens": 81
+  },
+  {
+    "chunk_id": "davis2021_stiffness_injury#005",
+    "doc_id": "davis2021_stiffness_injury",
+    "pmcid": "PMC8155767",
+    "doi": "10.1177/23259671211011213",
+    "license": "CC BY-NC-ND",
+    "section": "Abstract > Conclusion:",
+    "text": "[Leg Stiffness, Joint Stiffness, and Running-Related Injury: Evidence From a Prospective Cohort Study | Abstract > Conclusion:]\nLeg and joint stiffness may not be important factors in the development of running-related injuries. Moderate changes in leg and joint stiffness are unlikely to substantially alter injury risk.",
+    "n_tokens": 38
+  },
+  {
+    "chunk_id": "davis2021_stiffness_injury#006",
+    "doc_id": "davis2021_stiffness_injury",
+    "pmcid": "PMC8155767",
+    "doi": "10.1177/23259671211011213",
+    "license": "CC BY-NC-ND",
+    "section": "Body",
+    "text": "[Leg Stiffness, Joint Stiffness, and Running-Related Injury: Evidence From a Prospective Cohort Study | Body]\nMany aspects of human running can be well approximated using a spring-mass model, in which the legs behave like a spring, storing and releasing mechanical energy during contact with the ground. This mass-spring model has also been extended to consider the spring-like behavior of the ankle and the knee joints during running, which produce greater torques at greater values of angular displacement. Leg and joint stiffness models have successfully explained many facets of human gait, including an individual’s energetically optimal stride frequency; how runners maintain similar gait patterns on hard and soft surfaces; and how torque is differentially distributed at the ankle, knee, and hip during forefoot versus rearfoot running. Stiffness may also affect how internal loading is distributed among the components of the musculoskeletal system—if so, leg and joint stiffness may be attractive targets for interventions to prevent or rehabilitate running-related injuries.\n\nGiven that leg and joint stiffness are biomechanical constructs that incorporate information about both the motion and the forces encountered by the body, joint and leg stiffness have also been hypothesized to play a role in the development of running-related overuse injury. Previous research has hypothesized that a nonlinear, U-shaped curve exists, where “optimal” stiffness levels are associated with the lowest risk of running-related overuse injury., Too much stiffness is thought to increase risk of injuries via increased musculoskeletal loading, particularly on bony structures, while stiffness levels that are too low are thought to allow excessive joint motion, thereby increasing the risk of soft tissue injuries. Although injury type was not differentiated, a recent prospective cohort study identified increased knee stiffness as a significant predictor of running-related injury. While these findings were the first prospective evidence linking stiffness to injury, the stiffness-injury relationship was assumed to be strictly linear.",
+    "n_tokens": 389
+  },
+  {
+    "chunk_id": "davis2021_stiffness_injury#007",
+    "doc_id": "davis2021_stiffness_injury",
+    "pmcid": "PMC8155767",
+    "doi": "10.1177/23259671211011213",
+    "license": "CC BY-NC-ND",
+    "section": "Body",
+    "text": "[Leg Stiffness, Joint Stiffness, and Running-Related Injury: Evidence From a Prospective Cohort Study | Body]\nThe nature of any potential stiffness-injury association has important implications for injury prevention and rehabilitation interventions beyond those that directly target stiffness. If, for example, greater knee or leg stiffness does indeed increase risk of injury, gait retraining programs that aim to increase stride frequency may lead to an unintentional increase in injury risk, as increasing stride frequency is accomplished in part by an increase in leg stiffness. Likewise, switching from a rearfoot strike to a forefoot strike is known to increase ankle stiffness while decreasing knee stiffness. These alterations in stiffness distribution in the lower leg could have unexpected effects on injury risk, especially if joint stiffness is related to injury risk in a nonlinear fashion.\n\nLeg and joint stiffness themselves are also possible targets for gait retraining interventions, especially in light of recent advances in calculating stiffness using research-grade or commercially available wearable sensors., With such devices, protocols for monitoring or altering stiffness could be efficiently implemented in clinical settings on large numbers of patients. However, before interventions to monitor or change leg and joint stiffness can be implemented, it is necessary to confirm the previously hypothesized relationships between injury risk and stiffness.\n\nAs such, we sought to determine the relationship between running-related injury and leg, knee, and ankle stiffness using data from a prospective cohort study of recreational runners. We hypothesized that leg, knee, and ankle stiffness would have a significant and nonlinear association with running-related injury risk.",
+    "n_tokens": 321
+  },
+  {
+    "chunk_id": "davis2021_stiffness_injury#008",
+    "doc_id": "davis2021_stiffness_injury",
+    "pmcid": "PMC8155767",
+    "doi": "10.1177/23259671211011213",
+    "license": "CC BY-NC-ND",
+    "section": "Methods > Study Design and Participants",
+    "text": "[Leg Stiffness, Joint Stiffness, and Running-Related Injury: Evidence From a Prospective Cohort Study | Methods > Study Design and Participants]\nWe recruited a convenience sample of recreational runners for a prospective cohort study with a maximum follow-up of 1 year. Participants were recruited between November 2015 and June 2016 using flyers, emails, a research recruiting web page on institutional websites, and word of mouth. We aimed to recruit at least 38 runners for follow-up of at least 6 months to ensure that at least 10 injuries were observed (based on expected annual injury rates) because approximately 10 events per variable are necessary for univariate analysis of time-to-event data., Our ultimate sample size and number of events observed surpassed this threshold.\n\nVolunteers were eligible to participate if they were between the ages of 18 and 65 years, had run at least 16 km per week for at least 2 years, and had no history of injury in the previous 3 months. Participants who had experienced an injury in the past were required to have returned to their typical training volume and intensity. Volunteers were ineligible if they had any history of surgery to the back or lower extremities. The study was approved by the university’s institutional review board, and all participants provided written informed consent.",
+    "n_tokens": 258
+  },
+  {
+    "chunk_id": "davis2021_stiffness_injury#009",
+    "doc_id": "davis2021_stiffness_injury",
+    "pmcid": "PMC8155767",
+    "doi": "10.1177/23259671211011213",
+    "license": "CC BY-NC-ND",
+    "section": "Methods > Biomechanical Gait Data",
+    "text": "[Leg Stiffness, Joint Stiffness, and Running-Related Injury: Evidence From a Prospective Cohort Study | Methods > Biomechanical Gait Data]\nUpon enrollment into the study, all participants completed an in-laboratory overground kinematic and kinetic gait assessment. Gait data were captured at 240 Hz using a 9-camera motion capture system (Oqus 400; 500 Qualisys AB) synchronized with three 1200-Hz force plates (OR-6-2000; AMTI Inc). Each individual was outfitted with retroreflective markers in a bilateral modified Cleveland Clinic lower-body configuration.\n\nParticipants completed 2 sets of gait trials: 1 set at a criterion speed of 4.0 m/s and 1 set at the individual’s self-reported preferred training speed. At both speeds, a minimum of 5 successful trials on both legs was collected. A trial was deemed successful if the participant’s speed was within ±5% of the target speed, the participant’s foot made full contact with a force plate, and the participant did not modify his or her gait to target the force plate. To ensure that interparticipant differences in stiffness were a function of gait mechanics and not footwear, individuals wore a standardized neutral running shoe during the gait collection protocol (One X CrossFit Cushion 3.0; Reebok).\n\nMarker data were filtered using a fourth-order zero-lag low-pass Butterworth filter with a cutoff frequency of 12 Hz for marker data and 50 Hz for force data. Joint kinematics and kinetics were calculated using Visual3D software (C-motion Inc) using segment masses from Dempster and segment inertial properties from the geometric model of Hanavan., Joint centers were defined at the midpoint between the medial and lateral malleoli (ankle), at the midpoint between the medial and lateral junctions of the tibia and femur (knee), and using the regression equations of Bell et al, (hip). Sagittal plane internal joint moments were calculated using force data filtered at 12 Hz to avoid impact-related artifacts in joint moment data and expressed in their respective joint coordinate systems.",
+    "n_tokens": 393
+  },
+  {
+    "chunk_id": "davis2021_stiffness_injury#010",
+    "doc_id": "davis2021_stiffness_injury",
+    "pmcid": "PMC8155767",
+    "doi": "10.1177/23259671211011213",
+    "license": "CC BY-NC-ND",
+    "section": "Methods > Biomechanical Gait Data",
+    "text": "[Leg Stiffness, Joint Stiffness, and Running-Related Injury: Evidence From a Prospective Cohort Study | Methods > Biomechanical Gait Data]\nLeg stiffness was calculated using the equations of McMahon and Cheng:\n\nwhere kleg is leg stiffness, ΔL is the change in vertical leg length from initial contact to the instant of maximal vertical ground reaction force, and Fmax is the maximum vertical ground reaction force. In turn, ΔL was calculated as follows:\n\nwhere Δy is the maximum change in vertical position of the body’s center of mass during stance, L 0 is the standing leg length, θ is half the angle of the arc swept by the leg during stance, v is horizontal velocity at initial contact, and tc is the ground contact time. In addition, Δy was calculated using double-integration of the vertical ground-reaction force assuming equal and opposite initial and final vertical velocities of the body’s center of mass during stance, L 0 was calculated using height of the greater trochanter during the standing calibration trial, and v was calculated using the velocity of the center of mass of the pelvis.\n\nAnkle and knee joint stiffness was calculated using the method of Hamill et al, in which a linear regression equation is fit to the joint moment/joint angle plot using data from initial contact until the end of the absorption phase, which is defined as the instant of maximum ankle dorsiflexion during stance. This same instant is used for the calculation of ankle stiffness and knee stiffness (ie, knee stiffness is calculated using data from initial contact to the instant of maximum ankle dorsiflexion). The slope of this line gives the joint stiffness (). Although this calculation does not represent true mechanical stiffness, it can be considered a measure of “quasi-stiffness.” Stiffness data were calculated using kinetic and kinematic data for each step and averaged across trials within a condition and a leg.",
+    "n_tokens": 393
+  },
+  {
+    "chunk_id": "davis2021_stiffness_injury#011",
+    "doc_id": "davis2021_stiffness_injury",
+    "pmcid": "PMC8155767",
+    "doi": "10.1177/23259671211011213",
+    "license": "CC BY-NC-ND",
+    "section": "Methods > Follow-up and Outcomes",
+    "text": "[Leg Stiffness, Joint Stiffness, and Running-Related Injury: Evidence From a Prospective Cohort Study | Methods > Follow-up and Outcomes]\nStudy participants completed a weekly survey distributed via email (Qualtrics) that inquired about training volume, nonrunning physical activity, and any running-related pain or injuries that occurred. Participants were asked to report “any pain, injury, or problem with your legs, feet, joints, pelvis, and/or back.” If any potential injury was reported, individuals were asked whether they reduced or cancelled training sessions due to the problem, and if so, how many days of planned training were reduced or cancelled. These responses were used to measure the primary outcome, which was the emergence of a running-related injury. Running-related injury was defined using the consensus-based definition of running-related injury proposed by Yamato et al as any running-related pain that caused a cancellation or reduction in volume or intensity of at least 3 planned running sessions.\n\nParticipants were also asked to report the location of the injury in a free-response question and on a series of graphics of a human figure (a “pain manikin”). These responses were used to determine the location of the injury and assign it to either the left or the right leg. A licensed, experienced physical therapist reviewed the free-text responses to confirm that the description of pain was consistent with a running-related injury rather than nonrunning pain or injury (eg, work-related injury).\n\nStiffness variables often differ from leg to leg, and, as a result, each leg may be exposed to a different level of injury risk. To account for these differences, we recorded injuries at the level of individual legs. Each leg contributed person-time to the study until the occurrence of injury, the end of the study, or the participant was lost to follow-up. In this way, if a participant sustained an injury on the left side of the body, his or her right leg would continue to accrue time spent in the study until injury on the right side, loss to follow-up, or study conclusion. This approach follows previous research and provides a valid way to incorporate biomechanical data from both legs. One individual sustained a back injury during follow-up, which was assigned to both legs; however, this participant had already sustained injury on 1 side of the body, so potential ambiguities regarding which leg to assign to a back injury were not an issue with our data.",
+    "n_tokens": 505
+  },
+  {
+    "chunk_id": "davis2021_stiffness_injury#012",
+    "doc_id": "davis2021_stiffness_injury",
+    "pmcid": "PMC8155767",
+    "doi": "10.1177/23259671211011213",
+    "license": "CC BY-NC-ND",
+    "section": "Methods > Missing Data and Loss to Follow-up",
+    "text": "[Leg Stiffness, Joint Stiffness, and Running-Related Injury: Evidence From a Prospective Cohort Study | Methods > Missing Data and Loss to Follow-up]\nParticipants were considered lost to follow-up when they ceased responding to the automated weekly survey emails. In a few cases, long periods of nonresponse were punctuated by occasional survey responses. To limit the effect of these long periods of nonresponse, we implemented an iterative procedure where the final survey from participants with <75% compliance (defined as proportion of surveys completed from enrollment until loss to follow-up) was excluded until compliance met or exceeded 75%. For the remaining missed surveys, missing training volume data were handled using multiple imputation as implemented in the 2-level predictive mean matching method in the R packages “mice” (Version 3.8.0) and “miceadds” (Version 3.7-6).,, All statistical analyses were conducted in R Version 4.0.2 (R Core Team, Vienna, Austria). Five imputed data sets were created, and models were pooled using Rubin's Rules as described by Van Buuren.",
+    "n_tokens": 186
+  },
+  {
+    "chunk_id": "davis2021_stiffness_injury#013",
+    "doc_id": "davis2021_stiffness_injury",
+    "pmcid": "PMC8155767",
+    "doi": "10.1177/23259671211011213",
+    "license": "CC BY-NC-ND",
+    "section": "Methods > Statistical Analysis",
+    "text": "[Leg Stiffness, Joint Stiffness, and Running-Related Injury: Evidence From a Prospective Cohort Study | Methods > Statistical Analysis]\nEstimates and 95% confidence intervals (CIs) for the association between running-related injury and leg stiffness, ankle stiffness, and knee stiffness were assessed using 3 separate extended Cox proportional hazards models with Peto correction for ties. In each model, the stiffness-related changes in injury rate were allowed to vary in a smooth, nonlinear fashion by using restricted cubic splines with 10 knots dispersed evenly throughout the data and smoothness selected using restricted maximum likelihood fitting. This approach allows the model to accommodate possible nonlinear associations between stiffness and injury risk. Because the smoothing penalty was chosen using restricted maximum likelihood, the number and placement of spline knots had minimal effect on the results.\n\nGiven that stiffness and injury occur at the level of legs, which are nested within people, we addressed the correlated nature of these observations by including a Gaussian random effect (or “frailty”) at the participant level in each model. In this way, we accounted for factors that are shared among legs within the same individual—while 1 individual’s left and right legs may differ in their stiffness, they share the same genetics, lifetime physical activity history, and other variables that may affect injury risk (including training volume). Allowing legs to cluster within individuals also provides a valid method of continuing follow-up for the uninjured contralateral limb after an injury, which is important when a biomechanical mechanism of injury is thought to act at the level of the leg versus at the level of the individual. All statistical analyses were conducted using R Version 4.0.2 using the “survival” (Version 3.2-3) and “mgcv” packages (Version 1.8-31).,,,",
+    "n_tokens": 353
+  },
+  {
+    "chunk_id": "davis2021_stiffness_injury#014",
+    "doc_id": "davis2021_stiffness_injury",
+    "pmcid": "PMC8155767",
+    "doi": "10.1177/23259671211011213",
+    "license": "CC BY-NC-ND",
+    "section": "Methods > Sensitivity Analysis",
+    "text": "[Leg Stiffness, Joint Stiffness, and Running-Related Injury: Evidence From a Prospective Cohort Study | Methods > Sensitivity Analysis]\nIn time-to-event analysis of sports injury, multiple definitions of “time” are defensible. We focused our primary analysis on hours of running until injury but also conducted a parallel analysis using weeks of training until injury. Likewise, the in-laboratory biomechanical assessments included gait data collected at both a standardized speed of 4.0 m/s and at each participant’s self-reported preferred running speed; we again conducted parallel analyses—while a runner’s preferred speed better reflects his or her gait patterns during typical training sessions, a standardized speed ensures that differences among individuals are the result of inherent gait mechanics without confounding by variations in running speed. Furthermore, because training speed may be an independent risk factor for injury, any stiffness-injury associations may reflect the effects of speed and not inherent stiffness per se. Given that researchers may come to different conclusions on the appropriateness of assessing gait at a preferred versus a standardized speed, we present the results of both analyses here for transparency.",
+    "n_tokens": 213
+  },
+  {
+    "chunk_id": "davis2021_stiffness_injury#015",
+    "doc_id": "davis2021_stiffness_injury",
+    "pmcid": "PMC8155767",
+    "doi": "10.1177/23259671211011213",
+    "license": "CC BY-NC-ND",
+    "section": "Results",
+    "text": "[Leg Stiffness, Joint Stiffness, and Running-Related Injury: Evidence From a Prospective Cohort Study | Results]\nA total of 55 individuals were enrolled for participation. Of these, 2 participants were excluded for ongoing and preexisting injury, 1 was excluded for completing no weekly surveys, and 3 were excluded for not including training volume in their survey responses. A total of 32 weekly surveys from 10 different individuals were excluded via the iterative right-censoring procedure to ensure ≥75% compliance during the study duration. These iterative exclusions accounted for approximately 2.1% of all surveys received. A total of 49 participants (98 legs) contributed a total of 2742 person-weeks and 6379.6 hours of running (mean, 27.98 weeks of training and 65.10 hours of total running per leg) to the final analysis ().\n\nA total of 29 legs across 23 individuals (29.6% of legs; 46.9% of individuals) sustained an injury during follow-up. Median time to injury on either leg, as determined using Kaplan-Meier estimates, was 27 weeks or 53.27 hours of training. The most common location of injury was the foot, but injuries occurred throughout the lower body ().\n\nWe found weak and nonsignificant (P = .187-.712) associations between stiffness measures and injury ( and ). Relative injury rates tended to be equal across different levels of ankle stiffness and showed weak U-shaped associations for knee and leg stiffness. The greatest degree of nonlinearity in estimated relative injury rates was found for knee stiffness at preferred running speed (P = .187 and .227 for weeks and hours of training until injury, respectively), with proportionally greater increases in relative injury rates at knee stiffness levels greater than approximately 10 N·m/deg. However, 95% CIs were compatible with associations ranging from beneficial to injurious for both high and low stiffness levels.",
+    "n_tokens": 370
+  },
+  {
+    "chunk_id": "davis2021_stiffness_injury#016",
+    "doc_id": "davis2021_stiffness_injury",
+    "pmcid": "PMC8155767",
+    "doi": "10.1177/23259671211011213",
+    "license": "CC BY-NC-ND",
+    "section": "Results",
+    "text": "[Leg Stiffness, Joint Stiffness, and Running-Related Injury: Evidence From a Prospective Cohort Study | Results]\nThese associations were unaffected by changes in modeling choices. Sensitivity analysis across both measures for time (hours of training until injury, weeks of training until injury) and across both the criterion running speed of 4.0 m/s and preferred running speed showed that only high levels of knee stiffness had any consistent trends with regard to estimated relative injury rates, displaying a U-shaped curve in all 4 analyses.",
+    "n_tokens": 89
+  },
+  {
+    "chunk_id": "davis2021_stiffness_injury#017",
+    "doc_id": "davis2021_stiffness_injury",
+    "pmcid": "PMC8155767",
+    "doi": "10.1177/23259671211011213",
+    "license": "CC BY-NC-ND",
+    "section": "Discussion",
+    "text": "[Leg Stiffness, Joint Stiffness, and Running-Related Injury: Evidence From a Prospective Cohort Study | Discussion]\nThe objective of this study was to test the association between running-related injuries and leg, knee, and ankle stiffness. In this prospective cohort study, leg, ankle, and knee stiffness were not significantly associated with relative injury rates. Contrary to our hypothesis, we did not find sufficient evidence to support the argument that stiffness is an important factor in the development of injury.\n\nThese findings contrast with those of previous work suggesting that excessively high or low stiffness levels should increase injury risk.,, Butler et al proposed the existence of “optimal” levels of stiffness, linking the greater incidence of bony and soft tissue injuries in high- and low-arched runners, respectively, with higher levels of leg stiffness observed in high-arched runners and lower levels of leg stiffness observed in low-arched runners.\n\nMessier et al found that odds of injury increased in individuals with greater knee stiffness, but they did not specifically address the potential for nonlinear associations between knee stiffness and injury. The direction of our findings coincides with those of Messier et al for runners with very high levels of knee stiffness (ie, greater risk for high levels of stiffness) but disagree in regard to injury risk at lower than average stiffness levels. The differences in findings are not likely to be explained by differences in participant population, as the knee stiffness values seen in the present study when running at preferred training pace (mean ± SD, 6.78 ± 2.24 N·m/deg) cover a similar range as the stiffness values seen in Messier et al in injured and uninjured individuals (6.89 ± 2.65 and 6.72 ± 2.03 N·m/deg, respectively), running at modestly faster preferred speeds (3.60 ± 0.48 m/s in the present study; approximately 2.9 ± 0.4 and 3.0 ± 0.4 m/s in injured and uninjured individuals, respectively, in Messier et al). Both Messier et al and Carruthers and Farley noted that knee and leg stiffness are moderately correlated with body weight; we observed this trend as well (ρ = 0.49 for the right leg at preferred training pace). From a causal perspective, if greater stiffness is a consequence of greater body mass, it would be inappropriate to adjust for body weight during analysis—doing so would diminish the potential causal effect of stiffness on injury. As such, we chose not to adjust for body weight in our analyses.",
+    "n_tokens": 514
+  },
+  {
+    "chunk_id": "davis2021_stiffness_injury#018",
+    "doc_id": "davis2021_stiffness_injury",
+    "pmcid": "PMC8155767",
+    "doi": "10.1177/23259671211011213",
+    "license": "CC BY-NC-ND",
+    "section": "Discussion",
+    "text": "[Leg Stiffness, Joint Stiffness, and Running-Related Injury: Evidence From a Prospective Cohort Study | Discussion]\nGait mechanics are just 1 potential cause of running-related injury. While leg stiffness may modulate the structure-specific load on the body during training, training-related factors (eg, weekly mileage) influence the overall cumulative loading experienced by any given runner, and factors such as muscular strength and diet may influence that athlete’s capacity to withstand cumulative loading. Our analysis used stiffness measures as a proxy for structural loading and compared athletes after equivalent amounts of training using time-to-event analysis, which accounts for differences in weekly training volume. However, we did not measure or adjust for factors that could affect load-bearing capacity, such as lifetime physical activity history, diet, or sleep; as such, our results should be interpreted cautiously.\n\nExcept for legs with the most extreme values of knee and leg stiffness (ie, leg stiffness >13 kN/m or <7.5 kN/m; knee stiffness >9 N·m/deg or <5 N·m/deg), the 95% CIs for relative injury rates did not exceed 2.0, suggesting that moderate changes in leg, ankle, and knee stiffness are unlikely to lead to large changes in injury risk. These findings should give more confidence to clinicians employing stride frequency-based or footstrike-based gait retraining programs, as the changes in stiffness associated with these interventions are relatively small (eg, an increase in leg stiffness of 1.37 kN/m for a 10% increase in stride frequency) and are thus not likely to result in unintentional increases in injury risk for most runners.\n\nWe encourage future work specifically focused on runners with knee stiffness greater than approximately 9 N·m/deg (approximately the top 75th percentile or ≥1 standard deviation above average), as our models indicated the possibility for substantial increases in injury risk above this threshold. However, we emphasize that confidence intervals for these extreme values of stiffness were wide, allowing for the possibility of substantial increases or decreases in injury risk compared with stiffness values in runners with average stiffness in our study (eg, a relative injury rate as low as 0.78 or as high as 3.66 for a runner with knee stiffness of 10 N·m/deg compared with a runner with average knee stiffness) (). Larger studies, particularly those with a larger number of participants at these extreme levels of stiffness, will be necessary to determine whether runners with very high levels of knee stiffness are indeed more prone to injury. The evidence from this study does not, on the whole, support a strong association between extreme values of leg, knee, or ankle stiffness and running-related injury.",
+    "n_tokens": 545
+  },
+  {
+    "chunk_id": "davis2021_stiffness_injury#019",
+    "doc_id": "davis2021_stiffness_injury",
+    "pmcid": "PMC8155767",
+    "doi": "10.1177/23259671211011213",
+    "license": "CC BY-NC-ND",
+    "section": "Discussion",
+    "text": "[Leg Stiffness, Joint Stiffness, and Running-Related Injury: Evidence From a Prospective Cohort Study | Discussion]\nThe strengths of this study included its prospective nature, assessment of stiffness at the level of individual legs, and accounting for the possibility of nonlinear associations between stiffness and injury. Like most prospective studies to date on running-related injury, our findings were based on a modestly sized convenience sample of runners, which may not be representative of the broader population of runners. Although convenience samples are widely used in running injury research, these samples tend to have a lower body mass index and be younger, healthier, more predominantly male, and more likely to train at faster speeds. Although our study population included runners across a wide range of ages and body mass indicess and was not predominantly male, all participants in our study had at least 2 years of running experience. Thus, our findings may not be generalizable to novice runners.\n\nWhile our sample size was adequate for univariate time-to-event analysis, the limited sample size of our study precluded conducting detailed stratified or adjusted analyses to examine the contributions of multiple risk factors for running-related injury and may have limited our power to detect small or moderate associations between stiffness and injury, especially at extreme values. As such, we encourage future work with larger participant pools, particularly at extreme values of stiffness.\n\nWe relied on self-reported training data to investigate associations between stiffness and hours of training until injury. Self-reported training volume may not reliably estimate true training volume, which may have biased our results. However, because we also assessed the relationship between stiffness and weeks of training until injury and observed no major changes in our findings, any unreliability in training volume likely had a minimal influence on our results.",
+    "n_tokens": 374
+  },
+  {
+    "chunk_id": "davis2021_stiffness_injury#020",
+    "doc_id": "davis2021_stiffness_injury",
+    "pmcid": "PMC8155767",
+    "doi": "10.1177/23259671211011213",
+    "license": "CC BY-NC-ND",
+    "section": "Discussion",
+    "text": "[Leg Stiffness, Joint Stiffness, and Running-Related Injury: Evidence From a Prospective Cohort Study | Discussion]\nSelf-reported injury data provide only limited information on the anatomic structures affected by individual injuries—uncovering any potential relationships between leg or joint stiffness and specific types of running injuries would likely require injury diagnoses confirmed by a clinician. While stiffness has been associated with greater overall injury risk in previous work, emerging research suggests that some biomechanical risk factors are only relevant for certain injury locations. Although our results suggest stiffness may not be a major factor in overall injury risk, further research using clinician-confirmed injuries may be warranted to identify tissue-specific associations between stiffness and injuries to specific load-bearing tissues (e.g., patellofemoral joint, tibia).\n\nAs with all laboratory-based biomechanical research, gait patterns adopted during a 1-time in-laboratory assessment may not be reflective of gait mechanics during typical training. Stiffness may affect injury in a location-specific manner, but because only a small number of participants sustained injury at any given anatomic location, we were not able to assess location-specific associations between stiffness and injury. Runners with extreme stiffness values are, by definition, rare—in our study, only about 25% of participants had knee stiffness levels >9 N·m/deg—so our ability to detect increases in injury risk at very high or very low stiffness values was limited, as we did not specifically recruit runners with unusually high or low stiffness levels, which may be a target population for future observational studies or randomized controlled trials.",
+    "n_tokens": 309
+  },
+  {
+    "chunk_id": "davis2021_stiffness_injury#021",
+    "doc_id": "davis2021_stiffness_injury",
+    "pmcid": "PMC8155767",
+    "doi": "10.1177/23259671211011213",
+    "license": "CC BY-NC-ND",
+    "section": "Conclusion",
+    "text": "[Leg Stiffness, Joint Stiffness, and Running-Related Injury: Evidence From a Prospective Cohort Study | Conclusion]\nOur findings suggest that leg, knee, and ankle stiffness levels observed most commonly in runners may not be clinically relevant factors in the development of running-related injury. While discouraging from the perspective of identifying runners at high risk for developing injury, these results indicate that small to moderate changes in stiffness brought about by gait retraining or modification are not likely to lead to unintentional increases in injury risk.\n\nWe could not exclude the possibility that runners with unusually high knee stiffness are at an increased risk for injury. Additional research on these runners could pave the way for more individualized and subject-specific interventions to reduce injury risk.",
+    "n_tokens": 144
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#000",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Abstract > Background",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Abstract > Background]\nGiven the high incidence and heavy burden of running related injuries, large-scale, prospective multifactorial investigations examining potential risk factors are warranted. This study aimed to identify factors associated with running related injuries and to evaluate their potential in injury screening.",
+    "n_tokens": 53
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#002",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Abstract > Materials and methods",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Abstract > Materials and methods]\nTwo hundred and seventy-four recreational runners were recruited. Clinical measures (strength, range of motion, foot position), injury and training history (via questionnaire), impact loading (via accelerometery) and running technique measures were collected at baseline. Runners were tracked for injury for one year via fortnightly check-ins. A binary logistic regression, (injury versus no injury), was performed for each variable univariably, and then adjusting for age, sex and mileage. A multivariable regression was also performed to evaluate the model’s discriminative ability.",
+    "n_tokens": 105
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#003",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Abstract > Results",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Abstract > Results]\nOf the 225 runners included in the final analysis 52% experienced a running related injury. Injury history in the past year, less navicular drop, and measures of running technique (knee, hip, and pelvis kinematics) were associated with increased odds of injury (p < .05). The multivariable logistic regression model was statistically significant, χ2(11) = 56.45, p < .001, correctly classifying 74% of cases with a sensitivity and specificity of 72% and 76%, respectively. The area under the receiver operating characteristic curve was 0.79 (CI95% = 0.73–0.85), demonstrating acceptable discriminative ability.",
+    "n_tokens": 120
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#004",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Abstract > Conclusions",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Abstract > Conclusions]\nThis study found a number of clinical and running technique factors to be associated with prospective running related injuries among recreational runners. With the exception of injury history, the factors identified as being significantly associated with injury may be modifiable and therefore, could form the basis of interventions. Range of motion, spatiotemporal parameters and strength measures were not associated with injury and thus their utilisation in injury prevention practices should be reconsidered.",
+    "n_tokens": 96
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#005",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Introduction",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Introduction]\nThe high incidence of running related injuries (RRIs) [,] and their negative implications on both physical and mental health [] underscores the importance of understanding the associated risk factors. The challenge in identifying risk factors is that they are multifactorial in nature []. Given that RRIs are caused by high load in excess of tissue capacity [,], risk factors generally relate to: (1) load (e.g. impact accelerations, ground reaction force), (2) factors affecting load (e.g. running technique, BMI, sex, age), and/or (3) the ability of biological tissue to tolerate load (e.g. previous injury history, clinical measures [strength measures, foot position, flexibility]).\n\nThe most common method of indirectly quantifying loading during running has been by assessing ground reaction forces (GRFs) via force plates. However, there are mixed findings on their association with injury [,] A limitation of GRF assessment is that it captures whole-body loading and therefore, does not assess segment-specific loading. Segmental measurement would be more appropriate because injuries are site-specific and because loading distribution throughout the body and across runners are not homogenous. Impact accelerometers, which indirectly assess segmental loading [], are low-cost and easy to use, making them potentially more appropriate to a clinic-based setting and have shown good reliability across timepoints [].\n\nFactors that affect loading or the ability of the body to tolerate loading have also been the subject of RRI research. These range from high-resource, time-consuming measures of running technique using motion analysis systems [], to low-cost, easily implementable clinical measures such as: range of motion (ROM) [,], foot positioning [] and muscle strength [,]. Furthermore, training history [], previous injury history [,], sex [], age [] and BMI [] may also affect the load and tissue integrity.",
+    "n_tokens": 377
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#006",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Introduction",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Introduction]\nAlthough studies have investigated RRIs, many have examined a small number of factors, potentially failing to account for important risk factors. Furthermore, many studies have utilised a retrospective approach comparing currently injured runners to healthy controls [,]. Therefore, differences identified between injured and uninjured runners may be from alterations due to pain or a consequence of the injury, preventing appropriate conclusions regarding the actual risk factors for RRIs. This necessitates the execution of prospective large-scale studies, which are arguably more time and resource intensive to run but can provide valuable information regarding risk factors preceding injuries, which may help us to identify appropriate preventative measures. Few studies have examined multiple factors related to RRI in a prospective manner [,]. Perhaps the largest is that of Messier et al. (2018) [] who found greater knee stiffness, but not clinical measures, to be associated with greater odds of injury. However, they used GRFs to quantify loading, which do not reflect segmental loading (discussed above), and kinematic analysis was limited to the lower leg, despite kinematics further up the body being reported as potentially related to injury []. Therefore, examinations involving impact accelerometery and kinematics of the thorax, hip and pelvis are required.\n\nThis study aimed to prospectively examine the association between RRIs and demographics, injury history and training history, clinical measures, impact accelerations and running technique in a large cohort. A secondary aim was to evaluate the potential of these factors in screening for RRI. It was hypothesised that factors which indicate higher loading (e.g. greater impact accelerations) or reduced ability to dissipate loading (e.g. decreased foot arch, lower muscle strength, less sagittal knee flexion angle at initial contact, foot strike pattern) would be associated with the occurrence of injury.",
+    "n_tokens": 384
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#007",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Materials and methods > Protocol",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Materials and methods > Protocol]\nTwo hundred and seventy-four recreational runners were recruited from Dublin and its surrounding areas (from January—September 2018) for participation in this prospective study via national radio, social media advertisement, phone calls to running clubs and leaflet distribution at running events. Inclusion eligibility was as follows: recreational runners, between 18–65 years old, with no history of injury within the last three months(8). Participants were excluded if they participated in contact, team, or high impact sports, to limit the effects of injuries related to non-running activities. A recreational runner was defined as a person who ran a minimum of 10km per week, for at least six months prior to inclusion in the study []. Participants were excluded if they previously or currently participated at an international level. An a priori power analysis was conducted using G*Power (G*Power V3.1, Heinrich-Heine-Universität, Dusseldorf, Germany) to determine the minimum sample size for a logistic regression analysis in this exploratory prospective study []. To achieve 80% power for detecting an odds ratio of 1.7 at a significance criterion of α = .05, a total of N = 170 participants was required. Accounting for a potential attrition rate of 20% [,] a total of 204 participants was required.\n\nThis trial was registered prior to recruitment (ClinicalTrials.gov Identifier: NCT03671395). Ethical approval was granted by Dublin City University Ethics Committee (DCUREC/2017/186). Participants were provided with a plain language statement form and screened for inclusion and exclusion criteria. Participants provided written consent to participate in the study. Eligible participants completed an online survey regarding their injury and training history prior to attending a baseline testing session, lasting approximately two hours. shows the flowchart of participants.",
+    "n_tokens": 365
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#008",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Materials and methods > Protocol",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Materials and methods > Protocol]\nOn the day of testing, participants completed a PAR-Q health clearance form and an informed consent form. The online survey responses were checked with the participant for accuracy.",
+    "n_tokens": 37
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#009",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Materials and methods > Clinical tests protocol",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Materials and methods > Clinical tests protocol]\nAnthropometric measurements and musculoskeletal clinical tests were performed for each participant by one investigator in line with the protocol of Dillon et al. (2021) []. Ankle dorsiflexion, hip extension, hip internal rotation, and external rotation range of motion were assessed for each leg and an average of three trials was used using a digital inclinometer. Foot position, navicular drop and foot posture index (FPI-6) were measured on each foot. The navicular drop is a measurement of the displacement of the navicular bone from a subtalar neutral sitting position to standing. The larger the displacement, the larger the collapse of the arch of the foot. The start and end test positions of the navicular bone were marked on a card, and the displacement was then measured with a ruler to the nearest millimetre. The Foot Posture Index is a static measurement of the foot on multiple planes (see Redmond et al. [] for more information). This clinical tool rates six different measures of foot alignment, with higher scores indicative of a more pronated foot posture and lower values indicative of a more supinated foot. Manual isometric muscle testing using a hand-held dynamometer (J-Tech Commander Echo Wireless Muscle Testing Starter Kit, J-Tech Medical Industries, Midvale, UT, USA) (with and without stabilisation belt) was performed for the following: hip abduction, hip extension, plantarflexion, knee flexion and knee extension, with the maximum of three trials selected and normalised to moment arm and body mass. Participants were directed to use maximum effort and were given 15 second rest periods between bouts. Moderate to excellent intra-rater reliability was found for these measures (ICC = 0.83–0.99, lower–upper bound 95% CI = 0.53–0.99) [].",
+    "n_tokens": 368
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#010",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Materials and methods > Running motion analysis protocol",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Materials and methods > Running motion analysis protocol]\nA standardised dynamic lower-body warm-up was performed. Subsequently, participants performed a treadmill run (Runner-DTM2500, Flow Fitness, Amsterdam, Netherlands) wearing the footwear they normally use for running. They ran for 6 minutes at a speed of 9 km/hr for warm-up and treadmill familiarisation. Participants then ran for three minutes at a self-selected pace that best represents their typical training pace.\n\nDuring the first minute of the self-selected treadmill run, kinematic data were collected using a 17-camera, 3D motion analysis system (Vicon Vantage, Oxford Metrics PLC, Oxford, United Kingdom) at a sampling rate of 200 Hz. Thirty-two reflective markers, 14 mm in diameter, were placed by one investigator (SD) on bony landmarks of the trunk, pelvis and lower limbs according to a Plug in Gait model (Vicon, Oxford Metrics PLC, Oxford, United Kingdom), with additional markers on the anterior aspect of the mid-tibia and mid-thigh bilaterally.\n\nPeak acceleration (peakaccel) and rate of acceleration (rateaccel) were measured using three inertial measurement units, with two attached to the shank and one to the lower back (IMUs) (Shimmer3 IMU unit, Shimmer, Dublin Ireland). IMUs have previously been found to show high to excellent reliability over long and short term periods [] and are a surrogate measure of loading [,]. IMUs (dimensions: 65 mm x 32 mm x 12 mm, weight: 31 gm, acceleration range: ± 16 g) were attached tightly bilaterally to each shank, 5 cm proximal to the medial malleolus, using Hypafix tape, and aligned with the long-axis of the shank. A single IMU (dimensions: 51 mm x 34 mm x 14 mm, weight: 23.6 gm, acceleration range: ±8 g) was secured tightly with a custom-made belt adhered to the skin using double sided sticky tape and another belt overlaying it. The negative y-axis aligned superiorly along the vertical midline of the S2 spinous process. This was secured further by tape and an elastic waistband in line with recommendations that wrapping is more representative of tibial accelerations []. The IMU triaxial accelerometer data were captured at 512 Hz. Sensors were calibrated using the Shimmer 9DOF Calibration Application.",
+    "n_tokens": 457
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#011",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Materials and methods > Injury tracking protocol",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Materials and methods > Injury tracking protocol]\nAfter this testing session, participants were encouraged to train as normal and RRIs were tracked prospectively for one year. Participants were emailed every 2 weeks enquiring about injuries and were also encouraged to contact researchers at the time of any injury. An RRI was defined in line with a consensus statement [] as any muscle, bone, tendon or ligament pain in the lower back, hip, groin, thigh, leg, knee, foot, ankle and toe that caused the participant to stop or restrict their running. The pain must have persisted for at least 7 days or 3 consecutive scheduled training sessions or required the participant to consult a physician or other health care professional. All injuries were diagnosed by the researchers (SD (Chartered Physiotherapist) and AB (Certified Athletic Therapist). Where this was not possible, the diagnosis was confirmed via phone call. Severity was reported as minor, moderate, serious or long-term if 1–7 days, 8–28 days, 29 days-6 months or greater than 6 months was missed, respectively []. Additionally, if no days were missed this was recorded as a minor injury. Participants were removed if they did not respond to at least 80% of check ins.",
+    "n_tokens": 257
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#012",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Materials and methods > Data management and analysis",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Materials and methods > Data management and analysis]\nClinical and anthropometric data (detailed in ) were inputted into an Excel Sheet. Weight and height were used to calculate BMI. For the range of motion and navicular drop variables, the average of three trials was recorded. Additionally, using navicular drop values, participants were categorised into two groups, >10mm and <10mm, as measurements exceeding 10mm have previously been found to be related to injury []. FPI scores were used to allocate participants into one of three foot type categories: supinated (-1 to -12), neutral (0 to +5) and pronated (+6 to +12). Isometric muscle strength was normalised to moment arm (distance from the fulcrum to the application of force) and body mass. The maximum of three trials was recorded. Accelerometery data were processed using custom-written software (MATLAB R2018a) and were filtered using a 4th -order zero-lag Butterworth filter (60 Hz) []. A cubic spline was used to fill dropped packets, and the time series data were time-aligned via the Shimmer software (Shimmer Consensys, Ireland). With respect to the kinematic data, rigid body segments of the thorax, pelvis, thigh, shank and foot, and the joint angles (of the foot, knee, hip, thorax) between these segments in all three planes were defined by the Plug in Gait Model in Nexus 2 (Vicon, Oxford Metrics PLC, Oxford, UK). Filtering of Vicon marker trajectories was done using a fourth-order zero-lag Butterworth filter at 15 Hz. A cutoff frequency of 15 Hz was chosen by residual analysis []. To improve accuracy of the kinematic data, a number of approaches were undertaken []. Functional joints were calculated using the ‘OSSCA’ method. Hip joint centre and the functional knee axes were calculated using the symmetrical centre of rotation estimation (SCoRE) and the symmetrical axis of rotation approach (SARA), respectively. Soft tissue artefact was minimized using the optimal common shape technique (OCST). Stance data at discrete time points were extracted from 30 strides for analysis (peak angle, minimum angle, excursion angle, angle at initial contact, angle at toe-off). In relation to foot strike pattern, categories were determined in line with previous recommendations, with foot angle at initial contact over 8.0° representing rearfoot strike, less than -1.6° representing forefoot strike and between -1.6° to 8.0° indicating a midfoot strike []. The full list of included variables can be seen in .",
+    "n_tokens": 509
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#013",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Materials and methods > Data management and analysis",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Materials and methods > Data management and analysis]\nParticipants were first divided into prospectively injured and prospectively uninjured groups. Among injured runners, variables of interest were taken from the side of the body which was reported to have sustained the first injury. This was done for two reasons. Firstly, some participants experienced injuries on both sides of the body. Although values on both sides could have been averaged, it was hypothesised that the side of the first injury would most accurately reflect factors causative of injury. Secondly, it was hypothesised that subsequent injuries may be as a result of the first injury. To minimise the effects of limb dominance, the percentage of injuries sustained on the dominant and non-dominant sides was calculated. The same proportion of dominant and non-dominant sides were selected at random for the uninjured runners. Where first injuries were bilateral or central in nature (e.g. central low back pain), the dominant side was used.\n\nThe variables assessed are outlined in . Five categorical variables were included: sex, injury history, running experience, foot strike pattern and navicular drop (greater than or less than 10mm). To assess the primary aim, a univariable binomial regression for each variable was performed, with significance set at p < .05. Since sex [], age [] and mileage [] may be associated with injury, these were included as covariates and both the adjusted and unadjusted results reported. To assess the secondary aim, variables with a p value < .25 were entered into a multivariable logistic regression []. Linearity of the continuous variables with respect to the logit of the dependent variable was assessed via the Box-Tidwell procedure []. A Bonferroni correction was applied using all terms in the model resulting in statistical significance being accepted when p < .00172. Based on this assessment, all continuous independent variables were found to be linearly related to the logit of the dependent variable. Multicollinearity was assessed using Spearmon’s Rho Correlations (). Where variables were correlated (>0.7) [], the variable with the highest statistical significance was used. Imputing missing variables was achieved by utilising the: clinical, kinematic, anthropometric and demographic variables, along with the training history []. Numeric data were first scaled to unit variance and zero mean, while the categorical data were dummy encoded. Data were then imputed using multivariable imputation by chained equations and a Bayesian ridge regression approach []. All variables with a univariate association p < .25 were included in a binomial regression using backward stepwise selection logistic regression. P < .05 was considered statistically significant (SPSS Statistics version 27, IBM Corporation, Armonk, New York, USA). Odds ratios and confidence intervals were reported for each variable. With respect to continuous variables, odds ratios > 1 indicate that as the predictor variable increases injury is more likely to occur. Odds ratios < 1 indicate that as the predictor variable increases injury is less likely to occur. For categorical predictors, the odds ratio compares the odds of injury between a reference category and a predictor category, with OR >1 indicating that that injury was more likely to occur in those falling into the predictor category.",
+    "n_tokens": 681
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#014",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Materials and methods > Data management and analysis",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Materials and methods > Data management and analysis]\nA receiver operating characteristic (ROC) curve was performed to determine the model’s discriminatory ability. The area under the curve values were interpreted with: <0.5, >0.5 to 0.7, >0.7 to 0.8, > 0.8 to 0.9, > 0.9 representing no, poor, acceptable, excellent and outstanding discrimination, respectively [].\n\nTo assess the usefulness of factors with high relevance to clinical practice, an additional multivariable binomial regression was run solely using factors considered cost and time efficient: clinical measures [foot position, muscle strength, flexibility], injury history, training history and demographics. This was undertaken using the same procedure outlined above.",
+    "n_tokens": 126
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#015",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Results",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Results]\nOf the 274 runners entering the study, 225 runners (82%) remained in the study to follow up (84 females, 141 males, weight = 74.7 kg, height = 1.73m, BMI = 24.0 kg/m2, age = 43.5 years). Reasons for exclusion are detailed in . Over the 1-year period, 52% (n = 117) reported at least one RRI. The location (), diagnoses () and severity () of injury are reported, with injured runners missing an average of 56 days due to RRI. Calf strain (15%), followed by Achilles tendon injury (11%) and plantar fasciopathy (9%) constituted the largest proportion of injuries ().\n\nDemographic and anthropometric characteristics of participants are detailed in . There were no differences in running speed between the injured and uninjured runners (mean difference = -0.006 km/hr, CI95% = -0.40–0.39, t (223) = -.029, p = .977).",
+    "n_tokens": 184
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#016",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Results > Univariable analysis",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Results > Univariable analysis]\nThe univariable analysis () revealed the following factors were significantly (p < .05) associated with the development of an RRI: clinical measures (less navicular drop), previous injury history < 1 year ago, and running technique (greater knee internal-external rotation excursion, less minimum knee valgus, less hip adduction at toe-off, less transverse plane peak pelvis contralateral rotation, less transverse plane pelvis contralateral rotation at toe-off, less knee valgus at initial contact, less peak knee valgus, less knee valgus at toe-off, (). After adjusting for age, weekly mileage and sex, the following were additionally statistically significant and associated with RRI: navicular drop <10 mm, greater transverse plane peak pelvis ipsilateral rotation, greater knee valgus-varus excursion, less minimum hip adduction. A complete report of the univariable analysis is available in . For clarity, when two significant variables were highly correlated (), terms were grouped for the discussion.",
+    "n_tokens": 192
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#017",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Results > Multivariable analysis",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Results > Multivariable analysis]\nRegarding the multivariable analysis, only 11 variables remained in the final model, with eight being statistically significant (p < .05): previous injury history < 1 year ago, less navicular drop, lower BMI, less knee flexion strength, less knee valgus at initial contact, greater hip internal-external rotation excursion, greater thorax contralateral-ipsilateral side flexion excursion and less pelvis internal rotation at toe-off (). The multivariable logistic regression model was statistically significant, χ2(11) = 56.45, p < .001, correctly classifying 74% of cases. Sensitivity was 72% and specificity was 76%, the positive predictive value was 75% and the negative predictive value was 74%. The area under the ROC curve was 0.79 (CI95% = 0.73–0.85), demonstrating acceptable discriminative ability between injured and uninjured runners.\n\nA further analysis was conducted investigating the relationship between prospective RRI and the factors considered relatively cost and time efficient to assess (clinical measures [foot position, muscle strength, flexibility], injury history, training history, demographics and anthropometrics) (). History of injury in the past year, less navicular drop, and lower hip abduction strength significantly contributed to the model. The model was statistically significant, χ2(5) = 21.38, p = .001 and correctly classified 63% of cases. Sensitivity was 59%, specificity was 66%, positive predictive value was 64% and negative predictive value was 62%. The area under the ROC curve was 0.67 (CI95% = 0.60–0.74), demonstrating poor discriminative ability between injured and uninjured runners.",
+    "n_tokens": 308
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#018",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Discussion",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Discussion]\nWhere possible, the findings of the present study were compared to previous prospective studies investigating general RRIs. This was done as the cause-effect response to injury is unclear in retrospective studies, with the possibility of injuries producing compensatory changes that are directly opposite to true causative factors. This study aimed to investigate factors associated with RRI among recreational runners. Largely, our results were not in line with the hypothesis that measures of loading (impact acceleration) or factors affecting the dissipation of load (muscle strength, knee flexion angle at initial contact, foot strike pattern) would be associated with injury.",
+    "n_tokens": 130
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#019",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Discussion > Injury incidence",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Discussion > Injury incidence]\nThe one-year injury incidence of 52% is similar to other studies [,]. The calf constituted the highest proportion of injuries, as found in previous research []. However, the knee was only the third most reported injury site, despite it being frequently cited as the most common []. In terms of injury diagnosis, calf strain (15%), followed by Achilles tendon injury (11%) constituted the largest proportion of injuries. In their study of injury diagnoses within a 24-week tracking period, Mulvad et al. (2018) [] found medial tibial stress syndrome, followed by Achilles tendon injury to be the most common diagnosis in recreational runners. The difference from our study may be explained by injuries being grouped differently. For example, what we classified as “calf injuries” were subdivided into “soleus injuries” and “gastrocnemius injuries” by Mulvad et al. (2018) []. Had these injuries been grouped, as in our study, calf injuries would have been the second most common injury, pointing to the need for standardised classification and reporting of injuries. The comparatively small proportion of MTSS injuries may be reflective of the greater weighting of females in the study by Mulvad et al., (2018) [], as previous research suggests that female sex is a risk factor for this injury []. The majority of injuries were classified as “serious”, indicating that they lasted 28 days-6 months; the average number of missed days was similar to previous research [].",
+    "n_tokens": 312
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#020",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Discussion > Univariable analysis > Anthropometric and demographic factors",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Discussion > Univariable analysis > Anthropometric and demographic factors]\nThe associations between RRI and anthropometric and demographic factors such as BMI, age and sex have been debated within the literature. Greater BMI has been theorised to be associated with increased risk of injury by placing increased load per step; although its association to RRI has been debated [,]. Older age is suggested to be related to increased risk of RRI [], possibly due to changes in running technique [], and decreased muscle strength []. However, research is mixed [,]. In our study, age, BMI and sex were not found to be associated with RRI. A comparable proportion of males and females became injured during the one-year tracking period, a finding echoed elsewhere [].",
+    "n_tokens": 152
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#021",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Discussion > Univariable analysis > Injury and training history",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Discussion > Univariable analysis > Injury and training history]\nAn injury in the past year (injury history) was found to be associated with a prospective injury in both the multivariable and univariable analyses, increasing odds of injury by over two times. This is in line with a previous systematic review []. There are two primary explanations for this relationship. Firstly, previously injured tissues may not have adequately healed []. Secondly, injury-related pain may lead to an alteration in running technique [], which may persist following return to sport. This alteration may overload biological structures, precipitating future injury. In our study, while injury in the previous year increased the odds of injury in the final multivariable model, a previous injury of greater than one year did not. This supports the suggestion that with a shorter time frame since injury, runners are more vulnerable to re-injury []. This indicates that athletes, clinicians and coaches should be particularly cognisant of runners with an injury within the preceding year.\n\nNo association was found between RRI and either measure of training history (self-reported pace, average weekly mileage in past three months). Regarding pace, our findings were in line with previous studies investigating RRIs [,]. However, the association between RRI and weekly mileage has been conflicting [,]. Our findings provide evidence to indicate that recall of weekly mileage may not provide clinicians with information useful for indicating who will sustain an injury. However, given the theoretical link between increased load and injury [,], other measures of capturing volume of loading, such as strides/session, should be explored.\n\nSpatiotemporal parameters such as stride length, flight time, step time, stance time and stride rate were not associated with injury. Spatiotemporal parameters are relatively easily measurable and have been postulated to be related to RRI. A common suggestion is that manipulation of these factors can reduce injury risk via load reduction []. Most research investigating the association between RRI and spatiotemporal parameters is retrospective, therefore, this study adds important information to this area. To our knowledge, just one prospective study has investigated the association between general RRI and a number of spatiotemporal parameters during running [], finding significantly greater flight time and lower step rate among injured compared to uninjured runners. However, this was based on a sample size of 31 runners and this finding only pertained to females. Adding credence to our lack of significant findings, a systematic review by Brindle et al. [] found no difference in mean stride time, stance time, cadence, and stride length between uninjured and injured runners via a meta-analysis.",
+    "n_tokens": 556
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#022",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Discussion > Univariable analysis > Clinical measures",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Discussion > Univariable analysis > Clinical measures]\nClinical measures such as strength [], range of motion [,] and foot positioning [] have widely been hypothesised to be associated with injury, with modification via strengthening, stretching and orthoses suggested in injury intervention methods []. We found just one clinical measure, the navicular drop test, to be associated with injury. Unlike static measures such as Foot Posture Index, which was not found to be univariately related to injury in our study, navicular drop captures the dynamic mobility of the foot and is thought to represent the movement of the medial longitudinal arch []. It is also suggested to be related, although weakly, to rearfoot eversion [], making it potentially useful for clinicians in lieu of biomechanical motion analysis equipment. Our results showed that with less navicular drop, the odds of future RRI increased. Our results also indicated that navicular drop < 10 mm, which is a previously used cut-off point [,], increased odds of injury by two times. Largely, findings from studies investigating the relationship between general RRIs and navicular drop on a continuous level [,] or using cut-off points [,] have been mixed. It should be noted, that similar to our study, Dudley et al. (2017) [] reported mean navicular drop of injured participants to be 17% less than that of uninjured runners, however, this did not reach significance. Lack of significance may have been related to the small sample size (n = 31). An explanation of our findings may be that uninjured runners have a more flexible foot, with increased capability in absorbing loads during stance []. However, the mean values of navicular drop test observed in our study would place the uninjured runners in the “pronated” category and the injured runners in the “neutral” category []. Therefore, although injured runners may not have as much arch collapse as the uninjured group, they do demonstrate some flexibility of the foot. Secondly, a minimum detectable change of 1.70–2.22 mm has previously been reported [] and differences between our groups does not exceed this. Therefore, from a clinical perspective this finding should be interpreted cautiously, although these results indicate that clinicians should reconsider running injury prevention and treatment techniques aimed at correcting “over- pronation”. There also did not appear to be an association between foot eversion and the occurrence of a RRI, contrary to the traditional belief that navicular drop is linked to eversion movement.",
+    "n_tokens": 528
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#023",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Discussion > Univariable analysis > Clinical measures",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Discussion > Univariable analysis > Clinical measures]\nLower strength has been suggested to be associated with RRI, with strengthening a target of injury prevention interventions []. However, research surrounding the association between prospective RRIs and strength has largely been inconsistent [,]. The present study indicates that isometric strength in a fixed position is not associated with RRI. It should be noted that running also requires concentric and eccentric muscle action [] through a range of movement, which may not have been captured by the isometric testing protocol employed in our study. In addition, it is possible that maximum strength values were not captured, as they may be dependent on participant motivation. ROM has been inconsistently linked to RRI [,], with some authors suggesting that low ROM places excessive stress on joint [] and others suggesting that high ROM increases demands on muscles to stabilise during movement []. Our large-scale study indicates that ROM values have very limited value in understanding the aetiology of RRI. This may be because the ranges of motion exhibited in these clinical tests are greater than those utilised during running, indicating that running is unlikely to produce strain-related injuries.",
+    "n_tokens": 248
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#024",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Discussion > Univariable analysis > Running technique",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Discussion > Univariable analysis > Running technique]\nSignificant associations between the risk of RRIs and pelvis, hip and knee kinematics were found. Stance phase transverse plane pelvis rotation was found to be associated with RRI (Figs and ). During running, the pelvis rotates contralaterally and ipsilaterally in the transverse plane (whereby the anterior aspect of the pelvis rotates towards the swing and stance legs, respectively). Although the important role of transverse plane pelvic rotation in running for performance is well recognised [], to the best of our knowledge, it has not been previously studied, either prospectively or retrospectively, in relation to RRIs. At initial contact the pelvis is in slight ipsilateral transverse plane rotation and this increases until midway through stance () []. During terminal stance and approaching toe-off the pelvis begins to contralaterally rotate. In our study, less peak pelvic contralateral rotation during stance was associated with increased odds of injury. During straight-line running, the balance of the angular momentum between the upper and lower body about the vertical axis must be maintained []. This is controlled by the interaction of movements of the head, arms, trunk, pelvis and legs in the transverse plane and the vertical free moment produced at the foot. The vertical free moment is the moment of force produced due to the friction between the foot and the ground during stance []. While it is not clear which is cause and which is effect, less pelvic contralateral rotation is reflective of higher vertical free moments at the foot, which are related to an increase in lower limb tortional stress []. An increase in torsional stress has been linked to injuries such as tibial stress fractures [] and PFPS [].",
+    "n_tokens": 369
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#025",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Discussion > Univariable analysis > Running technique",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Discussion > Univariable analysis > Running technique]\nIn the frontal plane, less hip adduction was found to be associated with injury. To our knowledge, frontal plane hip motion has only been examined in one prospective study with respect to general RRI, finding no association to exist []. However, Dudley et al. [] investigated collegiate cross-country runners who may have distinctive injury risk factors. Our finding is in line with some previous retrospective studies examining specific injuries [,,]. Primarily, explanations connecting less peak adduction to injury have focused on iliotibial band syndrome, unclear suggestions as to its aetiology []. Specifically the association between less hip adduction at toe-off and general RRIs may be explained by two reasons- less transverse plane contralateral pelvic rotation (discussed above) and/or increased trunk lateral flexion over the stance limb as a result of weak hip stabilisers [,]. However, our data did not find side flexion or hip abduction strength to be associated univariately with injury.\n\nAt the knee, less knee valgus and greater valgus-varus excursion were found to be univariately associated with increased odds of injury. The prevailing theory relating knee motion to injury suggests that extreme varus and valgus knee positions increase load bearing on the knee medially and laterally, respectively []. Over time, high patellofemoral stress overload the articular cartilage and subchondral bone, resulting in injury []. However, previous research investigating peak knee varus during the stance phase of running has been limited, finding no difference between those with and without general prospective RRIs []. In our study, it is in fact less peak valgus and less valgus at initial contact that is associated with injury. However, when considering the entire stance phase, injured runners displayed greater frontal excursion at the knee. Therefore, it is possible that greater frontal plane motion at the knee during stance signifies a lack of control of the knee, potentially causing increased pressure on both the medial and lateral knee. Greater knee excursion during stance, despite the similar stance time between injured and uninjured runners, may also indicate that the rate of loading on knee structures during stance was greater among injured runners. Although this has not been previously investigated during running in relation to general RRIs, in a study of team sport athletes, those displaying large frontal knee motion angles during a single leg squat were 2.7 times more likely to sustain a lower extremity injury []. This indicates that frontal joint excursion, rather than peak angles, is important in relation to RRIs.",
+    "n_tokens": 544
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#026",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Discussion > Univariable analysis > Running technique",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Discussion > Univariable analysis > Running technique]\nIn the transverse plane, our study found that greater knee internal-external rotation excursion was univariately associated with increased odds of RRI. Only one RRI study has previously investigated knee rotation excursion, finding no association in their retrospective cohort study involving currently injured runners with PFPS []. Greater knee rotation excursion may have lead to increased torsional loads on knee and thigh structures such as the iliotibial band (ITB) [] and greater patellofemoral contact pressures on facets of the patella [].\n\nOur study found no sagittal plane running technique factors to be associated with prospective injury. This is very important given the preponderance of research studies and clinical examinations that focus predominantly or exclusively on sagittal plane motion. Notably, rearfoot striking has frequently been theorised to relate to injury via greater impact loading magnitudes [] and loading rates []. However, even results from this research are conflicting [], and limited by the dominance of retrospective research []. Our research indicates that no association existed between foot strike and injury, in line with a recent systematic review []. However, its relationship to specific injuries should be considered further due to the associations between foot strike patterns and structure specific loading, such as between rearfoot strike pattern and increase in knee joint stress [] and between forefoot strike pattern and increase in Achilles tendon force [].\n\nSimilarly, knee flexion has been hypothesised to be a cause of general RRIs, due to increase in contact forces with knee extension []; but few studies have examined this []. During gait, knee flexion aids in shock absorption at initial contact and throughout stance []. Our findings add weight to the existing evidence [] that there is no association between general prospective RRIs and either peak knee flexion or knee flexion at initial contact.",
+    "n_tokens": 396
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#027",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Discussion > Univariable analysis > Loading during running",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Discussion > Univariable analysis > Loading during running]\nNeither peak nor rate of impact acceleration at the shank and sacrum were associated with injury in this study. Previous research investigating impact accelerations and injury has been limited and conflicting, with just one study examining impact accelerations at the back among 76 runner []. Therefore, the present prospective study provides the strongest evidence to date that impact accelerations assessed at a single time point when tested on a treadmill do not significantly affect the odds of sustaining an RRI. Although there are a number of reasons to inform the hypothesis that loading in excess of tissues capabilities would be related to injury [], our study may have found no such relationship to exist for three reasons. First, the magnitude of impact accelerations may not in isolation distinguish between injured and uninjured runners, but a combination of loading and accurate collection of training volume could be necessary to determine cumulative loading []. Second, impact accelerations were captured on a treadmill and therefore may not be representative of typical running surfaces. Third, it may not be excess loading, but lower tissue strength (which may include decreased contractile strength, decreased morphological strength, inadequate training adaptation in response to loading) among injured runners that make them susceptible to injury.",
+    "n_tokens": 274
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#028",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Discussion > Multivariable analysis",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Discussion > Multivariable analysis]\nThe multivariate analysis identified a significant model containing eight features. Less navicular drop, injury history <1 year ago, lower knee flexion strength and stance phase variables (i.e. greater thorax contralateral-ipsilateral side flexion, greater hip internal-external rotation excursion, greater knee varus valgus excursion, less pelvic contralateral rotation at toe-off and less knee valgus at initial contact) all significantly contributed to greater odds of RRI. While the area under the ROC curve indicates an acceptable level of discrimination (74% accuracy), the use of this information to screen for RRI has a number of practical limitations. Firstly, given the large number of factors which contribute to the model and the time and effort that would be required to identify these factors, using this as a screening tool may not be feasible. Secondly, almost 30% of runners who would become injured would not be identified and therefore would not receive an intervention. Issues with sensitivity of screening tools has been highlighted as a challenge in injury screening programmes per se previously []. Lastly, cut-off points would need to be established to make this viable as an injury screening approach. However, although these three points suggest challenges in relation to injury screening, the identified risk factors of RRIs provide the foundation for the design of intervention programmes that can be undertaken by all runners. Effective programmes are currently lacking for running, but should be implemented and tested for efficacy, as has been done in in other sports (e.g. soccer []).\n\nSimilarly, the additional analysis undertaken to determine the association between RRI and factors easily measurable by clinicians (clinical measures, training history, anthropometrics and demographics), showed limited discriminative ability.",
+    "n_tokens": 364
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#029",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Discussion > Clinical implications of research",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Discussion > Clinical implications of research]\nThis study found a number of factors to be associated with increased odds of general RRIs, the strongest of which was previous injury < 1 year ago. This may indicate that, following injury, some runners have not regained original tissue strength or that they have alterations in technique that increase their vulnerability to injury. We also found that running technique is related to injury. Running technique is amenable to change via running retraining protocols []. Intervention strategies targeting neuromuscular and technique-based interventions should be developed and tested for efficacy in the same way that FIFA 11 [] and similar approaches have been developed in other sports. Our study provides important information for general injury prevention strategies for runners. Although the developed model could correctly classify 74% of cases and showed acceptable discrimination between injured and uninjured runners, given the large number of variables that contributed to this model and the time-consuming nature of measuring each of these variables, the feasibility of using all of these measures in practice is questionable. Moreover, it should be noted, that although the association between some kinematic variables and injury were statistically significant, the mean differences between the groups were very small. In terms of the clinical relevance, it is possible that these angles could be smaller than that which could be reliably detected by clinicians using 2D analysis [], which is more widely available than 3D motion capture.",
+    "n_tokens": 312
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#030",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Discussion > Limitations",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Discussion > Limitations]\nThis study a number of limitations. Firstly, all risk factors for injury were measured at a single time point. However, it is not known whether these factors remained consistent between the initial baseline testing and the point of injury. Secondly, while there is a clear and significant value in identifying risk factors for general RRIs as a whole, it is possible that specific injuries may have different or perhaps conflicting injury risk factors. Some injury diagnoses were carried out via phone call. While this would not affect allocation of participants into injured or uninjured groups, this method of diagnosis could have led to inaccuracies in reporting of diagnoses. Future studies should employ a similar design as the present study, but with analysis of specific injuries. Pooling of data across research centres may facilitate this, as large numbers of runners would be required to appropriately analyse specific injuries. Thirdly, the running technique and impact loading analysis was performed on a treadmill. Although this was advantageous for simultaneous collection of running technique and impact loading, and increasing the number of strides examined, both measures may be affected by surface. Therefore, these results may not be ecologically valid for runners who typically do not train on a treadmill. Furthermore, although an effort was made to adjust for training volume, this was captured at one time point and may have changed over the course of the study. This study included runners injured within the previous year (although not in the last three months). In light of the fact that previous injury was found within this study, and others [,] to be associated with future injury, it is possible that previous injury may have altered the measured risk factors within these studies. Therefore, future studies should consider exclusively studying runners without a history of injury to ensure that differences between groups are not an artefact of previous injury. Finally, this study primarily adopted a biomechanical approach to injury. However, psychosocial variables such as personality, sleep and stress may contribute to the development of injuries or could interact with biomechanical factors to predispose and athlete to injury [,]. Future research should consider adopting a combined biopsychosocial approach to RRI risk factors.",
+    "n_tokens": 486
+  },
+  {
+    "chunk_id": "dillon2023_injury_factors#031",
+    "doc_id": "dillon2023_injury_factors",
+    "pmcid": "PMC10434952",
+    "doi": "10.1371/journal.pone.0288814",
+    "license": "CC BY",
+    "section": "Conclusions",
+    "text": "[Running towards injury? A prospective investigation of factors associated with running injuries | Conclusions]\nThis large-scale prospective study investigated the association between general RRIs and anthropometrics, demographics, training history, injury history, clinical measures, impact accelerations and running technique. Of the clinical factors, history of injury in the past year and less navicular drop were univariately associated with increased odds of injury. In terms of stance-based measures of running technique, knee, pelvis and hip motion in the frontal and transverse planes were associated with increased odds of injury. Anthropometrics, demographics, strength, ROM and measures of impact acceleration were not significantly associated with injury. This study emphasises the multifactorial nature of running related injuries and finds that factors remain outstanding that contribute to RRI development. Although these factors had a 74% accuracy in discriminating between injured and uninjured; the use of these variables as screening tests may have limited value. However, these factors could form the basis for the design of much-needed intervention programmes, which should be subsequently investigated for efficacy. The identification of clinically accessible measures sufficiently able to identify risk factors remains challenging.",
+    "n_tokens": 225
+  },
+  {
     "chunk_id": "forwardlean2024_economy#000",
     "doc_id": "forwardlean2024_economy",
     "pmcid": "PMC11135760",
@@ -2168,6 +2888,136 @@
     "section": "Results > Conclusion",
     "text": "[Ground reaction force metrics are not strongly correlated with tibial bone load when running across speeds and slopes: Implications for science, sport and wearable tech | Results > Conclusion]\nMay be a stress fracture distraction.\n\nDon’t assume force on shoe\n\nTo mean tibia load too\n\nSince bone load’s mostly from muscle contraction.",
     "n_tokens": 30
+  },
+  {
+    "chunk_id": "meyer2023_stiffness_incline#000",
+    "doc_id": "meyer2023_stiffness_incline",
+    "pmcid": "PMC10368467",
+    "doi": "10.1055/a-2044-4805",
+    "license": "CC BY-NC-ND",
+    "section": "Abstract",
+    "text": "[Vertical and Leg Stiffness Modeling During Running: Effect of Speed and Incline | Abstract]\nA spring mass model is often used to describe human running, allowing to understand the concept of elastic energy storage and restitution. The stiffness of the spring is a key parameter and different methods have been developed to estimate both the vertical and the leg stiffness components. Nevertheless, the validity and the range of application of these models are still debated. The aim of the present study was to compare three methods (i. e., Temporal, Kinetic and Kinematic-Kinetic) of stiffness determination. Twenty-nine healthy participants equipped with reflective markers performed 5-min running bouts at four running speeds and eight inclines on an instrumented treadmill surrounded by a tri-dimensional motion camera system. The three methods provided valid results among the different speeds, but the reference method (i. e., Kinematic-Kinetic) provided higher vertical stiffness and lower leg stiffness than the two other methods (both p<0.001). On inclined terrain, the method using temporal parameters provided non valid outcomes and should not be used. Finally, this study highlights that both the assumption of symmetry between compression and decompression phases or the estimation of the vertical displacement and changes in leg length are the major sources of errors when comparing different speeds or different slopes.",
+    "n_tokens": 265
+  },
+  {
+    "chunk_id": "meyer2023_stiffness_incline#001",
+    "doc_id": "meyer2023_stiffness_incline",
+    "pmcid": "PMC10368467",
+    "doi": "10.1055/a-2044-4805",
+    "license": "CC BY-NC-ND",
+    "section": "Introduction",
+    "text": "[Vertical and Leg Stiffness Modeling During Running: Effect of Speed and Incline | Introduction]\nConsidering legs as springs has been introduced by Cavagna et al. to explain the high efficiency of running. Indeed, if potential and kinetic energy are in anti-phase during walking, allowing for energy transfers, they are in phase during running . The observed running efficiency therefore implies an internal mechanism that absorb and restore mechanical energy. This mechanism has been used to describe a stretch shortening cycle, where animals can store and return elastic energy in muscles, tendons and ligaments while hopping, trotting or running . Cavagna et al. observed a lower deformation of the lower limb with the increase of the running speed and suggested a quicker and more rigid spring at higher speed.\n\nA spring mass model was then proposed by Blickhan considering the human body as a single point mass bouncing on a massless spring. The limits of the model were clearly addressed, as it supposed similar take-off and landing velocities and symmetrical acceleration and deceleration phases during stance. Based on this model, Mc Mahon and Cheng and then Farley and Gonzalez provided equations to determine both vertical stiffness (Kvert) and leg stiffness (Kleg). They used maximal vertical force value during stance (Fz max ), vertical displacement of the center of mass (COM), running velocity (V) and foot contact time (T contact ). They assumed that the angles of the spring respectively at foot initial contact and toe off were identical. Finally, Morin et al. developed equations allowing to estimate the maximal force using T contact and flight time T flight . This method has been widely used, due to its simplicity since only spatio-temporal parameters are needed to calculate Kvert and Kleg. Globally, results based on the spring mass model seems to show constant leg stiffness as running speed increased .",
+    "n_tokens": 392
+  },
+  {
+    "chunk_id": "meyer2023_stiffness_incline#002",
+    "doc_id": "meyer2023_stiffness_incline",
+    "pmcid": "PMC10368467",
+    "doi": "10.1055/a-2044-4805",
+    "license": "CC BY-NC-ND",
+    "section": "Introduction",
+    "text": "[Vertical and Leg Stiffness Modeling During Running: Effect of Speed and Incline | Introduction]\nArampatzis et al. developed another approach, using both kinetic and kinematic data to determine Kvert and Kleg (Eq.1–2).\n\nA force platform was used to determine the maximal force, while COM vertical displacement (ΔZ) and changes in leg length (ΔL) were calculated using synchronized cameras and a 15 segments body model . They observed a clear effect of speed on Kleg, showing a discrepancy with the model-based method described above.\n\nIn a review by Brughelli and Cronin , indirect evidence of increased Kleg with speed was highlighted. These authors analysed 14 studies evaluating running stiffness and compared running speeds below vs higher than 5 m·s -1 . The average Kleg was 11.2 vs 17.0 kN·m -1 in the low vs high speed, respectively. As several studies reported a constant leg stiffness with running speed increase it is very interesting to gain more insight about these discrepancies. One may therefore hypothesize that the leg stiffness is dependent on the running speed, and that the calculation method per se modifies the outcome.\n\nIn addition to the effect of speed, another important aspect is the applicability of the spring-mass model for graded running. The model is indeed based on the assumption that the oscillations are symmetrical, which is not respected on a slope . Nevertheless, using direct measurement of the maximal force and COM displacement should still provide coherent results, while the simplified equation developed by Morin et al. should induce different outcomes. It would therefore be of interest to compare the different models for both Kvert and Kleg on different slopes. As Dewolf et al. showed the progressive reduction of the rebound mechanism when slope increase, (both in uphill and downhill), one may hypothesize that both Kvert and Kleg would reach very important values on slopes.",
+    "n_tokens": 390
+  },
+  {
+    "chunk_id": "meyer2023_stiffness_incline#003",
+    "doc_id": "meyer2023_stiffness_incline",
+    "pmcid": "PMC10368467",
+    "doi": "10.1055/a-2044-4805",
+    "license": "CC BY-NC-ND",
+    "section": "Materials and Methods > Subjects",
+    "text": "[Vertical and Leg Stiffness Modeling During Running: Effect of Speed and Incline | Materials and Methods > Subjects]\nTwenty-nine healthy individuals (19 males, 10 females) volunteered in this study (age: 34±10 [mean±SD] years; height: 1.74±0.09 m; body mass: 68.3±12.2 kg). They were running between one and 5 times a week. Every participant was informed on the benefits and risks of this investigation prior to giving their written informed consent to participate in this study. The protocol was approved by the local ethical committee and conducted according to the declaration of Helsinki.",
+    "n_tokens": 97
+  },
+  {
+    "chunk_id": "meyer2023_stiffness_incline#004",
+    "doc_id": "meyer2023_stiffness_incline",
+    "pmcid": "PMC10368467",
+    "doi": "10.1055/a-2044-4805",
+    "license": "CC BY-NC-ND",
+    "section": "Materials and Methods > Design",
+    "text": "[Vertical and Leg Stiffness Modeling During Running: Effect of Speed and Incline | Materials and Methods > Design]\nAll participants visited the laboratory on four occasions to perform each of the experimental tests. A level running incremental test was performed during the first session, with the first stage beginning at 8 km·h -1 during 4 min and the running speed then increased by 1 km·h -1 every minute. Then, during the next three sessions participants had to perform six to eight running bouts at different speeds (8, 10, 12 and 14 km·h -1 ) and different treadmill slopes (−20, −10, −5, 0, 5, 10, 15 and 20%). For each condition, participants had to run for 4 min to allow reaching a steady state , following by two to five minutes of recovery between each trial. The high demanding conditions (20% at 12 and 14 km·h -1 and 15% at 14 km·h -1 ) were not performed, and the trials were also interrupted when the participant was not able to reach a steady state. The order of the speed and slope conditions was randomized for each participant and each session was separated by at least one week of recovery.",
+    "n_tokens": 240
+  },
+  {
+    "chunk_id": "meyer2023_stiffness_incline#005",
+    "doc_id": "meyer2023_stiffness_incline",
+    "pmcid": "PMC10368467",
+    "doi": "10.1055/a-2044-4805",
+    "license": "CC BY-NC-ND",
+    "section": "Materials and Methods > Methodology",
+    "text": "[Vertical and Leg Stiffness Modeling During Running: Effect of Speed and Incline | Materials and Methods > Methodology]\nAn instrumented treadmill (T-170-FMT, Arsalis, Belgium) sampling at 1000 Hz was used to record 3D reaction force, and a 3D cameras system composed of eight infrared cameras (Vicon Motion System, Ltd., Oxford, UK) was used to record kinematic data at 200 Hz. Before each test session, participants were equipped with 39 retro-reflective markers (14 mm in diameter) following the integrated plug-in Gait Model. Kinetics and kinematics data were recorded during 30 s starting 45 s before the end of the trial.\n\nA specific procedure (Matlab version R2019a, MathWorks Inc., Natick, MA, USA) was developed to process and analyze data : To reduce the noise inherent to the treadmill’s vibrations, we first applied, on the vertical ground reaction force (GRF) signal, a 2nd-order stop-band Butterworth filter with edge frequencies set to 25 and 65 Hz. The filter configuration was chosen empirically to obtain a satisfactory reduction of the oscillations observed during flight phases (i. e., subject not in contact with the treadmill) while minimizing its widening effect during ground contact time.\n\nThe instants of initial contact (IC) and terminal contact (TC) were identified using a threshold of 7% of bodyweight on the filtered vertical ground reaction force signal, based on a previously published work . The IC and TC of the left and right legs were combined to determine the T contact (the time duration between IC and TC of the same leg) and the T flight (the time duration between the TC of one leg and the IC of the other leg).\n\nDepending on available instrument and possible application, three methods were used and compared to estimate Kvert and Kleg (Eq. 1–2) from Fz max , ΔL and ΔZ:",
+    "n_tokens": 372
+  },
+  {
+    "chunk_id": "meyer2023_stiffness_incline#006",
+    "doc_id": "meyer2023_stiffness_incline",
+    "pmcid": "PMC10368467",
+    "doi": "10.1055/a-2044-4805",
+    "license": "CC BY-NC-ND",
+    "section": "Materials and Methods > Methodology",
+    "text": "[Vertical and Leg Stiffness Modeling During Running: Effect of Speed and Incline | Materials and Methods > Methodology]\nTemporal method where only spatio-temporal parameters were provided using Eq. 3–5 . The leg length (Lmod) was estimated as 0.53*height (in m) , m is the mass of the participant, g the gravity constant.\n\nKinetic method in which a force platform is available to determine the vertical force (Fz) and estimate the vertical speed (Vz) and vertical displacement of the center of mass (h) (Eq. 6–10) .\n\nKinematic-Kinetic method, where kinematic data obtained from 3D motion capture system was used to estimate ΔZ and ΔL with morphological estimation models , (Eq. 11–13). The variables X, Y and Z are the 3D coordinate of a given point in a global reference system, L represent the leg length. The point of force application on the treadmill (subscript PFA ) was obtained directly from the force plate and the subscript Hip is given for the Hip 3D position calculated by the plug-in Gait Model.",
+    "n_tokens": 201
+  },
+  {
+    "chunk_id": "meyer2023_stiffness_incline#007",
+    "doc_id": "meyer2023_stiffness_incline",
+    "pmcid": "PMC10368467",
+    "doi": "10.1055/a-2044-4805",
+    "license": "CC BY-NC-ND",
+    "section": "Materials and Methods > Statistical analysis",
+    "text": "[Vertical and Leg Stiffness Modeling During Running: Effect of Speed and Incline | Materials and Methods > Statistical analysis]\nLinear mixed models (LMM) were applied on the dependant variables Kvert, Kleg, ΔZ, ΔL and Fz max obtained with the three methods, with a fixed effect on the method and on the slope as independent variables, and a random intercept effect on subjects. The Bonferroni pairwise comparison post-hoc test was then applied to identify differences between methods, slopes and speeds. All the statistical comparisons were obtained using Jamovi Software (Jamovi project 2020, Version 1.2, Sydney; Australia). The overall significance level was set at p<0.05. The Cohen’s coefficients f 2 were also presented to assess effect size. They were calculated based on the marginal coefficient of determination R 2 as proposed by Selya et al. . Values of 0.02 and over are considered small, 0.15 medium and 0.35 large . All data are expressed as mean±standard deviation (SD).",
+    "n_tokens": 182
+  },
+  {
+    "chunk_id": "meyer2023_stiffness_incline#008",
+    "doc_id": "meyer2023_stiffness_incline",
+    "pmcid": "PMC10368467",
+    "doi": "10.1055/a-2044-4805",
+    "license": "CC BY-NC-ND",
+    "section": "Results > Effect of speed",
+    "text": "[Vertical and Leg Stiffness Modeling During Running: Effect of Speed and Incline | Results > Effect of speed]\nFor the determination of Kvert, the LMM showed a significant difference between methods (p<0.001, f 2 =0.16) ( ). The post-hoc indicated significant lower values in Kvert with the Temporal and Kinetic methods than with the Kinematic-Kinetic method (both p<0.001), but not between Temporal and Kinetic (p=0.44). Each method showed a significant increase of Kvert with increase of speed (p<0.001, f 2 =0.65).\n\nThe LMM highlighted significant differences between methods to assess Kleg (p<0.001, f 2 =0.21) ( ). The post-hoc showed lower values with Kinematic-Kinetic than with Kinetic as well as with Kinetic than Temporal (all p<0.001) ( ). With the increase of speed, the Kleg significantly decreased, but with a small effect size (p<0.001, f 2 =0.04).\n\nLooking at the intrinsic parameters allowing to determine Kleg and Kvert, ΔZ values were significantly different between methods (p<0.001, f 2 =0.10) ( ). The pairwise comparison indicated significant higher values of ΔZ with Kinetic compared to Kinematic-Kinetic (p=0.008), and for Temporal compared to both Kinetic and Kinematic-Kinetic (both p<0.001). The effect of speed was also significant (p<0.001, f 2 =0.17), with a decrease of ΔZ with running speed increase. For ΔL, the LMM indicate a significant difference between methods (p<0.001, f 2 =0.30) ( ). The post-hoc comparison indicated significantly higher ΔL values with Kinematic-Kinetic compared to Temporal and Kinetic, and with Temporal than Kinetic (all p<0.001). The running speed also had significant impact on ΔL (p<0.001, f 2 =0.44), with a positive correlation. Finally, the Fz max calculation using either a force plate or a model based on temporal parameters didn’t show significant differences (p=0.065) ( ). The Fz max significantly increased with the speed (p<0.001, f 2 =0.13)",
+    "n_tokens": 373
+  },
+  {
+    "chunk_id": "meyer2023_stiffness_incline#009",
+    "doc_id": "meyer2023_stiffness_incline",
+    "pmcid": "PMC10368467",
+    "doi": "10.1055/a-2044-4805",
+    "license": "CC BY-NC-ND",
+    "section": "Results > Effect of slope",
+    "text": "[Vertical and Leg Stiffness Modeling During Running: Effect of Speed and Incline | Results > Effect of slope]\nThe determination of Kvert highlighted significant differences when using the three different methods (p<0.001, f 2 =0.37) ( ). Kvert with the Temporal method was significantly lower than with Kinematic-Kinetic or Kinetic (both p<0.001), and with Kinetic than with Kinematic-Kinetic (p=0.04). The slope also significantly impacted the calculation of the Kvert (p<0.001, f 2 =0.18). Both the Kinematic-Kinetic and the Kinetic methods did not provide valid Kvert values on extreme slopes (i. e.±20%) as Kvert reached infinite values on such slopes.\n\nThe Kleg was also significantly affected by the calculation method (p<0.001, f 2 =0.42) ( ), Pairwise comparison indicated higher Kleg values with the Kinetic method than Kinematic-Kinetic and Temporal (both p<0.001) as well as with Temporal than Kinematic-Kinetic (p<0.001). The slope also had a significant impact on the Kleg calculation (p<0.001, f 2 =0.17).\n\nLooking at the intrinsic parameters allowing to determine Kleg and Kvert, ΔZ values were significantly different between methods (p<0.001, f 2 =0.94) ( ). The pairwise comparison indicated significant higher ΔZ values with the Temporal method compared to both Kinematic-Kinetic and Kinetic (p<0.001), and higher ΔZ values with Kinematic-Kinetic compared to Kinetic (p<0.001). The effect of slope was also significant (p<0.001, f 2 =0.41).\n\nThe LMM indicate a significant difference between methods (p<0.001, f 2 =0.43) ( ). The pairwise comparison indicated significantly higher ΔL values for Kinematic-Kinetic compared to both Temporal and Kinetic, as well as with Temporal than Kinetic (all p<0.001). The slope also had significant impact on ΔL (p<0.001, f 2 =0.20). Finally, the Fz max calculation using either a force plate or a model based on temporal parameters showed significant differences but with a very low effect size (p<0.001, f 2 =0.01) ( ). The Fz max significantly decreased when the slope increased, with a low effect size (p<0.001, f 2 =0.06).",
+    "n_tokens": 402
+  },
+  {
+    "chunk_id": "meyer2023_stiffness_incline#010",
+    "doc_id": "meyer2023_stiffness_incline",
+    "pmcid": "PMC10368467",
+    "doi": "10.1055/a-2044-4805",
+    "license": "CC BY-NC-ND",
+    "section": "Discussion",
+    "text": "[Vertical and Leg Stiffness Modeling During Running: Effect of Speed and Incline | Discussion]\nThe present study is the first to clearly report the boundaries in which the model based on temporal parameters proposed by Morin et al. can be applied. As expected, the model based on spatio-temporal parameters is not valid on slopes, even at low inclines (5% uphill and 10% downhill). Interestingly, Snyder and Farley found the same asymmetry in energy storage at slopes between a+3 and -3 degrees. In downhill running, the same amount of elastic energy was stored in the leg compared to level running, while significantly lower energy was stored during uphill running. The Kinetic and Kinematic-Kinetic models showed higher values in both Kvert and Kleg when slope increases (and decreases), whereas the Temporal method provides results that are constant and independent of the slope. The results obtained with the Kinetic and Kinematic-Kinetic models are consistent with the results of Dewolf et al. , as the stiffness increased on steeper slopes. Indeed, as the energy stored in a spring is equal to half of the spring coefficient times the square of the displacement of the spring, the stored value will reach zero when the displacement come close to zero. Therefore, previous studies that used the Temporal method to determine Kvert and Kleg on incline terrain are questionable .\n\nThe present study highlighted also a constant Kleg on a large speed range, and the validity of the Temporal model for level running. The three methods used in our study provided consistent outcomes, but the Kinematic-Kinetic method gave lower values then the Temporal and the Kinetic methods. This is in line with previous reports that compared different method and highlighted the good behavior of Temporal method for different speeds. The Temporal and the Kinetic method provide similar values but lower Kvert values and higher Kleg values than with the Kinematic-Kinetic method. This difference is probably due to the calculation method of ΔZ and ΔL. These results are consistent with previously published work using the spring mass model , but differs with the indirect evidence found by Brughelli and Cronin and with the study of Arampatzis et al. , that used a method similar to our Kinematic-Kinetic method. The difference seems to come from the calculation of the ΔL, that is constant in Arampatzis et al. , but increases with speed in our work.",
+    "n_tokens": 509
+  },
+  {
+    "chunk_id": "meyer2023_stiffness_incline#011",
+    "doc_id": "meyer2023_stiffness_incline",
+    "pmcid": "PMC10368467",
+    "doi": "10.1055/a-2044-4805",
+    "license": "CC BY-NC-ND",
+    "section": "Discussion",
+    "text": "[Vertical and Leg Stiffness Modeling During Running: Effect of Speed and Incline | Discussion]\nWith the speed range used in this study, we can assume the symmetry of the deceleration and acceleration phases. Nevertheless, the Kinematic-Kinetic method should be adapted to estimate the compression and the decompression of the spring with two different stiffness, as proposed by Clark and Weyand . This method could probably provide more insights on the mechanisms involved when sprinting and explain the higher Kleg obtained at maximal speed .\n\nOverall, this study confirms that errors may arise from different sources across running speeds or slopes: the indirect estimation of ΔZ and ΔL and the symmetry of acceleration and deceleration phases – known to be wrong – have different weight on the inaccuracy when comparing different speeds or different slopes. While we argue that the assumption of the symmetry of land and take-off symmetry (known to be inexact) is an important source of inaccuracy, the derivation of the kinematics which drive the estimation of ΔZ and ΔL and consequently the differences in Kvert and Kleg is also an important limitation. Moreover, none of the models take into account the medial-lateral displacement estimated to be negligible .\n\nStiffness calculation and analysis is used both in research and by practitioners to gather useful information of athletes’ physical state. It has been shown that both Kvert and Kleg are affected during marathon running , providing insight about the accumulated fatigue. It is therefore important for coaches and researchers to understand the applicability and the limit of the calculation method, to make sur that their interpretation of the output is valid. As a consequence, the Temporal method is perfectly adapted for level running, but should not been used in Trail or on slopes.",
+    "n_tokens": 372
+  },
+  {
+    "chunk_id": "meyer2023_stiffness_incline#012",
+    "doc_id": "meyer2023_stiffness_incline",
+    "pmcid": "PMC10368467",
+    "doi": "10.1055/a-2044-4805",
+    "license": "CC BY-NC-ND",
+    "section": "Conclusion",
+    "text": "[Vertical and Leg Stiffness Modeling During Running: Effect of Speed and Incline | Conclusion]\nUsing mathematical models is helpful to describe complex concepts, but caution is needed when applying these models. In this work, we analysed the range of application and the limits of different stiffness calculation methods. This study highlights that the assumption of symmetry between compression and decompression phases or the estimation of ΔZ and ΔL are the major sources of errors when comparing different speeds or different slopes.",
+    "n_tokens": 89
   },
   {
     "chunk_id": "pfp_gaitmods_frontiers2022#000",
