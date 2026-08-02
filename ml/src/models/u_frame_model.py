@@ -10,6 +10,13 @@ from sklearn.svm import SVC
 from sklearn.preprocessing import StandardScaler
 from sklearn.calibration import CalibratedClassifierCV
 from sklearn.pipeline import make_pipeline
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+#The FootNet LSTM's per-frame kinematic features (ankle velocities, shin velocity, tibial angle,
+#inter-ankle distance), computed off the SAME normalised keypoints, to give the SVM the temporal signal
+#a single-frame pose cant carry
+from utils.footnet_svm_features import (build_footnet_lookup, attach_footnet_features,
+                                        mirror_footnet_features, FOOTNET_COLS)
 
 
 #Every frame's pose (this is also the negative pool), plus strikefoot_data which holds the u_frame per strike
@@ -100,6 +107,12 @@ non_u_frame_df = non_u_frame_df.sample(frac=1)
 sampling_num = 1000
 non_u_frame_df = non_u_frame_df.iloc[:sampling_num]
 
+#Attach the FootNet temporal features. The lookup is built ONCE off the full frame-by-frame json (velocity
+#needs each frame's neighbours, which the sampled rows dont have), then matched onto our rows by (video, frame).
+_footnet_lookup = build_footnet_lookup()
+u_frame_df = attach_footnet_features(u_frame_df, _footnet_lookup)
+non_u_frame_df = attach_footnet_features(non_u_frame_df, _footnet_lookup)
+
 #Runners in videos are facing 2 different directions: left and right both. This means that the normalised bbox keypoint coordinates are changed
 #and therefore duplicating our data to show flipped versions of the u frame will help the model understand the u frame regardless of what direction
 #a label is facing (the u frame/not a u frame label is invariant of direction). 2 things will be required here: flip idx and changing each x coordinate to 1 - x coordinate
@@ -115,6 +128,9 @@ def mirror_dfs(df:pd.DataFrame):
     for i in range(21):
         df["keypoint " + str(i)] = cols[flip_idx[i]]
 
+    #the footnet features are direction-varying now, so mirroring swaps in the features of the actually-
+    #mirrored sequence (not a plain L/R swap) - keeps the flipped pose and its features consistent
+    df = mirror_footnet_features(df, _footnet_lookup)
     return df
 
 
@@ -131,8 +147,12 @@ def experiment_svm(C=2, kernel="rbf", gamma="scale", degree=3, coef0=1):
         raise ValueError("For kernel='poly', degree and coef0 must be explicitly set (they default to 0).")
 
     def df_to_xy(df):
-        #Flatten each row's 21 [x, y] keypoints into one 42-length vector for sklearn
-        X = np.array(df.drop(["Label", "video", "Frame"], axis=1).values.tolist()).reshape(len(df), -1)
+        #Flatten each row's 21 [x, y] keypoints (42 dims) and append the 10 footnet feature scalars -> 52-dim vector.
+        #keypoints are list cells and the footnet cols are scalars, so i build them separately then concatenate
+        kp_cols = ["keypoint " + str(i) for i in range(21)]
+        kp = np.array(df[kp_cols].values.tolist()).reshape(len(df), -1)
+        feats = df[FOOTNET_COLS].values.astype(float)
+        X = np.concatenate([kp, feats], axis=1)
         y = df["Label"].values.astype(int)
         return X, y
 

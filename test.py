@@ -1,91 +1,73 @@
-#Diagnostic for the left/right keypoint mess. Draws, on every frame, the EXACT keypoints the SVM sees -
-#YOLO's pixel keypoints, normalised by the bounding box the way svm_inference does, then re-normalised
-#(mapped straight back to pixel space) and drawn. That round-trip is lossless, so if they land wrong on the
-#person the fault is upstream (keypoints/mapping), not obtain_which_leg's geometry. Colour = side
-#(green=left, red=right) so a swap is obvious. Now also runs a STOCK yolo pose model side by side so i can
-#tell whether the bad bounding box is my custom final_model.pt or something about the video/person itself.
-import cv2
-from ultralytics import YOLO
+#Continuity reassignment for the ankle tracks. YOLO's left/right label flickers at every crossing, so i
+#IGNORE the label and just track the two ankle DETECTIONS: each frame, assign the two points to two
+#persistent tracks (A/B) by whichever pairing keeps both trajectories smooth (min total jump vs a
+#constant-velocity prediction). Genuine crossings survive; the spurious label-swaps get corrected.
+import pickle
+import numpy as np
+import matplotlib.pyplot as plt
 
-FINAL_MODEL = "/Users/abhinavarora/Desktop/CadenceCV/ml/weights/final_model.pt"
-STOCK_MODEL = "yolo26x-pose.pt"   #stock COCO pose (17 kpts, no toe/heel) - ultralytics downloads it if missing
-VIDEO_PATH = "/Users/abhinavarora/Desktop/CadenceCV/Videos/Video17.mp4"
-
-#keypoint layout. 11-16 (hips/knees/ankles) are shared by COCO and my custom model; 17-20 (toe/heel L/R)
-#only exist on final_model.pt, so they simply wont appear for the stock 17-kpt model
-NAMES = {
-    11: "L hip",  12: "R hip",
-    13: "L knee", 14: "R knee",
-    15: "L ankle", 16: "R ankle",
-    17: "L toe",  18: "R toe",
-    19: "L heel", 20: "R heel",
-}
-LEFT_IDS = {5, 11, 13, 15, 17, 19}
-RIGHT_IDS = {6, 12, 14, 16, 18, 20}
+KPTS_PATH = "/Users/abhinavarora/Desktop/CadenceCV/ml/weights/normalised_keypoints.pkl"
+L_ANKLE, R_ANKLE = 15, 16
 
 
-def side_colour(idx):
-    #BGR. green for left-side joints, red for right-side, dim blue for the centre/face/arm ones i dont label
-    if idx in LEFT_IDS:
-        return (0, 255, 0)
-    if idx in RIGHT_IDS:
-        return (0, 0, 255)
-    return (255, 128, 0)
+def sign_flips(diff):
+    #how many times (trackA_x - trackB_x) changes sign = how many times the two ankles cross in x
+    s = np.sign(diff); s[s == 0] = 1
+    return int((s[:-1] != s[1:]).sum())
 
 
-def run_keypoint_check(model_path, video_path, window_title):
-    model = YOLO(model_path)
-    #imgsz=1280 to match how svm_inference runs it - keypoints/boxes shift if the inference size differs
-    preds = model.predict(video_path, imgsz=1280, stream=True)
-
-    for frame_idx, res in enumerate(preds):
-        img = res.orig_img.copy()          #the actual frame this result came from
-        H, W = img.shape[:2]
-
-        if len(res) == 0:
-            cv2.putText(img, f"frame {frame_idx}: NO DETECTION", (20, 40),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 255), 2)
+def continuity_tracks(det0, det1):
+    #det0/det1: (n,2) the two ankle detections per frame (YOLO's 15 and 16, whose L/R label we DON'T trust).
+    #Returns two tracks A,B that stay continuous, plus a flag per frame for where we had to un-swap YOLO.
+    n = len(det0)
+    A = np.zeros((n, 2)); B = np.zeros((n, 2)); swapped = np.zeros(n, bool)
+    A[0], B[0] = det0[0], det1[0]
+    for t in range(1, n):
+        #constant-velocity guess of where each track should land this frame
+        predA = 2 * A[t-1] - A[t-2] if t >= 2 else A[t-1]
+        predB = 2 * B[t-1] - B[t-2] if t >= 2 else B[t-1]
+        d0, d1 = det0[t], det1[t]
+        keep = np.linalg.norm(predA - d0) + np.linalg.norm(predB - d1)   #A<-15, B<-16
+        swap = np.linalg.norm(predA - d1) + np.linalg.norm(predB - d0)   #A<-16, B<-15
+        if swap < keep:
+            A[t], B[t] = d1, d0; swapped[t] = True
         else:
-            #highest-confidence person, same as svm_inference picks
-            kpts = res.keypoints.xy[0]                    #pixel xy, shape [n_kpts, 2]
-            x1, y1, x2, y2 = res.boxes.xyxy[0].tolist()
-            x_diff, y_diff = (x2 - x1), (y2 - y1)
+            A[t], B[t] = d0, d1
+    return A, B, swapped
 
-            for idx, (px, py) in enumerate(kpts.tolist()):
-                #normalise EXACTLY like svm_inference (bbox-relative), then re-normalise back to pixels.
-                #lossless by construction, so what i draw IS what the model was fed
-                xn = (px - x1) / x_diff if x_diff else 0.0
-                yn = (py - y1) / y_diff if y_diff else 0.0
-                xr = int(xn * x_diff + x1)
-                yr = int(yn * y_diff + y1)
 
-                colour = side_colour(idx)
-                cv2.circle(img, (xr, yr), 4, colour, -1)
-                if idx in NAMES:
-                    cv2.circle(img, (xr, yr), 6, colour, 2)
-                    cv2.putText(img, f"{idx} {NAMES[idx]}", (xr + 8, yr - 8),
-                                cv2.FONT_HERSHEY_SIMPLEX, 0.5, colour, 1)
+def main():
+    r = pickle.load(open(KPTS_PATH, "rb"))
+    vf = np.array(r["Valid Frames"])
+    K = np.array(r["Normalised Keypoints"]).reshape(len(vf), 21, 2)
+    a15, a16 = K[:, L_ANKLE, :], K[:, R_ANKLE, :]
 
-            #the bounding box - bright + thick since this is the thing thats wrong. the normalisation is
-            #RELATIVE to this box, so if the box doesnt cover the person the normalised coords are skewed
-            cv2.rectangle(img, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 255), 2)
-            #quantify how much of the frame the box actually covers, so "doesnt encapsulate the person" is a number
-            cov = f"box {100*x_diff/W:.0f}%W x {100*y_diff/H:.0f}%H of frame  |  {len(kpts)} kpts"
-            cv2.putText(img, f"frame {frame_idx}  (green=left red=right)", (20, 30),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
-            cv2.putText(img, cov, (20, 55),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 255), 2)
+    before = sign_flips(a15[:, 0] - a16[:, 0])
+    A, B, swapped = continuity_tracks(a15, a16)
+    after = sign_flips(A[:, 0] - B[:, 0])
 
-        cv2.imshow(window_title, img)
-        #step frame by frame; q bails out of THIS model's run
-        if cv2.waitKey(0) & 0xFF == ord("q"):
-            break
+    print(f"x-sign-flips BEFORE (YOLO raw labels): {before}")
+    print(f"x-sign-flips AFTER  (continuity):      {after}")
+    print(f"frames where continuity had to un-swap YOLO: {int(swapped.sum())} / {len(vf)} "
+          f"= {swapped.mean():.0%}")
 
-    cv2.destroyAllWindows()
+    fig, (ax0, ax1) = plt.subplots(2, 1, figsize=(15, 7), sharex=True)
+    ax0.plot(vf, a15[:, 0], color="tab:blue", lw=1, label="YOLO left-ankle x (15)")
+    ax0.plot(vf, a16[:, 0], color="tab:orange", lw=1, label="YOLO right-ankle x (16)")
+    ax0.set_title(f"BEFORE - raw YOLO labels ({before} x-crossings, most are spurious swaps)")
+    ax0.set_ylabel("ankle x"); ax0.legend(loc="upper right")
+
+    ax1.plot(vf, A[:, 0], color="tab:blue", lw=1, label="track A x")
+    ax1.plot(vf, B[:, 0], color="tab:orange", lw=1, label="track B x")
+    #mark the frames we un-swapped so i can see where YOLO was wrong
+    sw = np.flatnonzero(swapped)
+    ax1.scatter(vf[sw], A[sw, 0], color="red", s=12, zorder=3, label="un-swapped here")
+    ax1.set_title(f"AFTER - continuity tracks ({after} x-crossings ~= 2 per stride, spurious swaps removed)")
+    ax1.set_ylabel("ankle x"); ax1.set_xlabel("video frame"); ax1.legend(loc="upper right")
+
+    plt.tight_layout()
+    plt.show()
 
 
 if __name__ == "__main__":
-    #my custom model first (the suspect), then the stock model on the same video for comparison.
-    #press q to finish one and move to the next
-    run_keypoint_check(FINAL_MODEL, VIDEO_PATH, "final_model.pt  (custom, 21 kpts)")
-    run_keypoint_check(STOCK_MODEL, VIDEO_PATH, "yolo26x-pose.pt  (stock, 17 kpts)")
+    main()
