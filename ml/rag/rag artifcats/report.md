@@ -1,0 +1,16 @@
+**What you told us**
+You've had three weeks of pain at the front of your left knee, worse on downhill running, and your weekly mileage jumped 45% recently.
+
+**What we measured**
+At your recorded pace (3.0 m/s), cadence was 168 steps/min, contact time 245 ms, stride length 2.14 m, and vertical oscillation was 8.6 cm (8.0% of stride length). Foot strike angle was 11.4° on the left and 12.8° on the right (both consistent with a rearfoot strike), knee flexion at contact was 17.2°/16.5° (L/R), overstride was 17.2%/18.0% of leg length, and trunk lean was 6.8°. None of these values are extreme or asymmetric enough to flag as an obvious outlier for a recreational runner at this speed.
+
+**What this suggests**
+Two things are on the table here, and they don't carry equal weight. A 45% jump in weekly volume in a short window is one of the more consistently identified risk factors for running-related injury in the literature — a recent umbrella review of injury risk factors found weekly distance and training volume to be among the few factors with a medium-to-large association with injury (Correia, 2024). That timeline lines up with your three weeks of symptoms far better than any single number in your gait data does. Downhill aggravation fits this picture too: downhill running increases eccentric quadriceps demand and knee joint loading independent of how someone's stride looks on the flat, so pain that flares specifically downhill doesn't necessarily point to a stride fault at all.
+
+Looking at your gait numbers, nothing stands out as a likely mechanical driver. Your foot strike angle, knee flexion at contact, and overstride are within the range reported for recreational runners, and the biomechanics literature on knee pain and stride variables (e.g., knee flexion at initial contact, foot strike pattern) has generally found weak or inconsistent links to injury risk when studied prospectively (Dillon, 2023). So I don't have a basis from the numbers alone to tell you "change X about your stride" — and given you're dealing with anterior knee pain, this isn't the moment to introduce a gait change anyway. Any deliberate stride alteration made while a structure is irritated risks adding load before we know what's actually irritated, which is the wrong direction here.
+
+**What to do**
+1. **Pull your weekly volume back toward what you were running before the increase** (roughly where you were a month or so ago) and avoid downhill routes for now — that's the single biggest lever available and it's a conservative one that doesn't require guessing at your mechanics.
+2. **See a physiotherapist or sports medicine doctor** for the knee itself. Three weeks of localized anterior knee pain that's aggravated by a specific loading pattern (downhill) is worth a hands-on exam — I can't tell you what structure is involved or rule anything in or out from video and spatiotemporal numbers alone.
+
+**How to check if it's working:** if backing off volume and downhill running meaningfully reduces the pain within a week or two, that supports load as the driver. If pain persists or worsens despite the reduced load, that's a clearer signal to get the clinical evaluation sooner rather than later — either way, given how long this has already gone on, the exam is worth booking now rather than waiting to see.
