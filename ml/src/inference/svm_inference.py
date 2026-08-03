@@ -14,6 +14,9 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 #Same FootNet feature builder the models were RETRAINED with - inference must produce the identical
 #52-dim vector (42 keypoints + 10 features) or predict_proba rejects it on a shape mismatch
 from utils.footnet_svm_features import footnet_features_for_sequence
+#single-function left/right correction - fixes YOLO's flickering side labels before they poison the features
+sys.path.insert(0, os.path.dirname(__file__))
+from side_flip_correction import correct_side
 d_frame_model_string = "d_frame_svm.pkl"
 u_frame_model_string = "u_frame_svm.pkl"
 weights_dir = "/Users/abhinavarora/Desktop/CadenceCV/ml/weights"
@@ -33,6 +36,7 @@ def obtain_normalised_keypoints(video_dir):
     all_kpts = []
     non_normalised_kpts = []
     valid_frames = []
+    bboxes = []
     for index, res in enumerate(preds):
         if len(res) == 0:
             continue
@@ -54,26 +58,40 @@ def obtain_normalised_keypoints(video_dir):
             x = (x - x1)/x_diff
             y = (y - y1)/y_diff
             kpts_copy[kp_index] = [x, y]
-    
+
         all_kpts.append(kpts_copy)
         valid_frames.append(index)
         non_normalised_kpts.append(kpts.tolist())
-    
+        #keep the box too - the side-correction needs it to un-normalise the kpts back to pixels for marking
+        bboxes.append([float(x1), float(y1), float(x2), float(y2)])
+
     all_kpts = torch.tensor(all_kpts)
     non_normalised_kpts = torch.tensor(non_normalised_kpts)
 
     #Flattening to a list since thats required by the SVM
     return {"Normalised Keypoints": all_kpts.flatten(1).tolist(), "Valid Frames": valid_frames,
-            "Non-Normalised Keypoints": non_normalised_kpts}
+            "Non-Normalised Keypoints": non_normalised_kpts, "Bounding Boxes": bboxes}
 
 normalised_kpts_string = "normalised_keypoints.pkl"
 kpts_path = os.path.join(weights_dir, normalised_kpts_string)
 if not os.path.isfile(kpts_path):
     results = obtain_normalised_keypoints(test_video_dir)
+    valid_frames = results["Valid Frames"]
+    bbox = results["Bounding Boxes"]
+
+    #CORRECT the left/right side flips (user marks the anchor) BEFORE saving, so the pickle holds the
+    #CORRECTED keypoints and everything downstream (svm_features, preds) is built on clean coordinates
+    normalised = np.array(results["Normalised Keypoints"]).reshape(len(valid_frames), 21, 2)
+    corrected = correct_side(test_video_dir, bbox, normalised)                      # (n, 21, 2)
+    results["Normalised Keypoints"] = corrected.reshape(len(valid_frames), -1).tolist()
+    #re-derive the pixel keypoints from the CORRECTED normalised ones so the visualiser stays in sync
+    bbox_arr = np.array(bbox)
+    xy1 = bbox_arr[:, None, :2]; wh = bbox_arr[:, None, 2:] - bbox_arr[:, None, :2]
+    results["Non-Normalised Keypoints"] = torch.tensor(xy1 + corrected * wh)
+
     with open(kpts_path, "wb") as file:
         pickle.dump(results, file)
     flattened_kpts = results["Normalised Keypoints"]
-    valid_frames = results["Valid Frames"]
     non_normal_kpts = results["Non-Normalised Keypoints"]
 
 else:
