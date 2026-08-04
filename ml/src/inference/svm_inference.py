@@ -14,9 +14,6 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 #Same FootNet feature builder the models were RETRAINED with - inference must produce the identical
 #52-dim vector (42 keypoints + 10 features) or predict_proba rejects it on a shape mismatch
 from utils.footnet_svm_features import footnet_features_for_sequence
-#single-function left/right correction - fixes YOLO's flickering side labels before they poison the features
-sys.path.insert(0, os.path.dirname(__file__))
-from side_flip_correction import correct_side
 d_frame_model_string = "d_frame_svm.pkl"
 u_frame_model_string = "u_frame_svm.pkl"
 weights_dir = "/Users/abhinavarora/Desktop/CadenceCV/ml/weights"
@@ -36,7 +33,6 @@ def obtain_normalised_keypoints(video_dir):
     all_kpts = []
     non_normalised_kpts = []
     valid_frames = []
-    bboxes = []
     for index, res in enumerate(preds):
         if len(res) == 0:
             continue
@@ -62,36 +58,22 @@ def obtain_normalised_keypoints(video_dir):
         all_kpts.append(kpts_copy)
         valid_frames.append(index)
         non_normalised_kpts.append(kpts.tolist())
-        #keep the box too - the side-correction needs it to un-normalise the kpts back to pixels for marking
-        bboxes.append([float(x1), float(y1), float(x2), float(y2)])
 
     all_kpts = torch.tensor(all_kpts)
     non_normalised_kpts = torch.tensor(non_normalised_kpts)
 
     #Flattening to a list since thats required by the SVM
     return {"Normalised Keypoints": all_kpts.flatten(1).tolist(), "Valid Frames": valid_frames,
-            "Non-Normalised Keypoints": non_normalised_kpts, "Bounding Boxes": bboxes}
+            "Non-Normalised Keypoints": non_normalised_kpts}
 
 normalised_kpts_string = "normalised_keypoints.pkl"
 kpts_path = os.path.join(weights_dir, normalised_kpts_string)
 if not os.path.isfile(kpts_path):
     results = obtain_normalised_keypoints(test_video_dir)
-    valid_frames = results["Valid Frames"]
-    bbox = results["Bounding Boxes"]
-
-    #CORRECT the left/right side flips (user marks the anchor) BEFORE saving, so the pickle holds the
-    #CORRECTED keypoints and everything downstream (svm_features, preds) is built on clean coordinates
-    normalised = np.array(results["Normalised Keypoints"]).reshape(len(valid_frames), 21, 2)
-    corrected = correct_side(test_video_dir, bbox, normalised)                      # (n, 21, 2)
-    results["Normalised Keypoints"] = corrected.reshape(len(valid_frames), -1).tolist()
-    #re-derive the pixel keypoints from the CORRECTED normalised ones so the visualiser stays in sync
-    bbox_arr = np.array(bbox)
-    xy1 = bbox_arr[:, None, :2]; wh = bbox_arr[:, None, 2:] - bbox_arr[:, None, :2]
-    results["Non-Normalised Keypoints"] = torch.tensor(xy1 + corrected * wh)
-
     with open(kpts_path, "wb") as file:
         pickle.dump(results, file)
     flattened_kpts = results["Normalised Keypoints"]
+    valid_frames = results["Valid Frames"]
     non_normal_kpts = results["Non-Normalised Keypoints"]
 
 else:
@@ -102,23 +84,52 @@ else:
     non_normal_kpts:torch.Tensor = results["Non-Normalised Keypoints"]
 
 
-#Rebuild the SAME 52-dim vector the models were retrained on: the 42 flattened keypoints + the 10 FootNet
-#features. The features are temporal (velocities), so they need the whole frame sequence at once - i reshape
-#the flattened normalised keypoints back to (n, 21, 2), run the shared builder, then hstack the two blocks.
-_kpts_seq = np.array(flattened_kpts).reshape(len(valid_frames), 21, 2)
-_footnet_feats = footnet_features_for_sequence(_kpts_seq)                       # (n, 10)
-svm_features = np.concatenate([np.array(flattened_kpts), _footnet_feats], axis=1).tolist()  # (n, 52)
+#TWO copies of the normalised keypoints: one as-is, one with FLIP_IDX applied (whole-body L<->R relabel).
+#YOLO's L/R flickers, so a strike/toe-off the SVM misses in one orientation may be caught in the other.
+#Run BOTH through BOTH models and UNION the positive frames -> recover missed events (at the cost of extras).
+FLIP_IDX = [0, 2, 1, 4, 3, 6, 5, 8, 7, 10, 9, 12, 11, 14, 13, 16, 15, 18, 17, 20, 19]
 
-u_frame_probabilities = u_frame_model.predict_proba(svm_features)
-d_frame_probablities = d_frame_model.predict_proba(svm_features)
 
-#The u model is under-confident about toe-offs (its positive probabilities sit lower than the d model's),
-#so the default 0.5 cutoff drops ~half the real toe-offs. Thresholding the probability at ~0.42 catches them.
-#Tune this so the toe-off count matches the strikefoot count (they pair 1:1 per leg). d is fine on the default.
-u_frame_preds = (u_frame_probabilities[:, 1] > 0.43).astype(int)
-d_frame_preds = d_frame_model.predict(svm_features)
+def build_svm_features(seq):
+    #seq: (n, 21, 2) -> (n, 52) list = 42 flattened keypoints + 10 FootNet temporal features
+    feats = footnet_features_for_sequence(seq)
+    return np.concatenate([seq.reshape(len(seq), -1), feats], axis=1).tolist()
 
-print(len(d_frame_preds))
+
+kpts_seq = np.array(flattened_kpts).reshape(len(valid_frames), 21, 2)
+flipped_seq = kpts_seq[:, FLIP_IDX, :]                                  #the flip_idx'd copy
+svm_features_orig = build_svm_features(kpts_seq)
+svm_features_flip = build_svm_features(flipped_seq)
+
+#both orientations through both models
+d_probs_orig = d_frame_model.predict_proba(svm_features_orig)
+d_probs_flip = d_frame_model.predict_proba(svm_features_flip)
+u_probs_orig = u_frame_model.predict_proba(svm_features_orig)
+u_probs_flip = u_frame_model.predict_proba(svm_features_flip)
+
+#per-orientation positive frames (d on the default 0.5 cutoff, u on the tuned 0.43)
+d_orig_pos = np.flatnonzero(d_frame_model.predict(svm_features_orig) == 1)
+d_flip_pos = np.flatnonzero(d_frame_model.predict(svm_features_flip) == 1)
+u_orig_pos = np.flatnonzero(u_probs_orig[:, 1] > 0.43)
+u_flip_pos = np.flatnonzero(u_probs_flip[:, 1] > 0.43)
+
+#UNION the two orientations' positive frames into a final set, then sort into an array
+d_union_frames = np.array(sorted(set(d_orig_pos.tolist()) | set(d_flip_pos.tolist())), dtype=int)
+u_union_frames = np.array(sorted(set(u_orig_pos.tolist()) | set(u_flip_pos.tolist())), dtype=int)
+
+#feed the union into the existing pipeline: a binary pred array flagged at the union frames, plus the
+#per-frame MAX positive-class probability across the two orientations (so clean_preds keeps the strongest)
+d_frame_preds = np.zeros(len(valid_frames), dtype=int); d_frame_preds[d_union_frames] = 1
+u_frame_preds = np.zeros(len(valid_frames), dtype=int); u_frame_preds[u_union_frames] = 1
+
+
+def _combined_probs(pa, pb):
+    p1 = np.maximum(pa[:, 1], pb[:, 1])
+    return np.stack([1 - p1, p1], axis=1)
+
+
+d_frame_probablities = _combined_probs(d_probs_orig, d_probs_flip)
+u_frame_probabilities = _combined_probs(u_probs_orig, u_probs_flip)
 
 #This will take the valid_frames from keypoints which will be used to visualise those keypoint coordinates
 #keypoints here are the NON normalised ones (raw pixel xy from YOLO) so they land in the right spot on the frame.
@@ -218,8 +229,6 @@ def clean_preds(preds, probabilities, max_gap=None, gap_frac=0.4):
 cleaned_u_preds_indices = clean_preds(u_frame_preds, u_frame_probabilities.tolist())
 cleaned_d_preds_indices = clean_preds(d_frame_preds, d_frame_probablities.tolist())
 
-print(cleaned_d_preds_indices)
-
 #If runner direction is right, and task is D and right_ankle_coord_x > left_ankle_coord_x, then right leg, else left leg.
 #If runner direction is left, and task is D and right_ankle_coord_x > left_ankle_coord_x, then left leg, else right_leg.
 #If runner direction is right, and task is U and right_ankle_coord_x > left_ankle_coord_x, then left leg, else right leg.
@@ -261,8 +270,9 @@ kpts_reshaped = torch.tensor(flattened_kpts).reshape([len(valid_frames), 21, 2])
 d_frame_preds_legs_indices = obtain_which_leg(cleaned_d_preds_indices, kpts_reshaped, "D", "right")
 u_frame_preds_legs_indices = obtain_which_leg(cleaned_u_preds_indices, kpts_reshaped, "U", "right")
 
-print(d_frame_preds_legs_indices)
-print(u_frame_preds_legs_indices)
+print(len(d_frame_preds_legs_indices))
+print(len(u_frame_preds_legs_indices))
+
 cap = cv2.VideoCapture(test_video_dir)
 
 labels_path = "/Users/abhinavarora/Desktop/CadenceCV/video18_gait_labels.json"
