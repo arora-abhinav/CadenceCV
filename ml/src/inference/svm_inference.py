@@ -14,6 +14,10 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 #Same FootNet feature builder the models were RETRAINED with - inference must produce the identical
 #52-dim vector (42 keypoints + 10 features) or predict_proba rejects it on a shape mismatch
 from utils.footnet_svm_features import footnet_features_for_sequence
+#single-function left/right correction - clean, mostly-consistent keypoints so the temporal features arent
+#poisoned by YOLO's flickering (a flip = a giant fake velocity spike in the per-leg FootNet features)
+sys.path.insert(0, os.path.dirname(__file__))
+from side_correction import correct_side
 d_frame_model_string = "d_frame_svm.pkl"
 u_frame_model_string = "u_frame_svm.pkl"
 weights_dir = "/Users/abhinavarora/Desktop/CadenceCV/ml/weights"
@@ -33,6 +37,7 @@ def obtain_normalised_keypoints(video_dir):
     all_kpts = []
     non_normalised_kpts = []
     valid_frames = []
+    bboxes = []
     for index, res in enumerate(preds):
         if len(res) == 0:
             continue
@@ -58,22 +63,34 @@ def obtain_normalised_keypoints(video_dir):
         all_kpts.append(kpts_copy)
         valid_frames.append(index)
         non_normalised_kpts.append(kpts.tolist())
+        #box needed so correct_side can un-normalise the kpts back to pixels for the marking display
+        bboxes.append([float(x1), float(y1), float(x2), float(y2)])
 
     all_kpts = torch.tensor(all_kpts)
     non_normalised_kpts = torch.tensor(non_normalised_kpts)
 
     #Flattening to a list since thats required by the SVM
     return {"Normalised Keypoints": all_kpts.flatten(1).tolist(), "Valid Frames": valid_frames,
-            "Non-Normalised Keypoints": non_normalised_kpts}
+            "Non-Normalised Keypoints": non_normalised_kpts, "Bounding Boxes": bboxes}
 
 normalised_kpts_string = "normalised_keypoints.pkl"
 kpts_path = os.path.join(weights_dir, normalised_kpts_string)
 if not os.path.isfile(kpts_path):
     results = obtain_normalised_keypoints(test_video_dir)
+    valid_frames = results["Valid Frames"]
+    bbox = results["Bounding Boxes"]
+    #correct YOLO's flickering left/right BEFORE saving (you mark the anchor). the FootNet temporal features
+    #are built from these coords, and a flip = a huge fake velocity spike - correcting kills that noise.
+    normalised = np.array(results["Normalised Keypoints"]).reshape(len(valid_frames), 21, 2)
+    corrected = correct_side(test_video_dir, bbox, normalised)                      # (n, 21, 2)
+    results["Normalised Keypoints"] = corrected.reshape(len(valid_frames), -1).tolist()
+    #re-derive the pixel keypoints from the corrected normalised ones so the visualiser stays in sync
+    bbox_arr = np.array(bbox)
+    xy1 = bbox_arr[:, None, :2]; wh = bbox_arr[:, None, 2:] - bbox_arr[:, None, :2]
+    results["Non-Normalised Keypoints"] = torch.tensor(xy1 + corrected * wh)
     with open(kpts_path, "wb") as file:
         pickle.dump(results, file)
     flattened_kpts = results["Normalised Keypoints"]
-    valid_frames = results["Valid Frames"]
     non_normal_kpts = results["Non-Normalised Keypoints"]
 
 else:
@@ -156,6 +173,7 @@ def visualise_frames(video_dir, frames, preds, keypoints):
             continue
 
         #keypoints[pred] = this frames 21 pixel keypoints, same index order YOLO gives them
+        """
         pose = keypoints[pred].tolist() if hasattr(keypoints[pred], "tolist") else keypoints[pred]
         for idx, (x, y) in enumerate(pose):
             x, y = int(x), int(y)
@@ -173,6 +191,7 @@ def visualise_frames(video_dir, frames, preds, keypoints):
             elif idx in knee_names:
                 cv2.circle(img, (x, y), 6, (0, 165, 255), -1)
                 cv2.putText(img, knee_names[idx], (x + 8, y - 8), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 165, 255), 2)
+        """
 
         #cv2 uses BGR, matplotlib expects RGB
         cv2.imshow("Event", img)
@@ -229,41 +248,28 @@ def clean_preds(preds, probabilities, max_gap=None, gap_frac=0.4):
 cleaned_u_preds_indices = clean_preds(u_frame_preds, u_frame_probabilities.tolist())
 cleaned_d_preds_indices = clean_preds(d_frame_preds, d_frame_probablities.tolist())
 
-#If runner direction is right, and task is D and right_ankle_coord_x > left_ankle_coord_x, then right leg, else left leg.
-#If runner direction is left, and task is D and right_ankle_coord_x > left_ankle_coord_x, then left leg, else right_leg.
-#If runner direction is right, and task is U and right_ankle_coord_x > left_ankle_coord_x, then left leg, else right leg.
-#If runner direction is left, and task is U and right_ankle_coord_x > left_ankle_coord_x, them right leg, else left leg.
+#Methodology of obtaining which leg is now changed: The user first will be shown the FIRST detected frame
+#and then alternate based on that (if the strikefoot leg is left or right)
 np_valid = np.array(valid_frames)
-def obtain_which_leg(cleaned_pred_indices, keypoints, task, runner_direction):
+def obtain_which_leg(cleaned_pred_indices, keypoints, task, runner_direction, test_video_dir):
     pred_to_leg_dict = {}
-    for p in cleaned_pred_indices:
-        pose_kpts = keypoints[p]
-        left_ankle = pose_kpts[15]
-        right_ankle = pose_kpts[16]
-        if runner_direction == "right":
-            if task == "D":
-                if right_ankle[0] > left_ankle[0]:
-                    pred_to_leg_dict[p] = "R"
-                else:
-                    pred_to_leg_dict[p] = "L"
-            elif task == "U":
-                if right_ankle[0] > left_ankle[0]:
-                    pred_to_leg_dict[p] = "L"
-                else:
-                    pred_to_leg_dict[p] = "R"
+    cap = cv2.VideoCapture(test_video_dir)
+    #Setting to first frame
+    cap.set(cv2.CAP_PROP_POS_FRAMES, np_valid[cleaned_pred_indices[0]])
+    ret, frame = cap.read()
+    height, width, channels = frame.shape
+    frame = cv2.putText(frame, "For which leg is the " + task + " frame is being shown here?", (40, 40), cv2.FONT_HERSHEY_COMPLEX, 0.06 * height, (255, 0, 0), 2)
+    key = cv2.waitKey(0)
+    leg = chr(key).lower()
+    other_leg = "r" if leg == "l" else "l"
+    for (index, p) in cleaned_pred_indices:
+        if index % 2 == 0:
+            pred_to_leg_dict[p] = leg
+        else:
+            pred_to_leg_dict[p] = other_leg
 
-        elif runner_direction == "left":
-            if task == "D":
-                if right_ankle[0] > left_ankle[0]:
-                    pred_to_leg_dict[p] = "L"
-                else:
-                    pred_to_leg_dict[p] = "R"
-            elif task == "U":
-                if right_ankle[0] > left_ankle[0]:
-                    pred_to_leg_dict[p] = "R"
-                else:
-                    pred_to_leg_dict[p] = "L"
     return pred_to_leg_dict
+
 
 kpts_reshaped = torch.tensor(flattened_kpts).reshape([len(valid_frames), 21, 2]).tolist()
 
@@ -342,8 +348,6 @@ if __name__ == "__main__":
     #see the raw per-frame probabilities (with the manual ground-truth events overlaid) first,
     #THEN step through the detected event frames
     gt_d, gt_u = load_ground_truth()
-    plot_event_probabilities(valid_frames, d_frame_probablities, u_frame_probabilities,
-                             cleaned_d_preds_indices, cleaned_u_preds_indices, gt_d, gt_u)
     visualise_frames(test_video_dir, valid_frames, cleaned_d_preds_indices, non_normal_kpts)
 
 #Pattern: L, L, R, L, L, L, R
