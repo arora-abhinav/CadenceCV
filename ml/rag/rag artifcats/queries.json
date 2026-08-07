@@ -1,46 +1,46 @@
 [
   {
     "metric_id": "cadence",
-    "passage": "The association between cadence and biomechanical efficiency across varying locomotor speeds has been examined in the literature, with findings suggesting complex relationships between self-selected stepping frequency and lower extremity loading patterns. The magnitude of cadence-related changes in kinetic and kinematic variables has varied considerably across populations and imposed conditions."
+    "passage": "Associations between cadence and spatiotemporal gait characteristics were examined across the population studied. The relationship between step rate and measures of running mechanics has been the subject of considerable investigation, with findings demonstrating varied associations depending on the imposed constraints and individual characteristics of the cohort."
   },
   {
     "metric_id": "contact_time",
-    "passage": "Ground contact time and its relationship to overall gait cycle characteristics have been examined across different running speeds and surface conditions. Evidence regarding the mechanistic associations between contact phase duration and force production has demonstrated variable patterns, with inconsistent findings regarding the contribution of stance time to dynamic stability."
+    "passage": "Ground contact time was examined in relation to running velocity and gait mechanics. Evidence regarding the magnitude of contact phase duration and its relationship to other kinematic variables has been mixed, with inconsistent findings reported across different study designs."
   },
   {
     "metric_id": "flight_time",
-    "passage": "The examination of flight phase duration and its association with propulsive mechanics has revealed varied relationships across different locomotor demands. Findings have demonstrated that aerial time fluctuates with changes in cadence and speed, though the magnitude of these associations has shown inconsistent patterns in the literature."
+    "passage": "The flight phase duration was investigated as a correlate of running speed and rhythmic gait properties. Findings regarding aerial time have varied in the literature, suggesting that multiple biomechanical mechanisms may influence this temporal parameter."
   },
   {
     "metric_id": "duty_factor",
-    "passage": "Associations between the proportion of the gait cycle spent in contact with the ground and overall biomechanical stability have been examined, with evidence suggesting moderate correlations to locomotor efficiency. The relationship between duty factor and lower extremity joint loading has varied across populations and movement conditions."
+    "passage": "The duty factor—the ratio of contact time to stride time—was examined as an indicator of gait classification and loading distribution. Associations between this normalized contact parameter and other biomechanical variables have demonstrated moderate to trivial relationships across populations studied."
   },
   {
     "metric_id": "stride_length",
-    "passage": "Stride length and its relationship to metabolic cost and lower extremity joint mechanics have been examined across a range of self-selected and imposed conditions. Findings regarding the magnitude of stride length effects on knee and ankle loading have demonstrated variable associations, with evidence for both trivial and moderate correlations depending on population characteristics."
+    "passage": "Stride length was evaluated in relation to velocity, cadence, and mechanical efficiency metrics. The magnitude of this spatiotemporal variable and its associations with kinematic patterns have been examined, though findings regarding optimal stride amplitude remain inconsistent across methodological approaches."
   },
   {
     "metric_id": "vertical_oscillation",
-    "passage": "The association between vertical centre of mass displacement and metabolic expenditure during running has been examined, with evidence suggesting moderate correlations to locomotor economy. Findings have varied regarding the mechanistic contribution of vertical excursion to propulsive force generation and overall movement efficiency."
+    "passage": "Vertical oscillation of the centre of mass was examined as a measure of running mechanics and metabolic efficiency. Evidence regarding the relationship between vertical displacement and other biomechanical variables has been mixed, with correlations varying depending on locomotor context and measurement approach."
   },
   {
     "metric_id": "vertical_ratio",
-    "passage": "Relationships between normalised vertical oscillation and spatiotemporal gait characteristics have been examined across diverse running populations. Evidence regarding the association between this ratio and running economy has demonstrated inconsistent findings, with variable correlations observed across different cadence and speed conditions."
+    "passage": "The vertical ratio—vertical oscillation normalized to step length—was investigated as a dimensionless descriptor of running style. Associations between this normalized parameter and movement quality have been examined, though findings have demonstrated variable relationships across different populations and conditions."
   },
   {
     "metric_id": "overstride",
-    "passage": "The association between foot landing position relative to the body's centre of mass and braking force magnitude has been examined in the running mechanics literature. Findings regarding the relationship between overstriding and lower extremity impact loading have demonstrated variable patterns, with evidence suggesting both trivial and moderate mechanistic contributions depending on running speed and surface characteristics."
+    "passage": "Foot landing position relative to the centre of mass was examined as a potential mechanism influencing lower limb loading and braking forces. Evidence regarding the magnitude of overstriding and its association with injury risk and performance outcomes has been inconsistent across the literature."
   },
   {
     "metric_id": "foot_strike_angle",
-    "passage": "Foot strike pattern and its association with instantaneous ground reaction forces have been examined across different running speeds and populations. Findings regarding the relationship between foot contact angle and sagittal plane joint loading have varied considerably, with evidence for inconsistent mechanistic pathways to injury risk."
+    "passage": "Foot strike characteristics, including foot inclination angle and rearfoot-to-forefoot strike patterns, were examined in relation to impact biomechanics. Findings regarding the association between foot contact angle and lower limb loading have varied considerably, suggesting that strike pattern classifications alone may not fully capture the complexity of ground contact mechanics."
   },
   {
     "metric_id": "knee_flexion_contact",
-    "passage": "The association between knee flexion angle at initial contact and shock attenuation mechanisms has been examined in the biomechanics literature. Findings have demonstrated varied relationships between sagittal knee kinematics at footstrike and proximal and distal joint loading patterns, with evidence suggesting moderate to inconsistent correlations across different running speeds and footwear conditions."
+    "passage": "Sagittal plane knee kinematics at initial contact were examined as a potential determinant of impact loading and shock attenuation. Associations between knee flexion angle at footstrike and measures of lower limb stress have been investigated, with findings demonstrating moderate but inconsistent correlations across different running populations and velocities."
   },
   {
     "metric_id": "trunk_lean",
-    "passage": "Relationships between forward trunk inclination and lower extremity joint loading have been examined across a range of running conditions and populations. Findings regarding the magnitude of trunk flexion effects on sagittal plane knee and hip mechanics have demonstrated variable associations, with evidence suggesting both trivial and moderate mechanistic pathways to altered force distribution patterns."
+    "passage": "Forward postural lean and trunk inclination were examined in relation to running mechanics and energy transfer. Evidence regarding associations between trunk flexion angle and other kinematic variables has been mixed, with the magnitude of relationships varying depending on speed, terrain, and measurement methodology."
   }
 ]

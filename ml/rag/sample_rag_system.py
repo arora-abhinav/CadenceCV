@@ -38,7 +38,6 @@ metrics = {
     },
 }
 
-
 import json
 import os
 import re
@@ -50,6 +49,10 @@ from dotenv import load_dotenv
 from rank_bm25 import BM25Okapi
 from sentence_transformers import SentenceTransformer, util
 from sqlalchemy import create_engine, text
+
+#Overriding the metrics for now
+with open("/Users/abhinavarora/Desktop/CadenceCV/evaluate_metrics.json", "r") as file:
+    metrics = json.load(file)
 
 load_dotenv(override=True)
 API_KEY = os.environ["ANTHROPIC_API_KEY"]
@@ -93,6 +96,8 @@ metric, same order:
   No:  "Increasing step rate reduced knee loading."
 - Do not invent statistics, correlation coefficients, p-values, or sample sizes.
   Protocol vocabulary only: population type, setting, speed range.
+
+-Note: if any metrics are blank (NaN values, None values, empty arrays), simply ignore reporting them
   """
 
 ONTOLOGY = [

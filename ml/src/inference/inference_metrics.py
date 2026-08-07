@@ -4,23 +4,81 @@ import scipy.signal
 import cv2
 import torch
 import sys
+import matplotlib.pyplot as plt
 from enum import Enum
+import json
+sys.path.append("/Users/abhinavarora/Desktop/CadenceCV/ml/src")
+from utils.numpy_encoder import NumpyEncoder
 from svm_inference import d_frame_preds_legs_indices, u_frame_preds_legs_indices, cap, valid_frames, non_normal_kpts
 
 class unit(Enum):
-    M: 1
-    CM: 2
-    MM: 3
+    M = 1
+    CM = 2
+    MM = 3
 
 class overstride(Enum):
-    NEUTRAL:1
-    MILD:2
-    SEVERE:3
+    NEUTRAL = 1
+    MILD = 2
+    SEVERE = 3
 
 class strikefoot_type(Enum):
-    HEEL: 1
-    MIDFOOT: 2
-    FOREFOOT: 3
+    HEEL = 1
+    MIDFOOT = 2
+    FOREFOOT = 3
+
+#Diagnostic (a): plot the raw per-frame knee flexion curve for each leg with the DETECTED strikes marked.
+#What im looking for: at a true touchdown the knee should be near a LOCAL LOW (leg reaching out, fairly
+#straight), then flex through stance. If the red strike dots land partway UP the rise, the strike frame is
+#late -> inflated contact flexion. If a dot lands on a big ~90 deg swing PEAK, thats a leg SWITCH (im reading
+#the other leg mid-swing), which would also blow up the numbers.
+def diagnose_knee_flexion_timing(detected_frames, strikes_left, strikes_right,
+                                 left_hip_arr, left_knee_arr, left_ankle_arr,
+                                 right_hip_arr, right_knee_arr, right_ankle_arr):
+    np_det = np.array(detected_frames)
+
+    def flex_curve(hip_arr, knee_arr, ankle_arr):
+        #same 180 - interior-angle convention the metrics use, per frame
+        curve = []
+        for h, k, a in zip(hip_arr, knee_arr, ankle_arr):
+            h, k, a = np.array(h), np.array(k), np.array(a)
+            ba, bc = h - k, a - k
+            cos = np.clip(np.dot(ba, bc) / (np.linalg.norm(ba) * np.linalg.norm(bc)), -1.0, 1.0)
+            curve.append(180 - np.rad2deg(np.arccos(cos)))
+        return np.array(curve)
+
+    def strike_positions(strikes):
+        pos = []
+        for f in strikes:
+            where = np.where(np_det == f[0])[0]
+            if len(where):
+                pos.append(where[0])
+        return pos
+
+    left_curve = flex_curve(left_hip_arr, left_knee_arr, left_ankle_arr)
+    right_curve = flex_curve(right_hip_arr, right_knee_arr, right_ankle_arr)
+    l_pos, r_pos = strike_positions(strikes_left), strike_positions(strikes_right)
+
+    #distance between the two hip keypoints (11 vs 12). in a side view they nearly overlap, so a sudden SPIKE
+    #= a detection glitch / the far hip jumping - a frame i shouldnt trust. log scale so tiny baseline stays
+    #readable while instantaneous spikes pop. floor at a tiny epsilon so log(0) doesnt blow up.
+    hip_dist = np.array([np.linalg.norm(np.array(l) - np.array(r)) for l, r in zip(left_hip_arr, right_hip_arr)])
+    hip_dist = np.maximum(hip_dist, 1e-6)
+
+    fig, (axl, axr, axh) = plt.subplots(3, 1, figsize=(15, 11), sharex=True)
+    axl.plot(np_det, left_curve, color="tab:blue", lw=1.2, label="left knee flexion")
+    axl.scatter(np_det[l_pos], left_curve[l_pos], color="red", s=60, zorder=5, label="detected strike")
+    axl.set_ylabel("left knee flexion (deg)"); axl.legend(loc="upper right")
+    axl.set_title("Diagnostic (a): knee flexion vs frame, strikes marked  "
+                  "(strike should sit at a LOW; high dot = late strike / leg switch)")
+    axr.plot(np_det, right_curve, color="tab:orange", lw=1.2, label="right knee flexion")
+    axr.scatter(np_det[r_pos], right_curve[r_pos], color="red", s=60, zorder=5, label="detected strike")
+    axr.set_ylabel("right knee flexion (deg)"); axr.legend(loc="upper right")
+    axh.plot(np_det, hip_dist, color="tab:green", lw=1.2, label="|left hip - right hip|")
+    axh.set_yscale("log")
+    axh.set_ylabel("hip-hip dist (log)"); axh.set_xlabel("frame"); axh.legend(loc="upper right")
+    plt.tight_layout()
+    plt.show()
+
 
 #Clauclating the average time in air per gait cycle and average time in ground contact
 #kpts is NOT normalised
@@ -38,12 +96,36 @@ def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, det
     strikefoot_frames = np.array([x for x in strikefoot_frames_dict.keys()])
     toe_off_frames = np.array([x for x in toe_off_frames_dict.keys()])
 
-    strikefoot_frames_left, strikefoot_frames_right = [(x, "D") for x in strikefoot_frames if strikefoot_frames_dict[x] == "L"], [(x, "D") for x in strikefoot_frames if strikefoot_frames_dict[x] == "R"]
-    toe_off_frames_left, toe_off_frames_right = [(x, "U") for x in toe_off_frames if toe_off_frames_dict[x] == "L"], [(x, "U") for x in toe_off_frames if toe_off_frames_dict[x] == "R"]
+    strikefoot_frames_left, strikefoot_frames_right = [(x, "D") for x in strikefoot_frames if strikefoot_frames_dict[x] == "l"], [(x, "D") for x in strikefoot_frames if strikefoot_frames_dict[x] == "r"]
+    toe_off_frames_left, toe_off_frames_right = [(x, "U") for x in toe_off_frames if toe_off_frames_dict[x] == "l"], [(x, "U") for x in toe_off_frames if toe_off_frames_dict[x] == "r"]
     gait_cycle_left = toe_off_frames_left + strikefoot_frames_left
     gait_cycle_right = toe_off_frames_right + strikefoot_frames_right
     gait_cycle_left.sort()
     gait_cycle_right.sort()
+
+    #Due to YOLO missing out on some frames, the actual frame count is required so that the ratio of
+    #detected:actual frame count can be taken
+    actual_frame_count = cap.get(cv2.CAP_PROP_FRAME_COUNT)
+
+    detected_frame_count = len(detected_frames)
+
+    #Cadence is the steps per second
+    cadence = len(strikefoot_frames) / duration * (detected_frame_count/int(actual_frame_count))
+
+    def smooth_keypoints(kpts, strikefoot_frames):
+        k = np.array(kpts.tolist()) if hasattr(kpts, "tolist") else np.array(kpts, dtype=float)
+        gaps = np.diff(np.sort(strikefoot_frames))
+        median_gap = np.median(gaps) if len(gaps) else len(k)
+        window = int((1/3) * median_gap)
+        if window % 2 == 0:
+            window += 1
+        window = max(window, 5)
+        if window > len(k):
+            window = len(k) if len(k) % 2 == 1 else len(k) - 1
+        return scipy.signal.savgol_filter(k, window_length=window, polyorder=3, axis=0)
+
+    kpts = smooth_keypoints(kpts, strikefoot_frames)
+
     right_hip_arr = []
     left_hip_arr = []
     left_ankle_arr = []
@@ -71,30 +153,26 @@ def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, det
         left_toe_kpt_arr.append(k[19])
         right_toe_kpt_arr.append(k[20])
 
-    #Due to YOLO missing out on some frames, the actual frame count is required so that the ratio of 
-    #detected:actual frame count can be taken
-    actual_frame_count = cap.get(cv2.CAP_PROP_FRAME_COUNT)
-    detected_frame_count = len(detected_frames)
+    fps = actual_frame_count / duration
+    
+    np_strikefoot_frames = np.array(strikefoot_frames)
+    np_toeoff_frames = np.array(toe_off_frames)
     for takeoff in toe_off_frames:
         #Find the next landing after this takeoff. Finding all landings initially to check if there even is a landing 
-        #after the take off frames.
-        next_landings = np.array(np.where(strikefoot_frames > takeoff)).flatten().tolist()
+        #after the take off frames
+        next_landings = np_strikefoot_frames[np_strikefoot_frames > takeoff]
         if len(next_landings) > 0:
             next_landing = next_landings[0]
             flight_times.append(next_landing - takeoff)
     
     for landing in strikefoot_frames:
-        next_takeoffs = np.array(np.where(toe_off_frames > landing)).flatten().tolist()
+        next_takeoffs = np_toeoff_frames[np_toeoff_frames > landing]
         if len(next_takeoffs) > 0:
             next_takeoff = next_takeoffs[0]  
             gct_times.append(next_takeoff - landing)
-
     #Divide by detected frame count to obtain metrics in seconds
-    average_flight_time = (np.mean(flight_times) if flight_times else 0) / detected_frame_count
-    average_gct = (np.mean(gct_times) if gct_times else 0) / detected_frame_count
-
-    #Cadence is the steps per second
-    cadence = len(strikefoot_frames) / duration * (detected_frame_count/int(actual_frame_count))
+    average_flight_time = (np.mean(flight_times) if flight_times else 0)/fps
+    average_gct = (np.mean(gct_times) if gct_times else 0)/fps
 
     #Vertical oscillation: 
     # 1) Calculate the hip's mean Y coordinate (mean of right and left hip Y) over all frames
@@ -129,18 +207,14 @@ def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, det
 
     extracted_left_gait_cycles = extract_cycles(gait_cycle_left)
     extracted_right_gait_cycles = extract_cycles(gait_cycle_right)
-
-    print(extracted_right_gait_cycles)
-    print(extracted_left_gait_cycles)
     np_detected = np.array(detected_frames)
-
     def extract_oscillation(gait_cycle):
         oscillations = []
         for start, end in gait_cycle:
             #Finding the exact index where the start and end frames are present in detected frames. using numpy for quicker indexing
             start_pos = np.array(np.where(np_detected == start)).flatten().tolist()[0]
             end_pos = np.array(np.where(np_detected == end)).flatten().tolist()[0]
-            coords = mean_hip_y_coords[start_pos: end_pos + 1]
+            coords = np.array(mean_hip_y_coords)[start_pos: end_pos + 1]
             peak = max(coords)
             trough = min(coords)
             oscillations.append(peak - trough)
@@ -156,13 +230,16 @@ def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, det
     # However, the average length of the shin bone across all frames will be taken for best video calibration
     def extract_ratio(measurement_unit:unit):
         #Complicated af statement lol
-        avg_shin_bone_length = np.mean(np.sqrt(np.square((np.array(left_knee_arr[:,0]) - np.array(left_ankle_arr[:,0]))) + np.square((np.array(left_knee_arr[:,1]) - np.array(left_ankle_arr[:,1])))))
+
+        avg_shin_bone_length = np.mean(np.sqrt(np.square((np.array(left_knee_arr)[:,0] - np.array(left_ankle_arr)[:,0])) + np.square((np.array(left_knee_arr)[:,1] - np.array(left_ankle_arr)[:,1]))))
         if measurement_unit == unit.MM:
             pixel_ratio = avg_shin_bone_length/(shin_bone_measurement * 1000)
         elif measurement_unit == unit.M:
             pixel_ratio = avg_shin_bone_length/shin_bone_measurement
         elif measurement_unit == unit.CM:
             pixel_ratio = avg_shin_bone_length/(shin_bone_measurement * 100)
+
+        return pixel_ratio
 
     pixel_to_meter_ratio = extract_ratio(unit.M)
     pixel_to_cm_ratio = extract_ratio(unit.CM)
@@ -173,7 +250,7 @@ def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, det
         for start, end in gait_cycle:
             start_pos = np.array(np.where(np_detected == start)).flatten().tolist()[0]
             end_pos = np.array(np.where(np_detected == end)).flatten().tolist()[0]
-            ankle_cycle = ankle_arr[start_pos: end_pos + 1]
+            ankle_cycle = np.array(ankle_arr)[start_pos: end_pos + 1]
             peak = max(ankle_cycle[:,0])
             trough = max(ankle_cycle[:,0])
             stride_lengths.append(peak - trough)
@@ -182,7 +259,7 @@ def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, det
 
     avg_left_stride_length = (np.mean(np.array(extract_stride_length(extracted_left_gait_cycles, left_ankle_arr)))) * (1/pixel_to_meter_ratio)
     avg_right_stride_length = (np.mean(np.array(extract_stride_length(extracted_right_gait_cycles, right_ankle_arr)))) * (1/pixel_to_meter_ratio)
-    avg_overall_stride_length = (np.mean(avg_left_stride_length, avg_left_stride_length)) * pixel_to_meter_ratio
+    avg_overall_stride_length = (np.mean([avg_left_stride_length, avg_left_stride_length])) * pixel_to_meter_ratio
 
     #Classifying overstrides: 
     # a) Shin Test: Checking the angle between the vertical and the shin bone. (ankle to knee). If angle > 5 degrees, then the person is overstriding
@@ -219,7 +296,7 @@ def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, det
     def calculate_tibial(shin_vector):
         angle = np.arctan2(shin_vector[1], shin_vector[0])
         angle = np.rad2deg(np.pi/2 - angle)
-        return 
+        return angle
 
     def overstriding_classification(strikefoot_frames, heel_x_coords, knee_arr, ankle_arr):
         overstriding_COM_mild = []
@@ -227,7 +304,8 @@ def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, det
         overstriding_shin_mild = []
         overstriding_shin_severe = []
         for frame in strikefoot_frames:
-            ind = np.array(np.where(np_detected == frame)).flatten().tolist()[0]
+            #frame[0] is taken because its in the format of (frame, "D") wjere "D" signifies its a strikeoot frame (stupid system, will change later)
+            ind = np.array(np.where(np_detected == frame[0])).flatten().tolist()[0]
             hip_x_c = mean_hip_x_coords[ind]
             heel_x_c = heel_x_coords[ind]
             COM_res = _classify_offset(np.abs(hip_x_c - heel_x_c))
@@ -235,6 +313,7 @@ def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, det
                 overstriding_COM_mild.append(frame)
             elif COM_res == overstride.SEVERE:
                 overstriding_COM_severe.append(frame)
+
             shin_vector = np.array(knee_arr[ind]) - np.array(ankle_arr[ind])
             tibial_angle = calculate_tibial(shin_vector)
             shin_res = _classify_tibial(tibial_angle)
@@ -248,8 +327,8 @@ def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, det
                 "Shin Mild": overstriding_shin_mild,
                 "Shin Severe": overstriding_shin_severe}
 
-    left_foot_overstrides = overstriding_classification(strikefoot_frames_left, left_heel_arr[:,0], left_knee_arr, left_ankle_arr)
-    right_foot_overstrides = overstriding_classification(strikefoot_frames_right, right_heel_arr[:,0], right_knee_arr, right_ankle_arr)
+    left_foot_overstrides = overstriding_classification(strikefoot_frames_left, np.array(left_heel_arr)[:,0], left_knee_arr, left_ankle_arr)
+    right_foot_overstrides = overstriding_classification(strikefoot_frames_right, np.array(right_heel_arr)[:,0], right_knee_arr, right_ankle_arr)
 
     #Generic joint angle at vertex b for the points a-b-c. 180 = dead straight limb, smaller = more bent.
     #Wrote this once since im reusing it for the knee, hip drive
@@ -280,7 +359,6 @@ def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, det
     duty_factor = avg_gct_frames / avg_stride_frames
 
     #Need real seconds for the physics below (Morin's eqns dont care about pixels but they very much care about time)
-    fps = actual_frame_count / duration
     seconds_per_frame = 1 / fps
     t_c = avg_gct_frames * seconds_per_frame         
     t_a = avg_aerial_frames * seconds_per_frame    
@@ -366,6 +444,10 @@ def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, det
             dy = mean_hip_y_coords[i] - mid_shoulder[1]
             leans.append(np.rad2deg(np.arctan2(dx, dy)))
         return np.mean(np.abs(leans))
+
+    diagnose_knee_flexion_timing(detected_frames, strikefoot_frames_left, strikefoot_frames_right,
+                                 left_hip_arr, left_knee_arr, left_ankle_arr,
+                                 right_hip_arr, right_knee_arr, right_ankle_arr)
 
     left_knee_flexion = np.mean(knee_flexion_at_contact(strikefoot_frames_left, left_hip_arr, left_knee_arr, left_ankle_arr))
     right_knee_flexion = np.mean(knee_flexion_at_contact(strikefoot_frames_right, right_hip_arr, right_knee_arr, right_ankle_arr))
@@ -454,3 +536,7 @@ def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, det
     }
 
 res = calculate_metrics(d_frame_preds_legs_indices, u_frame_preds_legs_indices, valid_frames, cap, non_normal_kpts, 0.4, 1.78, 70)
+print(res)
+
+with open("/Users/abhinavarora/Desktop/CadenceCV/evaluate_metrics.json", "w") as file:
+    json.dump(res, file, indent=4, cls=NumpyEncoder)

@@ -173,7 +173,6 @@ def visualise_frames(video_dir, frames, preds, keypoints):
             continue
 
         #keypoints[pred] = this frames 21 pixel keypoints, same index order YOLO gives them
-        """
         pose = keypoints[pred].tolist() if hasattr(keypoints[pred], "tolist") else keypoints[pred]
         for idx, (x, y) in enumerate(pose):
             x, y = int(x), int(y)
@@ -191,7 +190,6 @@ def visualise_frames(video_dir, frames, preds, keypoints):
             elif idx in knee_names:
                 cv2.circle(img, (x, y), 6, (0, 165, 255), -1)
                 cv2.putText(img, knee_names[idx], (x + 8, y - 8), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 165, 255), 2)
-        """
 
         #cv2 uses BGR, matplotlib expects RGB
         cv2.imshow("Event", img)
@@ -258,11 +256,12 @@ def obtain_which_leg(cleaned_pred_indices, keypoints, task, runner_direction, te
     cap.set(cv2.CAP_PROP_POS_FRAMES, np_valid[cleaned_pred_indices[0]])
     ret, frame = cap.read()
     height, width, channels = frame.shape
-    frame = cv2.putText(frame, "For which leg is the " + task + " frame is being shown here?", (40, 40), cv2.FONT_HERSHEY_COMPLEX, 0.06 * height, (255, 0, 0), 2)
+    frame = cv2.putText(frame, "For which leg is the " + task + " frame is being shown here?", (40, 40), cv2.FONT_HERSHEY_COMPLEX, height, (255, 0, 0), 2)
+    cv2.imshow("Event", frame)
     key = cv2.waitKey(0)
     leg = chr(key).lower()
     other_leg = "r" if leg == "l" else "l"
-    for (index, p) in cleaned_pred_indices:
+    for (index, p) in enumerate(cleaned_pred_indices):
         if index % 2 == 0:
             pred_to_leg_dict[p] = leg
         else:
@@ -273,11 +272,11 @@ def obtain_which_leg(cleaned_pred_indices, keypoints, task, runner_direction, te
 
 kpts_reshaped = torch.tensor(flattened_kpts).reshape([len(valid_frames), 21, 2]).tolist()
 
-d_frame_preds_legs_indices = obtain_which_leg(cleaned_d_preds_indices, kpts_reshaped, "D", "right")
-u_frame_preds_legs_indices = obtain_which_leg(cleaned_u_preds_indices, kpts_reshaped, "U", "right")
+d_frame_preds_legs_indices = obtain_which_leg(cleaned_d_preds_indices, kpts_reshaped, "D", "right", test_video_dir)
+u_frame_preds_legs_indices = obtain_which_leg(cleaned_u_preds_indices, kpts_reshaped, "U", "right", test_video_dir)
 
-print(len(d_frame_preds_legs_indices))
-print(len(u_frame_preds_legs_indices))
+print(d_frame_preds_legs_indices)
+print(u_frame_preds_legs_indices)
 
 cap = cv2.VideoCapture(test_video_dir)
 

@@ -1,0 +1,181 @@
+{
+    "Cadence (steps/sec)": 2.7567567567567566,
+    "Average GCT (s)": 0.24343434343434342,
+    "Average Flight Time (s)": 0.13333333333333333,
+    "Average Vertical Oscillation (px)": 44.17484399369964,
+    "Average Stride Length (m)": 0.0,
+    "Left Foot Overstrides": {
+        "COM Mild": [],
+        "COM Severe": [],
+        "Shin Mild": [],
+        "Shin Severe": [
+            [
+                5,
+                "D"
+            ],
+            [
+                38,
+                "D"
+            ],
+            [
+                61,
+                "D"
+            ],
+            [
+                83,
+                "D"
+            ],
+            [
+                105,
+                "D"
+            ],
+            [
+                127,
+                "D"
+            ],
+            [
+                149,
+                "D"
+            ],
+            [
+                172,
+                "D"
+            ],
+            [
+                194,
+                "D"
+            ],
+            [
+                216,
+                "D"
+            ],
+            [
+                226,
+                "D"
+            ],
+            [
+                247,
+                "D"
+            ],
+            [
+                270,
+                "D"
+            ],
+            [
+                291,
+                "D"
+            ],
+            [
+                313,
+                "D"
+            ],
+            [
+                335,
+                "D"
+            ],
+            [
+                357,
+                "D"
+            ]
+        ]
+    },
+    "Right Foot Overstrides": {
+        "COM Mild": [],
+        "COM Severe": [],
+        "Shin Mild": [],
+        "Shin Severe": [
+            [
+                26,
+                "D"
+            ],
+            [
+                48,
+                "D"
+            ],
+            [
+                70,
+                "D"
+            ],
+            [
+                93,
+                "D"
+            ],
+            [
+                116,
+                "D"
+            ],
+            [
+                138,
+                "D"
+            ],
+            [
+                159,
+                "D"
+            ],
+            [
+                182,
+                "D"
+            ],
+            [
+                204,
+                "D"
+            ],
+            [
+                219,
+                "D"
+            ],
+            [
+                238,
+                "D"
+            ],
+            [
+                260,
+                "D"
+            ],
+            [
+                282,
+                "D"
+            ],
+            [
+                304,
+                "D"
+            ],
+            [
+                327,
+                "D"
+            ],
+            [
+                347,
+                "D"
+            ],
+            [
+                369,
+                "D"
+            ]
+        ]
+    },
+    "Duty Factor": 0.3324770467627611,
+    "Swing Time (s)": 0.48874956461163355,
+    "Aerial Time (s)": 0.13333333333333333,
+    "Contact Time (s)": 0.24343434343434342,
+    "Stride Time (s)": 0.732183908045977,
+    "Running Speed (m/s)": 0.0,
+    "Vertical Ratio (%)": 11.939426224877057,
+    "Trunk Lean (deg)": 5.304939923985848,
+    "Left Knee Flexion at Contact (deg)": 33.49495943612311,
+    "Right Knee Flexion at Contact (deg)": 36.869824640493256,
+    "Left Knee Flexion Excursion (deg)": 36.38840136750404,
+    "Right Knee Flexion Excursion (deg)": 36.605724474506715,
+    "Left Foot Strike Angle (deg)": 43.740233855077925,
+    "Right Foot Strike Angle (deg)": 49.095557635947216,
+    "Left Hip Extension at Toe-Off (deg)": 169.45590114622152,
+    "Right Hip Extension at Toe-Off (deg)": 169.06854514560052,
+    "Peak Vertical GRF (BW)": 2.4311495016369147,
+    "COM Vertical Drop (m)": 0.07053261181177341,
+    "Vertical Stiffness (N/m)": 23669.481675076706,
+    "Leg Stiffness (N/m)": 23669.481675076706,
+    "Stride Length Symmetry (%)": 0,
+    "Vertical Oscillation Symmetry (%)": 1.5728488534871161,
+    "Knee Flexion Symmetry (%)": 9.59248365118392,
+    "Foot Strike Symmetry (%)": 11.537196365449235
+}

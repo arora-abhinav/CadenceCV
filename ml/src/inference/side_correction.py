@@ -91,7 +91,8 @@ def correct_side(video_directory, bbox_coords, normalised_kpts):
     wh = bbox[:, None, 2:] - bbox[:, None, :2]
     px = xy1 + norm * wh                                              # (n, 21, 2) pixel keypoints
 
-    a15, a16 = norm[:, 15, :], norm[:, 16, :]
+    #Seeing left and right knee instead of left and right ankle since knee seems to be the most reliable metric there is 
+    a15, a16 = norm[:, 13, :], norm[:, 14, :]
     peaks = _find_anchors(a15, a16)
     marked = _mark_anchor(video_directory, peaks, px)
     if marked is None:
