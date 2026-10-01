@@ -183,9 +183,12 @@ def configure_data_sliding_window(strike_df, frame_by_frame_path, fit_scaler=Tru
     video_metric_df.loc[video_metric_df["side"] == "right", "side"] = "R"
 
     #z-score normalisation — fit on training data, reuse those stats for the test set
+    #video_metric_df holds EVERY video (test ones included), so the stats are fit only on the videos that are
+    #actually in strike_df. Otherwise the held out videos leak into the mean/std
     if fit_scaler:
-        scaler_means = video_metric_df[lstm_metrics].mean()
-        scaler_stds = video_metric_df[lstm_metrics].std()
+        train_rows = video_metric_df[video_metric_df["video"].isin(strike_df["video"].unique())]
+        scaler_means = train_rows[lstm_metrics].mean()
+        scaler_stds = train_rows[lstm_metrics].std()
     video_metric_df[lstm_metrics] = (
         video_metric_df[lstm_metrics] - scaler_means
     ) / scaler_stds
@@ -335,47 +338,42 @@ class LSTM_custom(nn.Module):
 #retraining or overwriting the saved weights.
 if __name__ == "__main__":
     from training.data_loader import training_df, testing_df, testing_video_strings
+    #Uncorrected per-frame features, same reason as in training/data_loader.py. The side corrected version is
+    #normalised_frame_by_frame_data_side_corrected.json if that experiment needs to be rerun (swap BOTH paths)
+    frame_by_frame_path = "/Users/abhinavarora/Desktop/CadenceCV/ml/data/normalised_frame_by_frame_data.json"
     from sklearn.metrics import classification_report
 
     #This is for adding a 5th feature: ankle dist. The ankle dist feature is essentially testing to
-    with open("/Users/abhinavarora/Desktop/CadenceCV/ml/data/normalised_frame_by_frame_data.json") as file:
+    with open(frame_by_frame_path) as file:
         data = json.load(file)
+
+    #Fixing the seed so a retrain gives back the same weights
+    torch.manual_seed(0)
+    np.random.seed(0)
 
     #Will combine the ankle dist_df with the strikefoot data since it is a new feature
     ankle_dist_df = pd.DataFrame(data)[["ankle_x_dist", "frame", "side", "video"]]
+    #The frame by frame json uses left/right, the strikefoot data uses L/R
+    ankle_dist_df.loc[ankle_dist_df["side"] == "left", "side"] = "L"
+    ankle_dist_df.loc[ankle_dist_df["side"] == "right", "side"] = "R"
 
-    #Keeping a copy to edit the testing df
-    ankle_dist_df_test = ankle_dist_df.copy()
-
-    #Only keeping the entries where the d-frames match
-    ankle_dist_df = ankle_dist_df[ankle_dist_df["frame"].isin(training_df["frame"])]
-    #Required to prevent 2 frame columns from existing
-    #Sorting both dfs to ensure that they're merged accordingly
-    ankle_dist_df = ankle_dist_df.sort_values(["frame", "side"]).reset_index(drop=True)
-    training_df = training_df.sort_values(["frame", "side"]).reset_index(drop=True)
-    ankle_dist_df = ankle_dist_df["ankle_x_dist"]
-    training_df = pd.concat([training_df, ankle_dist_df], axis=1).reset_index(drop=True)
-
-    #Repeating the above process but for the testing df
-    ankle_dist_df_test = ankle_dist_df_test[ankle_dist_df_test["frame"].isin(testing_df["frame"])]
-    print(ankle_dist_df_test[ankle_dist_df_test["video"] == "instavid_15"].head())
-    print(ankle_dist_df_test[ankle_dist_df_test["video"].isin(testing_df["video"])]["video"].unique())
-    ankle_dist_df_test = ankle_dist_df_test.sort_values(["frame", "side"], axis=0).reset_index(drop=True)
-    testing_df = testing_df.sort_values(["frame", "side"], axis=0).reset_index(drop=True)
-    ankle_dist_df_test = ankle_dist_df_test["ankle_x_dist"]
-    testing_df = pd.concat([testing_df, ankle_dist_df_test], axis=1).reset_index(drop=True)
+    #Merging on (video, frame, side) instead of sorting + concatenating. The old way matched on frame number
+    #ALONE, so frame 35 of every video got pulled in and the concat lined the rows up by position, not by strike.
+    #drop the old ankle_x_dist column first so the merge doesnt make an _x and _y copy of it
+    training_df = training_df.drop(columns=["ankle_x_dist"], errors="ignore").merge(ankle_dist_df, on=["video", "frame", "side"], how="left")
+    testing_df = testing_df.drop(columns=["ankle_x_dist"], errors="ignore").merge(ankle_dist_df, on=["video", "frame", "side"], how="left")
 
     print(testing_df.head(40))
     print(training_df.head())
 
     # Training
     train_features, train_labels, train_masks, means, stds = configure_data_sliding_window(
-        training_df, "/Users/abhinavarora/Desktop/CadenceCV/ml/data/normalised_frame_by_frame_data.json", fit_scaler=True
+        training_df, frame_by_frame_path, fit_scaler=True
     )
 
     # Test — pass back the training stats
     test_features, test_labels, test_masks, _, _ = configure_data_sliding_window(
-        testing_df, "/Users/abhinavarora/Desktop/CadenceCV/ml/data/normalised_frame_by_frame_data.json", fit_scaler=False,
+        testing_df, frame_by_frame_path, fit_scaler=False,
         scaler_means=means, scaler_stds=stds
     )
 
@@ -383,8 +381,11 @@ if __name__ == "__main__":
     with open("/Users/abhinavarora/Desktop/CadenceCV/ml/weights/scaler_means_and_dev.pkl", "wb") as file:
         pickle.dump({"Means": means, "Stds": stds}, file)
 
-    dataset = CustomDataLoader(train_features, train_labels, train_masks)
-    test_dataset = CustomDataLoader(test_features, test_labels, test_masks)
+    #CustomDataLoader takes (features, masks, labels). These used to be passed as (features, labels, masks), which
+    #swapped them: the LSTM was learning the PADDING MASK as its target and the labels were being used as the mask.
+    #That was why it scored below the majority baseline before (the eval had the same swap so it never showed up)
+    dataset = CustomDataLoader(train_features, train_masks, train_labels)
+    test_dataset = CustomDataLoader(test_features, test_masks, test_labels)
 
     print(len(test_dataset))
 

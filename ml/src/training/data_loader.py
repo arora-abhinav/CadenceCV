@@ -2,6 +2,10 @@
 import json 
 import pandas as pd
 
+#Training on the UNCORRECTED data on purpose. A model retrained on the side corrected version
+#(ml/extract_side_corrected_data.py -> normalised_strikefoot_data_side_corrected.json) scored better frame by frame
+#but its toe offs got worse on unseen videos (held out 0.85 -> 0.76, Video18 0.93 -> 0.78 F1), even after tuning
+#the threshold. The side correction is still used at INFERENCE, the uncorrected trained model did best with it
 json_path = "/Users/abhinavarora/Desktop/CadenceCV/ml/data/normalised_strikefoot_data.json"
 
 with open(json_path, "r") as file:

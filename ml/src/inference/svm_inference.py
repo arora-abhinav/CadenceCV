@@ -18,6 +18,7 @@ from utils.footnet_svm_features import footnet_features_for_sequence
 #poisoned by YOLO's flickering (a flip = a giant fake velocity spike in the per-leg FootNet features)
 sys.path.insert(0, os.path.dirname(__file__))
 from side_correction import correct_side
+from utils.normalised_keypoints import load_corrected_keypoints
 d_frame_model_string = "d_frame_svm.pkl"
 u_frame_model_string = "u_frame_svm.pkl"
 weights_dir = "/Users/abhinavarora/Desktop/CadenceCV/ml/weights"
@@ -31,74 +32,14 @@ with open(os.path.join(weights_dir, d_frame_model_string), "rb") as file:
 with open(os.path.join(weights_dir, u_frame_model_string), "rb") as file:
     u_frame_model:Pipeline = pickle.load(file)
 
-def obtain_normalised_keypoints(video_dir):
-    model = YOLO("/Users/abhinavarora/Desktop/CadenceCV/ml/weights/final_model.pt")
-    preds = model.predict(video_dir, imgsz=1280, stream=True)
-    all_kpts = []
-    non_normalised_kpts = []
-    valid_frames = []
-    bboxes = []
-    for index, res in enumerate(preds):
-        if len(res) == 0:
-            continue
-        #The highest confidence prediction keypoints
-        kpts = res.keypoints.xy[0]
-        #Corresponding person's bounding boxes
-        bbox = res.boxes.xyxy[0]
-        x1 = bbox[0]
-        y1 = bbox[1]
-        x2 = bbox[2]
-        y2 = bbox[3]
-        x_diff = x2 - x1
-        y_diff = y2 - y1
-        kpts_copy = kpts.clone().tolist()
-        #Renamed to kp_index so it doesnt clobber the outer `index` (the actual frame number)
-        for (kp_index, k) in enumerate(kpts):
-            k.tolist()
-            x,y = k
-            x = (x - x1)/x_diff
-            y = (y - y1)/y_diff
-            kpts_copy[kp_index] = [x, y]
-
-        all_kpts.append(kpts_copy)
-        valid_frames.append(index)
-        non_normalised_kpts.append(kpts.tolist())
-        #box needed so correct_side can un-normalise the kpts back to pixels for the marking display
-        bboxes.append([float(x1), float(y1), float(x2), float(y2)])
-
-    all_kpts = torch.tensor(all_kpts)
-    non_normalised_kpts = torch.tensor(non_normalised_kpts)
-
-    #Flattening to a list since thats required by the SVM
-    return {"Normalised Keypoints": all_kpts.flatten(1).tolist(), "Valid Frames": valid_frames,
-            "Non-Normalised Keypoints": non_normalised_kpts, "Bounding Boxes": bboxes}
-
+#YOLO + bbox normalisation + side correction now live in utils/normalised_keypoints.py so the LSTM inference
+#can share them without importing (and running) this whole file
 normalised_kpts_string = "normalised_keypoints.pkl"
 kpts_path = os.path.join(weights_dir, normalised_kpts_string)
-if not os.path.isfile(kpts_path):
-    results = obtain_normalised_keypoints(test_video_dir)
-    valid_frames = results["Valid Frames"]
-    bbox = results["Bounding Boxes"]
-    #correct YOLO's flickering left/right BEFORE saving (you mark the anchor). the FootNet temporal features
-    #are built from these coords, and a flip = a huge fake velocity spike - correcting kills that noise.
-    normalised = np.array(results["Normalised Keypoints"]).reshape(len(valid_frames), 21, 2)
-    corrected = correct_side(test_video_dir, bbox, normalised)                      # (n, 21, 2)
-    results["Normalised Keypoints"] = corrected.reshape(len(valid_frames), -1).tolist()
-    #re-derive the pixel keypoints from the corrected normalised ones so the visualiser stays in sync
-    bbox_arr = np.array(bbox)
-    xy1 = bbox_arr[:, None, :2]; wh = bbox_arr[:, None, 2:] - bbox_arr[:, None, :2]
-    results["Non-Normalised Keypoints"] = torch.tensor(xy1 + corrected * wh)
-    with open(kpts_path, "wb") as file:
-        pickle.dump(results, file)
-    flattened_kpts = results["Normalised Keypoints"]
-    non_normal_kpts = results["Non-Normalised Keypoints"]
-
-else:
-    with open(kpts_path, "rb") as file:
-        results = pickle.load(file)
-    flattened_kpts = results["Normalised Keypoints"]
-    valid_frames = results["Valid Frames"]
-    non_normal_kpts:torch.Tensor = results["Non-Normalised Keypoints"]
+results = load_corrected_keypoints(test_video_dir, kpts_path)
+flattened_kpts = results["Normalised Keypoints"]
+valid_frames = results["Valid Frames"]
+non_normal_kpts:torch.Tensor = results["Non-Normalised Keypoints"]
 
 
 #TWO copies of the normalised keypoints: one as-is, one with FLIP_IDX applied (whole-body L<->R relabel).

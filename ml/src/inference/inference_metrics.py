@@ -1,4 +1,6 @@
-#This file will be used to write the inference metrics obtained from svm_inference.py. 
+#This file will be used to write the inference metrics obtained from footnet_inference.py (the LSTM).
+#It used to read the SVMs' events from svm_inference.py, but on unseen videos the LSTM detected strikes better
+#(F1 0.71 vs 0.65 at +-2 frames, same video grouped folds for both) so its back as the event detector.
 import numpy as np
 import scipy.signal
 import cv2
@@ -9,7 +11,10 @@ from enum import Enum
 import json
 sys.path.append("/Users/abhinavarora/Desktop/CadenceCV/ml/src")
 from utils.numpy_encoder import NumpyEncoder
-from svm_inference import d_frame_preds_legs_indices, u_frame_preds_legs_indices, cap, valid_frames, non_normal_kpts
+#Same 5 things svm_inference.py used to export, so nothing in calculate_metrics has to change.
+#The SVM version is still there in svm_inference.py if a comparison is needed
+from footnet_inference import run_video_inference
+d_frame_preds_legs_indices, u_frame_preds_legs_indices, cap, valid_frames, non_normal_kpts = run_video_inference()
 
 class unit(Enum):
     M = 1
@@ -252,14 +257,17 @@ def calculate_metrics(strikefoot_frames_dict:dict, toe_off_frames_dict:dict, det
             end_pos = np.array(np.where(np_detected == end)).flatten().tolist()[0]
             ankle_cycle = np.array(ankle_arr)[start_pos: end_pos + 1]
             peak = max(ankle_cycle[:,0])
-            trough = max(ankle_cycle[:,0])
+            #trough used to be max() as well, so peak - trough was always 0 and stride length always came out as 0
+            trough = min(ankle_cycle[:,0])
             stride_lengths.append(peak - trough)
 
         return stride_lengths
 
     avg_left_stride_length = (np.mean(np.array(extract_stride_length(extracted_left_gait_cycles, left_ankle_arr)))) * (1/pixel_to_meter_ratio)
     avg_right_stride_length = (np.mean(np.array(extract_stride_length(extracted_right_gait_cycles, right_ankle_arr)))) * (1/pixel_to_meter_ratio)
-    avg_overall_stride_length = (np.mean([avg_left_stride_length, avg_left_stride_length])) * pixel_to_meter_ratio
+    #Left and right are already in metres from the 2 lines above. This used to average LEFT twice and then multiply
+    #by pixel_to_meter_ratio again, which turned the metres back into pixel-ish units
+    avg_overall_stride_length = np.mean([avg_left_stride_length, avg_right_stride_length])
 
     #Classifying overstrides: 
     # a) Shin Test: Checking the angle between the vertical and the shin bone. (ankle to knee). If angle > 5 degrees, then the person is overstriding

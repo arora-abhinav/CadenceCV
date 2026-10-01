@@ -123,6 +123,7 @@ def visualise_corrected_keypoints(video_path, vf, corrected_px):
                 cv2.circle(img, (x, y), 6, (0, 0, 255), -1)
                 cv2.putText(img, foot_names[idx], (x + 8, y - 8), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 1)
         H, W = img.shape[:2]
+        cv2.putText(img, str(differences[i]), (100, 100), cv2.FONT_HERSHEY_COMPLEX, 2, (0, 0, 130), 2)
         if H > 900:
             img = cv2.resize(img, (int(W * 900 / H), 900))
         cv2.imshow("corrected keypoints per frame", img)
@@ -181,3 +182,18 @@ axs[1, 1].legend()
 plt.xlabel("Frame")
 plt.tight_layout()
 plt.show()
+
+
+plt.figure(figsize=(15, 5))
+
+plt.plot(range(1, n_frames), differences, linewidth=1.5)
+plt.axhline(0, color="black", linestyle="--", linewidth=1)
+
+plt.xlabel("Frame")
+plt.ylabel("dist_keep - dist_swap")
+plt.title("Difference Between Keep and Swap Continuity Costs")
+plt.grid(True)
+
+plt.tight_layout()
+plt.show()
+
